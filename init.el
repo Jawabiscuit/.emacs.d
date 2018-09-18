@@ -24,6 +24,9 @@
 	      (convert-standard-filename ".emacs.d/custom.el")))
 (load custom-file)
 
+;; Set up appearance early
+(require 'appearance)
+
 ;; Install extensions if they're missing
 (defun init--install-packages ()
   (packages-install
