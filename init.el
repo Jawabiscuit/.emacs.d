@@ -46,3 +46,8 @@
    (package-refresh-contents)
    (init--install-packages)))
 
+;; Setup extensions
+(eval-after-load 'magit '(require 'setup-magit))
+
+;; Setup key bindings
+(require 'key-bindings)
