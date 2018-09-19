@@ -72,6 +72,9 @@
 ;; Language specific setup files
 (eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
 
+;; Map files to modes
+(require 'mode-mappings)
+
 ;; Setup key bindings
 (require 'key-bindings)
 
