@@ -19,11 +19,6 @@
       (concat emacsd-dir
 	      (convert-standard-filename "site-lisp/")))
 
-;; Diminish
-(setq diminish-dir
-      (concat site-lisp-dir
-	      (convert-standard-filename "diminish")))
-
 ;; Settings
 (setq settings-dir
       (concat emacsd-dir
@@ -32,7 +27,11 @@
 ;; Setup load-path
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path site-lisp-dir)
-(add-to-list 'load-path diminish-dir)
+
+;; Add external projects to load path
+(dolist (project (directory-files site-lisp-dir t "\\w+"))
+  (when (file-directory-p project)
+    (add-to-list 'load-path project)))
 
 ;; Setup packages
 (require 'setup-package)
@@ -53,7 +52,6 @@
      magit
      magit-gitflow
      markdown-mode
-     multiple-cursors
      paredit
      restclient
      smartparens
@@ -68,6 +66,7 @@
 ;; Setup extensions
 (eval-after-load 'magit '(require 'setup-magit))
 (require 'setup-smartparens)
+(require 'multiple-cursors)
 
 ;; Language specific setup files
 (eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
