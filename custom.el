@@ -22,7 +22,7 @@
  '(mouse-wheel-scroll-amount (quote (15)))
  '(package-selected-packages
    (quote
-    (smartparens restclient paredit magit-gitflow magit multiple-cursors markdown-mode+ markdown-mode minimap)))
+    (smartparens restclient paredit magit-gitflow magit multiple-cursors markdown-mode+ markdown-mode)))
  '(version-control nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

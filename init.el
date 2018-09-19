@@ -8,12 +8,31 @@
 ;; No splash screen please ... jeez
 (setq inhibit-startup-message t)
 
-;; Setup load path
-(setq handmade-dir "W:/handmade/")
-(setq settings-dir
+;; Set path to dependencies
+(setq handmade-dir "w:/handmade/")
+(setq emacsd-dir
       (concat handmade-dir
-	      (convert-standard-filename ".emacs.d/settings")))
+	      (convert-standard-filename ".emacs.d/")))
+
+;; Site-lisp
+(setq site-lisp-dir
+      (concat emacsd-dir
+	      (convert-standard-filename "site-lisp/")))
+
+;; Diminish
+(setq diminish-dir
+      (concat site-lisp-dir
+	      (convert-standard-filename "diminish")))
+
+;; Settings
+(setq settings-dir
+      (concat emacsd-dir
+	      (convert-standard-filename "settings")))
+
+;; Setup load-path
 (add-to-list 'load-path settings-dir)
+(add-to-list 'load-path site-lisp-dir)
+(add-to-list 'load-path diminish-dir)
 
 ;; Setup packages
 (require 'setup-package)
@@ -48,6 +67,8 @@
 
 ;; Setup extensions
 (eval-after-load 'magit '(require 'setup-magit))
+(require 'setup-smartparens)
 
 ;; Setup key bindings
 (require 'key-bindings)
+
