@@ -69,6 +69,9 @@
 (eval-after-load 'magit '(require 'setup-magit))
 (require 'setup-smartparens)
 
+;; Language specific setup files
+(eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
+
 ;; Setup key bindings
 (require 'key-bindings)
 
