@@ -1,6 +1,6 @@
 # Project emacs settings
 
-## Example Usage - Clone Into Project as a Submodule
+**Example Usage - Clone Into Project as a Submodule**
 
 1. `cd` into project git repo
  
@@ -30,3 +30,15 @@
 
 	`@echo off`
 	`"C:\Program Files (x86)\emacs\bin\runemacs.exe" -l p:\project\.emacs.d\init.el`
+
+
+6. Updating
+
+	all
+	
+	`git submodule update --recursive --remote`
+
+	individual
+	
+	`cd .emacs.d`
+	`git submodule update --remote site-lisp/diminish`
