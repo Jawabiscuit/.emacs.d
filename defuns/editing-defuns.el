@@ -18,5 +18,20 @@
 
   ;; Prevent overriding of alt-s
   (define-key text-mode-map "\es" 'casey-save-buffer)
-  )
+)
 
+(defun append-as-kill ()
+  "Performs copy-region-as-kill as an append."
+  (interactive)
+  (append-next-kill) 
+  (copy-region-as-kill (mark) (point))
+)
+
+(defun casey-replace-in-region (old-word new-word)
+  "Perform a replace-string in the current region."
+  (interactive "sReplace: \nsReplace: %s  With: ")
+  (save-excursion (save-restriction
+		    (narrow-to-region (mark) (point))
+		    (beginning-of-buffer)
+		    (replace-string old-word new-word)))
+)

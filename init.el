@@ -128,3 +128,6 @@
 
 ;; Editing (some definitions are in editing_defuns.el)
 (add-hook 'text-mode-hook 'casey-big-fun-text-hook)
+
+;; Window
+(eval-after-load (maximize-frame))

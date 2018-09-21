@@ -35,5 +35,51 @@
 
 ;; Editing
 (define-key global-map [f8] 'casey-replace-string)
+(define-key global-map "\eq" 'append-as-kill)
+(define-key global-map "" 'copy-region-as-kill)
+(define-key global-map "" 'rotate-yankpointer)
+(define-key global-map "\eu" 'undo)
+(define-key global-map "\e6" 'upcase-word)
+(define-key global-map "\e^" 'captilize-word)
+(define-key global-map "\el" 'casey-replace-in-region)
+(define-key global-map "\eo" 'query-replace)
+(define-key global-map "\eO" 'casey-replace-string)
+(define-key global-map "\t" 'dabbrev-expand)
+(define-key global-map [S-tab] 'indent-for-tab-command)
+(define-key global-map [C-tab] 'indent-region)
+(define-key global-map "	" 'indent-region)
+;(define-key global-map "\377" 'backward-kill-word)  ; \377 is alt-backspace
+;(define-key global-map [M-delete] 'kill-word)
+
+;; Tools
+(define-key global-map "\ep" 'quick-calc)
+
+;; Navigation
+(define-key global-map "\ew" 'other-window)
+(define-key global-map [C-right] 'forward-word)
+(define-key global-map [C-left] 'backward-word)
+(define-key global-map [C-up] 'previous-blank-line)
+(define-key global-map [C-down] 'next-blank-line)
+(define-key global-map [C-next] 'scroll-other-window)
+(define-key global-map [C-prior] 'scroll-other-window-down)
+(define-key global-map "\e:" 'View-back-to-mark)
+(define-key global-map "\e;" 'exchange-point-and-mark)
+(define-key global-map [f9] 'first-error)
+(define-key global-map [f10] 'previous-error)
+(define-key global-map [f11] 'next-error)
+(define-key global-map "\en" 'next-error)
+(define-key global-map "\eN" 'previous-error)
+(define-key global-map "\eg" 'goto-line)
+(define-key global-map "\ej" 'imenu)
+
+;; Macro editing
+(define-key global-map "\e[" 'start-kbd-macro)
+(define-key global-map "\e]" 'end-kbd-macro)
+(define-key global-map "\e'" 'call-last-kbd-macro)
+
+;; Buffer
+(define-key global-map "\er" 'revert-buffer)
+; (define-key global-map "\ek" 'kill-this-buffer)
+; (define-key global-map "\es" 'save-buffer)
 
 (provide 'key-bindings)
