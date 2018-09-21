@@ -93,3 +93,4 @@
 ;; Setup key bindings
 (require 'key-bindings)
 
+;; Stop Emacs from losing undo information by
