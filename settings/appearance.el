@@ -34,5 +34,4 @@
 ;(set-face-attribute 'font-lock-type-face nil :foreground "burlywood3")
 ;(set-face-attribute 'font-lock-variable-name-face nil :foreground "burlywood3")
 
-
 (provide 'appearance)

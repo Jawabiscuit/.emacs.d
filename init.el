@@ -102,6 +102,8 @@
 
 ;; Setup extensions
 (eval-after-load 'magit '(require 'setup-magit))
+(require 'magit-gitflow)
+(add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
 (require 'setup-smartparens)
 (require 'multiple-cursors)
 

@@ -1,6 +1,7 @@
 ;; Magit
 (global-set-key (kbd "C-x m") 'magit-status-fullscreen)
 (autoload 'magit-status-fullscreen "magit")
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;; Experimental multiple-cursors
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
