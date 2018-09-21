@@ -33,4 +33,7 @@
 (define-key global-map "\et" 'load-todo)
 (define-key global-map "\eT" 'load-log)
 
+;; Editing
+(define-key global-map [f8] 'casey-replace-string)
+
 (provide 'key-bindings)

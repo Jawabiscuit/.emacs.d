@@ -29,6 +29,16 @@
   (end-of-buffer)
 )
 
+;; Save buffer
+(defun casey-save-buffer ()
+  "Save the buffer after untabifying it."
+  (interactive)
+  (save-excursion
+    (save-restriction
+      (widen)
+      (untabify (point-min) (point-max))))
+  (save-buffer))
+
 (defun rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."
   (interactive)
