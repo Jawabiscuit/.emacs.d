@@ -1,4 +1,10 @@
 ;; Window Commands
+
+;; Determine the underlying operating system
+(setq casey-aquamacs (featurep 'aquamacs))
+(setq casey-linux (featurep 'x))
+(setq casey-win32 (not (or casey-aquamacs casey-linux)))
+
 (defun w32-restore-frame ()
     "Restore a minimized frame"
      (interactive)
