@@ -47,6 +47,9 @@
     (add-to-list 'load-path project)))
 
 ;; Setup packages
+(eval-when-compile (require 'use-package))
+(setq use-package-always-ensure t)
+;; TODO: replace stuff in here with use-package
 (require 'setup-package)
 
 ;; Keep emacs Custom-settings in separate file

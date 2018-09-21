@@ -11,4 +11,13 @@
           scala-mode)
   (add-hook it 'turn-on-smartparens-mode))
 
+;; Unclutter the modeline
+(require 'diminish)
+
+;; Define diminished modes
+(eval-after-load "smartparens" '(diminish 'smartparens-mode))
+
+;; Load diminished modes
+(turn-on-smartparens-mode)
+
 (provide 'setup-smartparens)

@@ -1,3 +1,7 @@
+;; TODO: most of this stuff can be replaced by use-package
+(use-package dash
+  :ensure t)
+
 (require 'package)
 (require 'dash)
 
