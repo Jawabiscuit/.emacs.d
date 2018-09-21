@@ -23,6 +23,17 @@
 
 ;; Set path to dependencies
 (setq handmade-dir "w:/handmade/")
+
+;; Files
+(setq casey-todo-file
+      (concat handmade-dir
+	      (convert-standard-filename "todo.org")))
+
+(setq casey-log-file
+      (concat handmade-dir
+	      (convert-standard-filename "log.txt")))
+
+;; .emacs.d
 (setq emacsd-dir
       (concat handmade-dir
 	      (convert-standard-filename ".emacs.d/")))
