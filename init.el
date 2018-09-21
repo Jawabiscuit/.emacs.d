@@ -130,4 +130,4 @@
 (add-hook 'text-mode-hook 'casey-big-fun-text-hook)
 
 ;; Window
-(eval-after-load 'maximize (maximize-frame))
+(add-hook 'window-setup-hook 'post-load-stuff t)

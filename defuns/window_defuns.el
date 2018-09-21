@@ -15,3 +15,10 @@
      (interactive)
      (when casey-aquamacs (aquamacs-toggle-full-frame))
      (when casey-win32 (w32-send-sys-command 61488)))
+
+(defun post-load-stuff ()
+  (interactive)
+  ;(menu-bar-mode -1)
+  (maximize-frame)
+  (split-window-horizontally)
+)
