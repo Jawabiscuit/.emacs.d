@@ -37,6 +37,16 @@
       (concat emacsd-dir
 	      (convert-standard-filename "settings")))
 
+;; Functions
+(setq defuns-dir
+      (concat emacsd-dir
+	      (convert-standard-filename "defuns")))
+
+;; (load all files in defuns-dir)
+(dolist (file (directory-files defuns-dir t "\\w+"))
+  (when (file-regular-p file)
+    (load file)))
+
 ;; Setup load-path
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path site-lisp-dir)
@@ -94,3 +104,13 @@
 (require 'key-bindings)
 
 ;; Stop Emacs from losing undo information by
+;; setting very high limits for undo buffers
+(setq undo-limit 20000000)
+(setq undo-strong-limit 40000000)
+
+;; Buffer switching
+(load-library "view")
+(require 'cc-mode)
+(require 'ido)
+(require 'compile)
+(ido-mode t)
