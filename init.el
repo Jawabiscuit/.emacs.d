@@ -33,25 +33,17 @@
       (concat handmade-dir
 	      (convert-standard-filename "log.txt")))
 
-;; .emacs.d
-(setq emacsd-dir
-      (concat handmade-dir
-	      (convert-standard-filename ".emacs.d/")))
-
 ;; Site-lisp
 (setq site-lisp-dir
-      (concat emacsd-dir
-	      (convert-standard-filename "site-lisp/")))
+      (expand-file-name "site-lisp" user-emacs-directory))
 
 ;; Settings
 (setq settings-dir
-      (concat emacsd-dir
-	      (convert-standard-filename "settings")))
+      (expand-file-name "settings" user-emacs-directory))
 
 ;; Functions
 (setq defuns-dir
-      (concat emacsd-dir
-	      (convert-standard-filename "defuns")))
+      (expand-file-name "defuns" user-emacs-directory))
 
 ;; (load all files in defuns-dir)
 (dolist (file (directory-files defuns-dir t "\\w+"))
