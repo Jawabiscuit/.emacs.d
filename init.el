@@ -21,18 +21,6 @@
 ;; No splash screen please ... jeez
 (setq inhibit-startup-message t)
 
-;; Set path to dependencies
-(setq handmade-dir "w:/handmade/")
-
-;; Files
-(setq casey-todo-file
-      (concat handmade-dir
-	      (convert-standard-filename "todo.org")))
-
-(setq casey-log-file
-      (concat handmade-dir
-	      (convert-standard-filename "log.txt")))
-
 ;; Site-lisp
 (setq site-lisp-dir
       (expand-file-name "site-lisp" user-emacs-directory))
