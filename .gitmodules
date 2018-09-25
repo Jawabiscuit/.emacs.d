@@ -1,9 +1,3 @@
-[submodule "site-lisp/diminish"]
-	path = site-lisp/diminish
-	url = https://github.com/myrjola/diminish.el.git
-[submodule "site-lisp/multiple-cursors"]
-	path = site-lisp/multiple-cursors
-	url = https://github.com/magnars/multiple-cursors.el.git
 [submodule "site-lisp/use-package"]
 	path = site-lisp/use-package
 	url = https://github.com/jwiegley/use-package.git

@@ -1,3 +1,6 @@
+;; Unclutter the modeline
+(require 'diminish)
+
 ;; Default setup of smartparens
 (require 'smartparens-config)
 (setq sp-autoescape-string-quote nil)
@@ -10,9 +13,6 @@
           groovy-mode
           scala-mode)
   (add-hook it 'turn-on-smartparens-mode))
-
-;; Unclutter the modeline
-(require 'diminish)
 
 ;; Define diminished modes
 (eval-after-load "smartparens" '(diminish 'smartparens-mode))

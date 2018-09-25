@@ -1,38 +1,30 @@
-# Project emacs settings
+1# My emacs settings
 
-**Example Usage - Clone Into Project as a Submodule**
+**Setup**
 
-1. `cd` into project git repo
- 
-	`cd project`
+1. git clone this repo into home directory
 
-2. Create a submodule out of this repo
-
-	`git submodule add https://github.com/Jawabiscuit/.emacs.d.git`
+	On **Windows** 10, it's easiest to set HOME to something like "C:\Users\%USERNAME%" if it isn't already set
 	
-	***Errors?***
+	On **Linux**, this is just ~/
 	
-	[Easy way to pull latest of all git submodules](https://stackoverflow.com/a/1032653)
+	`git clone https://github.com/Jawabiscuit/.emacs.d.git`
+
+2. Initialize the repo
+
+	This step is necessary for automatically detecting and downloading package dependencies upon starting emacs for the first time on a machine.
 	
-	[How do I replace a git submodule with another repo?](https://stackoverflow.com/q/14404704)
-
-3. Initialize it
-
 	`cd .emacs.d`
-	`git submodule update --init --recursive`
+	`git submodule update init --remote --recursive`
 	`cd ..`
 
-4. Print status - should see `.emacs.d` + any submodules
+3. Print status
+	
+	Output should include status of any submodules
 
 	`git submodule status --recursive`
 
-5. On windows create a .bat to run emacs with the new settings
-
-	`@echo off`
-	`"C:\Program Files (x86)\emacs\bin\runemacs.exe" -l p:\project\.emacs.d\init.el`
-
-
-6. Updating
+5. Updating
 
 	all
 	
@@ -40,5 +32,4 @@
 
 	individual
 	
-	`cd .emacs.d`
-	`git submodule update --remote site-lisp/diminish`
+	`git submodule update --remote site-lisp/use-package`

@@ -67,8 +67,7 @@
 
 ;; Keep emacs Custom-settings in separate file
 (setq custom-file
-      (concat handmade-dir
-	      (convert-standard-filename ".emacs.d/custom.el")))
+      (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
 ;; Set up appearance early
@@ -78,9 +77,11 @@
 (defun init--install-packages ()
   (packages-install
    '(
+     diminish
      magit
      magit-gitflow
      markdown-mode
+     multiple-cursors
      paredit
      restclient
      smartparens
