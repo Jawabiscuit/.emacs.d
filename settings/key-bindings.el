@@ -83,4 +83,9 @@
 ; (define-key global-map "\ek" 'kill-this-buffer)
 ; (define-key global-map "\es" 'save-buffer)
 
+;; Fold-this
+(global-set-key (kbd "C-c C-f") 'fold-this-all)
+(global-set-key (kbd "C-c C-F") 'fold-this)
+(global-set-key (kbd "C-c M-f") 'fold-this-unfold-all)
+
 (provide 'key-bindings)

@@ -74,6 +74,7 @@
   (packages-install
    '(
      diminish
+     fold-this
      magit
      magit-gitflow
      markdown-mode
@@ -95,6 +96,7 @@
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
 (require 'setup-smartparens)
 (require 'multiple-cursors)
+(require 'fold-this)
 
 ;; Language specific setup files
 (eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
