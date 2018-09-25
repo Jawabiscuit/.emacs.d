@@ -1,4 +1,4 @@
-1# My emacs settings
+# My emacs settings
 
 **Setup**
 
