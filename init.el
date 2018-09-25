@@ -33,6 +33,14 @@
 (setq defuns-dir
       (expand-file-name "defuns" user-emacs-directory))
 
+;; Log
+(setq casey-log-file
+      (expand-file-name "log.txt" user-emacs-directory))
+
+;; Todo
+(setq casey-todo-file
+      (expand-file-name "todo.org" user-emacs-directory))
+
 ;; (load all files in defuns-dir)
 (dolist (file (directory-files defuns-dir t "\\w+"))
   (when (file-regular-p file)
