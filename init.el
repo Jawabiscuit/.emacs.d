@@ -1,3 +1,5 @@
+(setq debug-on-error t)
+
 ;; Turn off mouse interface early in startup to avoid momentary display
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -100,6 +102,7 @@
 (require 'multiple-cursors)
 (require 'fold-this)
 (require 'smex)
+(smex-initialize)
 (require 'expand-region)
 
 ;; Language specific setup files
