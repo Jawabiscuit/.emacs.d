@@ -22,7 +22,7 @@
  '(mouse-wheel-scroll-amount (quote (15)))
  '(package-selected-packages
    (quote
-    (smex fold-this a2ps org-checklist multiple-cursors diminish smartparens restclient paredit magit-gitflow magit markdown-mode+ markdown-mode)))
+    (expand-region smex fold-this a2ps org-checklist multiple-cursors diminish smartparens restclient paredit magit-gitflow magit markdown-mode+ markdown-mode)))
  '(version-control nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -94,4 +94,7 @@
 (global-set-key (kbd "C-c C-F") 'fold-this)
 (global-set-key (kbd "C-c M-f") 'fold-this-unfold-all)
 
+;; Expand region
+(global-set-key (kbd "C-=") 'er/expand-region)
+
 (provide 'key-bindings)

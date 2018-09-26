@@ -74,6 +74,7 @@
   (packages-install
    '(
      diminish
+     expand-region
      fold-this
      magit
      magit-gitflow
@@ -99,6 +100,7 @@
 (require 'multiple-cursors)
 (require 'fold-this)
 (require 'smex)
+(require 'expand-region)
 
 ;; Language specific setup files
 (eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
