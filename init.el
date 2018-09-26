@@ -82,6 +82,7 @@
      paredit
      restclient
      smartparens
+     smex
      )))
 
 (condition-case nil
@@ -97,6 +98,7 @@
 (require 'setup-smartparens)
 (require 'multiple-cursors)
 (require 'fold-this)
+(require 'smex)
 
 ;; Language specific setup files
 (eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
