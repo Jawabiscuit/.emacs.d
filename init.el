@@ -108,6 +108,9 @@
 ;; Language specific setup files
 (eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
 
+;; A smattering of sanity
+(require 'sane-defaults)
+
 ;; Map files to modes
 (require 'mode-mappings)
 
