@@ -74,9 +74,6 @@
       (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
-;; Set up appearance early
-(require 'appearance)
-
 ;; Install extensions if they're missing
 (defun init--install-packages ()
   (packages-install
@@ -85,13 +82,14 @@
      expand-region     ; Increase selected region by semantic units
      fold-this         ; Code folding
      magit             ; Complete Git interface
-     magit-gitflow     ; Extend magit with Gitflow interface
+     magit-gitflow     ; Gitflow extension for magit
      markdown-mode     ; Emacs Major mode for Markdown-formatted files
      multiple-cursors  ; Multiple cursors for Emacs
      paredit           ; Minor mode for editing parentheses
      restclient        ; In editor rest server/clien
      smartparens       ; Auto closure for parenthesis and other characters
      smex              ; Smart M-x
+     smooth-scrolling  ; Make emacs scroll smoothly
 )))
 
 (condition-case nil
@@ -99,6 +97,10 @@
   (error
    (package-refresh-contents)
    (init--install-packages)))
+
+;; Set up appearance early
+;; Requires packages to be installed
+(require 'appearance)
 
 ;; Setup extensions
 (eval-after-load 'magit '(require 'setup-magit))

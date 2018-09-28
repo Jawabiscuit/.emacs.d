@@ -12,12 +12,13 @@
 (set-face-attribute 'default t :font "DejaVu Sans Mono-12")
 
 ;; Smooth scroll
-(setq scroll-step 3)
+(require 'smooth-scrolling)
+(smooth-scrolling-mode 1)
 
 ;; Clock
 (display-time)
 
-;; Startup windowing
+;; Startup windowing (disabled)
 ;; (setq next-line-add-newlines nil)
 ;; (setq-default truncate-lines t)
 ;; (setq truncate-partial-width-windows nil)

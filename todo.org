@@ -1,8 +1,7 @@
-
 ** TODO Configuration [0/1]
 
-- [ ] sane-defaults [0/5]
-  - [ ] install smooth-scrolling
+- [-] sane-defaults [1/5]
+  - [X] install smooth-scrolling
   - [ ] install undo-tree
   - [ ] install uniquify
   - [ ] init.org
