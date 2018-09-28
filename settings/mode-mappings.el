@@ -20,7 +20,7 @@
 ;; Accepted file extensions and their appropriate modes
 (setq auto-mode-alist
       (append
-       '(("\\.html\\'"     . crappy-jsp-mode)
+       '(; ("\\.html\\'"     . crappy-jsp-mode)
 	 ("\\.tag$"        . html-mode)
 	 ("\\.vm$"         . html-mode)
 	 ("\\.ejs$"        . html-mode)
