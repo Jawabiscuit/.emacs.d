@@ -1,0 +1,79 @@
+* Tutorial
+  * Sub heading (M-<enter>) to create more items of the same type
+  * Test USD export
+
+* [[https://orgmode.org/org.html#Markup][Markdown similarities]]
+  *Bold* /italic/ =verbatim= +strikethrough+
+
+- bulleted
+- list
+- items
+
+* [[https://orgmode.org/org.html#toc-Hyperlinks-1][Hyperlinks]]
+
+(C-c C-l) to insert a link
+
+- internal link
+
+[[*%5B%5Bhttps://orgmode.org/org.html#Tables%5D%5BTables%5D%5D][Tables]]
+
+(C-c l) to store a link to the current location
+
+[[*Export][Export]]
+
+(C-c C-l) to insert link and (<up>) to select stored link from the key ring
+
+- external link
+
+[[http://orgmode.org][orgmode website]]
+
+** DONE : Link to files emails or todo items
+   CLOSED: [2018-09-27 Thu 21:03]
+
+* [[https://orgmode.org/org.html#Tables][Tables]]
+
+|   |   |   |   |   |
+|---+---+---+---+---|
+|   |   |   |   |   |
+(M-<up>) (M-<down>) (M-<left>) (M-<right>) manipulate rows and cols                           
+
+| Some | Data           |
+|------+----------------|
+|   12 | buckle my shoe |
+|   34 | shut the door  |
+|      |                |
+
+* TODO More on how tables are actually spreadsheets
+
+* Export
+
+output html
+
+(C-c C-e)(h-o)
+
+** [[https://orgmode.org/org.html#Property-syntax][Properties]]
+
+#+TITLE: Getting Started with Org-Mode
+#+OPTIONS: toc:nil
+
+* Source Code
+
+(<-s-<tab>) shortcut to create BEGIN/END tag
+(C-') edit the source code (C-') again to commit
+
+#+BEGIN_SRC python
+  import time
+  return ("Hello, today's date is %s" % time.ctime())
+#+END_SRC
+
+#+RESULTS:
+: Hello, today's date is Thu Sep 27 23:37:11 2018
+
+* DONE Setup babel execution for python
+  CLOSED: [2018-09-27 Thu 23:51]
+
+* TODO Package "minted" for syntax highlighted export
+
+* LaTeX integration
+
+- Characters: \alpha \rightarrow
