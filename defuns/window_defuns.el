@@ -20,5 +20,5 @@
   (interactive)
   ;(menu-bar-mode -1)
   (maximize-frame)
-  (split-window-horizontally)
+  ;(split-window-horizontally)
 )

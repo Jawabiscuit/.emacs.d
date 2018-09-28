@@ -18,10 +18,11 @@
 (display-time)
 
 ;; Startup windowing
-(setq next-line-add-newlines nil)
-(setq-default truncate-lines t)
-(setq truncate-partial-width-windows nil)
-(split-window-horizontally)
+;; (setq next-line-add-newlines nil)
+;; (setq-default truncate-lines t)
+;; (setq truncate-partial-width-windows nil)
+;; (split-window-horizontally)
+
 
 ;; Syntax (disabled)
 ;(set-face-attribute 'font-lock-builtin-face nil :foreground "#DAB98F")
