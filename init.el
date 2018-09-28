@@ -78,18 +78,18 @@
 (defun init--install-packages ()
   (packages-install
    '(
-     diminish
-     expand-region
-     fold-this
-     magit
-     magit-gitflow
-     markdown-mode
-     multiple-cursors
-     paredit
-     restclient
-     smartparens
-     smex
-     )))
+     diminish          ; Diminished modes from modeline
+     expand-region     ; Increase selected region by semantic units
+     fold-this         ; Code folding
+     magit             ; Complete Git interface
+     magit-gitflow     ; Extend magit with Gitflow interface
+     markdown-mode     ; Emacs Major mode for Markdown-formatted files
+     multiple-cursors  ; Multiple cursors for Emacs
+     paredit           ; Minor mode for editing parentheses
+     restclient        ; In editor rest server/clien
+     smartparens       ; Auto closure for parenthesis and other characters
+     smex              ; Smart M-x
+)))
 
 (condition-case nil
     (init--install-packages)
