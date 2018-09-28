@@ -97,4 +97,7 @@
 ;; Expand region
 (global-set-key (kbd "C-=") 'er/expand-region)
 
+;; Org Mode
+(global-set-key (kbd "C-c l") 'org-store-link)
+
 (provide 'key-bindings)
