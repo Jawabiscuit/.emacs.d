@@ -20,9 +20,12 @@
  '(mouse-wheel-follow-mouse nil)
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (15)))
+ '(org-export-backends
+   (quote
+    (ascii beamer html icalendar latex md odt confluence)))
  '(package-selected-packages
    (quote
-    (smooth-scrolling expand-region smex fold-this a2ps org-checklist multiple-cursors diminish smartparens restclient paredit magit-gitflow magit markdown-mode+ markdown-mode)))
+    (htmlize auctex smooth-scrolling expand-region smex fold-this a2ps org-checklist multiple-cursors diminish smartparens restclient paredit magit-gitflow magit markdown-mode+ markdown-mode)))
  '(version-control nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

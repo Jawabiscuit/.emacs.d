@@ -61,7 +61,7 @@
 (require 'setup-org)
 
 ;; Site-lisp packages
-(require 'ox-twbs)
+(require 'ox-twbs)   ; Bootstrap
 
 ;; Package setup tools
 (eval-when-compile (require 'use-package))
@@ -78,9 +78,11 @@
 (defun init--install-packages ()
   (packages-install
    '(
+     auctex            ; Integrated environment for *TeX*
      diminish          ; Diminished modes from modeline
      expand-region     ; Increase selected region by semantic units
      fold-this         ; Code folding
+     htmlize           ; Convert buffer text and decorations to HTML.
      magit             ; Complete Git interface
      magit-gitflow     ; Gitflow extension for magit
      markdown-mode     ; Emacs Major mode for Markdown-formatted files

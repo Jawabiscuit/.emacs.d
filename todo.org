@@ -1,15 +1,17 @@
 ** TODO Configuration [0/1]
 
-- [-] sane-defaults [2/5]
+- [-] sane-defaults [4/5]
   - [X] install smooth-scrolling
   - [X] install undo-tree
-  - [ ] install uniquify
+  - [X] +install uniquify+
+  - [X] [[file:org/getting-started-with-org-mode.org::*Package%20"minted"%20for%20syntax%20highlighted%20export]["minted" for syntax highlighted export]]
   - [ ] init.org
-  - [ ] [[file:org/getting-started-with-org-mode.org::*Package%20"minted"%20for%20syntax%20highlighted%20export]["minted" for syntax highlighted export]]
 
-** TODO Org-mode [1/1]
+** TODO Org-mode [0/1]
 
-- [X] Keybindings [3/3]
+- [-] Keybindings [3/5]
   - [X] Checkbox on newline
   - [X] Auto-indent
   - [X] Auto-number
+  - [ ] Install org-bullets-mode
+  - [ ] Install o-blog

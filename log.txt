@@ -1,0 +1,25 @@
+
+---------------- Fri, 28 Sep 18: 12:16PM
+
+- Trying auctex package
+  - Not sure if it is really necessary since only interested in exporting from org ATM
+
+- Advanced Exporting
+  - 
+- org-export backend customizations
+- Options > Customize Emacs > Specific Group > org-export
+- Enabled beamer, latex, md backends
+- Downloaded MiKTeX for Windows and installed
+  - https://miktex.org/download
+- Added bin directory to path since emacs was not finding pdflatex
+  - Added to %appdata%\Microsoft\Windows\Start Menu\Programs\runemacs.bat
+    - set PATH="C:\Program Files\MiKTeX 2.9\miktex\bin\x64";%PATH%
+  - Same problem as this guy: https://lists.gnu.org/archive/html/auctex/2012-02/msg00005.html
+  - 'pdflatex' is not recognized as an internal or external command, operable program or batch file
+
+- Objective: org-export with code syntax highlighting
+- minted tool seems to be choice
+- Verified MiKTeX package manager installed minted
+- https://stackoverflow.com/questions/300521/latex-package-to-do-syntax-highlighting-of-code-in-various-languages
+
+
