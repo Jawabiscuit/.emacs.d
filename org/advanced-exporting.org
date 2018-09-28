@@ -1,0 +1,12 @@
+#+OPTIONS: toc:nil ^:nil tags:t f:t
+#+AUTHOR: Jonas Avrin
+#+TITLE: Getting Yourself Organized with Org-Mode
+#+SUBTITLE: E06S02 - Advanced Exporting
+#+DESCRIPTION: More advanced exporting examples. Some more options to play around with
+#+BEAMER_THEME: Berlin
+#+BEAMER_FONT_THEME: professionalfonts
+
+* Customize new backends
+* Add some options for beamer export
+* More useful options
+* Things to keep in mind
