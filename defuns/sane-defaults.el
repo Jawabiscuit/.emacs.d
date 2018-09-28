@@ -57,6 +57,11 @@
 (savehist-mode 1)
 (setq history-length 1000)
 
+;; Stop Emacs from losing undo information by
+;; setting very high limits for undo buffers
+(setq undo-limit 20000000)
+(setq undo-strong-limit 40000000)
+
 ;; Undo/redo window configuration with C-c <left>/<right>
 (winner-mode 1)
 

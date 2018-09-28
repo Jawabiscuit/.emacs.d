@@ -117,11 +117,6 @@
 ;; Setup key bindings
 (require 'key-bindings)
 
-;; Stop Emacs from losing undo information by
-;; setting very high limits for undo buffers
-(setq undo-limit 20000000)
-(setq undo-strong-limit 40000000)
-
 ;; Buffer switching
 (load-library "view")
 (require 'cc-mode)
