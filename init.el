@@ -57,6 +57,9 @@
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
 
+;; Built-in packages
+(require 'setup-org)
+
 ;; Site-lisp packages
 (require 'ox-twbs)
 

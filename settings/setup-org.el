@@ -16,9 +16,17 @@
 (define-key global-map (kbd "M-<f6>") 'org-capture)
 
 ;; keep track of when a certain TODO item was finished
-;; (setq org-log-done 'time)
+(setq org-log-done 'time)
 
 ;; record a note along with the timestamp
-(setq org-log-done 'note)
+;; (setq org-log-done 'note)
+
+;; Active Babel languages
+(with-eval-after-load 'org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((R . t)
+     (python . t)
+)))
 
 (provide 'setup-org)
