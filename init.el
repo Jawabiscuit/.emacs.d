@@ -63,7 +63,7 @@
 ;; Site-lisp packages
 (require 'ox-twbs)
 
-;; Setup packages
+;; Package setup tools
 (eval-when-compile (require 'use-package))
 (setq use-package-always-ensure t)
 ;; TODO: replace stuff in here with use-package
@@ -118,6 +118,11 @@
 
 ;; A smattering of sanity
 (require 'sane-defaults)
+
+;; Represent undo-history as an actual tree (visualize with C-x u)
+(setq undo-tree-mode-lighter "")
+(require 'undo-tree)
+(global-undo-tree-mode)
 
 ;; Map files to modes
 (require 'mode-mappings)

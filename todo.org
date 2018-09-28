@@ -1,8 +1,8 @@
 ** TODO Configuration [0/1]
 
-- [-] sane-defaults [1/5]
+- [-] sane-defaults [2/5]
   - [X] install smooth-scrolling
-  - [ ] install undo-tree
+  - [X] install undo-tree
   - [ ] install uniquify
   - [ ] init.org
   - [ ] [[file:org/getting-started-with-org-mode.org::*Package%20"minted"%20for%20syntax%20highlighted%20export]["minted" for syntax highlighted export]]

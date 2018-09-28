@@ -24,6 +24,8 @@
 
 	`git submodule status --recursive`
 
+4. Run emacs!
+
 5. Updating
 
 	all
@@ -33,3 +35,4 @@
 	individual
 	
 	`git submodule update --remote site-lisp/use-package`
+

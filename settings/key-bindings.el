@@ -86,8 +86,6 @@
 
 ;; Buffer
 (define-key global-map "\er" 'revert-buffer)
-; (define-key global-map "\ek" 'kill-this-buffer)
-; (define-key global-map "\es" 'save-buffer)
 
 ;; Fold-this
 (global-set-key (kbd "C-c C-f") 'fold-this-all)
@@ -99,5 +97,8 @@
 
 ;; Org Mode
 (global-set-key (kbd "C-c l") 'org-store-link)
+
+;; Undo tree
+(eval-after-load 'undo-tree '(define-key undo-tree-map (kbd "C-?") nil))
 
 (provide 'key-bindings)
