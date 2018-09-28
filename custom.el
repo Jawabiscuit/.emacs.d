@@ -25,7 +25,7 @@
     (ascii beamer html icalendar latex md odt confluence)))
  '(package-selected-packages
    (quote
-    (htmlize auctex smooth-scrolling expand-region smex fold-this a2ps org-checklist multiple-cursors diminish smartparens restclient paredit magit-gitflow magit markdown-mode+ markdown-mode)))
+    (org-bullets htmlize auctex smooth-scrolling expand-region smex fold-this a2ps org-checklist multiple-cursors diminish smartparens restclient paredit magit-gitflow magit markdown-mode+ markdown-mode)))
  '(version-control nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

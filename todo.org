@@ -9,9 +9,9 @@
 
 ** TODO Org-mode [0/1]
 
-- [-] Keybindings [3/5]
+- [-] Keybindings [4/5]
   - [X] Checkbox on newline
   - [X] Auto-indent
   - [X] Auto-number
-  - [ ] Install org-bullets-mode
+  - [X] Install org-bullets-mode
   - [ ] Install o-blog

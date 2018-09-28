@@ -87,6 +87,7 @@
      magit-gitflow     ; Gitflow extension for magit
      markdown-mode     ; Emacs Major mode for Markdown-formatted files
      multiple-cursors  ; Multiple cursors for Emacs
+     org-bullets       ; Show bullets in org-mode as UTF-8 characters
      paredit           ; Minor mode for editing parentheses
      restclient        ; In editor rest server/clien
      smartparens       ; Auto closure for parenthesis and other characters
@@ -114,6 +115,8 @@
 (require 'smex)
 (smex-initialize)
 (require 'expand-region)
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 ;; Language specific setup files
 (eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
