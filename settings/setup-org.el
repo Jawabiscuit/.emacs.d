@@ -30,4 +30,29 @@
      (python . t)
 )))
 
+;; Pretty bullets :) instead of ugly asterisks :(
+(use-package org-bullets
+  :init
+  (add-hook 'org-mode-hook #'org-bullets-mode)
+)
+
+;; Hide leading asterisks and indent correctly
+(setq org-hide-leading-stars t)
+
+;; Use syntax highlighting in source blocks while editing
+(setq org-src-fontify-natively t)
+
+;; Make TAB act as if it were issued in a buffer of the language's major mode.
+(setq org-src-tab-acts-natively t)
+
+;; When editing a code snippet, use the current window rather than popping open a new one (which shows the same information).
+(setq org-src-window-setup 'current-window)
+
+;; Quickly insert a block of elisp
+(add-to-list 'org-structure-template-alist
+             '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
+
+;; Enable spell-check in org-mode
+; (add-hook 'org-mode-hook 'flyspell-mode)
+
 (provide 'setup-org)
