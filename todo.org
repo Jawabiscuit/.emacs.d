@@ -1,22 +1,22 @@
 * DONE Configuration [1/1]
   CLOSED: [2018-09-28 Fri 20:37]
 ** [X] sane-defaults [5/5]
-*** [X] install smooth-scrolling
-*** [X] install undo-tree
-*** [X] +install uniquify+
-*** [X] [[file:org/getting-started-with-org-mode.org::*Package%20"minted"%20for%20syntax%20highlighted%20export]["minted" for syntax highlighted export]]
-*** [X] init.org
+ - [X] install smooth-scrolling
+ - [X] install undo-tree
+ - [X] +install uniquify+
+ - [X] [[file:org/getting-started-with-org-mode.org::*Package%20"minted"%20for%20syntax%20highlighted%20export]["minted" for syntax highlighted export]]
+ - [X] init.org
 
 * TODO Org-mode [0/1]
 ** [-] Keybindings [4/6]
-*** [X] Checkbox on newline
-*** [X] Auto-indent
-*** [X] Auto-number
-*** [X] Install org-bullets-mode
-*** [ ] Install o-blog
-*** [ ] Install [[https://hunspell.github.io/][hunspell]]
-**** [[https://emacs.stackexchange.com/a/21379][Stack Exchange Q]]
-*** [ ] More Todo statuses, like Waiting...
-*** [ ] Syntax highlighting completely working in LaTeX
-**** [[https://stackoverflow.com/questions/1966425/source-code-highlighting-in-latex][Stackoverflow minted Question]]
-**** [[https://stackoverflow.com/questions/300521/latex-package-to-do-syntax-highlighting-of-code-in-various-languages][Stackoverflow highlighting Question]]
+ - [X] Checkbox on newline
+ - [X] Auto-indent
+ - [X] Auto-number
+ - [X] Install org-bullets-mode
+ - [ ] Install o-blog
+ - [ ] Install [[https://hunspell.github.io/][hunspell]]
+   - [[https://emacs.stackexchange.com/a/21379][Stack Exchange Q]]
+ - [ ] More Todo statuses, like Waiting...
+ - [ ] Syntax highlighting completely working in LaTeX
+   - [[https://stackoverflow.com/questions/1966425/source-code-highlighting-in-latex][Stackoverflow minted Question]]
+   - [[https://stackoverflow.com/questions/300521/latex-package-to-do-syntax-highlighting-of-code-in-various-languages][Stackoverflow highlighting Question]]
