@@ -1,16 +1,17 @@
-* Toggle debug messages
+* Emacs Configuration
+** Toggle debug messages
 #+BEGIN_SRC emacs-lisp
 (setq debug-on-error t)
 #+END_SRC
 
-* Turn off mouse interface early in startup to avoid momentary display
+** Turn off mouse interface early in startup to avoid momentary display
 #+BEGIN_SRC emacs-lisp
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 #+END_SRC
 
-* Enable installation of packages from MELPA
+** Enable installation of packages from MELPA
 #+BEGIN_SRC emacs-lisp
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
@@ -27,80 +28,80 @@
 (package-initialize)
 #+END_SRC
 
-* No splash screen please ... jeez
+** No splash screen please ... jeez
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
 #+END_SRC
 
-* Site-lisp
+** Site-lisp
 #+BEGIN_SRC emacs-lisp
 (setq site-lisp-dir
       (expand-file-name "site-lisp" user-emacs-directory))
 #+END_SRC
 
-* Settings
+** Settings
 #+BEGIN_SRC emacs-lisp
 (setq settings-dir
       (expand-file-name "settings" user-emacs-directory))
 #+END_SRC
 
-* Functions
+** Functions
 #+BEGIN_SRC emacs-lisp
 (setq defuns-dir
       (expand-file-name "defuns" user-emacs-directory))
 #+END_SRC
 
-* Log
+** Log
 #+BEGIN_SRC emacs-lisp
 (setq casey-log-file
       (expand-file-name "log.txt" user-emacs-directory))
 #+END_SRC
 
-* Todo
+** Todo
 #+BEGIN_SRC emacs-lisp
 (setq casey-todo-file
       (expand-file-name "todo.org" user-emacs-directory))
 #+END_SRC
 
-* Load all files in defuns-dir
+** Load all files in defuns-dir
 #+BEGIN_SRC emacs-lisp
 (dolist (file (directory-files defuns-dir t "\\w+"))
   (when (file-regular-p file)
     (load file)))
 #+END_SRC
 
-* Setup load-path
+** Setup load-path
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path site-lisp-dir)
 #+END_SRC
 
-* Add external projects to load path
+** Add external projects to load path
 #+BEGIN_SRC emacs-lisp
 (dolist (project (directory-files site-lisp-dir t "\\w+"))
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
 #+END_SRC
 
-* Package setup tools
+** Package setup tools
 #+BEGIN_SRC emacs-lisp
 (eval-when-compile (require 'use-package))
 (setq use-package-always-ensure t)
 #+END_SRC
 
-* TODO replace stuff in here with use-package
+** TODO replace stuff in here with use-package
 #+BEGIN_SRC emacs-lisp
 (require 'setup-package)
 #+END_SRC
 
-* Keep emacs Custom-settings in separate file
+** Keep emacs Custom-settings in separate file
 #+BEGIN_SRC emacs-lisp
 (setq custom-file
       (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 #+END_SRC
 
-* Install extensions if they're missing
+** Install extensions if they're missing
 #+BEGIN_SRC emacs-lisp
 (defun init--install-packages ()
   (packages-install
@@ -129,13 +130,13 @@
    (init--install-packages)))
 #+END_SRC
 
-* Set up appearance
+** Set up appearance
 ** Requires packages to be installed
 #+BEGIN_SRC emacs-lisp
 (require 'appearance)
 #+END_SRC
 
-* Setup extensions
+** Setup extensions
 #+BEGIN_SRC emacs-lisp
 (eval-after-load 'magit '(require 'setup-magit))
 (require 'magit-gitflow)
@@ -149,39 +150,39 @@
 (require 'setup-org)
 #+END_SRC
 
-* Site-lisp packages
+** Site-lisp packages
 #+BEGIN_SRC emacs-lisp
 (require 'ox-twbs)
 #+END_SRC
 
-* Language specific setup files
+** Language specific setup files
 #+BEGIN_SRC emacs-lisp
 (eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
 #+END_SRC
 
-* A smattering of sanity
+** A smattering of sanity
 #+BEGIN_SRC emacs-lisp
 (require 'sane-defaults)
 #+END_SRC
 
-* Represent undo-history as an actual tree (visualize with C-x u)
+** Represent undo-history as an actual tree (visualize with C-x u)
 #+BEGIN_SRC emacs-lisp
 (setq undo-tree-mode-lighter "")
 (require 'undo-tree)
 (global-undo-tree-mode)
 #+END_SRC
 
-* Map files to modes
+** Map files to modes
 #+BEGIN_SRC emacs-lisp
 (require 'mode-mappings)
 #+END_SRC
 
-* Setup key bindings
+** Setup key bindings
 #+BEGIN_SRC emacs-lisp
 (require 'key-bindings)
 #+END_SRC
 
-* Buffer switching
+** Buffer switching
 #+BEGIN_SRC emacs-lisp
 (load-library "view")
 (require 'cc-mode)
@@ -190,12 +191,12 @@
 (ido-mode t)
 #+END_SRC
 
-* Editing (some definitions are in editing_defuns.el)
+** Editing (some definitions are in editing_defuns.el)
 #+BEGIN_SRC emacs-lisp
 (add-hook 'text-mode-hook 'casey-big-fun-text-hook)
 #+END_SRC
 
-* Window
+** Window
 #+BEGIN_SRC emacs-lisp
 (add-hook 'window-setup-hook 'post-load-stuff t)
 #+END_SRC
