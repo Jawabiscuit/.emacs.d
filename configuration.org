@@ -62,7 +62,7 @@
       (expand-file-name "todo.org" user-emacs-directory))
 #+END_SRC
 
-* (load all files in defuns-dir)
+* Load all files in defuns-dir
 #+BEGIN_SRC emacs-lisp
 (dolist (file (directory-files defuns-dir t "\\w+"))
   (when (file-regular-p file)
