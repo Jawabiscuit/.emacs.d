@@ -72,11 +72,18 @@ output html
 * DONE Setup babel execution for python
   CLOSED: [2018-09-27 Thu 23:51]
 
-* TODO Package "minted" for syntax highlighted export
+* DONE Package "minted" for syntax highlighted export
+  CLOSED: [2018-09-28 Fri 19:22]
 
 * LaTeX integration
 
 - Characters: \alpha \rightarrow
+- $O(n \logn)$
+
+\begin{align*}
+  3 * 2 + &= 6 + 1 \\
+          &= 7
+\end{align*}
 
 \begin{minted}[mathescape,
                linenos,
