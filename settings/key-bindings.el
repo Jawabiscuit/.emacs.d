@@ -55,8 +55,11 @@
 (define-key global-map [S-tab] 'indent-for-tab-command)
 (define-key global-map [C-tab] 'indent-region)
 (define-key global-map "	" 'indent-region)
-;(define-key global-map "\377" 'backward-kill-word)  ; \377 is alt-backspace
+(global-set-key (kbd "C-d") 'duplicate-line)
+(global-set-key [M-S-up] 'move-text-up)
+(global-set-key [M-S-down] 'move-text-down)
 ;(define-key global-map [M-delete] 'kill-word)
+;(define-key global-map "\377" 'backward-kill-word)  ; \377 is alt-backspace
 
 ;; Tools
 (define-key global-map "\ep" 'quick-calc)

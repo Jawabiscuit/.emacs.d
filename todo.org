@@ -20,3 +20,9 @@
  - [ ] Syntax highlighting completely working in LaTeX
    - [[https://stackoverflow.com/questions/1966425/source-code-highlighting-in-latex][Stackoverflow minted Question]]
    - [[https://stackoverflow.com/questions/300521/latex-package-to-do-syntax-highlighting-of-code-in-various-languages][Stackoverflow highlighting Question]]
+
+* TODO Wish List [2/4]
+- [X] duplicate line
+- [X] move line or region up/down (needs improvement, also requires sep keybinding in c++ mode)
+- [ ] resizeable window split
+- [ ] move line up/down
