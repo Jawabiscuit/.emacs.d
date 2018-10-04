@@ -5,7 +5,6 @@
   - Not sure if it is really necessary since only interested in exporting from org ATM
 
 - Advanced Exporting
-  - 
 - org-export backend customizations
 - Options > Customize Emacs > Specific Group > org-export
 - Enabled beamer, latex, md backends
@@ -23,3 +22,7 @@
 - https://stackoverflow.com/questions/300521/latex-package-to-do-syntax-highlighting-of-code-in-various-languages
 
 
+---------------- Tue, 02 Oct 18: 07:44PM
+
+- Find and replace in files not already open using `find-name-dired`
+  - https://stackoverflow.com/a/271136
