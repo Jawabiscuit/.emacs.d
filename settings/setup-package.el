@@ -43,4 +43,7 @@ re-downloaded in order to locate PACKAGE."
   :ensure t)
 (projectile-mode +1)
 
+(use-package flx-ido
+  :ensure t)
+
 (provide 'setup-package)
