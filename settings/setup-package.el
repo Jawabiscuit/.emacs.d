@@ -39,14 +39,26 @@ re-downloaded in order to locate PACKAGE."
 
 ;; More packages
 (setq byte-compile--use-old-handlers nil) ; silence warning in emacs <25.1
+
+;; Project management
 (use-package projectile
   :ensure t)
 (projectile-mode +1)
 
+;; Fuzzy matching
 (use-package flx-ido
   :ensure t)
 
+;; Standard auto-completion
 (use-package auto-complete
+  :ensure t)
+
+;; Middleware so python-land can communicate with emacs-land
+(use-package epc
+  :ensure t)
+
+;; Brains of Python auto-complete
+(use-package jedi
   :ensure t)
 
 (provide 'setup-package)

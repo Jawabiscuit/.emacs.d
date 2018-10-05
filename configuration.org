@@ -4,6 +4,12 @@
 ;; (setq debug-on-error t)
 #+END_SRC
 
+** Turn on functions disabled by default
+#+BEGIN_SRC emacs-lisp
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+#+END_SRC
+
 ** Turn off mouse interface early in startup to avoid momentary display
 #+BEGIN_SRC emacs-lisp
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -131,7 +137,7 @@
 #+END_SRC
 
 ** Set up appearance
-** Requires packages to be installed
+*** Requires packages to be installed
 #+BEGIN_SRC emacs-lisp
 (require 'appearance)
 #+END_SRC
@@ -202,6 +208,22 @@
 (setq ido-use-faces nil)
 #+END_SRC
 
+** Auto-complete Config
+#+BEGIN_SRC emacs-lisp
+(require 'auto-complete-config)
+(ac-config-default)
+#+END_SRC
+
+*** Jedi auto-complete
+#+BEGIN_SRC emacs-lisp
+(require 'jedi)
+;; Hook up to autocomplete
+(add-to-list 'ac-sources 'ac-source-jedi-direct)
+;; Enable for python-mode
+(add-hook 'python-mode-hook 'jedi:setup)
+(eval-after-load 'jedi '(require 'setup-jedi))
+#+END_SRC
+
 ** Editing (some definitions are in editing_defuns.el)
 #+BEGIN_SRC emacs-lisp
 (add-hook 'text-mode-hook 'casey-big-fun-text-hook)
@@ -211,3 +233,6 @@
 #+BEGIN_SRC emacs-lisp
 (add-hook 'window-setup-hook 'post-load-stuff t)
 #+END_SRC
+
+** After init hook for package init
+*** Ensures that packages and dependencies are installed before package init

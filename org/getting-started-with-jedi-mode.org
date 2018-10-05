@@ -1,0 +1,64 @@
+* Getting started with Jedi mode
+
+[[https://www.youtube.com/watch?v=6BlTGPsjGJk][YouTube: Emacs as Python IDE]]
+[[https://github.com/wernerandrew/jedi-starter][GitHub: jedi-starter]]
+
+* Interactive scratch
+
+** get a buffer by name
+(get-buffer "vmath_colinearity.py")
+#<buffer vmath_colinearity.py>
+
+** expand the buffer name to a path
+(buffer-file-name (get-buffer "vmath_colinearity.py"))
+"s:/Documents/maya/projects/mvector-math/python/vmath_colinearity.py"
+
+** absolute path
+(expand-file-name
+  (buffer-file-name (get-buffer "vmath_colinearity.py")))
+"s:/Documents/maya/projects/mvector-math/python/vmath_colinearity.py"
+
+** built in emacs command
+** given a version control signifier gets a base dir for the repo
+(vc-find-root
+  (expand-file-name
+    (buffer-file-name (get-buffer "vmath_colinearity.py")))
+  ".git")
+"s:/Documents/maya/projects/mvector-math/"
+
+* Jedi Init
+
+** set to point to a particular virtualenv
+(defvar jedi-config:with-virtualenv nil
+  "Set to non-nil to point to a particular virtualenv.")
+
+** variables to help find the project root
+(defvar jedi-config:vcs-root-sentinel ".git")
+(defvar jedi-config:python-module-sentinel "__init__.py")
+
+** function to find project root given a buffer
+(defun get-project-root (buf repo-type init-file)
+  (vc-find-root (expand-file-name (buffer-file-name buf)) repo-type))
+
+** define the jedi variable to find the root
+(defvar jedi-config:find-root-function 'get-project-root)
+
+** call this on initialization
+(defun current-buffer-project-root ()
+  (funcall jedi-config:find-root-function
+    (current-buffer)
+    jedi-config:vcs-root-sentinel
+    jedi-config:python-module-sentinel))
+
+*** (*scratch*) find python
+(executable-find "python")
+"c:/Users/Jonas/Anaconda3/envs/python27/python.exe"
+
+** putting everything together
+(add-hook 'python-mode-hook
+          'jedi-config:setup-server-args)
+(when jedi-config:use-system-python
+  (add-hook 'python-mode-hook
+            'jedi-config:set-python-executable))
+
+** more tweaks can be found in settings/setup-jedi.el
