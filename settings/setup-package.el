@@ -46,4 +46,7 @@ re-downloaded in order to locate PACKAGE."
 (use-package flx-ido
   :ensure t)
 
+(use-package auto-complete
+  :ensure t)
+
 (provide 'setup-package)
