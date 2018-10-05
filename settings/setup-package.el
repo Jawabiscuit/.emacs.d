@@ -22,7 +22,8 @@
       (package-install it)))
   (delete-other-windows))
 
-;;; On-demand installation of packages
+;; On-demand installation of packages
+;; Use use-package instead
 
 (defun require-package (package &optional min-version no-refresh)
   "Install given PACKAGE, optionally requiring MIN-VERSION.
@@ -35,5 +36,11 @@ re-downloaded in order to locate PACKAGE."
       (progn
         (package-refresh-contents)
         (require-package package min-version t)))))
+
+;; More packages
+(setq byte-compile--use-old-handlers nil) ; silence warning in emacs <25.1
+(use-package projectile
+  :ensure t)
+(projectile-mode +1)
 
 (provide 'setup-package)

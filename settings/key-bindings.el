@@ -104,4 +104,8 @@
 ;; Undo tree
 (eval-after-load 'undo-tree '(define-key undo-tree-map (kbd "C-?") nil))
 
+;; Projectile
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
 (provide 'key-bindings)
