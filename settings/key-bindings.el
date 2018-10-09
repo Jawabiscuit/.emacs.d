@@ -108,14 +108,4 @@
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
-;; Jedi
-;; move to definition symbol at point
-(define-key jedi-mode-map (kbd "M-.") 'jedi:goto-definition)
-;; move to previous location of point
-(define-key jedi-mode-map (kbd "M-,") 'jedi:goto-definition-pop-marker)
-;; show docstring for symbol at point in new window
-(define-key jedi-mode-map (kbd "M-?") 'jedi:show-doc)
-;; pop up signature for function at point
-(define-key jedi-mode-map (kbd "M-/") 'jedi:get-in-function-call)
-
 (provide 'key-bindings)
