@@ -21,8 +21,9 @@
    - [[https://stackoverflow.com/questions/1966425/source-code-highlighting-in-latex][Stackoverflow minted Question]]
    - [[https://stackoverflow.com/questions/300521/latex-package-to-do-syntax-highlighting-of-code-in-various-languages][Stackoverflow highlighting Question]]
 
-* TODO Wish List [2/4]
+* DONE Wish List [4/4]
+  CLOSED: [2018-10-08 Mon 21:57]
 - [X] duplicate line
 - [X] move line or region up/down (needs improvement, also requires sep keybinding in c++ mode)
-- [ ] resizeable window split
-- [ ] move line up/down
+- [X] +resizeable window split+ (dumb me, Windows cursor is not like Linux)
+- [X] move line up/down
