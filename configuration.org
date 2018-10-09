@@ -211,6 +211,7 @@
 
 ** Jedi auto-complete
 #+BEGIN_SRC emacs-lisp
+(require 'jedi-starter)
 #+END_SRC
 
 ** Editing (some definitions are in editing_defuns.el)
