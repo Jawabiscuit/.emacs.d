@@ -40,6 +40,29 @@ re-downloaded in order to locate PACKAGE."
 ;; More packages
 (setq byte-compile--use-old-handlers nil) ; silence warning in emacs <25.1
 
+;; Emacs iPython notebook (EIN) dependencies
+;; string manipulation library
+(use-package s
+  :ensure t)
+;; live browser JavaScript, CSS, and HTML interaction
+(use-package skewer-mode
+  :ensure t)
+;; Compatible layer for URL request in Emacs
+(use-package request
+  :ensure t)
+;; Wrap request.el by deferred
+(use-package request-deferred
+  :ensure t)
+;; Emacs WebSocket client and server
+(use-package websocket
+  :ensure t)
+;; Python major mode
+(use-package python-mode
+  :ensure t)
+;; Support sequential operation which omits prefix keys
+(use-package smartrep
+  :ensure t)
+
 ;; Project management
 (use-package projectile
   :ensure t)
