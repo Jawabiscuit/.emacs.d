@@ -134,4 +134,7 @@
 
 (add-to-list 'find-file-not-found-functions 'my-create-non-existent-directory)
 
+;; Desktop mode
+(desktop-save-mode 1)
+
 (provide 'sane-defaults)

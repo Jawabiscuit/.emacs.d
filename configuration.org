@@ -222,7 +222,6 @@
 (require 'jedi-starter)
 #+END_SRC
 
-
 ** Emacs iPython Notebooks!
 #+BEGIN_SRC emacs-lisp
 (require 'ein)
