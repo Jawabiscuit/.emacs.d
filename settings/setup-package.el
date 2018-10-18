@@ -84,4 +84,8 @@ re-downloaded in order to locate PACKAGE."
 (use-package jedi
   :ensure t)
 
+;; Mel mode dependencies
+(use-package browse-url-dwim
+  :ensure t)
+
 (provide 'setup-package)

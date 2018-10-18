@@ -234,6 +234,12 @@
 (setq ein:completion-backend 'ein:use-ac-jedi-backend)
 #+END_SRC
 
+** Mel Mode
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.mel$" . mel-mode))
+(autoload 'mel-mode "mel-mode" nil t)
+#+END_SRC
+
 ** Editing (some definitions are in editing_defuns.el)
 #+BEGIN_SRC emacs-lisp
 (add-hook 'text-mode-hook 'casey-big-fun-text-hook)
