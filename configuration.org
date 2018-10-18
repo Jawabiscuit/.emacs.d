@@ -1,7 +1,7 @@
 * Emacs Configuration
 ** Toggle debug messages
 #+BEGIN_SRC emacs-lisp
-;; (setq debug-on-error t)
+(setq debug-on-error t)
 #+END_SRC
 
 ** Turn on functions disabled by default
@@ -103,7 +103,8 @@
 (setq use-package-always-ensure t)
 #+END_SRC
 
-** TODO replace stuff in here with use-package
+** DONE replace stuff in here with use-package
+   CLOSED: [2018-10-17 Wed 20:40]
 #+BEGIN_SRC emacs-lisp
 (require 'setup-package)
 #+END_SRC
@@ -145,7 +146,7 @@
 #+END_SRC
 
 ** Set up appearance
-*** Requires packages to be installed
+  - Requires some packages to be installed
 #+BEGIN_SRC emacs-lisp
 (require 'appearance)
 #+END_SRC
@@ -235,9 +236,26 @@
 #+END_SRC
 
 ** Mel Mode
+  - Mel syntax
+  - Mel documentation lookup
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.mel$" . mel-mode))
 (autoload 'mel-mode "mel-mode" nil t)
+#+END_SRC
+
+** Emacs to Maya
+  - Send Mel or Python to Maya
+#+BEGIN_SRC emacs-lisp
+(add-hook
+ 'python-mode-hook
+ (lambda ()
+   (require 'etom)
+   (setq etom-default-host "localhost")
+   (setq etom-default-port 2222)
+   (local-set-key (kbd "C-c C-r") 'etom-send-region)
+   (local-set-key (kbd "C-c C-c") 'etom-send-buffer)
+   (local-set-key (kbd "C-c C-l") 'etom-send-buffer)
+   (local-set-key (kbd "C-c C-z") 'etom-show-buffer)))
 #+END_SRC
 
 ** Editing (some definitions are in editing_defuns.el)
