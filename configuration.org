@@ -151,6 +151,14 @@
 (require 'appearance)
 #+END_SRC
 
+** Load Monokai theme
+#+BEGIN_SRC emacs-lisp
+(setq monokai-dir
+      (expand-file-name "themes/monokai-emacs/" user-emacs-directory))
+(add-to-list 'custom-theme-load-path monokai-dir)
+(load-theme 'monokai t)
+#+END_SRC
+
 ** Setup extensions
 #+BEGIN_SRC emacs-lisp
 (eval-after-load 'magit '(require 'setup-magit))

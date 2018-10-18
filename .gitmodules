@@ -10,3 +10,6 @@
 [submodule "site-lisp/emacs-ipython-notebook"]
 	path = site-lisp/emacs-ipython-notebook
 	url = https://github.com/millejoh/emacs-ipython-notebook.git
+[submodule "themes/monokai-emacs"]
+	path = themes/monokai-emacs
+	url = https://github.com/oneKelvinSmith/monokai-emacs.git
