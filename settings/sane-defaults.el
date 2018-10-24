@@ -14,6 +14,9 @@
 ;; Real emacs knights don't use shift to mark things
 (setq shift-select-mode nil)
 
+;; Disable scroll bar
+(scroll-bar-mode -1)
+
 ;; Transparently open compressed files
 (auto-compression-mode t)
 
@@ -45,6 +48,9 @@
 ;; Always display line and column numbers
 (setq line-number-mode t)
 (setq column-number-mode t)
+
+;; Always highlight lines
+(global-hl-line-mode 1)
 
 ;; Lines should be 80 characters wide, not 72
 (setq fill-column 80)

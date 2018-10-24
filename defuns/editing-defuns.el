@@ -5,7 +5,7 @@
   (save-excursion
     (replace-string FromString ToString)
   )
-  )
+)
 
 ;; Txt mode handling
 (defun casey-big-fun-text-hook ()
@@ -89,3 +89,17 @@
   arg lines up."
   (interactive "*p")
   (move-text-internal (- arg)))
+
+(defun previous-blank-line ()
+  "Moves to the previous line containing nothing but whitespace."
+  (interactive)
+  (search-backward-regexp "^[ \t]*\n")
+)
+
+(defun next-blank-line ()
+  "Moves to the next line containing nothing but whitespace."
+  (interactive)
+  (forward-line)
+  (search-forward-regexp "^[ \t]*\n")
+  (forward-line -1)
+)

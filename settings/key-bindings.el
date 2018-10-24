@@ -1,6 +1,7 @@
 ;; Smex
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
 ;; This is your old M-x.
 ;(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
@@ -41,25 +42,32 @@
 (define-key global-map "\eT" 'load-log)
 
 ;; Editing
+(define-key c++-mode-map [f12] 'casey-find-corresponding-file)
+(define-key c++-mode-map [M-f12] 'casey-find-corresponding-file-other-window)  ; C-S-f12
 (define-key global-map [f8] 'casey-replace-string)
-(define-key global-map "\eq" 'append-as-kill)
+(define-key global-map "\el" 'casey-replace-in-region)
 (define-key global-map "" 'copy-region-as-kill)
+(define-key global-map "\eq" 'append-as-kill)
 (define-key global-map "" 'rotate-yankpointer)
 (define-key global-map "\eu" 'undo)
 (define-key global-map "\e6" 'upcase-word)
 (define-key global-map "\e^" 'captilize-word)
-(define-key global-map "\el" 'casey-replace-in-region)
 (define-key global-map "\eo" 'query-replace)
-(define-key global-map "\eO" 'casey-replace-string)
 (define-key global-map "\t" 'dabbrev-expand)
 (define-key global-map [S-tab] 'indent-for-tab-command)
 (define-key global-map [C-tab] 'indent-region)
-(define-key global-map "	" 'indent-region)
 (global-set-key (kbd "C-d") 'duplicate-line)
 (global-set-key [M-S-up] 'move-text-up)
 (global-set-key [M-S-down] 'move-text-down)
-;(define-key global-map [M-delete] 'kill-word)
-;(define-key global-map "\377" 'backward-kill-word)  ; \377 is alt-backspace
+(define-key global-map "\e." 'fill-paragraph)
+
+;; TODO
+;; (define-key global-map "\t" 'dabbrev-expand)
+;; (define-key global-map [S-tab] 'indent-for-tab-command)
+;; (define-key global-map [backtab] 'indent-for-tab-command)
+;; (define-key global-map "\C-y" 'indent-for-tab-command)
+;; (define-key global-map [C-tab] 'indent-region)
+;; (define-key global-map "	" 'indent-region)
 
 ;; Tools
 (define-key global-map "\ep" 'quick-calc)
@@ -70,8 +78,8 @@
 (define-key global-map [C-left] 'backward-word)
 (define-key global-map [C-up] 'previous-blank-line)
 (define-key global-map [C-down] 'next-blank-line)
-(define-key global-map [C-next] 'scroll-other-window)
-(define-key global-map [C-prior] 'scroll-other-window-down)
+(define-key global-map [C-next] 'scroll-other-window)          ; next = page down
+(define-key global-map [C-prior] 'scroll-other-window-down)    ; prior = page up
 (define-key global-map "\e:" 'View-back-to-mark)
 (define-key global-map "\e;" 'exchange-point-and-mark)
 (define-key global-map [f9] 'first-error)
@@ -89,6 +97,9 @@
 
 ;; Buffer
 (define-key global-map "\er" 'revert-buffer)
+
+;; Window
+(define-key global-map "\ep" 'maximize-frame)
 
 ;; Fold-this
 (global-set-key (kbd "C-c C-f") 'fold-this-all)
