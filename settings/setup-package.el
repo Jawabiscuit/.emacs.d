@@ -65,7 +65,6 @@ re-downloaded in order to locate PACKAGE."
 ;; Project management
 (use-package projectile
   :ensure t)
-(projectile-mode +1)
 
 ;; Fuzzy matching
 (use-package flx-ido
@@ -85,6 +84,10 @@ re-downloaded in order to locate PACKAGE."
 
 ;; Mel mode dependencies
 (use-package browse-url-dwim
+  :ensure t)
+
+;; Git-gutter
+(use-package git-gutter
   :ensure t)
 
 (provide 'setup-package)

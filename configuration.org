@@ -231,6 +231,18 @@
 (require 'jedi-starter)
 #+END_SRC
 
+** Projectile minor mode
+#+BEGIN_SRC emacs-lisp
+(projectile-mode +1)
+#+END_SRC
+
+** Git gutter global minor mode
+  - Options (disabled) for setting up mode per file type in mode-mappings.el
+#+BEGIN_SRC emacs-lisp
+(require 'setup-gitgutter)
+(global-git-gutter-mode +1)
+#+END_SRC
+
 ** Emacs iPython Notebooks!
 #+BEGIN_SRC emacs-lisp
 (require 'ein)
