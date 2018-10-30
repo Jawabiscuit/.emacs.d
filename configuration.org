@@ -240,7 +240,7 @@
   - Options (disabled) for setting up mode per file type in mode-mappings.el
 #+BEGIN_SRC emacs-lisp
 (require 'setup-gitgutter)
-(global-git-gutter-mode +1)
+;; (global-git-gutter-mode +1)
 #+END_SRC
 
 ** Emacs iPython Notebooks!

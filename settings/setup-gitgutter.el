@@ -1,13 +1,11 @@
 (require 'git-gutter)
 
-;; If you enable global minor mode
-(global-git-gutter-mode t)
-
+;; Don't do this!
+;; run (global-git-gutter-mode t) AFTER
+;; (global-display-line-numbers-mode t)
+;; https://github.com/syohex/emacs-git-gutter/issues/156
 ;; If you would like to use git-gutter.el and linum-mode
-(git-gutter:linum-setup)
-
-;; If you enable git-gutter-mode for some modes
-(add-hook 'ruby-mode-hook 'git-gutter-mode)
+;;(git-gutter:linum-setup)
 
 (global-set-key (kbd "C-x C-g") 'git-gutter)
 (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
@@ -39,9 +37,9 @@
  '(git-gutter:added-sign "++")    ;; multiple character is OK
  '(git-gutter:deleted-sign "--"))
 
-(set-face-background 'git-gutter:modified "purple") ;; background color
-(set-face-foreground 'git-gutter:added "green")
-(set-face-foreground 'git-gutter:deleted "red")
+;; (set-face-background 'git-gutter:modified "purple") ;; background color
+;; (set-face-foreground 'git-gutter:added "green")
+;; (set-face-foreground 'git-gutter:deleted "red")
 
 ;; first character should be a space
 (custom-set-variables
@@ -112,5 +110,15 @@
 ;; Don't need log/message.
 (custom-set-variables
  '(git-gutter:verbosity 4))  ; 0-4, 4 being more verbose and the default
+
+;; If you want to display line numbers globally, always couple this
+;; with (global-git-gutter-mode t)
+;; (global-display-line-numbers-mode t)
+
+;; Enable global minor mode
+;; (global-git-gutter-mode t)
+
+;; Enable git-gutter-mode for some modes
+;; (add-hook 'ruby-mode-hook 'git-gutter-mode)
 
 (provide 'setup-gitgutter)
