@@ -1,3 +1,21 @@
+;; Don't beep. Don't visible-bell (fails on el capitan). Just blink the modeline on errors.
+(setq visible-bell nil)
+(setq ring-bell-function (lambda ()
+    (invert-face 'mode-line)
+        (run-with-timer 0.05 nil 'invert-face 'mode-line))
+)
+
+;; Fonts
+(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-12"))
+(set-face-attribute 'default t :font "DejaVu Sans Mono-12")
+
+;; Smooth scroll
+(require 'smooth-scrolling)
+(smooth-scrolling-mode 1)
+
+;; Clock
+(display-time)
+
 ;; Allow pasting selection outside of Emacs
 (setq x-select-enable-clipboard t)
 
@@ -46,8 +64,8 @@
 (setq jump-char-lazy-highlight-face nil)
 
 ;; Always display line and column numbers
-(setq line-number-mode t)
-(setq column-number-mode t)
+;; (setq line-number-mode t)
+;; (setq column-number-mode t)
 
 ;; Always highlight lines
 (global-hl-line-mode 1)

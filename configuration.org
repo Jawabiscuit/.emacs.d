@@ -146,9 +146,9 @@
 #+END_SRC
 
 ** Set up appearance
-  - Requires some packages to be installed
+  - +Requires some packages to be installed+ (deprecated: use sane-defaults)
 #+BEGIN_SRC emacs-lisp
-(require 'appearance)
+;; (require 'appearance)
 #+END_SRC
 
 ** Load Monokai theme
