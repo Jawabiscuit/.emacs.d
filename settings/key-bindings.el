@@ -43,7 +43,7 @@
 
 ;; Editing
 (define-key c++-mode-map [f12] 'casey-find-corresponding-file)
-(define-key c++-mode-map [M-f12] 'casey-find-corresponding-file-other-window)  ; C-S-f12
+(define-key c++-mode-map [M-f12] 'casey-find-corresponding-file-other-window)  ; M-S-f12
 (define-key global-map [f8] 'casey-replace-string)
 (define-key global-map "\el" 'casey-replace-in-region)
 (define-key global-map "" 'copy-region-as-kill)
