@@ -39,6 +39,15 @@ re-downloaded in order to locate PACKAGE."
 ;; More packages
 (setq byte-compile--use-old-handlers nil) ; silence warning in emacs <25.1
 
+;; Emacs Major mode for Markdown-formatted files
+(use-package markdown-mode
+  :ensure t
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown")
+)
+
 ;; Emacs iPython notebook (EIN) dependencies
 ;; string manipulation library
 (use-package s

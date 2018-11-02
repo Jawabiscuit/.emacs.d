@@ -118,6 +118,7 @@
 
 ** Install extensions if they're missing
 #+BEGIN_SRC emacs-lisp
+;; TODO have use-package install these
 (defun init--install-packages ()
   (packages-install
    '(
@@ -128,7 +129,7 @@
      htmlize           ; Convert buffer text and decorations to HTML.
      magit             ; Complete Git interface
      magit-gitflow     ; Gitflow extension for magit
-     markdown-mode     ; Emacs Major mode for Markdown-formatted files
+     ; markdown-mode     ; Emacs Major mode for Markdown-formatted files
      multiple-cursors  ; Multiple cursors for Emacs
      org-bullets       ; Show bullets in org-mode as UTF-8 characters
      paredit           ; Minor mode for editing parentheses
@@ -146,9 +147,31 @@
 #+END_SRC
 
 ** Set up appearance
-  - +Requires some packages to be installed+ (deprecated: use sane-defaults)
+  - Most things can be setup in sane-defaults.el however, changes to
+    font faces and the like are done here
 #+BEGIN_SRC emacs-lisp
-;; (require 'appearance)
+;; Bright-red TODOs
+(setq fixme-modes '(python-mode c++-mode c-mode emacs-lisp-mode))
+
+(make-face 'font-lock-fixme-face)
+(make-face 'font-lock-research-face)
+(make-face 'font-lock-important-face)
+(make-face 'font-lock-note-face)
+
+(mapc (lambda (mode)
+    (font-lock-add-keywords
+	 mode
+	 '(("\\<\\(TODO\\)" 1 'font-lock-fixme-face t)
+	   ("\\<\\(RESEARCH\\)" 1 'font-lock-research-face t)
+           ("\\<\\(IMPORTANT\\)" 1 'font-lock-important-face t)
+           ("\\<\\(NOTE\\)" 1 'font-lock-note-face t))))
+     fixme-modes
+)
+
+(modify-face 'font-lock-fixme-face "Red" nil nil t nil t nil nil)
+(modify-face 'font-lock-research-face "Purple" nil nil t nil t nil nil)
+(modify-face 'font-lock-important-face "Orange" nil nil t nil t nil nil)
+(modify-face 'font-lock-note-face "Blue" nil nil t nil t nil nil)
 #+END_SRC
 
 ** Load Monokai theme
