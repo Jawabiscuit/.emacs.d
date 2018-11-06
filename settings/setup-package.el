@@ -45,7 +45,18 @@ re-downloaded in order to locate PACKAGE."
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown")
+  :init (setq markdown-command "pandoc")
+)
+
+;; Pandoc dependency
+(use-package hydra
+  :ensure t
+)
+
+;; Pandoc-mode is for interacting with pandoc, a program that converts
+;; text files written in one markup language to another
+(use-package pandoc-mode
+  :ensure t
 )
 
 ;; Emacs iPython notebook (EIN) dependencies
