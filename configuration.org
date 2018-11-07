@@ -206,6 +206,19 @@
 (eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
 #+END_SRC
 
+** Outline minor mode
+#+BEGIN_SRC emacs-lisp
+(eval-after-load 'outline
+  '(progn
+    (require 'outline-magic)
+    (define-key outline-minor-mode-map (kbd "<C-tab>") 'outline-cycle)))
+#+END_SRC
+
+** Outline minor mode for Python
+#+BEGIN_SRC emacs-lisp
+(require 'python-magic)
+#+END_SRC
+
 ** Pandoc
 #+BEGIN_SRC emacs-lisp
 (add-hook 'markdown-mode-hook 'pandoc-mode)
