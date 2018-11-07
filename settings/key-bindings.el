@@ -119,4 +119,9 @@
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
+;; Python magic
+(define-key python-mode-map (kbd "C--") 'outline-hide-body)
+(define-key python-mode-map (kbd "C-=") 'outline-show-all)
+(define-key python-mode-map (kbd "C-+") 'outline-cycle)
+
 (provide 'key-bindings)

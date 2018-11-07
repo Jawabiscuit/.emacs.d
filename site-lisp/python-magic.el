@@ -54,10 +54,10 @@
   (outline-minor-mode t)
   ;; (hide-body)
   (show-paren-mode 1)
-  (define-key python-mode-map [tab] 'outline-cycle)
+  ;; (define-key python-mode-map [tab] 'outline-hide-body)
   (define-key outline-minor-mode-map [S-tab] 'indent-for-tab-command)
   (define-key outline-minor-mode-map [M-down] 'outline-move-subtree-down)
   (define-key outline-minor-mode-map [M-up] 'outline-move-subtree-up)
 )
+
 (provide 'python-magic)
-;;; python-magic.el ends here
