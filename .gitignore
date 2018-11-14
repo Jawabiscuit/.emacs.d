@@ -10,3 +10,5 @@ projectile*
 ac-comphist.dat
 .emacs.desktop
 .emacs.desktop.lock
+shell_template.bat
+startup.bat
