@@ -302,6 +302,9 @@
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.mel$" . mel-mode))
 (autoload 'mel-mode "mel-mode" nil t)
+
+;; mel outline mode
+(require 'mel-magic)
 #+END_SRC
 
 ** Emacs to Maya
