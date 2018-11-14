@@ -21,4 +21,5 @@
   ;(menu-bar-mode -1)
   (maximize-frame)
   ;(split-window-horizontally)
+  (setq frame-title-format "%b - emacs")
 )
