@@ -124,4 +124,7 @@
 (define-key python-mode-map (kbd "C-=") 'outline-show-all)
 (define-key python-mode-map (kbd "C-+") 'outline-cycle)
 
+;; Org mode
+(define-key org-mode-map "\C-ck" 'endless/insert-key)
+
 (provide 'key-bindings)

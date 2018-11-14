@@ -241,11 +241,6 @@
 (require 'mode-mappings)
 #+END_SRC
 
-** Setup key bindings
-#+BEGIN_SRC emacs-lisp
-(require 'key-bindings)
-#+END_SRC
-
 ** Buffer switching
 #+BEGIN_SRC emacs-lisp
 (load-library "view")
@@ -296,17 +291,6 @@
 (setq ein:completion-backend 'ein:use-ac-jedi-backend)
 #+END_SRC
 
-** Mel Mode
-  - Mel syntax
-  - Mel documentation lookup
-#+BEGIN_SRC emacs-lisp
-(add-to-list 'auto-mode-alist '("\\.mel$" . mel-mode))
-(autoload 'mel-mode "mel-mode" nil t)
-
-;; mel outline mode
-(require 'mel-magic)
-#+END_SRC
-
 ** Emacs to Maya
   - Send Mel or Python to Maya
 #+BEGIN_SRC emacs-lisp
@@ -325,6 +309,22 @@
 ** Editing (some definitions are in editing_defuns.el)
 #+BEGIN_SRC emacs-lisp
 (add-hook 'text-mode-hook 'casey-big-fun-text-hook)
+#+END_SRC
+
+** Mel Mode
+  - Mel syntax
+  - Mel documentation lookup
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.mel$" . mel-mode))
+(autoload 'mel-mode "mel-mode" nil t)
+
+;; mel outline mode
+(require 'mel-magic)
+#+END_SRC
+
+** Setup key bindings
+#+BEGIN_SRC emacs-lisp
+(require 'key-bindings)
 #+END_SRC
 
 ** Window
