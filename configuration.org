@@ -289,6 +289,11 @@
 (setq ein:use-smartrep t)
 ;; Use jedi autocomplete backend
 (setq ein:completion-backend 'ein:use-ac-jedi-backend)
+;; Execute ein source blocks in org-mode
+(org-babel-do-load-languages
+   'org-babel-load-languages
+   '((ein . t)
+))
 #+END_SRC
 
 ** Emacs to Maya
