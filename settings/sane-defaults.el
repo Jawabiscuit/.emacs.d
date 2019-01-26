@@ -158,7 +158,8 @@
 
 (add-to-list 'find-file-not-found-functions 'my-create-non-existent-directory)
 
-;; Desktop mode
+;; Desktop sessions
+;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Emacs-Sessions.html
 (desktop-save-mode 1)
 
 (provide 'sane-defaults)

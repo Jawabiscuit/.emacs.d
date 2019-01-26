@@ -1,3 +1,7 @@
+#+OPTIONS: toc:nil num:nil
+#+STARTUP: content indent
+#+STARTUP: hidestars
+
 * DONE Configuration [1/1]
   CLOSED: [2018-09-28 Fri 20:37]
 ** [X] sane-defaults [5/5]

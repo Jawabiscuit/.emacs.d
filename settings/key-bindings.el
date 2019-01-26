@@ -1,3 +1,7 @@
+;; Lisp interaction
+; eval-last-sexp is bound to C-x C-e.
+(define-key lisp-interaction-mode-map (kbd "<C-return>") 'eval-defun)
+
 ;; Smex
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
@@ -42,8 +46,8 @@
 (define-key global-map "\eT" 'load-log)
 
 ;; Editing
-(define-key c++-mode-map [f12] 'casey-find-corresponding-file)
-(define-key c++-mode-map [M-f12] 'casey-find-corresponding-file-other-window)  ; M-S-f12
+;; (define-key c++-mode-map [f12] 'casey-find-corresponding-file) ; Use projectile command: C-c p a
+;; (define-key c++-mode-map [M-f12] 'casey-find-corresponding-file-other-window)  ; M-S-f12
 (define-key global-map [f8] 'casey-replace-string)
 (define-key global-map "\el" 'casey-replace-in-region)
 (define-key global-map "" 'copy-region-as-kill)

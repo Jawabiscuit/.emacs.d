@@ -42,17 +42,50 @@
 ;; Use syntax highlighting in source blocks while editing
 (setq org-src-fontify-natively t)
 
-;; Make TAB act as if it were issued in a buffer of the language's major mode.
+;; Make TAB act as if it were issued in a buffer of the language's
+;; major mode. 
 (setq org-src-tab-acts-natively t)
 
-;; When editing a code snippet, use the current window rather than popping open a new one (which shows the same information).
+;; When editing a code snippet, use the current window rather than
+;; popping open a new one (which shows the same information). 
 (setq org-src-window-setup 'current-window)
 
 ;; Quickly insert a block of elisp
 (add-to-list 'org-structure-template-alist
              '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
 
-;; Enable spell-check in org-mode
+;; TODO: Enable spell-check in org-mode
 ; (add-hook 'org-mode-hook 'flyspell-mode)
+
+;; This blog was really helpful figuring structure templates out
+;; https://blog.aaronbieber.com/2016/11/23/creating-org-mode-structure-templates.html
+
+;; Create a new structure template
+(add-to-list 'org-structure-template-alist
+             (list "p" (concat ":PROPERTIES:\n"
+                               "?\n"
+                               ":END:")))
+
+;; Html export options template
+(add-to-list 'org-structure-template-alist
+             (list "eh" (concat ":EXPORT_FILE_NAME: ?\n"
+                                ":EXPORT_TITLE:\n"
+                                ":EXPORT_OPTIONS: toc:nil html-postamble:nil num:nil")))
+
+;; Org mode header options template
+(add-to-list 'org-structure-template-alist
+             (list "o" (concat "#+OPTIONS: toc:nil num:nil\n"
+                               "#+STARTUP: content indent\n"
+                               "#+STARTUP: hidestars\n?")))
+
+;; Jekyll post front matter
+(add-to-list 'org-structure-template-alist
+             (list "j" (concat "@@html:---\n"
+                               "layout: post\n"
+                               "title: ?\n"
+                               "date: \n"
+                               "category: \n"
+                               "---\n"
+                               "@@\n")))
 
 (provide 'setup-org)

@@ -1,3 +1,7 @@
+#+OPTIONS: toc:nil num:nil
+#+STARTUP: content indent
+#+STARTUP: hidestars
+
 * Emacs Configuration
 ** Toggle debug messages
 #+BEGIN_SRC emacs-lisp
@@ -67,7 +71,7 @@
 ** Log
 #+BEGIN_SRC emacs-lisp
 (setq casey-log-file
-      (expand-file-name "log.txt" user-emacs-directory))
+      (expand-file-name "log.org" user-emacs-directory))
 #+END_SRC
 
 ** Todo

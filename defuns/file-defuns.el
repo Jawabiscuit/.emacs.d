@@ -17,8 +17,8 @@
 ;; Time of day
 (defun insert-timeofday ()
    (interactive "*")
-   (insert (format-time-string "---------------- %a, %d %b %y: %I:%M%p"))
-   )
+   (insert (format-time-string "** Log <%a, %d %b %y: %I:%M%p>"))
+)
 
 ;; Todo loading
 (defun load-todo ()
@@ -31,10 +31,10 @@
   (interactive)
   (find-file casey-log-file)
   (end-of-buffer)
-  (newline-and-indent)
+  (newline)
   (insert-timeofday)
-  (newline-and-indent)
-  (newline-and-indent)
+  (newline)
+  (newline)
   (end-of-buffer)
 )
 
@@ -82,7 +82,8 @@
 )
 
 (defun copy-current-file-path ()
-  "Add current file path to kill ring. Limits the filename to project root if possible."
+  "TODO: kill-new: Symbol’s value as variable is void: eproject-mode
+   Add current file path to kill ring. Limits the filename to project root if possible."
   (interactive)
   (let ((filename (buffer-file-name)))
     (kill-new (if eproject-mode
@@ -138,7 +139,7 @@
    (insert "   $Date: $\n")
    (insert "   $Revision: $\n")
    (insert "   $Creator: Jonas Avrin $\n")
-   (insert "   $Notice: (C) Copyright 2018. All Rights Reserved. $\n")
+   (insert "   $Notice: (C) Copyright 2019. All Rights Reserved. $\n")
    (insert "   ======================================================================== */\n")
    (insert "\n")
    (insert "#define ")
@@ -159,12 +160,12 @@
    (insert "   $Date: $\n")
    (insert "   $Revision: $\n")
    (insert "   $Creator: Jonas Avrin $\n")
-   (insert "   $Notice: (C) Copyright 2018. All Rights Reserved. $\n")
+   (insert "   $Notice: (C) Copyright 2019. All Rights Reserved. $\n")
    (insert "   ======================================================================== */\n")
 )
 
 (defun casey-find-corresponding-file ()
-  "Find the file that corresponds to this one."
+  "(DEPRECATED: USE PROJECTILE CMD. Find the file that corresponds to this one."
   (interactive)
   (setq CorrespondingFileName nil)
   (setq BaseFileName (file-name-sans-extension buffer-file-name))

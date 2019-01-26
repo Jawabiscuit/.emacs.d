@@ -14,3 +14,5 @@ shell_template.bat
 startup.bat
 shell.bat
 request/
+diary
+server/server

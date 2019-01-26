@@ -1,0 +1,69 @@
+#+OPTIONS: toc:nil num:nil
+#+STARTUP: content indent
+#+STARTUP: hidestars
+
+** Fri, 28 Sep 18: 12:16PM
+
+- Trying auctex package
+  - Not sure if it is really necessary since only interested in exporting from org ATM
+
+- Advanced Exporting
+- org-export backend customizations
+- Options > Customize Emacs > Specific Group > org-export
+- Enabled beamer, latex, md backends
+- Downloaded MiKTeX for Windows and installed
+  - https://miktex.org/download
+- Added bin directory to path since emacs was not finding pdflatex
+  - Added to %appdata%\Microsoft\Windows\Start Menu\Programs\runemacs.bat
+    - set PATH="C:\Program Files\MiKTeX 2.9\miktex\bin\x64";%PATH%
+  - Same problem as this guy: https://lists.gnu.org/archive/html/auctex/2012-02/msg00005.html
+  - 'pdflatex' is not recognized as an internal or external command, operable program or batch file
+
+- Objective: org-export with code syntax highlighting
+- minted tool seems to be choice
+- Verified MiKTeX package manager installed minted
+- https://stackoverflow.com/questions/300521/latex-package-to-do-syntax-highlighting-of-code-in-various-languages
+
+
+** Tue, 02 Oct 18: 07:44PM
+
+- Find and replace in files not already open using `find-name-dired`
+  - https://stackoverflow.com/a/271136
+
+
+** Log <Fri, 25 Jan 19: 09:52PM>
+
+1. Changed format of of log files from txt to org
+2. Changed log entry titles to look like the one above
+3. Learned about org-mode structure templates and binding them to key chords
+4. [[*https://blog.aaronbieber.com/2016/11/23/creating-org-mode-structure-templates.html]]
+5. Structure templates added to [[file:settings/setup-org.el::;;%20https://blog.aaronbieber.com/2016/11/23/creating-org-mode-structure-templates.html][setup-org.el]]
+6. Create a block like the one below by typing "<el <TAB>"
+7. Learned about using =(debug)= in lisp interactive sessions
+
+#+BEGIN_SRC emacs-lisp
+;; Debug practice
+;; d: step through
+;; c: continue
+;; e: eval expression
+;; q: top level (debug code for "quit")
+;; C-h m from the debugger window for more cmds
+(save-excursion
+  (goto-char 0)
+  (while (re-search-forward "\\w+" (point-max) t)
+    (debug)
+    (match-string-no-properties 0)))
+#+END_SRC
+
+1. Defined key binding for evaluating el code blocks
+
+#+BEGIN_SRC emacs-lisp
+; eval-defun is not bound
+; (define-key global-map "\ew" 'other-window)
+(define-key lisp-interaction-mode-map (kbd "<C-return>") 'eval-defun)
+#+END_SRC
+
+1. Deprecating =casey-find-corresponding-file= and
+   =casey-find-corresponding-file-other-window= in favor of using
+   projectile key binding: @@html:<kbd>C-c p</kbd>@@
+
