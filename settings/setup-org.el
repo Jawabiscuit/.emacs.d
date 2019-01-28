@@ -66,6 +66,11 @@
                                "?\n"
                                ":END:")))
 
+(add-to-list 'org-structure-template-alist
+             (list "py" (concat "#+BEGIN_SRC python\n"
+                                "?\n"
+                                "#+END_SRC")))
+
 ;; Html export options template
 (add-to-list 'org-structure-template-alist
              (list "eh" (concat ":EXPORT_FILE_NAME: ?\n"

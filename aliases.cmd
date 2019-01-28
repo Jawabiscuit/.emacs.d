@@ -7,4 +7,7 @@ rem
 DOSKEY ls=dir /b
 DOSKEY em=start "" /min emacs $*
 DOSKEY eml=start "" /min emacs -l .emacs $*
+DOSKEY cp=copy $*
+DOSKEY rm=del $*
+DOSKEY mv=move $*
 
