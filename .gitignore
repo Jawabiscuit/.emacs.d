@@ -16,3 +16,6 @@ shell.bat
 request/
 diary
 server/server
+.python-environments/
+url/
+

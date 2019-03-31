@@ -102,6 +102,9 @@
    "try:\n"
    "  c = f.read()\n"
    "  exec(c,  __main__.__dict__, __main__.__dict__)\n"
+   "except:\n"
+   "  import traceback\n"
+   "  traceback.print_exc()\n"
    "finally:\n"
    "  f.close()"
    )

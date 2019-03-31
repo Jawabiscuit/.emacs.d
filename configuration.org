@@ -8,11 +8,13 @@
 ;; (setq debug-on-error t)
 #+END_SRC
 
+
 ** Turn on functions disabled by default
 #+BEGIN_SRC emacs-lisp
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 #+END_SRC
+
 
 ** Turn off mouse interface early in startup to avoid momentary display
 #+BEGIN_SRC emacs-lisp
@@ -20,6 +22,7 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 #+END_SRC
+
 
 ** Enable installation of packages from MELPA
 #+BEGIN_SRC emacs-lisp
@@ -38,16 +41,19 @@
 (package-initialize)
 #+END_SRC
 
+
 ** No splash screen please ... jeez
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
 #+END_SRC
+
 
 ** Site-lisp
 #+BEGIN_SRC emacs-lisp
 (setq site-lisp-dir
       (expand-file-name "site-lisp" user-emacs-directory))
 #+END_SRC
+
 
 ** Ipython site-lisp dir
 #+BEGIN_SRC emacs-lisp
@@ -56,11 +62,13 @@
         (convert-standard-filename "/emacs-ipython-notebook/lisp")))
 #+END_SRC
 
+
 ** Settings
 #+BEGIN_SRC emacs-lisp
 (setq settings-dir
       (expand-file-name "settings" user-emacs-directory))
 #+END_SRC
+
 
 ** Functions
 #+BEGIN_SRC emacs-lisp
@@ -68,17 +76,20 @@
       (expand-file-name "defuns" user-emacs-directory))
 #+END_SRC
 
+
 ** Log
 #+BEGIN_SRC emacs-lisp
 (setq casey-log-file
       (expand-file-name "log.org" user-emacs-directory))
 #+END_SRC
 
+
 ** Todo
 #+BEGIN_SRC emacs-lisp
 (setq casey-todo-file
       (expand-file-name "todo.org" user-emacs-directory))
 #+END_SRC
+
 
 ** Load all files in defuns-dir
 #+BEGIN_SRC emacs-lisp
@@ -87,12 +98,14 @@
     (load file)))
 #+END_SRC
 
+
 ** Setup load-path
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path site-lisp-dir)
 (add-to-list 'load-path ein-site-lisp-dir)
 #+END_SRC
+
 
 ** Add external projects to load path
 #+BEGIN_SRC emacs-lisp
@@ -101,11 +114,13 @@
     (add-to-list 'load-path project)))
 #+END_SRC
 
+
 ** Package setup tools
 #+BEGIN_SRC emacs-lisp
 (eval-when-compile (require 'use-package))
 (setq use-package-always-ensure t)
 #+END_SRC
+
 
 ** DONE replace stuff in here with use-package
    CLOSED: [2018-10-17 Wed 20:40]
@@ -113,12 +128,14 @@
 (require 'setup-package)
 #+END_SRC
 
+
 ** Keep emacs Custom-settings in separate file
 #+BEGIN_SRC emacs-lisp
 (setq custom-file
       (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 #+END_SRC
+
 
 ** Install extensions if they're missing
 #+BEGIN_SRC emacs-lisp
@@ -150,6 +167,7 @@
    (init--install-packages)))
 #+END_SRC
 
+
 ** Set up appearance
   - Most things can be setup in sane-defaults.el however, changes to
     font faces and the like are done here
@@ -178,6 +196,7 @@
 (modify-face 'font-lock-note-face "Blue" nil nil t nil t nil nil)
 #+END_SRC
 
+
 ** Load Monokai theme
 #+BEGIN_SRC emacs-lisp
 (setq monokai-dir
@@ -185,6 +204,7 @@
 (add-to-list 'custom-theme-load-path monokai-dir)
 (load-theme 'monokai t)
 #+END_SRC
+
 
 ** Setup extensions
 #+BEGIN_SRC emacs-lisp
@@ -200,15 +220,18 @@
 (require 'setup-org)
 #+END_SRC
 
+
 ** Site-lisp packages
 #+BEGIN_SRC emacs-lisp
 (require 'ox-twbs)
 #+END_SRC
 
+
 ** Language specific setup files
 #+BEGIN_SRC emacs-lisp
 (eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
 #+END_SRC
+
 
 ** Outline minor mode
 #+BEGIN_SRC emacs-lisp
@@ -218,20 +241,30 @@
     (define-key outline-minor-mode-map (kbd "<C-tab>") 'outline-cycle)))
 #+END_SRC
 
+
 ** Outline minor mode for Python
 #+BEGIN_SRC emacs-lisp
 (require 'python-magic)
 #+END_SRC
+
 
 ** Pandoc
 #+BEGIN_SRC emacs-lisp
 (add-hook 'markdown-mode-hook 'pandoc-mode)
 #+END_SRC
 
+
 ** A smattering of sanity
 #+BEGIN_SRC emacs-lisp
 (require 'sane-defaults)
 #+END_SRC
+
+
+** More dired functionality (23.2+)
+#+BEGIN_SRC emacs-lisp
+(load "dired-x")
+#+END_SRC
+
 
 ** Represent undo-history as an actual tree (visualize with C-x u)
 #+BEGIN_SRC emacs-lisp
@@ -240,10 +273,12 @@
 (global-undo-tree-mode)
 #+END_SRC
 
+
 ** Map files to modes
 #+BEGIN_SRC emacs-lisp
 (require 'mode-mappings)
 #+END_SRC
+
 
 ** Buffer switching
 #+BEGIN_SRC emacs-lisp
@@ -253,6 +288,7 @@
 (require 'compile)
 ;; (ido-mode t)
 #+END_SRC
+
 
 ** Flx Fuzzy Matching
 #+BEGIN_SRC emacs-lisp
@@ -266,15 +302,18 @@
 (setq ido-use-faces nil)
 #+END_SRC
 
+
 ** Jedi auto-complete
 #+BEGIN_SRC emacs-lisp
 (require 'jedi-starter)
 #+END_SRC
 
+
 ** Projectile minor mode
 #+BEGIN_SRC emacs-lisp
 (projectile-mode +1)
 #+END_SRC
+
 
 ** Git gutter global minor mode
   - Options (disabled) for setting up mode per file type in mode-mappings.el
@@ -282,6 +321,7 @@
 (require 'setup-gitgutter)
 ;; (global-git-gutter-mode +1)
 #+END_SRC
+
 
 ** Emacs iPython Notebooks!
 #+BEGIN_SRC emacs-lisp
@@ -300,6 +340,7 @@
 ))
 #+END_SRC
 
+
 ** Emacs to Maya
   - Send Mel or Python to Maya
 #+BEGIN_SRC emacs-lisp
@@ -309,16 +350,18 @@
    (require 'etom)
    (setq etom-default-host "localhost")
    (setq etom-default-port 2222)
-   (local-set-key (kbd "C-c C-r") 'etom-send-region)
+   (local-set-key (kbd "<C-return>") 'etom-send-region)
    (local-set-key (kbd "C-c C-c") 'etom-send-buffer)
    (local-set-key (kbd "C-c C-l") 'etom-send-buffer)
    (local-set-key (kbd "C-c C-z") 'etom-show-buffer)))
 #+END_SRC
 
+
 ** Editing (some definitions are in editing_defuns.el)
 #+BEGIN_SRC emacs-lisp
 (add-hook 'text-mode-hook 'casey-big-fun-text-hook)
 #+END_SRC
+
 
 ** Mel Mode
   - Mel syntax
@@ -331,10 +374,12 @@
 (require 'mel-magic)
 #+END_SRC
 
+
 ** Setup key bindings
 #+BEGIN_SRC emacs-lisp
 (require 'key-bindings)
 #+END_SRC
+
 
 ** Window
 #+BEGIN_SRC emacs-lisp
