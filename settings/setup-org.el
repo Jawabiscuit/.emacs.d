@@ -79,9 +79,13 @@
 
 ;; Org mode header options template
 (add-to-list 'org-structure-template-alist
-             (list "o" (concat "#+OPTIONS: toc:nil num:nil\n"
+             (list "o" (concat "#+OPTIONS: title:nil toc:nil ^:nil num:nil\n"
                                "#+STARTUP: content indent\n"
-                               "#+STARTUP: hidestars\n?")))
+                               "#+STARTUP: hidestars\n"
+                               "#+AUTHOR: Jonas Avrin\n"
+                               "#+TITLE: \n"
+                               "#+SUBTITLE: \n"
+                               "#+DESCRIPTION: \n")))
 
 ;; Jekyll post front matter
 (add-to-list 'org-structure-template-alist
