@@ -97,4 +97,9 @@
                                "---\n"
                                "@@\n")))
 
+;; GTD TODO keywords and hide logs
+(setq org-todo-keywords
+      '((sequence "ACTION" "NEXT" "INCUBATE" "DEFERRED" "REFERENCE" "WAITING(w@)" "|" "DONE" "DELEGATED" "CATEGORIZED(c@)" "TRASH")))
+(setq org-log-into-drawer 1)
+
 (provide 'setup-org)
