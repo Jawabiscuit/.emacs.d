@@ -19,3 +19,6 @@
 [submodule "site-lisp/command-log-mode"]
 	path = site-lisp/command-log-mode
 	url = https://github.com/lewang/command-log-mode.git
+[submodule "site-lisp/emacs-wgrep"]
+	path = site-lisp/emacs-wgrep
+	url = https://github.com/mhayashi1120/Emacs-wgrep.git

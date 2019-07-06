@@ -228,8 +228,9 @@
 
 ** Site-lisp packages
 #+BEGIN_SRC emacs-lisp
-(require 'ox-twbs)          ; Bootstrap compatible HTML Back-End for Org
-(require 'command-log-mode) ; log keyboard commands to buffer
+(require 'ox-twbs)            ; Bootstrap compatible HTML Back-End for Org
+(require 'command-log-mode)   ; log keyboard commands to buffer
+(require 'wgrep)              ; wgrep allows you to edit a grep buffer and apply those changes to the file buffer
 #+END_SRC
 
 
