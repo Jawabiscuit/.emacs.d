@@ -107,7 +107,7 @@
 #+END_SRC
 
 
-** Add external projects to load path
+** Add external project submodules to load path
 #+BEGIN_SRC emacs-lisp
 (dolist (project (directory-files site-lisp-dir t "\\w+"))
   (when (file-directory-p project)
@@ -137,9 +137,9 @@
 #+END_SRC
 
 
-** Install extensions if they're missing
+** Install packages if they're missing
 #+BEGIN_SRC emacs-lisp
-;; TODO have use-package install these
+;; NOTE <2019-07-05 Fri> Counsel/Ivy did not install with use-package, put it here 
 (defun init--install-packages ()
   (packages-install
    '(
@@ -150,7 +150,6 @@
      htmlize           ; Convert buffer text and decorations to HTML.
      magit             ; Complete Git interface
      magit-gitflow     ; Gitflow extension for magit
-     ; markdown-mode     ; Emacs Major mode for Markdown-formatted files
      multiple-cursors  ; Multiple cursors for Emacs
      org-bullets       ; Show bullets in org-mode as UTF-8 characters
      paredit           ; Minor mode for editing parentheses
@@ -158,6 +157,7 @@
      smartparens       ; Auto closure for parenthesis and other characters
      smex              ; Smart M-x
      smooth-scrolling  ; Make emacs scroll smoothly
+     counsel           ; Various completion functions using Ivy, Swiper for search
 )))
 
 (condition-case nil
@@ -168,7 +168,7 @@
 #+END_SRC
 
 
-** Set up appearance
+** Appearance
   - Most things can be setup in sane-defaults.el however, changes to
     font faces and the like are done here
 #+BEGIN_SRC emacs-lisp
@@ -209,21 +209,27 @@
 ** Setup extensions
 #+BEGIN_SRC emacs-lisp
 (eval-after-load 'magit '(require 'setup-magit))
-(require 'magit-gitflow)
+(require 'magit-gitflow)    ; gitflow extension for magit
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
-(require 'setup-smartparens)
-(require 'multiple-cursors)
-(require 'fold-this)
-(require 'smex)
+(require 'setup-smartparens); Automatic insertion, wrapping and paredit-like navigation with user defined pairs.
+(require 'multiple-cursors) ; Multiple cursors for Emacs.
+;; (require 'fold-this)        ; Just fold this region please
+(require 'smex)             ; M-x interface with Ido-style fuzzy matching.
 (smex-initialize)
-(require 'expand-region)
+(require 'expand-region)    ; Increase selected region by semantic units.
+#+END_SRC
+
+
+** Org-mode
+#+BEGIN_SRC emacs-lisp
 (require 'setup-org)
 #+END_SRC
 
 
 ** Site-lisp packages
 #+BEGIN_SRC emacs-lisp
-(require 'ox-twbs)
+(require 'ox-twbs)          ; Bootstrap compatible HTML Back-End for Org
+(require 'command-log-mode) ; log keyboard commands to buffer
 #+END_SRC
 
 
@@ -315,6 +321,22 @@
 #+END_SRC
 
 
+** Setup Counsel, Ivy, Swiper
+#+BEGIN_SRC emacs-lisp
+(use-package ivy
+  :demand
+  :config
+  (setq ivy-use-virtual-buffers t
+       ivy-count-format "%d/%d ")
+  (setq enable-recursive-minibuffers t)
+  ;; enable this if you want `swiper' to use it
+  ;; (setq search-default-mode #'char-fold-to-regexp)
+)
+(ivy-mode 1)
+(counsel-mode 1)
+#+END_SRC
+
+
 ** Git gutter global minor mode
   - Options (disabled) for setting up mode per file type in mode-mappings.el
 #+BEGIN_SRC emacs-lisp
@@ -375,7 +397,7 @@
 #+END_SRC
 
 
-** Setup key bindings
+** Key bindings
 #+BEGIN_SRC emacs-lisp
 (require 'key-bindings)
 #+END_SRC
