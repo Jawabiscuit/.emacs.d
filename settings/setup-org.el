@@ -85,7 +85,8 @@
                                "#+AUTHOR: Jonas Avrin\n"
                                "#+TITLE: \n"
                                "#+SUBTITLE: \n"
-                               "#+DESCRIPTION: \n")))
+                               "#+DESCRIPTION: \n"
+                               ";; #+TAGS: \n")))
 
 ;; Jekyll post front matter
 (add-to-list 'org-structure-template-alist
@@ -99,7 +100,110 @@
 
 ;; GTD TODO keywords and hide logs
 (setq org-todo-keywords
-      '((sequence "ACTION" "NEXT" "INCUBATE" "DEFERRED" "REFERENCE" "WAITING(w@)" "|" "DONE" "DELEGATED" "CATEGORIZED(c@)" "TRASH")))
+      '((sequence "ACTION" "INCUBATE" "DEFERRED" "REFERENCE" "WAITING(w@)" "|" "DONE" "DELEGATED" "CATEGORIZED(c@)" "TRASH")))
 (setq org-log-into-drawer 1)
+
+;; GTD fast tag selection
+(setq org-tag-alist '(("gtd" . ?G)
+                      (:startgroup)
+                      ("engage" . ?N)  ;; Day to day engagement
+                      ("review" . ?R)  ;; Periodic review
+                      ("someday" . ?S) ;; Someday maybe project list
+                      (:endgroup)
+
+                      ;; Three Models for making action choices
+
+                      ;; 1 - The Four-Criteria Model for choosing actions in the moment
+
+                        ("context" . ?C)
+                        ;; 1 - Context : are you in the right space to do this action?
+                        (:startgroup)
+                        ("@home" . ?h) ("@work" . ?w) ("@anywhere" . ?a)
+                        (:endgroup)
+
+                        ("sub_context" . ?X)
+                        (:startgroup)
+                        ("office" . ?1) ("outside" . ?2) ("garage" . ?3)
+                        ("kitchen" . ?4) ("bathroom" . ?5) ("storage" . ?6)
+                        (:endgroup)
+                        
+                        ("status" . ?B)
+                        (:startgroup)
+                        ;; ("status" . ?X))
+                        ("online". ?o) ("offline" . ?O)
+                        (:endgroup)
+                        
+                        ("type" . ?E)
+                        (:startgroup)
+                        ("meeting" . ?m) ("discussion" . ?t) ("call" . ?c)
+                        (:endgroup)
+                        
+                        ;; 2 - Time Available : do you have enough time to complete it?
+                        ("time" . ?T)
+                        (:startgroup)
+                        ("5m_or_less" . ?q)  ; quick
+                        ("1h_or_more" . ?l)  ; less quick
+                        ("1d_or_more" . ?s)  ; slow
+                        (:endgroup)
+                        
+                        ;; 3 - Energy available : are you alert enough to do this?
+                        ("intensity" . ?I)
+                        (:startgroup)
+                        ("high" . ?9)
+                        ("low" . ?0)
+                        (:endgroup)
+                              
+                        ;; 4 - Priority : what's going to give you the highest payoff
+                        ;; Track this using TODO priority
+
+                      ;; 2 - The Threefold Model for Identifying Daily Work
+                      ;; Doing predefined work - working from NAs and calendar
+                      ;; Do work as it shows up
+                      ;; Defining your work - clearing inboxes, processing meeting notes, breaking down new projects
+                      ;; Do during periodic review meeting
+                      ;; Track this using :review: tag
+
+                      ;; 3 - The Six-Level Model for Reviewing Your Own Work
+
+                        ;; There are 6 perspectives to define priorities
+
+                        ;; 1 - Ground : current next actions list
+
+                        ;; 2 - Projects : Current projects, they are generating the most NAs
+                        ("project" . ?p)
+                        (:startgroup)
+                        ("clarify" . ?y)
+                        ("brainstorm" .?b)
+                        ("reference" . ?r)
+                        ("research" . ?j)
+                        (:endgroup)
+
+                        ;; 3 - Areas of Focus and Accountability : key areas of life and work.
+                        ;; TODO Identify areas of focus
+                        ("aof" . ?k)
+                        (:startgroup)
+                        (:endgroup)
+
+                        ;; 4 - Goals : one to two years from now
+                        ;; TODO Identify goals
+                        ("goals" . ?g)
+                        (:startgroup)
+                        (:endgroup)
+
+                        ;; 5 - Vision : projecting three to five years out into bigger categories
+                        ("vision" . ?v)
+                        (:startgroup)
+                        ("strategies" . ?z)
+                        ("trends" . ?d)
+                        ("career" . ?e)
+                        (:endgroup)
+
+                        ;; 6 - Purpose and principles : Big picture view
+                        ;; TODO Identify principles
+                        ("principles" . ?i)
+                        (:startgroup)
+                        (:endgroup)
+))
+
 
 (provide 'setup-org)
