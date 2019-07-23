@@ -100,7 +100,7 @@
 
 ;; GTD TODO keywords and hide logs
 (setq org-todo-keywords
-      '((sequence "ACTION" "INCUBATE" "DEFERRED" "REFERENCE" "WAITING(w@)" "|" "DONE" "DELEGATED" "CATEGORIZED(c@)" "TRASH")))
+      '((sequence "ACTION" "INCUBATE" "DEFERRED" "REFERENCE" "WAITING(w@)" "|" "DONE" "DELEGATED" "CATEGORIZED(c@)" "ARCHIVE")))
 (setq org-log-into-drawer 1)
 
 ;; GTD fast tag selection
@@ -142,8 +142,8 @@
                         ("time" . ?T)
                         (:startgroup)
                         ("5m_or_less" . ?q)  ; quick
-                        ("1h_or_more" . ?l)  ; less quick
-                        ("1d_or_more" . ?s)  ; slow
+                        ("30m_or_less" . ?l)  ; less quick
+                        ("30m_or_more" . ?s)  ; slow
                         (:endgroup)
                         
                         ;; 3 - Energy available : are you alert enough to do this?
