@@ -5,9 +5,9 @@
         (run-with-timer 0.05 nil 'invert-face 'mode-line))
 )
 
-;; Fonts
-(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-12"))
-(set-face-attribute 'default t :font "DejaVu Sans Mono-12")
+;; Fonts (disabled, system specific)
+;; (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-12"))
+;; (set-face-attribute 'default t :font "DejaVu Sans Mono-12")
 
 ;; Smooth scroll
 (require 'smooth-scrolling)

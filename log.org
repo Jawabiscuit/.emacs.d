@@ -1,6 +1,12 @@
-#+OPTIONS: toc:nil num:nil
+#+OPTIONS: title:nil toc:nil ^:nil num:nil
 #+STARTUP: content indent
 #+STARTUP: hidestars
+#+AUTHOR: Jonas Avrin
+#+TITLE: 
+#+SUBTITLE: 
+#+DESCRIPTION: 
+;; #+TAGS: 
+
 
 ** Fri, 28 Sep 18: 12:16PM
 
@@ -66,4 +72,17 @@
 1. Deprecating =casey-find-corresponding-file= and
    =casey-find-corresponding-file-other-window= in favor of using
    projectile key binding: @@html:<kbd>C-c p</kbd>@@
+
+
+** Log <Tue, 30 Jul 19: 09:33PM>
+
+- Install dired-details/dired-details+
+
+- Deactivate DejaVu font loading in sane-defaults.el
+
+- Set org tag list to be persistent update
+
+- Update org header options template
+
+- Update todo.org
 

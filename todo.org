@@ -1,6 +1,12 @@
-#+OPTIONS: toc:nil num:nil
+#+OPTIONS: title:nil toc:nil ^:nil num:nil
 #+STARTUP: content indent
 #+STARTUP: hidestars
+#+AUTHOR: Jonas Avrin
+#+TITLE: 
+#+SUBTITLE: 
+#+DESCRIPTION: 
+#+TAGS: 
+
 
 * DONE Configuration [1/1]
   CLOSED: [2018-09-28 Fri 20:37]
@@ -11,19 +17,17 @@
  - [X] [[file:org/getting-started-with-org-mode.org::*Package%20"minted"%20for%20syntax%20highlighted%20export]["minted" for syntax highlighted export]]
  - [X] init.org
 
-* TODO Org-mode [0/1]
-** [-] Keybindings [4/6]
+* DONE Org-mode [0/1]
+CLOSED: [2019-07-30 Tue 21:40]
+** [X] Keybindings [8/8]
  - [X] Checkbox on newline
  - [X] Auto-indent
  - [X] Auto-number
  - [X] Install org-bullets-mode
- - [ ] Install o-blog
- - [ ] Install [[https://hunspell.github.io/][hunspell]]
-   - [[https://emacs.stackexchange.com/a/21379][Stack Exchange Q]]
- - [ ] More Todo statuses, like Waiting...
- - [ ] Syntax highlighting completely working in LaTeX
-   - [[https://stackoverflow.com/questions/1966425/source-code-highlighting-in-latex][Stackoverflow minted Question]]
-   - [[https://stackoverflow.com/questions/300521/latex-package-to-do-syntax-highlighting-of-code-in-various-languages][Stackoverflow highlighting Question]]
+ - [X] +Install o-blog+
+ - [X] +Install [[https://hunspell.github.io/][hunspell]]+
+ - [X] More Todo statuses, like Waiting...
+ - [X] +Syntax highlighting completely working in LaTeX+
 
 * DONE Wish List [4/4]
   CLOSED: [2018-10-08 Mon 21:57]
