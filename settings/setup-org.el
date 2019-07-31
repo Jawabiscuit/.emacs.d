@@ -86,7 +86,7 @@
                                "#+TITLE: \n"
                                "#+SUBTITLE: \n"
                                "#+DESCRIPTION: \n"
-                               ";; #+TAGS: \n")))
+                               "#+TAGS: \n")))
 
 ;; Jekyll post front matter
 (add-to-list 'org-structure-template-alist
@@ -104,7 +104,7 @@
 (setq org-log-into-drawer 1)
 
 ;; GTD fast tag selection
-(setq org-tag-alist '(("gtd" . ?G)
+(setq org-tag-persistent-alist '(("gtd" . ?G)
                       (:startgroup)
                       ("engage" . ?N)  ;; Day to day engagement
                       ("review" . ?R)  ;; Periodic review
