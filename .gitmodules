@@ -22,3 +22,9 @@
 [submodule "site-lisp/emacs-wgrep"]
 	path = site-lisp/emacs-wgrep
 	url = https://github.com/mhayashi1120/Emacs-wgrep.git
+[submodule "site-lisp/dired-details"]
+	path = site-lisp/dired-details
+	url = https://github.com/emacsmirror/dired-details.git
+[submodule "site-lisp/dired-details-plus"]
+	path = site-lisp/dired-details-plus
+	url = https://github.com/emacsmirror/dired-details-plus.git
