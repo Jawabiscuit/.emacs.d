@@ -28,6 +28,7 @@
    '((R . t)
      (C . t)
      (python . t)
+     (ditaa . t)
 )))
 
 ;; Pretty bullets :) instead of ugly asterisks :(
@@ -50,16 +51,18 @@
 ;; popping open a new one (which shows the same information). 
 (setq org-src-window-setup 'current-window)
 
+;; This blog was really helpful figuring structure templates out
+;; https://blog.aaronbieber.com/2016/11/23/creating-org-mode-structure-templates.html
+
+(add-to-list 'org-structure-template-alist
+             (list "d" (concat "#+BEGIN_SRC ditaa :file ?.png :exports results\n"
+                               "#+end_src")))
+
 ;; Quickly insert a block of elisp
 (add-to-list 'org-structure-template-alist
              '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
 
-;; TODO: Enable spell-check in org-mode
-; (add-hook 'org-mode-hook 'flyspell-mode)
-
-;; This blog was really helpful figuring structure templates out
-;; https://blog.aaronbieber.com/2016/11/23/creating-org-mode-structure-templates.html
-
+;; https://orgmode.org/manual/Easy-templates.html
 ;; Create a new structure template
 (add-to-list 'org-structure-template-alist
              (list "p" (concat ":PROPERTIES:\n"
@@ -79,28 +82,68 @@
 
 ;; Org mode header options template
 (add-to-list 'org-structure-template-alist
-             (list "o" (concat "#+OPTIONS: title:nil toc:nil ^:nil num:nil\n"
+             (list "o" (concat "#+OPTIONS: title:nil toc:nil ^:nil num:nil html-postamble:nil tasks:nil\n"
                                "#+STARTUP: content indent\n"
                                "#+STARTUP: hidestars\n"
                                "#+AUTHOR: Jonas Avrin\n"
-                               "#+TITLE: \n"
+                               "#+TITLE: ?\n"
                                "#+SUBTITLE: \n"
                                "#+DESCRIPTION: \n"
-                               "#+TAGS: \n")))
+                               "#+TAGS: \n"
+                               "#+EXPORT_FILE_NAME: ")))
+
+;; Org mode in-buffer Org settings drawer template
+(add-to-list 'org-structure-template-alist
+             (list "os" (concat ":SETTINGS:\n"
+                                "#+OPTIONS: title:nil toc:nil ^:nil num:nil html-postamble:nil tasks:nil\n"
+                                "#+STARTUP: content indent\n"
+                                "#+STARTUP: hidestars\n"
+                                "#+AUTHOR: Jonas Avrin\n"
+                                "#+TITLE: ?\n"
+                                "#+SUBTITLE: \n"
+                                "#+DESCRIPTION: \n"
+                                "#+TAGS: \n"
+                                "#+EXPORT_FILE_NAME: \n"
+                                ":END:")))
+
+;; Org mode in-buffer Jekyll settings drawer template
+(add-to-list 'org-structure-template-alist
+             (list "js" (concat ":SETTINGS:\n"
+                                "#+OPTIONS: title:nil toc:nil ^:nil num:nil html-postamble:nil tasks:nil\n"
+                                "#+STARTUP: content indent\n"
+                                "#+STARTUP: hidestars\n"
+                                "#+AUTHOR: Jonas Avrin\n"
+                                "#+TITLE: ?\n"
+                                "#+SUBTITLE: \n"
+                                "#+DESCRIPTION: \n"
+                                "#+TAGS: \n"
+                                "#+EXPORT_FILE_NAME: \n"
+                                "@@html:---\n"
+                                "layout: post\n"
+                                "title: \n"
+                                "date: \n"
+                                "category: \n"
+                                "author: Jonas Avrin\n"
+                                "---\n"
+                                "@@\n"
+                                ":END:")))
 
 ;; Jekyll post front matter
 (add-to-list 'org-structure-template-alist
-             (list "j" (concat "@@html:---\n"
+             (list "j" (concat "#+BEGIN_HTML\n"
+                               "@@html:---\n"
                                "layout: post\n"
                                "title: ?\n"
                                "date: \n"
                                "category: \n"
+                               "author: Jonas Avrin\n"
                                "---\n"
-                               "@@\n")))
+                               "@@\n"
+                               "#+END_HTML")))
 
 ;; GTD TODO keywords and hide logs
 (setq org-todo-keywords
-      '((sequence "ACTION" "INCUBATE" "DEFERRED" "REFERENCE" "WAITING(w@)" "|" "DONE" "DELEGATED" "CATEGORIZED(c@)" "ARCHIVE")))
+      '((sequence "TODO" "ACTION" "INCUBATE" "DEFERRED" "WAITING(w@)" "|" "DONE" "DELEGATED" "ARCHIVE")))
 (setq org-log-into-drawer 1)
 
 ;; GTD fast tag selection
@@ -118,7 +161,7 @@
                         ("context" . ?C)
                         ;; 1 - Context : are you in the right space to do this action?
                         (:startgroup)
-                        ("@home" . ?h) ("@work" . ?w) ("@anywhere" . ?a)
+                        ("@home" . ?h) ("@work" . ?w) ("@anywhere" . ?a) ("@mobile")
                         (:endgroup)
 
                         ("sub_context" . ?X)

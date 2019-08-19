@@ -11,6 +11,7 @@
  '(custom-enabled-themes (quote (tsdh-dark)))
  '(delete-auto-save-files nil)
  '(delete-old-versions (quote other))
+ '(display-time-mode t)
  '(git-gutter:added-sign "++")
  '(git-gutter:ask-p nil)
  '(git-gutter:deleted-sign "--")
@@ -36,10 +37,11 @@
  '(package-selected-packages
    (quote
     (ivy pandoc-mode hydra org-bullets htmlize auctex smooth-scrolling expand-region smex fold-this a2ps org-checklist multiple-cursors diminish smartparens restclient paredit magit-gitflow magit markdown-mode+ markdown-mode)))
+ '(tool-bar-mode nil)
  '(version-control nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "outline" :slant normal :weight normal :height 120 :width normal)))))
