@@ -58,6 +58,11 @@
              (list "d" (concat "#+BEGIN_SRC ditaa :file ?.png :exports results\n"
                                "#+end_src")))
 
+(add-to-list 'org-structure-template-alist
+             (list "m" (concat "#+BEGIN_EXPORT html\n"
+                               "<!--more-->\n"
+                               "#+END_EXPORT\n\n")))
+
 ;; Quickly insert a block of elisp
 (add-to-list 'org-structure-template-alist
              '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
@@ -248,5 +253,12 @@
                         (:endgroup)
 ))
 
+;; Format timestamps
+;; First element formats date
+;; Second element formats date + time
+(custom-set-variables
+ '(org-display-custom-times t)
+ '(org-time-stamp-custom-formats (
+    quote (" %Y-%m-%d " . " %Y-%m-%d %H:%M:%S -0400 "))))
 
 (provide 'setup-org)
