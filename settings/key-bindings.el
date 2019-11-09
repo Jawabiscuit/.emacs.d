@@ -40,6 +40,7 @@
 (global-set-key (kbd "H-~") 'mc/insert-numbers)
 
 (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
+(global-set-key (kbd "C-c a") 'mc/mark-all-like-this)
 
 ;; Log and Todo Files
 (define-key global-map "\et" 'load-todo)
