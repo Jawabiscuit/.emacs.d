@@ -259,6 +259,9 @@
 (custom-set-variables
  '(org-display-custom-times t)
  '(org-time-stamp-custom-formats (
-    quote (" %Y-%m-%d " . " %Y-%m-%d %H:%M:%S -0400 "))))
+    ;; EDT (summer months)
+    ;; quote (" %Y-%m-%d " . " %Y-%m-%d %H:%M:%S -0400 "))))
+    ;; EST
+    quote (" %Y-%m-%d " . " %Y-%m-%d %H:%M:%S -0500 "))))
 
 (provide 'setup-org)
