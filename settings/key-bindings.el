@@ -94,6 +94,8 @@
 (define-key global-map "\eN" 'previous-error)
 (define-key global-map "\eg" 'goto-line)
 (define-key global-map "\ej" 'imenu)
+(global-set-key (quote [S-down]) 'scroll-up-in-place)
+(global-set-key (quote [S-up]) 'scroll-down-in-place)
 
 ;; Macro editing
 (define-key global-map "\e[" 'start-kbd-macro)
