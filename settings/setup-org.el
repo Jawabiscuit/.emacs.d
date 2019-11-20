@@ -63,6 +63,14 @@
                                "<!--more-->\n"
                                "#+END_EXPORT\n\n")))
 
+;; Edit on Github
+(add-to-list 'org-structure-template-alist
+             (list "g" (concat "#+BEGIN_EXPORT html\n"
+                               "<div class=\"right\">\n"
+                               "  <a href=\"https://github.com/fniessen/org-html-themes/blob/master/demo/example.org\" class=\"fa fa-github\"> Edit on GitHub</a>\n"
+                               "</div>\n"
+                               "#+END_EXPORT\n")))
+
 ;; Quickly insert a block of elisp
 (add-to-list 'org-structure-template-alist
              '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
@@ -71,7 +79,7 @@
 ;; Create a new structure template
 (add-to-list 'org-structure-template-alist
              (list "p" (concat ":PROPERTIES:\n"
-                               "?\n"
+                               ":CATEGORY: ?\n"
                                ":END:")))
 
 (add-to-list 'org-structure-template-alist
@@ -85,7 +93,7 @@
                                 ":EXPORT_TITLE:\n"
                                 ":EXPORT_OPTIONS: toc:nil html-postamble:nil num:nil")))
 
-;; Org mode header options template
+;; Org mode header settings template
 (add-to-list 'org-structure-template-alist
              (list "o" (concat "#+OPTIONS: title:nil toc:nil ^:nil num:nil html-postamble:nil tasks:nil\n"
                                "#+STARTUP: content indent\n"
@@ -97,7 +105,7 @@
                                "#+TAGS: \n"
                                "#+EXPORT_FILE_NAME: ")))
 
-;; Org mode in-buffer Org settings drawer template
+;; Org mode in-buffer Org header settings template
 (add-to-list 'org-structure-template-alist
              (list "os" (concat ":SETTINGS:\n"
                                 "#+OPTIONS: title:nil toc:nil ^:nil num:nil html-postamble:nil tasks:nil\n"
@@ -111,7 +119,7 @@
                                 "#+EXPORT_FILE_NAME: \n"
                                 ":END:")))
 
-;; Org mode in-buffer Jekyll settings drawer template
+;; Org mode in-buffer Jekyll header settings template
 (add-to-list 'org-structure-template-alist
              (list "js" (concat ":SETTINGS:\n"
                                 "#+OPTIONS: title:nil toc:nil ^:nil num:nil html-postamble:nil tasks:nil\n"
@@ -131,6 +139,31 @@
                                 "author: Jonas Avrin\n"
                                 "---\n"
                                 "@@\n"
+                                ":END:")))
+
+;; Org mode in-buffer RTD header settings template
+;; OPTIONS key/values:
+;; H:   -> the number of headline levels for export
+;; ^:{} -> 'a^{b}' will be interpreted as superscript
+;; _:{} -> 'a_{b}' will be interpreted as subscript
+;; \n:  -> preserve line breaks
+;; ::   -> fixed width sections
+(add-to-list 'org-structure-template-alist
+             (list "rs" (concat ":SETTINGS:\n"
+                                "#+OPTIONS: H:2 toc:2 ^:{} _:{} \\n:nil ::t\n"
+                                "#+OPTIONS: title:t num:nil html-postamble:t tasks:t\n"
+                                "#+STARTUP: content indent\n"
+                                "#+STARTUP: hidestars\n"
+                                "#+STARTUP: showall\n"
+                                "#+TITLE: ?\n"
+                                "#+AUTHOR: Jonas Avrin\n"
+                                "#+DATE: \n"
+                                "#+EMAIL: jonas@cghijinks.com\n"
+                                "#+SUBTITLE: \n"
+                                "#+DESCRIPTION: \n"
+                                "#+TAGS: \n"
+                                "#+EXPORT_FILE_NAME: ../rtd\n"
+                                "#+SETUPFILE: ../setup/theme-readtheorg.setup\n"
                                 ":END:")))
 
 ;; Jekyll post front matter
