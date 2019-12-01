@@ -38,3 +38,6 @@
 	path = site-lisp/dired-details-plus
 	url = https://github.com/emacsmirror/dired-details-plus.git
         ignore = dirty
+[submodule "site-lisp/yasnippet-snippets"]
+	path = site-lisp/yasnippet-snippets
+	url = https://github.com/Jawabiscuit/yasnippet-snippets.git

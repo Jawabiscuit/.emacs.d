@@ -20,3 +20,4 @@ server/**
 url/
 .org*
 bookmarks
+custom.el

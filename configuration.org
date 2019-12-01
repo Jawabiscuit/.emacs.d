@@ -232,6 +232,7 @@
 (require 'command-log-mode)   ; log keyboard commands to buffer
 (require 'wgrep)              ; wgrep allows you to edit a grep buffer and apply those changes to the file buffer
 (require 'dired-details+)     ; show and hide directory detail information
+(require 'yasnippet-snippets) ; A collection of yasnippet snippets for many languages
 #+END_SRC
 
 
@@ -406,3 +407,53 @@
 (add-hook 'window-setup-hook 'post-load-stuff t)
 #+END_SRC
 
+
+** Babel sh Command
+
+#+BEGIN_SRC emacs-lisp
+  ;; (require 'ob-shell)
+  ;; (defadvice org-babel-sh-evaluate (around set-shell activate)
+  ;;   "Add header argument :shcmd that determines the shell to be called."
+  ;;   (let* ((org-babel-sh-command (or (cdr (assoc :shcmd params)) org-babel-sh-command)))
+  ;;     ad-do-it
+  ;;     ))
+#+END_SRC
+
+
+** Smartparens
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
+(add-hook 'org-mode-hook #'smartparens-mode)
+(add-hook 'markdown-mode-hook #'smartparens-mode)
+(add-hook 'python-mode-hook #'smartparens-mode)
+(add-hook 'c++-mode-hook #'smartparens-mode)
+(add-hook 'js-mode-hook #'smartparens-mode)
+
+;; elisp comment highlighting
+;; Redefine this global pair (`LaTex') to a new value locally
+(sp-local-pair 'emacs-lisp-mode "`" "'")
+
+;; New pair
+(sp-pair "<" ">")
+
+;; Local pairs can be removed by calling `sp-local-pair' with optional keyword argument `:actions' with value `:rem'
+;; (sp-local-pair 'LaTeX-mode "`" nil :actions :rem)
+
+;; Create a wrapping
+(sp-pair "(" ")" :wrap "C-(")
+;; Usage
+;;
+;; |foobar
+;; hit C-(
+;; becomes (|foobar)
+#+END_SRC
+
+
+** Yasnippet
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'emacs-lisp-mode-hook #'yas-minor-mode)
+(add-hook 'org-mode-hook #'yas-minor-mode)
+(add-hook 'python-mode-hook #'yas-minor-mode)
+#+END_SRC

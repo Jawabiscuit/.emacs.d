@@ -1,15 +1,10 @@
-;; TODO map modes with use-package
-;; Ex: (use-package markdown-mode :mode (("\\.md\\'" . markdown-mode)...)
 ;; Accepted file extensions and their appropriate modes
 (setq auto-mode-alist
     (append
-       '(; ("\\.html\\'"     . crappy-jsp-mode)
-	 ("\\.tag$"        . html-mode)
+       '(("\\.tag$"        . html-mode)
 	 ("\\.vm$"         . html-mode)
 	 ("\\.ejs$"        . html-mode)
 	 ("\\.scss$"       . css-mode)
-	 ;("\\.md$"         . markdown-mode)
-	 ;("\\.markdown$"   . markdown-mode)
 	 ("\\.aliases$"    . shell-script-mode)
 	 ("\\.bxt$"        . shell-script-mode)
 	 ("\\.poi$"        . shell-script-mode)

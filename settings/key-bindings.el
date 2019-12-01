@@ -1,112 +1,16 @@
+;; Define hyper key on Windows
+(setq w32-pass-apps-to-system nil)
+(setq w32-apps-modifier 'hyper) ; Menu/App key
+
 ;; Lisp interaction
-; eval-last-sexp is bound to C-x C-e.
+; `eval-last-sexp' is bound to `C-x' `C-e'.
 (define-key lisp-interaction-mode-map (kbd "<C-return>") 'eval-defun)
 
-;; Smex
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-
-;; This is your old M-x.
-;(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
-
-;; Magit
-(global-set-key (kbd "C-x m") 'magit-status-fullscreen)
-(autoload 'magit-status-fullscreen "magit")
-(global-set-key (kbd "C-x g") 'magit-status)
-
-;; Experimental multiple-cursors
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C-S-c C-e") 'mc/edit-ends-of-lines)
-(global-set-key (kbd "C-S-c C-a") 'mc/edit-beginnings-of-lines)
-
-;; Mark additional regions matching current region
-(global-set-key (kbd "C-x W") 'mc/mark-all-dwim)
-(global-set-key (kbd "C-x w") 'mc/mark-all-in-region)
-(global-set-key (kbd "C-c R") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c r") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-c x") 'mc/mark-more-like-this-extended)
-
-;; Symbol and word specific mark-more
-(global-set-key (kbd "C-c n") 'mc/mark-next-word-like-this)
-(global-set-key (kbd "C-c N") 'mc/mark-previous-word-like-this)
-(global-set-key (kbd "C-<f3>") 'mc/mark-all-words-like-this)
-(global-set-key (kbd "C-c s") 'mc/mark-next-symbol-like-this)
-(global-set-key (kbd "C-c S") 'mc/mark-previous-symbol-like-this)
-(global-set-key (kbd "C-<f4>") 'mc/mark-all-symbols-like-this)
-
-;; Extra multiple cursors stuff
-(global-set-key (kbd "C-~") 'mc/reverse-regions)
-(global-set-key (kbd "M-~") 'mc/sort-regions)
-(global-set-key (kbd "H-~") 'mc/insert-numbers)
-
-(global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
-(global-set-key (kbd "C-c C-a") 'mc/mark-all-like-this)
-
-;; Log and Todo Files
-(define-key global-map "\et" 'load-todo)
-(define-key global-map "\eT" 'load-log)
-
-;; Editing
-;; (define-key c++-mode-map [f12] 'casey-find-corresponding-file) ; Use projectile command: C-c p a
-;; (define-key c++-mode-map [M-f12] 'casey-find-corresponding-file-other-window)  ; M-S-f12
-(define-key global-map [f8] 'casey-replace-string)
-(define-key global-map "\el" 'casey-replace-in-region)
-(define-key global-map "" 'copy-region-as-kill)
-(define-key global-map "\eq" 'append-as-kill)
-(define-key global-map "" 'rotate-yankpointer)
-(define-key global-map "\eu" 'undo)
-(define-key global-map "\e6" 'upcase-word)
-(define-key global-map "\e^" 'captilize-word)
-(define-key global-map "\eo" 'query-replace)
-(define-key global-map "\t" 'dabbrev-expand)
-(define-key global-map [S-tab] 'indent-for-tab-command)
-(define-key global-map [C-tab] 'indent-region)
-(global-set-key (kbd "C-d") 'duplicate-line)
-(global-set-key [M-S-up] 'move-text-up)
-(global-set-key [M-S-down] 'move-text-down)
-(define-key global-map "\e." 'fill-paragraph)
-
-;; TODO
-;; (define-key global-map "\t" 'dabbrev-expand)
-;; (define-key global-map [S-tab] 'indent-for-tab-command)
-;; (define-key global-map [backtab] 'indent-for-tab-command)
-;; (define-key global-map "\C-y" 'indent-for-tab-command)
-;; (define-key global-map [C-tab] 'indent-region)
-;; (define-key global-map "	" 'indent-region)
-
-;; Tools
-(define-key global-map "\ep" 'quick-calc)
-
-;; Navigation
-(define-key global-map "\ew" 'other-window)
-(define-key global-map [C-right] 'forward-word)
-(define-key global-map [C-left] 'backward-word)
-(define-key global-map [C-up] 'previous-blank-line)
-(define-key global-map [C-down] 'next-blank-line)
-(define-key global-map [C-next] 'scroll-other-window)          ; next = page down
-(define-key global-map [C-prior] 'scroll-other-window-down)    ; prior = page up
-(define-key global-map "\e:" 'View-back-to-mark)
-(define-key global-map "\e;" 'exchange-point-and-mark)
-(define-key global-map [f9] 'first-error)
-(define-key global-map [f10] 'previous-error)
-(define-key global-map [f11] 'next-error)
-(define-key global-map "\en" 'next-error)
-(define-key global-map "\eN" 'previous-error)
-(define-key global-map "\eg" 'goto-line)
-(define-key global-map "\ej" 'imenu)
-(global-set-key (quote [S-down]) 'scroll-up-in-place)
-(global-set-key (quote [S-up]) 'scroll-down-in-place)
-
-;; Macro editing
-(define-key global-map "\e[" 'start-kbd-macro)
-(define-key global-map "\e]" 'end-kbd-macro)
-(define-key global-map "\e'" 'call-last-kbd-macro)
-
-;; Buffer
-(define-key global-map "\er" 'revert-buffer)
-
-;; Window
-(define-key global-map "\ep" 'maximize-frame)
+;; C++
+;; Use projectile command: C-c p a
+;; (define-key c++-mode-map [f12] 'casey-find-corresponding-file)
+;; M-S-f12
+;; (define-key c++-mode-map [M-f12] 'casey-find-corresponding-file-other-window)
 
 ;; Fold-this
 ;; TODO: Uninstall
@@ -114,22 +18,112 @@
 (global-set-key (kbd "C-c C-F") 'fold-this)
 (global-set-key (kbd "C-c M-f") 'fold-this-unfold-all)
 
-;; Expand region
-(global-set-key (kbd "C-=") 'er/expand-region)
-
 (defvar ja-keys-minor-mode-map
   (let ((map (make-sparse-keymap)))
-    ;; Org Mode
-    (define-key map (kbd "C-c l") 'org-store-link)
-    (define-key map (kbd "C-c c") 'org-capture)
-    (define-key map (kbd "C-c a") 'org-agenda)
-    (define-key map (kbd "C-c M-k") 'org-cut-subtree)
-    (define-key map (kbd "C-c >") 'org-time-stamp-inactive)
-    ;; Emacs to Maya
-    (define-key map (kbd "<C-return>") 'etom-send-region)
-    (define-key map (kbd "C-c C-c") 'etom-send-buffer)
-    (define-key map (kbd "C-c C-l") 'etom-send-buffer)
-    (define-key map (kbd "C-c C-z") 'etom-show-buffer)
+      ;; Log and Todo Files
+      (define-key map (kbd "M-t") 'load-todo)
+      (define-key map (kbd "M-T") 'load-log)
+
+      ;; Editing
+      (define-key map (kbd "S-<tab>") 'indent-for-tab-command)
+      (define-key map (kbd "C-<tab>") 'indent-region)
+      (define-key map (kbd "C-d") 'duplicate-line)
+      (define-key map (kbd "M-S-<up>") 'move-text-up)
+      (define-key map (kbd "M-S-<down>") 'move-text-down)
+      (define-key map (kbd "M-.") 'fill-paragraph)
+      (define-key map (kbd "C-c <up>") 'rotate-yank-pointer)
+      (define-key map (kbd "M-q") 'append-as-kill)
+      (define-key map (kbd "M-Q") 'copy-region-as-kill)
+      (define-key map (kbd "C-c h") 'casey-replace-string)
+      (define-key map (kbd "C-c H") 'casey-replace-in-region)
+
+      ;; Navigation
+      (define-key map (kbd "M-w") 'other-window)
+      (define-key map (kbd "C-<right>") 'forward-word)
+      (define-key map (kbd "C-<left>") 'backward-word)
+      (define-key map (kbd "C-<up>") 'previous-blank-line)
+      (define-key map (kbd "C-<down>") 'next-blank-line)
+      (define-key map (kbd "C-<next>") 'scroll-other-window)          ; next = page down
+      (define-key map (kbd "C-<prior>") 'scroll-other-window-down)    ; prior = page up    
+      (define-key map (kbd "M-:") 'View-back-to-mark)
+      (define-key map (kbd "M-;") 'exchange-point-and-mark)
+      (define-key map (kbd "<f9>") 'first-error)
+      (define-key map (kbd "<f10>") 'previous-error)
+      (define-key map (kbd "<f11>") 'next-error)
+      (define-key map (kbd "M-n") 'next-error)
+      (define-key map (kbd "M-N") 'previous-error)
+      (define-key map (kbd "M-g") 'goto-line)
+      (define-key map (kbd "M-j") 'imenu)
+      (define-key map (kbd "S-<down>") 'scroll-up-in-place)
+      (define-key map (kbd "S-<up>") 'scroll-down-in-place)
+
+      ;; Tools
+      (define-key map (kbd "C-c C-q") 'quick-calc)
+      ;; Window
+      (define-key map (kbd "C-c M") 'maximize-frame)
+      (define-key map (kbd "C-c m") 'minimize-window)
+      ;; Selection
+      (define-key map (kbd "C-=") 'er/expand-region)
+      ;; Buffer
+      (define-key map (kbd "M-r") 'revert-buffer)
+      ;; Macro editing
+      (define-key map (kbd "M-[") 'start-kbd-macro)
+      (define-key map (kbd "M-]") 'end-kbd-macro)
+      (define-key map (kbd "M-'") 'call-last-kbd-macro)
+
+      ;; Counsel, Ivy, Swiper
+      (define-key map (kbd "C-s") 'swiper)
+      (define-key map (kbd "C-c C-r") 'ivy-resume)
+      (define-key map (kbd "<f6>") 'ivy-resume)
+      ;; Provided by `counsel-mode'
+      ;; (define-key map (kbd "M-x") 'counsel-M-x)
+      ;; (define-key map (kbd "C-x C-f") 'counsel-find-file)
+      ;; (define-key map (kbd "<f1> f") 'counsel-describe-function)
+      ;; (define-key map (kbd "<f1> v") 'counsel-describe-variable)
+      ;; (define-key map (kbd "<f1> l") 'counsel-find-library)
+      ;; (define-key map (kbd "<f2> i") 'counsel-info-lookup-symbol)
+      (define-key map (kbd "H-u") 'counsel-unicode-char)
+      ;; Find file in the current Git repository.
+      (define-key map (kbd "C-c g") 'counsel-git)
+      (define-key map (kbd "C-c j") 'counsel-git-grep)
+      (define-key map (kbd "C-c k") 'counsel-ag)
+      (define-key map (kbd "C-x l") 'counsel-locate)
+      (define-key map (kbd "C-S-o") 'counsel-rhythmbox)
+
+      ;; Experimental multiple-cursors
+      (define-key map (kbd "C-S-c C-S-c") 'mc/edit-lines)
+      (define-key map (kbd "C-S-c C-e") 'mc/edit-ends-of-lines)
+      (define-key map (kbd "C-S-c C-a") 'mc/edit-beginnings-of-lines)
+      
+      ;; Mark additional regions matching current region
+      (define-key map (kbd "C-x W") 'mc/mark-all-dwim)
+      (define-key map (kbd "C-x w") 'mc/mark-all-in-region)
+      (define-key map (kbd "C-c R") 'mc/mark-previous-like-this)
+      (define-key map (kbd "C-c r") 'mc/mark-next-like-this)
+      (define-key map (kbd "C-c x") 'mc/mark-more-like-this-extended)
+      
+      ;; Symbol and word specific mark-more
+      (define-key map (kbd "C-c n") 'mc/mark-next-word-like-this)
+      (define-key map (kbd "C-c N") 'mc/mark-previous-word-like-this)
+      (define-key map (kbd "C-<f3>") 'mc/mark-all-words-like-this)
+      (define-key map (kbd "C-c s") 'mc/mark-next-symbol-like-this)
+      (define-key map (kbd "C-c S") 'mc/mark-previous-symbol-like-this)
+      (define-key map (kbd "C-<f4>") 'mc/mark-all-symbols-like-this)
+      
+      ;; Extra multiple cursors stuff
+      (define-key map (kbd "C-~") 'mc/reverse-regions)
+      (define-key map (kbd "M-~") 'mc/sort-regions)
+      (define-key map (kbd "H-~") 'mc/insert-numbers)
+      (define-key map (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
+      (define-key map (kbd "C-c C-a") 'mc/mark-all-like-this)
+
+      ;; Magit
+      (define-key map (kbd "C-x m") 'magit-status-fullscreen)
+      (define-key map (kbd "C-x g") 'magit-status)
+
+      ;; Smex
+      (define-key map (kbd "M-x") 'smex)
+      (define-key map (kbd "M-X") 'smex-major-mode-commands)
     map)
   "ja-keys-minor-mode keymap")
 
@@ -141,7 +135,7 @@
 
 (ja-keys-minor-mode 1)
 
-;; End ja-keys-minor-mode-map
+;; End `ja-keys-minor-mode-map'
 
 ;; Undo tree
 (eval-after-load 'undo-tree '(define-key undo-tree-map (kbd "C-?") nil))
@@ -155,27 +149,35 @@
 (define-key python-mode-map (kbd "C-=") 'outline-show-all)
 (define-key python-mode-map (kbd "C-+") 'outline-cycle)
 
-;; Ask for a key then insert its description
+;; Emacs to Maya
+(define-key python-mode-map (kbd "<C-return>") 'etom-send-region)
+(define-key python-mode-map (kbd "C-c C-c") 'etom-send-buffer)
+(define-key python-mode-map (kbd "C-c C-l") 'etom-send-buffer)
+(define-key python-mode-map (kbd "C-c C-z") 'etom-show-buffer)
+
+;; Org Mode
+(define-key org-mode-map (kbd "C-c l") 'org-store-link)
+(define-key org-mode-map (kbd "C-c c") 'org-capture)
+(define-key org-mode-map (kbd "C-c a") 'org-agenda)
+(define-key org-mode-map (kbd "C-c M-k") 'org-cut-subtree)
+(define-key org-mode-map (kbd "C-c >") 'org-time-stamp-inactive)
+
+;; Ask for a key then insert its html description
 (define-key org-mode-map (kbd "C-c i") 'endless/insert-key)
 
 ;; Counsel, Ivy, Swiper
-(global-set-key (kbd "C-s") 'swiper)
-(global-set-key (kbd "C-c C-r") 'ivy-resume)
-(global-set-key (kbd "<f6>") 'ivy-resume)
-;; Provided by counsel-mode
-;; (global-set-key (kbd "M-x") 'counsel-M-x)
-;; (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-;; (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-;; (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-;; (global-set-key (kbd "<f1> l") 'counsel-find-library)
-;; (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-;; Find file in the current Git repository.
-(global-set-key (kbd "C-c g") 'counsel-git)
-(global-set-key (kbd "C-c j") 'counsel-git-grep)
-(global-set-key (kbd "C-c k") 'counsel-ag)
-(global-set-key (kbd "C-x l") 'counsel-locate)
-(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
+;; Yasnippet
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+
+;; Bind `SPC' to `yas-expand' when snippet expansion available (it
+;; will still call `self-insert-command' otherwise).
+(define-key yas-minor-mode-map (kbd "SPC") yas-maybe-expand)
+;; Bind `C-c y' to `yas-expand' ONLY.
+(define-key yas-minor-mode-map (kbd "C-c y") #'yas-expand)
+
+;; End Yasnippet
 
 (provide 'key-bindings)

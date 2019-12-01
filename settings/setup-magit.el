@@ -6,6 +6,8 @@
   (unless prefix
     (delete-other-windows)))
 
+(autoload 'magit-status-fullscreen "magit")
+
 ;; don't prompt me
 
 (set-default 'magit-push-always-verify nil)
