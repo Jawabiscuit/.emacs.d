@@ -11,9 +11,8 @@
 ;; (defadvice kill-whole-line (after fix-cookies activate)
 ;;   (myorg-update-parent-cookie))
 
-;; (setq org-directory "~/Dropbox/org")
-;; (setq org-default-notes-file (concat org-directory "/notes.org"))
-(define-key global-map (kbd "M-<f6>") 'org-capture)
+(setq org-directory "~/Documents/org")
+(setq org-default-notes-file (concat org-directory "/notes.org"))
 
 ;; keep track of when a certain TODO item was finished
 (setq org-log-done 'time)
@@ -136,6 +135,7 @@
                                 "title: \n"
                                 "date: \n"
                                 "category: \n"
+                                "tags: \n"
                                 "author: Jonas Avrin\n"
                                 "---\n"
                                 "@@\n"
@@ -162,8 +162,8 @@
                                 "#+SUBTITLE: \n"
                                 "#+DESCRIPTION: \n"
                                 "#+TAGS: \n"
-                                "#+EXPORT_FILE_NAME: ../rtd\n"
-                                "#+SETUPFILE: ../setup/theme-readtheorg.setup\n"
+                                "#+EXPORT_FILE_NAME: ../html\n"
+                                "#+SETUPFILE: ../themes/setup/theme-readtheorg.setup\n"
                                 ":END:")))
 
 ;; Jekyll post front matter

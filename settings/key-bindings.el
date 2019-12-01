@@ -40,7 +40,7 @@
 (global-set-key (kbd "H-~") 'mc/insert-numbers)
 
 (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
-(global-set-key (kbd "C-c a") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c C-a") 'mc/mark-all-like-this)
 
 ;; Log and Todo Files
 (define-key global-map "\et" 'load-todo)
@@ -109,6 +109,7 @@
 (define-key global-map "\ep" 'maximize-frame)
 
 ;; Fold-this
+;; TODO: Uninstall
 (global-set-key (kbd "C-c C-f") 'fold-this-all)
 (global-set-key (kbd "C-c C-F") 'fold-this)
 (global-set-key (kbd "C-c M-f") 'fold-this-unfold-all)
@@ -116,8 +117,31 @@
 ;; Expand region
 (global-set-key (kbd "C-=") 'er/expand-region)
 
-;; Org Mode
-(global-set-key (kbd "C-c l") 'org-store-link)
+(defvar ja-keys-minor-mode-map
+  (let ((map (make-sparse-keymap)))
+    ;; Org Mode
+    (define-key map (kbd "C-c l") 'org-store-link)
+    (define-key map (kbd "C-c c") 'org-capture)
+    (define-key map (kbd "C-c a") 'org-agenda)
+    (define-key map (kbd "C-c M-k") 'org-cut-subtree)
+    (define-key map (kbd "C-c >") 'org-time-stamp-inactive)
+    ;; Emacs to Maya
+    (define-key map (kbd "<C-return>") 'etom-send-region)
+    (define-key map (kbd "C-c C-c") 'etom-send-buffer)
+    (define-key map (kbd "C-c C-l") 'etom-send-buffer)
+    (define-key map (kbd "C-c C-z") 'etom-show-buffer)
+    map)
+  "ja-keys-minor-mode keymap")
+
+(define-minor-mode ja-keys-minor-mode
+  "A minor mode so that my key settings override all major modes
+   with the added benefit of being able to turn off all at once"
+  :init-value t
+  :lighter " ja-keys")
+
+(ja-keys-minor-mode 1)
+
+;; End ja-keys-minor-mode-map
 
 ;; Undo tree
 (eval-after-load 'undo-tree '(define-key undo-tree-map (kbd "C-?") nil))
@@ -131,11 +155,11 @@
 (define-key python-mode-map (kbd "C-=") 'outline-show-all)
 (define-key python-mode-map (kbd "C-+") 'outline-cycle)
 
-;; Org mode
-(define-key org-mode-map "\C-ck" 'endless/insert-key)
+;; Ask for a key then insert its description
+(define-key org-mode-map (kbd "C-c i") 'endless/insert-key)
 
 ;; Counsel, Ivy, Swiper
-(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-s") 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "<f6>") 'ivy-resume)
 ;; Provided by counsel-mode
@@ -146,6 +170,7 @@
 ;; (global-set-key (kbd "<f1> l") 'counsel-find-library)
 ;; (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
 (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+;; Find file in the current Git repository.
 (global-set-key (kbd "C-c g") 'counsel-git)
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
 (global-set-key (kbd "C-c k") 'counsel-ag)

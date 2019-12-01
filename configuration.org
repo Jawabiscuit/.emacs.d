@@ -368,16 +368,12 @@
 ** Emacs to Maya
   - Send Mel or Python to Maya
 #+BEGIN_SRC emacs-lisp
-(add-hook
- 'python-mode-hook
- (lambda ()
-   (require 'etom)
-   (setq etom-default-host "localhost")
-   (setq etom-default-port 2222)
-   (local-set-key (kbd "<C-return>") 'etom-send-region)
-   (local-set-key (kbd "C-c C-c") 'etom-send-buffer)
-   (local-set-key (kbd "C-c C-l") 'etom-send-buffer)
-   (local-set-key (kbd "C-c C-z") 'etom-show-buffer)))
+  (add-hook
+   'python-mode-hook
+   (lambda ()
+     (require 'etom)
+     (setq etom-default-host "localhost")
+     (setq etom-default-port 2222)))
 #+END_SRC
 
 
