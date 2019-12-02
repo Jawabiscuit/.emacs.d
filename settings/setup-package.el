@@ -16,10 +16,7 @@
 )
 
 ;; LaTeX
-;; `2019-12-01': Fresh install of .emacs.d
-;; Had to download the zip from elpa and place it in `.emacs.d/elpa/' manually
-(use-package tex
-  :ensure auctex)
+(straight-use-package 'auctex)
 
 ; Diminished modes from modeline
 (use-package diminish

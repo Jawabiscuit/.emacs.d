@@ -1,25 +1,57 @@
-elpa/*
+# Ignore packages installed by straight.el 
+straight/repos
+straight/build
+straight/build-cache.el
+straight/links
+
+# Ignore packages installed in the standard way (possibly by mistake)
+elpa
+
+# Smex
 ido.last
 smex-items
 history
 recentf
 recentf~
+
+# Multiple cursors
 .mc-lists.el
+
+# Compiled from configuration.org
 configuration.el
+
+# Projectile
 projectile*
+
+# Autocomplete
 ac-comphist.dat
+
+# Created by desktop.el
 .emacs.desktop
 .emacs.desktop.lock
+
+# Files local to Windows that don't need to be shared
 shell_template.bat
 startup.bat
 shell.bat
+
 request/
+
+# Agenda
 diary
+
 server/**
+
+# Virtual env
 .python-environments/
+
 url/
+
+# Org-mode
 .org*
 bookmarks
+
+# Custom package file that doesn't need to be shared between hosts
 custom.el
+
 transient
-custom.el
