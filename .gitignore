@@ -21,3 +21,5 @@ url/
 .org*
 bookmarks
 custom.el
+transient
+custom.el
