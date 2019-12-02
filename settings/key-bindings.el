@@ -12,12 +12,7 @@
 ;; M-S-f12
 ;; (define-key c++-mode-map [M-f12] 'casey-find-corresponding-file-other-window)
 
-;; Fold-this
-;; TODO: Uninstall
-(global-set-key (kbd "C-c C-f") 'fold-this-all)
-(global-set-key (kbd "C-c C-F") 'fold-this)
-(global-set-key (kbd "C-c M-f") 'fold-this-unfold-all)
-
+;; All custom global override key bindings
 (defvar ja-keys-minor-mode-map
   (let ((map (make-sparse-keymap)))
       ;; Log and Todo Files
@@ -134,7 +129,6 @@
   :lighter " ja-keys")
 
 (ja-keys-minor-mode 1)
-
 ;; End `ja-keys-minor-mode-map'
 
 ;; Undo tree
