@@ -28,9 +28,15 @@
 
 ** Turn off mouse interface early in startup to avoid momentary display
 #+BEGIN_SRC emacs-lisp
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+  (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+  (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+  (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+#+END_SRC
+
+
+** Before using =use-package=
+#+BEGIN_SRC emacs-lisp
+(jawa/require 'setup-gc)
 #+END_SRC
 
 
@@ -76,18 +82,18 @@ Package-specific configuration files, including snippets, are kept in [[https://
 :END:
 
 #+begin_src emacs-lisp
-;;  (defcustom javrin/no-littering-use-my-etc-library t
+;;  (defcustom jawa/no-littering-use-my-etc-library t
 ;;    "Whether to use my configuration file library in ~/lib/emacs as `no-littering-etc-directory'.")
 ;;
 ;;  (use-package no-littering
 ;;    :init
-;;    (when javrin/no-littering-use-my-etc-library
+;;    (when jawa/no-littering-use-my-etc-library
 ;;      (let ((dir "~/lib/emacs"))
 ;;        (when (or (file-directory-p dir)
 ;;                  (and (yes-or-no-p "~/lib/emacs does not exist. Clone it from GitHub?")
 ;;                       (= 0 (call-process-shell-command
 ;;                             (format "git clone %s %s"
-;;                                     "https://github.com/javrin/emacs-config-library.git"
+;;                                     "https://github.com/Jawabiscuit/emacs-config-library.git"
 ;;                                     (shell-quote-argument (expand-file-name dir)))
 ;;                             nil nil nil))))
 ;;          (setq no-littering-etc-directory dir)))))
