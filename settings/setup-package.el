@@ -1,43 +1,73 @@
-(use-package dash
-  :ensure t)
-
-(require 'package)
-(require 'dash)
+(require 'use-package)
 
 ;; Add melpa to package repos
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+;; (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;; (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 
-(setq package-pinned-packages '())
+;; Ivy
+(use-package ivy
+  :demand
+  :config
+  (setq ivy-use-virtual-buffers t
+        ivy-count-format "%d/%d ")
+  (setq enable-recursive-minibuffers t)
+  ;; enable this if you want `swiper' to use it
+  ;; (setq search-default-mode #'char-fold-to-regexp)
+)
 
-(package-initialize)
+;; LaTeX
+;; `2019-12-01': Fresh install of .emacs.d
+;; Had to download the zip from elpa and place it in `.emacs.d/elpa/' manually
+(use-package tex
+  :ensure auctex)
 
-(unless (file-exists-p "~/.emacs.d/elpa/archives/melpa")
-  (package-refresh-contents))
+; Diminished modes from modeline
+(use-package diminish
+  :ensure t)
 
-(defun packages-install (packages)
-  (--each packages
-    (when (not (package-installed-p it))
-      (package-install it)))
-  (delete-other-windows))
+; Increase selected region by semantic units
+(use-package expand-region
+  :ensure t)
 
-;; On-demand installation of packages
-;; Use use-package instead
+; Convert buffer text and decorations to HTML.
+(use-package htmlize
+  :ensure t)
 
-(defun require-package (package &optional min-version no-refresh)
-  "Install given PACKAGE, optionally requiring MIN-VERSION.
-If NO-REFRESH is non-nil, the available package lists will not be
-re-downloaded in order to locate PACKAGE."
-  (if (package-installed-p package min-version)
-      t
-    (if (or (assoc package package-archive-contents) no-refresh)
-        (package-install package)
-      (progn
-        (package-refresh-contents)
-        (require-package package min-version t)))))
+; Complete Git interface
+(use-package magit
+  :ensure t)
 
-;; More packages
-(setq byte-compile--use-old-handlers nil) ; silence warning in emacs <25.1
+; Gitflow extension for magit
+(use-package magit-gitflow
+  :ensure t)
+
+; Multiple cursors for Emacs
+(use-package org-bullets
+  :ensure t)
+
+; Show bullets in org-mode as UTF-8 characters
+(use-package paredit
+  :ensure t)
+
+; In editor rest server/client
+(use-package restclient
+  :ensure t)
+
+; Auto closure for parenthesis and other characters
+(use-package smartparens
+  :ensure t)
+
+; Smart M-x
+(use-package smex
+  :ensure t)
+
+; Make emacs scroll smoothly
+(use-package smooth-scrolling
+  :ensure t)
+
+; Various completion functions using Ivy, Swiper for search
+(use-package counsel
+  :ensure t)
 
 ;; Emacs Major mode for Markdown-formatted files
 (use-package markdown-mode
@@ -80,6 +110,8 @@ re-downloaded in order to locate PACKAGE."
   :ensure t)
 ;; Support sequential operation which omits prefix keys
 (use-package smartrep
+  :ensure t)
+(use-package polymode
   :ensure t)
 
 ;; Project management

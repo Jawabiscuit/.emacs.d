@@ -39,6 +39,19 @@
     (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
 
 (package-initialize)
+
+(setq package-pinned-packages '())
+
+;; Fetch the archive on first run using this config
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; Manually check for `use-package' the first time
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(use-package dash
+  :ensure t)
 #+END_SRC
 
 
@@ -115,17 +128,16 @@
 #+END_SRC
 
 
-** Package setup tools
+** Install packages if they're missing
 #+BEGIN_SRC emacs-lisp
-(eval-when-compile (require 'use-package))
-(setq use-package-always-ensure t)
+(require 'setup-package)
 #+END_SRC
 
 
-** DONE replace stuff in here with use-package
-   CLOSED: [2018-10-17 Wed 20:40]
+** Package setup tools
 #+BEGIN_SRC emacs-lisp
-(require 'setup-package)
+(eval-when-compile (require 'use-package))
+;; (setq use-package-always-ensure t)
 #+END_SRC
 
 
@@ -134,37 +146,6 @@
 (setq custom-file
       (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
-#+END_SRC
-
-
-** Install packages if they're missing
-#+BEGIN_SRC emacs-lisp
-;; NOTE <2019-07-05 Fri> Counsel/Ivy did not install with use-package, put it here 
-(defun init--install-packages ()
-  (packages-install
-   '(
-     auctex            ; Integrated environment for *TeX*
-     diminish          ; Diminished modes from modeline
-     expand-region     ; Increase selected region by semantic units
-     fold-this         ; Code folding
-     htmlize           ; Convert buffer text and decorations to HTML.
-     magit             ; Complete Git interface
-     magit-gitflow     ; Gitflow extension for magit
-     multiple-cursors  ; Multiple cursors for Emacs
-     org-bullets       ; Show bullets in org-mode as UTF-8 characters
-     paredit           ; Minor mode for editing parentheses
-     restclient        ; In editor rest server/clien
-     smartparens       ; Auto closure for parenthesis and other characters
-     smex              ; Smart M-x
-     smooth-scrolling  ; Make emacs scroll smoothly
-     counsel           ; Various completion functions using Ivy, Swiper for search
-)))
-
-(condition-case nil
-    (init--install-packages)
-  (error
-   (package-refresh-contents)
-   (init--install-packages)))
 #+END_SRC
 
 
@@ -326,15 +307,6 @@
 
 ** Setup Counsel, Ivy, Swiper
 #+BEGIN_SRC emacs-lisp
-(use-package ivy
-  :demand
-  :config
-  (setq ivy-use-virtual-buffers t
-       ivy-count-format "%d/%d ")
-  (setq enable-recursive-minibuffers t)
-  ;; enable this if you want `swiper' to use it
-  ;; (setq search-default-mode #'char-fold-to-regexp)
-)
 (ivy-mode 1)
 (counsel-mode 1)
 #+END_SRC
@@ -351,7 +323,6 @@
 ** Emacs iPython Notebooks!
 #+BEGIN_SRC emacs-lisp
 (require 'ein)
-(require 'ein-loaddefs)
 (require 'ein-notebook)
 (require 'ein-subpackages)
 ;; Omit a bunch of key chord prefix typing

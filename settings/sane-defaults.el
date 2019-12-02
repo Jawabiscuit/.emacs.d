@@ -164,4 +164,7 @@
 ;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Emacs-Sessions.html
 (desktop-save-mode 1)
 
+;; silence warning in emacs <25.1
+(setq byte-compile--use-old-handlers nil)
+
 (provide 'sane-defaults)
