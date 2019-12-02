@@ -55,6 +55,35 @@
 #+END_SRC
 
 
+** No Littering
+
+Package-specific configuration files, including snippets, are kept in [[https://github.com/akirak/emacs-config-library][a separate repository]], not in this repository. 
+
+*** WAITING :config:
+:LOGBOOK:
+- State "WAITING"    from "DEFERRED"   [2019-12-02 Mon 11:38] \\
+  Move yasnippet, yankpad, etc, into ~/~lib/emacs
+:END:
+
+#+begin_src emacs-lisp
+;;  (defcustom javrin/no-littering-use-my-etc-library t
+;;    "Whether to use my configuration file library in ~/lib/emacs as `no-littering-etc-directory'.")
+;;
+;;  (use-package no-littering
+;;    :init
+;;    (when javrin/no-littering-use-my-etc-library
+;;      (let ((dir "~/lib/emacs"))
+;;        (when (or (file-directory-p dir)
+;;                  (and (yes-or-no-p "~/lib/emacs does not exist. Clone it from GitHub?")
+;;                       (= 0 (call-process-shell-command
+;;                             (format "git clone %s %s"
+;;                                     "https://github.com/javrin/emacs-config-library.git"
+;;                                     (shell-quote-argument (expand-file-name dir)))
+;;                             nil nil nil))))
+;;          (setq no-littering-etc-directory dir)))))
+#+end_src
+
+
 ** No splash screen please ... jeez
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
@@ -213,7 +242,6 @@
 (require 'command-log-mode)   ; log keyboard commands to buffer
 (require 'wgrep)              ; wgrep allows you to edit a grep buffer and apply those changes to the file buffer
 (require 'dired-details+)     ; show and hide directory detail information
-(require 'yasnippet-snippets) ; A collection of yasnippet snippets for many languages
 #+END_SRC
 
 
@@ -424,7 +452,7 @@
 ** Yasnippet
 
 #+BEGIN_SRC emacs-lisp
-(add-hook 'emacs-lisp-mode-hook #'yas-minor-mode)
-(add-hook 'org-mode-hook #'yas-minor-mode)
-(add-hook 'python-mode-hook #'yas-minor-mode)
+;; (add-hook 'emacs-lisp-mode-hook #'yas-minor-mode)
+;; (add-hook 'org-mode-hook #'yas-minor-mode)
+;; (add-hook 'python-mode-hook #'yas-minor-mode)
 #+END_SRC

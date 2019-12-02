@@ -142,12 +142,4 @@
 (use-package git-gutter
   :ensure t)
 
-;; yasnippet
-(use-package yasnippet
-  :ensure t)
-
-;; yankpad
-(use-package yankpad
-  :ensure t)
-
 (provide 'setup-package)

@@ -27,8 +27,8 @@
       (define-key map (kbd "M-S-<down>") 'move-text-down)
       (define-key map (kbd "M-.") 'fill-paragraph)
       (define-key map (kbd "C-c <up>") 'rotate-yank-pointer)
-      (define-key map (kbd "M-q") 'append-as-kill)
-      (define-key map (kbd "M-Q") 'copy-region-as-kill)
+      (define-key map (kbd "C-q") 'append-as-kill)
+      (define-key map (kbd "C-Q") 'copy-region-as-kill)
       (define-key map (kbd "C-c h") 'casey-replace-string)
       (define-key map (kbd "C-c H") 'casey-replace-in-region)
 
@@ -169,15 +169,14 @@
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
 ;; Yasnippet
-(define-key yas-minor-mode-map (kbd "<tab>") nil)
-(define-key yas-minor-mode-map (kbd "TAB") nil)
+;; (define-key yas-minor-mode-map (kbd "<tab>") nil)
+;; (define-key yas-minor-mode-map (kbd "TAB") nil)
 
 ;; Bind `SPC' to `yas-expand' when snippet expansion available (it
 ;; will still call `self-insert-command' otherwise).
-(define-key yas-minor-mode-map (kbd "SPC") yas-maybe-expand)
+;; (define-key yas-minor-mode-map (kbd "SPC") yas-maybe-expand)
 ;; Bind `C-c y' to `yas-expand' ONLY.
-(define-key yas-minor-mode-map (kbd "C-c y") #'yas-expand)
-
+;; (define-key yas-minor-mode-map (kbd "C-c y") #'yas-expand)
 ;; End Yasnippet
 
 (provide 'key-bindings)

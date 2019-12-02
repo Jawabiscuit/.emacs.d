@@ -29,4 +29,13 @@
     auto-mode-alist)
 )
 
+(bind-keys :prefix-map toggle-map
+           :prefix "C-x t"
+           ("d" . toggle-debug-on-error)
+           ("l" . linum-mode)
+           ("o" . org-mode)
+           ("s" . smartparens-mode)
+           ("n" . snippet-mode)
+)
+
 (provide 'mode-mappings)
