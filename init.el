@@ -28,4 +28,4 @@
 ;; Don't forget to revert this variable at the beginning of the Org file.
 (setq-default enable-local-variables :all)
 
-(org-babel-load-file "~/.emacs.d/configuration.org")
+(org-babel-load-file (expand-file-name "configuration.org" user-emacs-directory))

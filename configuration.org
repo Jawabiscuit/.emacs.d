@@ -39,6 +39,32 @@
 (jawa/require 'setup-gc)
 #+END_SRC
 
+These packages are required in other use-package directives declared in this
+configuration.
+
+#+begin_src emacs-lisp
+(use-package el-patch
+  :custom
+  (el-patch-enable-use-package-integration t))
+#+end_src
+
+#+begin_src emacs-lisp
+;; (defcustom jawa/no-littering-use-my-etc-library t
+;;   "Whether to use my configuration file library in ~/lib/emacs as `no-littering-etc-directory'.")
+;; 
+;; (use-package no-littering
+;;   :init
+;;   (when jawa/no-littering-use-my-etc-library
+;;     (let ((dir "~/lib/emacs"))
+;;       (when (or (file-directory-p dir)
+;;                 (and (yes-or-no-p "~/lib/emacs does not exist. Clone it from GitHub?")
+;;                      (= 0 (call-process-shell-command
+;;                            (format "git clone %s %s"
+;;                                    "https://github.com/Jawabiscuit/emacs-config-library.git"
+;;                                    (shell-quote-argument (expand-file-name dir)))
+;;                            nil nil nil))))
+;;         (setq no-littering-etc-directory dir)))))
+#+end_src
 
 ** Enable installation of packages from MELPA
 #+BEGIN_SRC emacs-lisp
@@ -69,35 +95,6 @@
 (use-package dash
   :ensure t)
 #+END_SRC
-
-
-** No Littering
-
-Package-specific configuration files, including snippets, are kept in [[https://github.com/akirak/emacs-config-library][a separate repository]], not in this repository. 
-
-*** WAITING :config:
-:LOGBOOK:
-- State "WAITING"    from "DEFERRED"   [2019-12-02 Mon 11:38] \\
-  Move yasnippet, yankpad, etc, into ~/~lib/emacs
-:END:
-
-#+begin_src emacs-lisp
-;;  (defcustom jawa/no-littering-use-my-etc-library t
-;;    "Whether to use my configuration file library in ~/lib/emacs as `no-littering-etc-directory'.")
-;;
-;;  (use-package no-littering
-;;    :init
-;;    (when jawa/no-littering-use-my-etc-library
-;;      (let ((dir "~/lib/emacs"))
-;;        (when (or (file-directory-p dir)
-;;                  (and (yes-or-no-p "~/lib/emacs does not exist. Clone it from GitHub?")
-;;                       (= 0 (call-process-shell-command
-;;                             (format "git clone %s %s"
-;;                                     "https://github.com/Jawabiscuit/emacs-config-library.git"
-;;                                     (shell-quote-argument (expand-file-name dir)))
-;;                             nil nil nil))))
-;;          (setq no-littering-etc-directory dir)))))
-#+end_src
 
 
 ** No splash screen please ... jeez
@@ -247,8 +244,9 @@ Package-specific configuration files, including snippets, are kept in [[https://
 
 
 ** Org-mode
-#+BEGIN_SRC emacs-lisp
-(require 'setup-org)
+#+BEGIN_SRC emacs-lisp          
+(jawa/require 'setup-org t)
+;; (jawa/require 'setup-org-starter)
 #+END_SRC
 
 

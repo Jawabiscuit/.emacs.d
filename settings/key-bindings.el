@@ -159,6 +159,7 @@
 (define-key org-mode-map (kbd "C-c l") 'org-store-link)
 (define-key org-mode-map (kbd "C-c c") 'org-capture)
 (define-key org-mode-map (kbd "C-c a") 'org-agenda)
+;TODO: make mnemonic
 (define-key org-mode-map (kbd "C-c M-k") 'org-cut-subtree)
 (define-key org-mode-map (kbd "C-c >") 'org-time-stamp-inactive)
 
