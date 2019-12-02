@@ -180,4 +180,4 @@
 ;; (define-key yas-minor-mode-map (kbd "C-c y") #'yas-expand)
 ;; End Yasnippet
 
-(provide 'key-bindings)
+(provide 'setup-key-bindings)

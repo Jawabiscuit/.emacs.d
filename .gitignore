@@ -54,4 +54,6 @@ bookmarks
 # Custom package file that doesn't need to be shared between hosts
 custom.el
 
+# Transient data
 transient
+var

@@ -20,6 +20,7 @@
 
 
 ** Turn on functions disabled by default
+
 #+BEGIN_SRC emacs-lisp
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
@@ -27,6 +28,7 @@
 
 
 ** Turn off mouse interface early in startup to avoid momentary display
+
 #+BEGIN_SRC emacs-lisp
   (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
   (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -34,7 +36,15 @@
 #+END_SRC
 
 
+** No splash screen please ... jeez
+
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t)
+#+END_SRC
+
+
 ** Before using =use-package=
+
 #+BEGIN_SRC emacs-lisp
 (jawa/require 'setup-gc)
 #+END_SRC
@@ -49,61 +59,37 @@ configuration.
 #+end_src
 
 #+begin_src emacs-lisp
-;; (defcustom jawa/no-littering-use-my-etc-library t
-;;   "Whether to use my configuration file library in ~/lib/emacs as `no-littering-etc-directory'.")
-;; 
-;; (use-package no-littering
-;;   :init
-;;   (when jawa/no-littering-use-my-etc-library
-;;     (let ((dir "~/lib/emacs"))
-;;       (when (or (file-directory-p dir)
-;;                 (and (yes-or-no-p "~/lib/emacs does not exist. Clone it from GitHub?")
-;;                      (= 0 (call-process-shell-command
-;;                            (format "git clone %s %s"
-;;                                    "https://github.com/Jawabiscuit/emacs-config-library.git"
-;;                                    (shell-quote-argument (expand-file-name dir)))
-;;                            nil nil nil))))
-;;         (setq no-littering-etc-directory dir)))))
+(defcustom jawa/no-littering-use-my-etc-library nil
+  "Whether to use my configuration file library in ~/lib/emacs as `no-littering-etc-directory'.")
+
+(use-package no-littering
+  :init
+  (when jawa/no-littering-use-my-etc-library
+    (let ((dir "~/lib/emacs"))
+      (when (or (file-directory-p dir)
+                (and (yes-or-no-p "~/lib/emacs does not exist. Clone it from GitHub?")
+                     (= 0 (call-process-shell-command
+                           (format "git clone %s %s"
+                                   "https://github.com/Jawabiscuit/emacs-config-library.git"
+                                   (shell-quote-argument (expand-file-name dir)))
+                           nil nil nil))))
+        (setq no-littering-etc-directory dir)))))
 #+end_src
 
-** Enable installation of packages from MELPA
+
+** Activate package.el for loading built-in packages
+
 #+BEGIN_SRC emacs-lisp
 (require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-  ;; Comment/uncomment these two lines to enable/disable MELPA and
-  ;; MELPA Stable as desired
-  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-  ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
-  (when (< emacs-major-version 24)
-    ;; For important compatibility libraries like cl-lib
-    (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
+(package-initialize 'noactivate)
 
-(package-initialize)
-
-(setq package-pinned-packages '())
-
-;; Fetch the archive on first run using this config
-(unless package-archive-contents
-  (package-refresh-contents))
-
-;; Manually check for `use-package' the first time
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-
-(use-package dash
-  :ensure t)
-#+END_SRC
-
-
-** No splash screen please ... jeez
-#+BEGIN_SRC emacs-lisp
-(setq inhibit-startup-message t)
+(use-package dash)
+(use-package dash-functional)
 #+END_SRC
 
 
 ** Site-lisp
+
 #+BEGIN_SRC emacs-lisp
 (setq site-lisp-dir
       (expand-file-name "site-lisp" user-emacs-directory))
@@ -111,6 +97,7 @@ configuration.
 
 
 ** Ipython site-lisp dir
+
 #+BEGIN_SRC emacs-lisp
 (setq ein-site-lisp-dir
       (concat site-lisp-dir
@@ -118,14 +105,8 @@ configuration.
 #+END_SRC
 
 
-** Settings
-#+BEGIN_SRC emacs-lisp
-(setq settings-dir
-      (expand-file-name "settings" user-emacs-directory))
-#+END_SRC
-
-
 ** Functions
+
 #+BEGIN_SRC emacs-lisp
 (setq defuns-dir
       (expand-file-name "defuns" user-emacs-directory))
@@ -133,6 +114,7 @@ configuration.
 
 
 ** Log
+
 #+BEGIN_SRC emacs-lisp
 (setq casey-log-file
       (expand-file-name "log.org" user-emacs-directory))
@@ -140,6 +122,7 @@ configuration.
 
 
 ** Todo
+
 #+BEGIN_SRC emacs-lisp
 (setq casey-todo-file
       (expand-file-name "todo.org" user-emacs-directory))
@@ -147,6 +130,7 @@ configuration.
 
 
 ** Load all files in defuns-dir
+
 #+BEGIN_SRC emacs-lisp
 (dolist (file (directory-files defuns-dir t "\\w+"))
   (when (file-regular-p file)
@@ -155,14 +139,16 @@ configuration.
 
 
 ** Setup load-path
+
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'load-path settings-dir)
+;; (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path site-lisp-dir)
 (add-to-list 'load-path ein-site-lisp-dir)
 #+END_SRC
 
 
 ** Add external project submodules (site-lisp) to load path
+
 #+BEGIN_SRC emacs-lisp
 (dolist (project (directory-files site-lisp-dir t "\\w+"))
   (when (file-directory-p project)
@@ -171,19 +157,35 @@ configuration.
 
 
 ** Install packages if they're missing
+
 #+BEGIN_SRC emacs-lisp
 (require 'setup-package)
 #+END_SRC
 
 
-** Package setup tools
-#+BEGIN_SRC emacs-lisp
-(eval-when-compile (require 'use-package))
-;; (setq use-package-always-ensure t)
-#+END_SRC
+** Improved keybinding
+
+Use general.el to define keybindings. It has made several improvements over
+bind-key, including a built-in support for which-key.
+
+#+begin_src emacs-lisp
+(use-package general)
+#+end_src
+
+This also adds support for =:general= keyword in use-package directives
+
+Allow use of =:wk= keyword in general.el keybinding definitions
+
+#+begin_src emacs-lisp
+(jawa/require 'setup-which-key t)
+#+end_src
+
+*** Generic definer
+
 
 
 ** Keep emacs Custom-settings in separate file
+
 #+BEGIN_SRC emacs-lisp
 (setq custom-file
       (expand-file-name "custom.el" user-emacs-directory))
@@ -192,8 +194,10 @@ configuration.
 
 
 ** Appearance
-  - Most things can be setup in sane-defaults.el however, changes to
-    font faces and the like are done here
+
+Most things can be setup in =setup-defaults.el= however, changes to font
+faces and the like are done here
+
 #+BEGIN_SRC emacs-lisp
 ;; Bright-red TODOs
 (setq fixme-modes '(python-mode c++-mode c-mode emacs-lisp-mode))
@@ -221,6 +225,7 @@ configuration.
 
 
 ** Load Monokai theme
+
 #+BEGIN_SRC emacs-lisp
 (setq monokai-dir
       (expand-file-name "themes/monokai-emacs/" user-emacs-directory))
@@ -229,28 +234,41 @@ configuration.
 #+END_SRC
 
 
-** Setup extensions
+** Activate packages
+
+Dependency: [[*Install packages if they're missing][setup packages]]
+
 #+BEGIN_SRC emacs-lisp
 (eval-after-load 'magit '(require 'setup-magit))
+
 (require 'magit-gitflow)    ; gitflow extension for magit
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
+
 (require 'setup-smartparens); Automatic insertion, wrapping and paredit-like navigation with user defined pairs.
+
 (require 'multiple-cursors) ; Multiple cursors for Emacs.
-;; (require 'fold-this)        ; Just fold this region please
+
 (require 'smex)             ; M-x interface with Ido-style fuzzy matching.
 (smex-initialize)
+
 (require 'expand-region)    ; Increase selected region by semantic units.
 #+END_SRC
 
 
 ** Org-mode
-#+BEGIN_SRC emacs-lisp          
+
+Dependency: [[*Improved keybinding][general]]
+
+#+BEGIN_SRC emacs-lisp
 (jawa/require 'setup-org t)
-;; (jawa/require 'setup-org-starter)
+(jawa/require 'setup-org-starter)
 #+END_SRC
 
 
 ** Site-lisp packages
+
+Requirements: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
+
 #+BEGIN_SRC emacs-lisp
 (require 'ox-twbs)            ; Bootstrap compatible HTML Back-End for Org
 (require 'command-log-mode)   ; log keyboard commands to buffer
@@ -260,12 +278,16 @@ configuration.
 
 
 ** Language specific setup files
+
 #+BEGIN_SRC emacs-lisp
-(eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
+(eval-after-load 'markdown-mode '(jawa/require 'setup-markdown-mode))
 #+END_SRC
 
 
 ** Outline minor mode
+
+Requirements: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
+
 #+BEGIN_SRC emacs-lisp
 (eval-after-load 'outline
   '(progn
@@ -275,30 +297,43 @@ configuration.
 
 
 ** Outline minor mode for Python
+
+Requirements: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
+
 #+BEGIN_SRC emacs-lisp
 (require 'python-magic)
 #+END_SRC
 
 
 ** Pandoc
+
+Dependency: [[*Install packages if they're missing][setup packages]]
+
 #+BEGIN_SRC emacs-lisp
 (add-hook 'markdown-mode-hook 'pandoc-mode)
 #+END_SRC
 
 
 ** A smattering of sanity
+
 #+BEGIN_SRC emacs-lisp
-(require 'sane-defaults)
+(jawa/require 'setup-defaults)
 #+END_SRC
 
 
 ** More dired functionality (23.2+)
+
+Requirements: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
+
 #+BEGIN_SRC emacs-lisp
 (load "dired-x")
 #+END_SRC
 
 
 ** Represent undo-history as an actual tree (visualize with C-x u)
+
+Requirements: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
+
 #+BEGIN_SRC emacs-lisp
 (setq undo-tree-mode-lighter "")
 (require 'undo-tree)
@@ -307,12 +342,16 @@ configuration.
 
 
 ** Map files to modes
+
 #+BEGIN_SRC emacs-lisp
-(require 'mode-mappings)
+(jawa/require 'setup-mode-maps)
 #+END_SRC
 
 
 ** Buffer switching
+
+Dependency: [[*Activate package.el for loading built-in packages][package.el]]
+
 #+BEGIN_SRC emacs-lisp
 (load-library "view")
 (require 'cc-mode)
@@ -323,6 +362,9 @@ configuration.
 
 
 ** Flx Fuzzy Matching
+
+Dependency: [[*Install packages if they're missing][setup packages]]
+
 #+BEGIN_SRC emacs-lisp
 (require 'flx-ido)
 (ido-mode 1)
@@ -336,18 +378,25 @@ configuration.
 
 
 ** Jedi auto-complete
+
+Dependency: [[*Install packages if they're missing][setup packages]]
+
 #+BEGIN_SRC emacs-lisp
 (require 'jedi-starter)
 #+END_SRC
 
 
 ** Projectile minor mode
+
+Dependency: [[*Install packages if they're missing][setup packages]]
+
 #+BEGIN_SRC emacs-lisp
 (projectile-mode +1)
 #+END_SRC
 
 
 ** Setup Counsel, Ivy, Swiper
+
 #+BEGIN_SRC emacs-lisp
 (ivy-mode 1)
 (counsel-mode 1)
@@ -355,7 +404,9 @@ configuration.
 
 
 ** Git gutter global minor mode
-  - Options (disabled) for setting up mode per file type in mode-mappings.el
+
+Dependency: [[*Install packages if they're missing][setup packages]]
+
 #+BEGIN_SRC emacs-lisp
 (require 'setup-gitgutter)
 ;; (global-git-gutter-mode +1)
@@ -363,6 +414,9 @@ configuration.
 
 
 ** Emacs iPython Notebooks!
+
+Dependency: [[*Install packages if they're missing][setup packages]]
+
 #+BEGIN_SRC emacs-lisp
 (require 'ein)
 (require 'ein-notebook)
@@ -380,7 +434,9 @@ configuration.
 
 
 ** Emacs to Maya
-  - Send Mel or Python to Maya
+
+Send Python to Maya
+
 #+BEGIN_SRC emacs-lisp
   (add-hook
    'python-mode-hook
@@ -392,14 +448,17 @@ configuration.
 
 
 ** Editing (some definitions are in editing_defuns.el)
+
 #+BEGIN_SRC emacs-lisp
 (add-hook 'text-mode-hook 'casey-big-fun-text-hook)
 #+END_SRC
 
 
 ** Mel Mode
-  - Mel syntax
-  - Mel documentation lookup
+
+Mel syntax
+Mel documentation lookup
+
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.mel$" . mel-mode))
 (autoload 'mel-mode "mel-mode" nil t)
@@ -410,12 +469,14 @@ configuration.
 
 
 ** Key bindings
+
 #+BEGIN_SRC emacs-lisp
-(require 'key-bindings)
+(jawa/require 'setup-key-bindings)
 #+END_SRC
 
 
 ** Window
+
 #+BEGIN_SRC emacs-lisp
 (add-hook 'window-setup-hook 'post-load-stuff t)
 #+END_SRC
@@ -434,6 +495,8 @@ configuration.
 
 
 ** Smartparens
+
+Dependency: [[*Install packages if they're missing][setup packages]]
 
 #+BEGIN_SRC emacs-lisp
 (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
@@ -465,8 +528,10 @@ configuration.
 
 ** Yasnippet
 
+Dependency: [[*Install packages if they're missing][setup packages]]
+
 #+BEGIN_SRC emacs-lisp
-;; (add-hook 'emacs-lisp-mode-hook #'yas-minor-mode)
-;; (add-hook 'org-mode-hook #'yas-minor-mode)
-;; (add-hook 'python-mode-hook #'yas-minor-mode)
+(add-hook 'emacs-lisp-mode-hook #'yas-minor-mode)
+(add-hook 'org-mode-hook #'yas-minor-mode)
+(add-hook 'python-mode-hook #'yas-minor-mode)
 #+END_SRC

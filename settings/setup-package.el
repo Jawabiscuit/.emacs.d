@@ -1,9 +1,3 @@
-(require 'use-package)
-
-;; Add melpa to package repos
-;; (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;; (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-
 ;; Ivy
 (use-package ivy
   :demand
@@ -19,56 +13,45 @@
 (straight-use-package 'auctex)
 
 ; Diminished modes from modeline
-(use-package diminish
-  :ensure t)
+(use-package diminish)
 
 ; Increase selected region by semantic units
-(use-package expand-region
-  :ensure t)
+(use-package expand-region)
 
 ; Convert buffer text and decorations to HTML.
-(use-package htmlize
-  :ensure t)
+(use-package htmlize)
 
 ; Complete Git interface
-(use-package magit
-  :ensure t)
+(use-package magit)
 
 ; Gitflow extension for magit
-(use-package magit-gitflow
-  :ensure t)
+(use-package magit-gitflow)
 
 ; Multiple cursors for Emacs
-(use-package org-bullets
-  :ensure t)
+(use-package multiple-cursors)
 
 ; Show bullets in org-mode as UTF-8 characters
-(use-package paredit
-  :ensure t)
+(use-package org-bullets)
+
+(use-package paredit)
 
 ; In editor rest server/client
-(use-package restclient
-  :ensure t)
+(use-package restclient)
 
 ; Auto closure for parenthesis and other characters
-(use-package smartparens
-  :ensure t)
+(use-package smartparens)
 
 ; Smart M-x
-(use-package smex
-  :ensure t)
+(use-package smex)
 
 ; Make emacs scroll smoothly
-(use-package smooth-scrolling
-  :ensure t)
+(use-package smooth-scrolling)
 
 ; Various completion functions using Ivy, Swiper for search
-(use-package counsel
-  :ensure t)
+(use-package counsel)
 
 ;; Emacs Major mode for Markdown-formatted files
 (use-package markdown-mode
-  :ensure t
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
@@ -76,67 +59,59 @@
 )
 
 ;; Pandoc dependency
-(use-package hydra
-  :ensure t
-)
+(use-package hydra)
 
 ;; Pandoc-mode is for interacting with pandoc, a program that converts
 ;; text files written in one markup language to another
-(use-package pandoc-mode
-  :ensure t
-)
+(use-package pandoc-mode)
 
-;; Emacs iPython notebook (EIN) dependencies
+;; BEGIN Emacs iPython notebook (EIN) dependencies
+
 ;; string manipulation library
-(use-package s
-  :ensure t)
+(use-package s)
+
 ;; live browser JavaScript, CSS, and HTML interaction
-(use-package skewer-mode
-  :ensure t)
+(use-package skewer-mode)
+
 ;; Compatible layer for URL request in Emacs
-(use-package request
-  :ensure t)
+(use-package request)
+
 ;; Wrap request.el by deferred
-(use-package request-deferred
-  :ensure t)
+(use-package request-deferred)
+
 ;; Emacs WebSocket client and server
-(use-package websocket
-  :ensure t)
+(use-package websocket)
+
 ;; Python major mode
-(use-package python-mode
-  :ensure t)
+(use-package python-mode)
+
 ;; Support sequential operation which omits prefix keys
-(use-package smartrep
-  :ensure t)
-(use-package polymode
-  :ensure t)
+(use-package smartrep)
+
+;; Multiple modes
+(use-package polymode)
+
+;; END EIN dependencies
 
 ;; Project management
-(use-package projectile
-  :ensure t)
+(use-package projectile)
 
 ;; Fuzzy matching
-(use-package flx-ido
-  :ensure t)
+(use-package flx-ido)
 
 ;; Standard auto-completion
-(use-package auto-complete
-  :ensure t)
+(use-package auto-complete)
 
 ;; Middleware so python-land can communicate with emacs-land
-(use-package epc
-  :ensure t)
+(use-package epc)
 
 ;; Brains of Python auto-complete
-(use-package jedi
-  :ensure t)
+(use-package jedi)
 
 ;; Mel mode dependencies
-(use-package browse-url-dwim
-  :ensure t)
+(use-package browse-url-dwim)
 
 ;; Git-gutter
-(use-package git-gutter
-  :ensure t)
+(use-package git-gutter)
 
 (provide 'setup-package)

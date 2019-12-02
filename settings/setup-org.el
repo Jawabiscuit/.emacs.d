@@ -50,134 +50,137 @@
 ;; popping open a new one (which shows the same information). 
 (setq org-src-window-setup 'current-window)
 
+
+;; TODO: STRUCTURE TEMPLATES ARE BORKED IF USING THE NEWEST org.el
+;;
 ;; This blog was really helpful figuring structure templates out
 ;; https://blog.aaronbieber.com/2016/11/23/creating-org-mode-structure-templates.html
 
-(add-to-list 'org-structure-template-alist
-             (list "d" (concat "#+BEGIN_SRC ditaa :file ?.png :exports results\n"
-                               "#+end_src")))
+;; (add-to-list 'org-structure-template-alist
+;;              (list "d" (concat "#+BEGIN_SRC ditaa :file ?.png :exports results\n"
+;;                                "#+end_src")))
 
-(add-to-list 'org-structure-template-alist
-             (list "m" (concat "#+BEGIN_EXPORT html\n"
-                               "<!--more-->\n"
-                               "#+END_EXPORT\n\n")))
+;; (add-to-list 'org-structure-template-alist
+;;              (list "m" (concat "#+BEGIN_EXPORT html\n"
+;;                                "<!--more-->\n"
+;;                                "#+END_EXPORT\n\n")))
 
 ;; Edit on Github
-(add-to-list 'org-structure-template-alist
-             (list "g" (concat "#+BEGIN_EXPORT html\n"
-                               "<div class=\"right\">\n"
-                               "  <a href=\"https://github.com/fniessen/org-html-themes/blob/master/demo/example.org\" class=\"fa fa-github\"> Edit on GitHub</a>\n"
-                               "</div>\n"
-                               "#+END_EXPORT\n")))
+;; (add-to-list 'org-structure-template-alist
+;;              (list "g" (concat "#+BEGIN_EXPORT html\n"
+;;                                "<div class=\"right\">\n"
+;;                                "  <a href=\"https://github.com/fniessen/org-html-themes/blob/master/demo/example.org\" class=\"fa fa-github\"> Edit on GitHub</a>\n"
+;;                                "</div>\n"
+;;                                "#+END_EXPORT\n")))
 
 ;; Quickly insert a block of elisp
 (add-to-list 'org-structure-template-alist
-             '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
+             '("el" . "emacs-lisp\n?\n"))
 
 ;; https://orgmode.org/manual/Easy-templates.html
 ;; Create a new structure template
-(add-to-list 'org-structure-template-alist
-             (list "p" (concat ":PROPERTIES:\n"
-                               ":CATEGORY: ?\n"
-                               ":END:")))
+;; (add-to-list 'org-structure-template-alist
+;;              (list "p" (concat ":PROPERTIES:\n"
+;;                                ":CATEGORY: ?\n"
+;;                                ":END:")))
 
-(add-to-list 'org-structure-template-alist
-             (list "py" (concat "#+BEGIN_SRC python\n"
-                                "?\n"
-                                "#+END_SRC")))
+;; (add-to-list 'org-structure-template-alist
+;;              (list "py" (concat "#+BEGIN_SRC python\n"
+;;                                 "?\n"
+;;                                 "#+END_SRC")))
 
 ;; Html export options template
-(add-to-list 'org-structure-template-alist
-             (list "eh" (concat ":EXPORT_FILE_NAME: ?\n"
-                                ":EXPORT_TITLE:\n"
-                                ":EXPORT_OPTIONS: toc:nil html-postamble:nil num:nil")))
+;; (add-to-list 'org-structure-template-alist
+;;              (list "eh" (concat ":EXPORT_FILE_NAME: ?\n"
+;;                                 ":EXPORT_TITLE:\n"
+;;                                 ":EXPORT_OPTIONS: toc:nil html-postamble:nil num:nil")))
 
 ;; Org mode header settings template
-(add-to-list 'org-structure-template-alist
-             (list "o" (concat "#+OPTIONS: title:nil toc:nil ^:nil num:nil html-postamble:nil tasks:nil\n"
-                               "#+STARTUP: content indent\n"
-                               "#+STARTUP: hidestars\n"
-                               "#+AUTHOR: Jonas Avrin\n"
-                               "#+TITLE: ?\n"
-                               "#+SUBTITLE: \n"
-                               "#+DESCRIPTION: \n"
-                               "#+TAGS: \n"
-                               "#+EXPORT_FILE_NAME: ")))
+;; (add-to-list 'org-structure-template-alist
+;;              (list "o" (concat "#+OPTIONS: title:nil toc:nil ^:nil num:nil html-postamble:nil tasks:nil\n"
+;;                                "#+STARTUP: content indent\n"
+;;                                "#+STARTUP: hidestars\n"
+;;                                "#+AUTHOR: Jonas Avrin\n"
+;;                                "#+TITLE: ?\n"
+;;                                "#+SUBTITLE: \n"
+;;                                "#+DESCRIPTION: \n"
+;;                                "#+TAGS: \n"
+;;                                "#+EXPORT_FILE_NAME: ")))
 
 ;; Org mode in-buffer Org header settings template
-(add-to-list 'org-structure-template-alist
-             (list "os" (concat ":SETTINGS:\n"
-                                "#+OPTIONS: title:nil toc:nil ^:nil num:nil html-postamble:nil tasks:nil\n"
-                                "#+STARTUP: content indent\n"
-                                "#+STARTUP: hidestars\n"
-                                "#+AUTHOR: Jonas Avrin\n"
-                                "#+TITLE: ?\n"
-                                "#+SUBTITLE: \n"
-                                "#+DESCRIPTION: \n"
-                                "#+TAGS: \n"
-                                "#+EXPORT_FILE_NAME: \n"
-                                ":END:")))
+;; (add-to-list 'org-structure-template-alist
+;;              (list "os" (concat ":SETTINGS:\n"
+;;                                 "#+OPTIONS: title:nil toc:nil ^:nil num:nil html-postamble:nil tasks:nil\n"
+;;                                 "#+STARTUP: content indent\n"
+;;                                 "#+STARTUP: hidestars\n"
+;;                                 "#+AUTHOR: Jonas Avrin\n"
+;;                                 "#+TITLE: ?\n"
+;;                                 "#+SUBTITLE: \n"
+;;                                 "#+DESCRIPTION: \n"
+;;                                 "#+TAGS: \n"
+;;                                 "#+EXPORT_FILE_NAME: \n"
+;;                                 ":END:")))
 
 ;; Org mode in-buffer Jekyll header settings template
-(add-to-list 'org-structure-template-alist
-             (list "js" (concat ":SETTINGS:\n"
-                                "#+OPTIONS: title:nil toc:nil ^:nil num:nil html-postamble:nil tasks:nil\n"
-                                "#+STARTUP: content indent\n"
-                                "#+STARTUP: hidestars\n"
-                                "#+AUTHOR: Jonas Avrin\n"
-                                "#+TITLE: ?\n"
-                                "#+SUBTITLE: \n"
-                                "#+DESCRIPTION: \n"
-                                "#+TAGS: \n"
-                                "#+EXPORT_FILE_NAME: \n"
-                                "@@html:---\n"
-                                "layout: post\n"
-                                "title: \n"
-                                "date: \n"
-                                "category: \n"
-                                "tags: \n"
-                                "author: Jonas Avrin\n"
-                                "---\n"
-                                "@@\n"
-                                ":END:")))
+;; (add-to-list 'org-structure-template-alist
+;;              (list "js" (concat ":SETTINGS:\n"
+;;                                 "#+OPTIONS: title:nil toc:nil ^:nil num:nil html-postamble:nil tasks:nil\n"
+;;                                 "#+STARTUP: content indent\n"
+;;                                 "#+STARTUP: hidestars\n"
+;;                                 "#+AUTHOR: Jonas Avrin\n"
+;;                                 "#+TITLE: ?\n"
+;;                                 "#+SUBTITLE: \n"
+;;                                 "#+DESCRIPTION: \n"
+;;                                 "#+TAGS: \n"
+;;                                 "#+EXPORT_FILE_NAME: \n"
+;;                                 "@@html:---\n"
+;;                                 "layout: post\n"
+;;                                 "title: \n"
+;;                                 "date: \n"
+;;                                 "category: \n"
+;;                                 "tags: \n"
+;;                                 "author: Jonas Avrin\n"
+;;                                 "---\n"
+;;                                 "@@\n"
+;;                                 ":END:")))
 
 ;; Org mode in-buffer RTD header settings template
 ;; OPTIONS key/values:
-;; H:   -> the number of headline levels for export
-;; ^:{} -> 'a^{b}' will be interpreted as superscript
-;; _:{} -> 'a_{b}' will be interpreted as subscript
-;; \n:  -> preserve line breaks
-;; ::   -> fixed width sections
-(add-to-list 'org-structure-template-alist
-             (list "rs" (concat ":SETTINGS:\n"
-                                "#+OPTIONS: H:2 toc:2 ^:{} _:{} \\n:nil ::t\n"
-                                "#+OPTIONS: title:t num:nil html-postamble:t tasks:t\n"
-                                "#+STARTUP: content indent\n"
-                                "#+STARTUP: hidestars\n"
-                                "#+STARTUP: showall\n"
-                                "#+TITLE: ?\n"
-                                "#+AUTHOR: Jonas Avrin\n"
-                                "#+DATE: \n"
-                                "#+EMAIL: jonas@cghijinks.com\n"
-                                "#+SUBTITLE: \n"
-                                "#+DESCRIPTION: \n"
-                                "#+TAGS: \n"
-                                "#+EXPORT_FILE_NAME: ../html\n"
-                                "#+SETUPFILE: ../themes/setup/theme-readtheorg.setup\n"
-                                ":END:")))
+;; `H:'   -> the number of headline levels for export
+;; `^:{}' -> 'a^{b}' will be interpreted as superscript
+;; `_:{}' -> 'a_{b}' will be interpreted as subscript
+;; `\n:'  -> preserve line breaks
+;; `::'   -> fixed width sections
+;; (add-to-list 'org-structure-template-alist
+;;              (list "rs" (concat ":SETTINGS:\n"
+;;                                 "#+OPTIONS: H:2 toc:2 ^:{} _:{} \\n:nil ::t\n"
+;;                                 "#+OPTIONS: title:t num:nil html-postamble:t tasks:t\n"
+;;                                 "#+STARTUP: content indent\n"
+;;                                 "#+STARTUP: hidestars\n"
+;;                                 "#+STARTUP: showall\n"
+;;                                 "#+TITLE: ?\n"
+;;                                 "#+AUTHOR: Jonas Avrin\n"
+;;                                 "#+DATE: \n"
+;;                                 "#+EMAIL: jonas@cghijinks.com\n"
+;;                                 "#+SUBTITLE: \n"
+;;                                 "#+DESCRIPTION: \n"
+;;                                 "#+TAGS: \n"
+;;                                 "#+EXPORT_FILE_NAME: ../html\n"
+;;                                 "#+SETUPFILE: ../themes/setup/theme-readtheorg.setup\n"
+;;                                 ":END:")))
 
 ;; Jekyll post front matter
-(add-to-list 'org-structure-template-alist
-             (list "j" (concat "#+BEGIN_HTML\n"
-                               "@@html:---\n"
-                               "layout: post\n"
-                               "title: ?\n"
-                               "date: \n"
-                               "category: \n"
-                               "author: Jonas Avrin\n"
-                               "---\n"
-                               "@@\n"
-                               "#+END_HTML")))
+;; (add-to-list 'org-structure-template-alist
+;;              (list "j" (concat "#+BEGIN_HTML\n"
+;;                                "@@html:---\n"
+;;                                "layout: post\n"
+;;                                "title: ?\n"
+;;                                "date: \n"
+;;                                "category: \n"
+;;                                "author: Jonas Avrin\n"
+;;                                "---\n"
+;;                                "@@\n"
+;;                                "#+END_HTML")))
 
 ;; GTD TODO keywords and hide logs
 (setq org-todo-keywords

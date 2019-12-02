@@ -38,4 +38,4 @@
            ("n" . snippet-mode)
 )
 
-(provide 'mode-mappings)
+(provide 'setup-mode-maps)

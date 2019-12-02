@@ -167,4 +167,4 @@
 ;; silence warning in emacs <25.1
 (setq byte-compile--use-old-handlers nil)
 
-(provide 'sane-defaults)
+(provide 'setup-defaults)

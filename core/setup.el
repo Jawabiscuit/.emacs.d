@@ -8,8 +8,10 @@
 
 (add-to-list 'load-path (expand-file-name "settings" user-emacs-directory))
 
-(defvar jawa/setings-failed-modules nil
+(defvar jawa/settings-failed-modules nil
   "List of modules failed to load.")
+
+(defvar jawa/settings-module-worked-on nil)
 
 (defun jawa/settings-find-failed-module ()
   "Open a module which has been failed to load."
