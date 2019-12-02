@@ -129,7 +129,13 @@
   :lighter " ja-keys")
 
 (ja-keys-minor-mode 1)
-;; End `ja-keys-minor-mode-map'
+
+;; Disable custom keys in the minibuffer
+(defun ja-minibuffer-setup-hook ()
+  (ja-keys-minor-mode 0))
+
+(add-hook 'minibuffer-setup-hook 'ja-minibuffer-setup-hook)
+;; End `ja-keys' minor mode setup
 
 ;; Undo tree
 (eval-after-load 'undo-tree '(define-key undo-tree-map (kbd "C-?") nil))

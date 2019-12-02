@@ -297,4 +297,18 @@
     ;; EST
     quote (" %Y-%m-%d " . " %Y-%m-%d %H:%M:%S -0500 "))))
 
+;; Capture Templates
+(setq org-capture-templates
+  '(("t" "Task" entry (file (concat org-directory "/inbox.org"))
+     "** TODO %?\n")
+    ("p" "Project" entry (file+headline (concat org-directory "/projects.org" "Projects"))
+     (file (concat org-directory "/templates/project-template.org")))
+    ("l" "Log" entry (file+headline (concat org-directory "/log.org" "Log"))
+     (file (concat org-directory "/templates/log-template.org"))))
+)
+
+;; Ellipsis
+(setq org-ellipsis "»")
+(custom-set-faces '(org-ellipsis ((t (:underline nil)))))
+
 (provide 'setup-org)
