@@ -40,4 +40,4 @@
         ignore = dirty
 [submodule "site-lisp/yasnippet-snippets"]
 	path = site-lisp/yasnippet-snippets
-	url = https://github.com/Jawabiscuit/yasnippet-snippets.git
+	url = https://github.com/AndreaCrotti/yasnippet-snippets.git
