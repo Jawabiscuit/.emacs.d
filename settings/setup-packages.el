@@ -114,4 +114,4 @@
 ;; Git-gutter
 (use-package git-gutter)
 
-(provide 'setup-package)
+(provide 'setup-packages)

@@ -156,13 +156,6 @@ configuration.
 #+END_SRC
 
 
-** Install packages if they're missing
-
-#+BEGIN_SRC emacs-lisp
-(require 'setup-package)
-#+END_SRC
-
-
 ** Improved keybinding
 
 Use general.el to define keybindings. It has made several improvements over
@@ -182,6 +175,41 @@ Allow use of =:wk= keyword in general.el keybinding definitions
 
 *** Generic definer
 
+#+begin_emacs-lisp
+(general-create-definer jawa/bind-key)
+#+end_emacs-lisp
+
+*** Emacs standard prefix key definers
+
+#+begin_src emacs-lisp
+(general-create-definer jawa/bind-register :prefix "C-x r")
+  (define-obsolete-function-alias 'jawa/bind-register-map
+    'jawa/bind-register)
+#+end_src
+
+*** Non-standard prefix key definers
+
+#+begin_src emacs-lisp
+(general-create-definer jawa/bind-user :prefix "C-c")
+#+end_src
+
+
+** Install packages if they're missing
+
+#+BEGIN_SRC emacs-lisp
+(require 'setup-packages)
+#+END_SRC
+
+
+** Setup meta
+
+Requirements: [[*Improved keybinding][setup keybindings]] 
+
+Setup a bunch of useful features
+
+#+begin_src emacs-lisp
+(jawa/require 'setup-meta)
+#+end_src
 
 
 ** Keep emacs Custom-settings in separate file
@@ -529,9 +557,17 @@ Dependency: [[*Install packages if they're missing][setup packages]]
 ** Yasnippet
 
 Dependency: [[*Install packages if they're missing][setup packages]]
+Requirements: [[*Improved keybinding][setup keybindings]]
 
 #+BEGIN_SRC emacs-lisp
 (add-hook 'emacs-lisp-mode-hook #'yas-minor-mode)
 (add-hook 'org-mode-hook #'yas-minor-mode)
 (add-hook 'python-mode-hook #'yas-minor-mode)
 #+END_SRC
+
+=ivy-yasnippet= for the superior snippet choosing experience!
+
+#+begin_src emacs-lisp
+(jawa/bind-user "y" 'ivy-yasnippet)
+(jawa/bind-register "n" 'yas-new-snippet)
+#+end_src
