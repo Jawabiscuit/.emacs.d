@@ -59,7 +59,7 @@ configuration.
 #+end_src
 
 #+begin_src emacs-lisp
-(defcustom jawa/no-littering-use-my-etc-library nil
+(defcustom jawa/no-littering-use-my-etc-library t
   "Whether to use my configuration file library in ~/lib/emacs as `no-littering-etc-directory'.")
 
 (use-package no-littering
