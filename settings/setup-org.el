@@ -50,32 +50,34 @@
 ;; popping open a new one (which shows the same information). 
 (setq org-src-window-setup 'current-window)
 
+;; BEGIN structure templates
+
+;; Elisp block
+(add-to-list 'org-structure-template-alist
+  '("sl" . "src emacs-lisp\n"))
+
+;; Python block
+(add-to-list 'org-structure-template-alist
+  '("sp" . "src python\n"))
+
+;; Ditaa export args
+(add-to-list 'org-structure-template-alist
+  '("d" . "src ditaa :file ?.png :exports results\n"))
+
+;; More tag
+(add-to-list 'org-structure-template-alist
+  '("hm" . "export html\n<!--more-->"))
+
+;; Edit on Github div
+(add-to-list 'org-structure-template-alist
+  '("hg" . "export html\n<div class=\"right\">\n  <a href=\"https://github.com/fniessen/org-html-themes/blob/master/demo/example.org\" class=\"fa fa-github\"> Edit on GitHub</a>\n</div>"))
+
+;; Jekyll post front matter
+(add-to-list 'org-structure-template-alist
+  '("hj" . "export html\n@@html:---\nlayout: post\ntitle: \ndate: \ncategory: \nauthor: Jonas Avrin\n---\n@@"))
 
 ;; TODO: STRUCTURE TEMPLATES ARE BORKED IF USING THE NEWEST org.el
-;;
-;; This blog was really helpful figuring structure templates out
-;; https://blog.aaronbieber.com/2016/11/23/creating-org-mode-structure-templates.html
-
-;; (add-to-list 'org-structure-template-alist
-;;              (list "d" (concat "#+BEGIN_SRC ditaa :file ?.png :exports results\n"
-;;                                "#+end_src")))
-
-;; (add-to-list 'org-structure-template-alist
-;;              (list "m" (concat "#+BEGIN_EXPORT html\n"
-;;                                "<!--more-->\n"
-;;                                "#+END_EXPORT\n\n")))
-
-;; Edit on Github
-;; (add-to-list 'org-structure-template-alist
-;;              (list "g" (concat "#+BEGIN_EXPORT html\n"
-;;                                "<div class=\"right\">\n"
-;;                                "  <a href=\"https://github.com/fniessen/org-html-themes/blob/master/demo/example.org\" class=\"fa fa-github\"> Edit on GitHub</a>\n"
-;;                                "</div>\n"
-;;                                "#+END_EXPORT\n")))
-
-;; Quickly insert a block of elisp
-(add-to-list 'org-structure-template-alist
-             '("el" . "emacs-lisp\n?\n"))
+;; TODO: Might help to convert some to snippets or define templates instead
 
 ;; https://orgmode.org/manual/Easy-templates.html
 ;; Create a new structure template
@@ -83,11 +85,6 @@
 ;;              (list "p" (concat ":PROPERTIES:\n"
 ;;                                ":CATEGORY: ?\n"
 ;;                                ":END:")))
-
-;; (add-to-list 'org-structure-template-alist
-;;              (list "py" (concat "#+BEGIN_SRC python\n"
-;;                                 "?\n"
-;;                                 "#+END_SRC")))
 
 ;; Html export options template
 ;; (add-to-list 'org-structure-template-alist
@@ -169,18 +166,7 @@
 ;;                                 "#+SETUPFILE: ../themes/setup/theme-readtheorg.setup\n"
 ;;                                 ":END:")))
 
-;; Jekyll post front matter
-;; (add-to-list 'org-structure-template-alist
-;;              (list "j" (concat "#+BEGIN_HTML\n"
-;;                                "@@html:---\n"
-;;                                "layout: post\n"
-;;                                "title: ?\n"
-;;                                "date: \n"
-;;                                "category: \n"
-;;                                "author: Jonas Avrin\n"
-;;                                "---\n"
-;;                                "@@\n"
-;;                                "#+END_HTML")))
+;; END structure templates
 
 ;; GTD TODO keywords and hide logs
 (setq org-todo-keywords
