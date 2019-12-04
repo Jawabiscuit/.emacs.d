@@ -571,3 +571,14 @@ Requirements: [[*Improved keybinding][setup keybindings]]
 (jawa/bind-user "y" 'ivy-yasnippet)
 (jawa/bind-register "n" 'yas-new-snippet)
 #+end_src
+
+** Blah
+:PROPERTIES:
+:CREATED_TIME: [2019-12-03 Tue 21:01]
+:END:
+:LOGBOOK:
+CLOCK: [2019-12-03 Tue 21:01]--[2019-12-03 Tue 21:01] =>  0:00
+:END:
+
+
+
