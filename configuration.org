@@ -187,6 +187,13 @@ Allow use of =:wk= keyword in general.el keybinding definitions
     'jawa/bind-register)
 #+end_src
 
+**** M-r: Registers
+
+#+begin_src emacs-lisp
+(general-def
+  "M-r" (general-simulate-key "C-x r"))
+#+end_src
+
 *** Non-standard prefix key definers
 
 #+begin_src emacs-lisp
@@ -194,7 +201,11 @@ Allow use of =:wk= keyword in general.el keybinding definitions
 #+end_src
 
 
-** Install packages if they're missing
+** Install packages missing packages
+
+Requirements: [[core/setup.el][setup.el: jawa/require]]
+
+The bulk of the packages to install
 
 #+BEGIN_SRC emacs-lisp
 (require 'setup-packages)
@@ -571,6 +582,7 @@ Requirements: [[*Improved keybinding][setup keybindings]]
 (jawa/bind-user "y" 'ivy-yasnippet)
 (jawa/bind-register "n" 'yas-new-snippet)
 #+end_src
+
 
 ** Blah
 :PROPERTIES:

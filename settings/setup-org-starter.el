@@ -16,16 +16,18 @@
   ;;   :refile (:maxlevel . 3))
   (general-add-hook 'org-starter-extra-find-file-map
                     '((";" org-starter-find-config-file "config")
-                      ("w" org-plain-wiki "wiki"))
+                      ;; ("w" org-plain-wiki "wiki")
+                      )
                     t)
-  ;; (general-add-hook 'org-starter-extra-alternative-find-file-map
-  ;;                   '((";" org-starter-swiper-config-files "config")
-  ;;                     ("w" helm-org-rifle-wiki "wiki/writing"))
-  ;;                   t)
-  ;; (general-add-hook 'org-starter-extra-refile-map
-  ;;                   '(("'" avy-org-refile-as-child "avy")
-  ;;                     ("?" akirak/org-refile-same-buffer "same buffer"))
-  ;;                   t)
+  (general-add-hook 'org-starter-extra-alternative-find-file-map
+                    '((";" org-starter-swiper-config-files "config")
+                      ;; ("w" helm-org-rifle-wiki "wiki/writing")
+                      )
+                    t)
+  (general-add-hook 'org-starter-extra-refile-map
+                    '(("'" avy-org-refile-as-child "avy")
+                      ("?" akirak/org-refile-same-buffer "same buffer"))
+                    t)
   :custom
   ;; Enable external configuration files loaded from `org-starter-path'
   (org-starter-load-config-files t)
