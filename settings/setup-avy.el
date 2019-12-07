@@ -1,6 +1,6 @@
 (use-package avy
   :general
-  (:prefix "M-g"
+  (:prefix "C-S-c"
            "l" #'avy-goto-line
            "o" #'avy-org-goto-heading-timer)
   :config
