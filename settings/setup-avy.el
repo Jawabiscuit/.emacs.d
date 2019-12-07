@@ -1,12 +1,12 @@
 (use-package avy
   :general
-  (:prefix "C-S-c"
-           "l" #'avy-goto-line
-           "o" #'avy-org-goto-heading-timer)
   :config
   (add-to-list 'avy-dispatch-alist
                `(?K . akirak/avy-action-kill-line)
                t)
+  (jawa/bind-jump
+    "l" 'avy-goto-line
+    "o" 'avy-org-goto-heading-timer)
   :config/el-patch
   (el-patch-defun avy-forward-item ()
     (el-patch-swap (if (eq avy-command 'avy-goto-line)

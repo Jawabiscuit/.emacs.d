@@ -42,12 +42,6 @@
       (define-key map (kbd "C-<prior>") 'scroll-other-window-down)    ; prior = page up    
       (define-key map (kbd "M-:") 'View-back-to-mark)
       (define-key map (kbd "M-;") 'exchange-point-and-mark)
-      (define-key map (kbd "<f9>") 'first-error)
-      (define-key map (kbd "<f10>") 'previous-error)
-      (define-key map (kbd "<f11>") 'next-error)
-      (define-key map (kbd "M-n") 'next-error)
-      (define-key map (kbd "M-N") 'previous-error)
-      (define-key map (kbd "M-g") 'goto-line)
       (define-key map (kbd "M-j") 'imenu)
       (define-key map (kbd "S-<down>") 'scroll-up-in-place)
       (define-key map (kbd "S-<up>") 'scroll-down-in-place)

@@ -161,11 +161,13 @@ configuration.
 Use general.el to define keybindings. It has made several improvements over
 bind-key, including a built-in support for which-key.
 
+This also adds support for =:general= keyword in use-package directives
+
+=general-describe-keybindings= will show a helpful table of defined keys
+
 #+begin_src emacs-lisp
 (use-package general)
 #+end_src
-
-This also adds support for =:general= keyword in use-package directives
 
 Allow use of =:wk= keyword in general.el keybinding definitions
 
@@ -187,11 +189,17 @@ Allow use of =:wk= keyword in general.el keybinding definitions
     'jawa/bind-register)
 #+end_src
 
+**** M-g: Jump
+
+#+begin_src emacs-lisp
+  (general-create-definer jawa/bind-jump :prefix "M-g")
+#+end_src
+
 **** M-r: Registers
 
 #+begin_src emacs-lisp
-(general-def
-  "M-r" (general-simulate-key "C-x r"))
+;; (general-def
+;;   "M-r" (general-simulate-key "C-x r"))
 #+end_src
 
 *** Non-standard prefix key definers
@@ -447,8 +455,7 @@ Dependency: [[*Install packages if they're missing][setup packages]]
 Dependency: [[*Install packages if they're missing][setup packages]]
 
 #+BEGIN_SRC emacs-lisp
-(require 'setup-gitgutter)
-;; (global-git-gutter-mode +1)
+(jawa/require 'setup-gitgutter)
 #+END_SRC
 
 
