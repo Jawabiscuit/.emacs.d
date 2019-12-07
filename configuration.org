@@ -209,7 +209,7 @@ Allow use of =:wk= keyword in general.el keybinding definitions
 #+end_src
 
 
-** Install packages missing packages
+** Install packages
 
 Requirements: [[core/setup.el][setup.el: jawa/require]]
 
@@ -224,10 +224,10 @@ The bulk of the packages to install
 
 Requirements: [[*Improved keybinding][setup keybindings]] 
 
-Setup a bunch of useful features
+Setup a bunch of useful features (Disabled for now)
 
 #+begin_src emacs-lisp
-(jawa/require 'setup-meta)
+;; (jawa/require 'setup-meta)
 #+end_src
 
 
@@ -281,32 +281,14 @@ faces and the like are done here
 #+END_SRC
 
 
-** Activate packages
-
-Dependency: [[*Install packages if they're missing][setup packages]]
-
-#+BEGIN_SRC emacs-lisp
-(eval-after-load 'magit '(require 'setup-magit))
-
-(require 'magit-gitflow)    ; gitflow extension for magit
-(add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
-
-(require 'setup-smartparens); Automatic insertion, wrapping and paredit-like navigation with user defined pairs.
-
-(require 'multiple-cursors) ; Multiple cursors for Emacs.
-
-(require 'smex)             ; M-x interface with Ido-style fuzzy matching.
-(smex-initialize)
-
-(require 'expand-region)    ; Increase selected region by semantic units.
-#+END_SRC
-
-
 ** Org-mode
 
 Dependency: [[*Improved keybinding][general]]
 
 #+BEGIN_SRC emacs-lisp
+;; Used alot in setup-org-starter
+(use-package posframe)
+
 (jawa/require 'setup-org t)
 (jawa/require 'setup-org-starter)
 #+END_SRC
@@ -417,10 +399,10 @@ Dependency: [[*Install packages if they're missing][setup packages]]
 (ido-mode 1)
 (ido-everywhere 1)
 (flx-ido-mode 1)
-
 ;; disable ido faces to see flx highlights.
 (setq ido-enable-flex-matching t)
 (setq ido-use-faces nil)
+;; (setq flx-ido-use-faces nil)
 #+END_SRC
 
 
@@ -442,17 +424,7 @@ Dependency: [[*Install packages if they're missing][setup packages]]
 #+END_SRC
 
 
-** Setup Counsel, Ivy, Swiper
-
-#+BEGIN_SRC emacs-lisp
-(ivy-mode 1)
-(counsel-mode 1)
-#+END_SRC
-
-
 ** Git gutter global minor mode
-
-Dependency: [[*Install packages if they're missing][setup packages]]
 
 #+BEGIN_SRC emacs-lisp
 (jawa/require 'setup-gitgutter)
@@ -538,66 +510,5 @@ Mel documentation lookup
   ;;     ad-do-it
   ;;     ))
 #+END_SRC
-
-
-** Smartparens
-
-Dependency: [[*Install packages if they're missing][setup packages]]
-
-#+BEGIN_SRC emacs-lisp
-(add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
-(add-hook 'org-mode-hook #'smartparens-mode)
-(add-hook 'markdown-mode-hook #'smartparens-mode)
-(add-hook 'python-mode-hook #'smartparens-mode)
-(add-hook 'c++-mode-hook #'smartparens-mode)
-(add-hook 'js-mode-hook #'smartparens-mode)
-
-;; elisp comment highlighting
-;; Redefine this global pair (`LaTex') to a new value locally
-(sp-local-pair 'emacs-lisp-mode "`" "'")
-
-;; New pair
-(sp-pair "<" ">")
-
-;; Local pairs can be removed by calling `sp-local-pair' with optional keyword argument `:actions' with value `:rem'
-;; (sp-local-pair 'LaTeX-mode "`" nil :actions :rem)
-
-;; Create a wrapping
-(sp-pair "(" ")" :wrap "C-(")
-;; Usage
-;;
-;; |foobar
-;; hit C-(
-;; becomes (|foobar)
-#+END_SRC
-
-
-** Yasnippet
-
-Dependency: [[*Install packages if they're missing][setup packages]]
-Requirements: [[*Improved keybinding][setup keybindings]]
-
-#+BEGIN_SRC emacs-lisp
-(add-hook 'emacs-lisp-mode-hook #'yas-minor-mode)
-(add-hook 'org-mode-hook #'yas-minor-mode)
-(add-hook 'python-mode-hook #'yas-minor-mode)
-#+END_SRC
-
-=ivy-yasnippet= for the superior snippet choosing experience!
-
-#+begin_src emacs-lisp
-(jawa/bind-user "y" 'ivy-yasnippet)
-(jawa/bind-register "n" 'yas-new-snippet)
-#+end_src
-
-
-** Blah
-:PROPERTIES:
-:CREATED_TIME: [2019-12-03 Tue 21:01]
-:END:
-:LOGBOOK:
-CLOCK: [2019-12-03 Tue 21:01]--[2019-12-03 Tue 21:01] =>  0:00
-:END:
-
 
 

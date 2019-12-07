@@ -4,8 +4,10 @@
   (defun jawa/visit-yas-snippet-dir ()
     (interactive)
     (find-file (car yas-snippet-dirs)))
-  (yas-global-mode 1)
-)
+  ;; (add-hook 'emacs-lisp-mode-hook #'yas-minor-mode)
+  ;; (add-hook 'org-mode-hook #'yas-minor-mode)
+  ;; (add-hook 'python-mode-hook #'yas-minor-mode)
+  (yas-global-mode 1))
 
 (use-package yasnippet-snippets
   :after yasnippet
@@ -33,21 +35,18 @@
   :config
   ;; Load all snippets. You need to make sure that all snippet
   ;; directories are added beforehand.
-  (yas-reload-all)
-)
+  (yas-reload-all))
 
 (use-package auto-yasnippet
   ;; :commands (aya-create aya-expand)
 )
 
-(use-package yankpad
-  :config
-  (jawa/bind-register
-    "M-y" #'yankpad-repeat)
-)
-
 (use-package ivy-yasnippet
+  ;; When you use the :commands keyword, it creates autoloads for
+  ;; those commands and defers loading of the module until they are used
   :commands (ivy-yasnippet)
-)
+  :config
+  (jawa/bind-user "y" 'ivy-yasnippet)
+  (jawa/bind-register "n" 'yas-new-snippet))
 
 (provide 'setup-yasnippet)
