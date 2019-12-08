@@ -160,7 +160,8 @@
   :straight (mini-modeline :host github :repo "kiennq/emacs-mini-modeline")
   :after smart-mode-line
   :config
-  ;; This currently isn't displaying `mini-modeline' correctly on startup
+  (setq mini-modeline-echo-duration 8)
+  (setq mini-modeline--echo-keystrokes t)
   (mini-modeline-mode t))
 
 ;; Yasnippet
