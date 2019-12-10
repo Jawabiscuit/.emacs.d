@@ -17,7 +17,8 @@
 ;; Time of day
 (defun insert-timeofday ()
    (interactive "*")
-   (insert (format-time-string "** Log <%a, %d %b %y: %I:%M%p>"))
+   ;; (insert (format-time-string "** Log <%a, %d %b %y: %I:%M%p>"))
+   (insert (format-time-string "** Log <%a, %Y-%m-%d (%I:%M %p)>"))
 )
 
 ;; Todo loading

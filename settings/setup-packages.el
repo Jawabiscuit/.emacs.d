@@ -44,16 +44,17 @@
 ;; Auto closure for parenthesis and other characters
 (use-package smartparens
   :config
-  (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
-  (add-hook 'org-mode-hook #'smartparens-mode)
-  (add-hook 'markdown-mode-hook #'smartparens-mode)
-  (add-hook 'python-mode-hook #'smartparens-mode)
-  (add-hook 'c++-mode-hook #'smartparens-mode)
-  (add-hook 'js-mode-hook #'smartparens-mode)
+  (add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
+  (add-hook 'org-mode-hook 'smartparens-mode)
+  (add-hook 'markdown-mode-hook 'smartparens-mode)
+  (add-hook 'python-mode-hook 'smartparens-mode)
+  (add-hook 'c++-mode-hook 'smartparens-mode)
+  (add-hook 'js-mode-hook 'smartparens-mode)
   
   ;; elisp comment highlighting
   ;; Redefine this global pair (`LaTex') to a new value locally
   (sp-local-pair 'emacs-lisp-mode "`" "'")
+  (sp-local-pair 'org-mode "=" "=" :wrap "C-+")
   
   ;; New pair
   (sp-pair "<" ">")

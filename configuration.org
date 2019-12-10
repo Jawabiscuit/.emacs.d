@@ -113,22 +113,6 @@ configuration.
 #+END_SRC
 
 
-** Log
-
-#+BEGIN_SRC emacs-lisp
-(setq casey-log-file
-      (expand-file-name "log.org" user-emacs-directory))
-#+END_SRC
-
-
-** Todo
-
-#+BEGIN_SRC emacs-lisp
-(setq casey-todo-file
-      (expand-file-name "todo.org" user-emacs-directory))
-#+END_SRC
-
-
 ** Load all files in defuns-dir
 
 #+BEGIN_SRC emacs-lisp
@@ -238,6 +222,7 @@ Setup a bunch of useful features (Disabled for now)
       (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 #+END_SRC
+
 
 
 ** Appearance
