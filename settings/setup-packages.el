@@ -42,33 +42,7 @@
 (use-package restclient)
 
 ;; Auto closure for parenthesis and other characters
-(use-package smartparens
-  :config
-  (add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
-  (add-hook 'org-mode-hook 'smartparens-mode)
-  (add-hook 'markdown-mode-hook 'smartparens-mode)
-  (add-hook 'python-mode-hook 'smartparens-mode)
-  (add-hook 'c++-mode-hook 'smartparens-mode)
-  (add-hook 'js-mode-hook 'smartparens-mode)
-  
-  ;; elisp comment highlighting
-  ;; Redefine this global pair (`LaTex') to a new value locally
-  (sp-local-pair 'emacs-lisp-mode "`" "'")
-  (sp-local-pair 'org-mode "=" "=" :wrap "C-+")
-  
-  ;; New pair
-  (sp-pair "<" ">")
-  
-  ;; Local pairs can be removed by calling `sp-local-pair' with optional keyword argument `:actions' with value `:rem'
-  ;; (sp-local-pair 'LaTeX-mode "`" nil :actions :rem)
-  
-  ;; Create a wrapping
-  ;; Usage
-  ;;
-  ;; |foobar
-  ;; hit C-(
-  ;; becomes (|foobar)
-  (sp-pair "(" ")" :wrap "C-("))
+(jawa/require 'setup-smartparens)
 
 ;; Smart M-x
 (use-package smex
