@@ -1,21 +1,12 @@
 
-;; Ivy
-(use-package ivy
-  :demand
-  :config
-  (setq ivy-use-virtual-buffers t
-        ivy-count-format "%d/%d ")
-  (setq enable-recursive-minibuffers t)
-  ;; enable this if you want `swiper' to use it
-  ;; (setq search-default-mode #'char-fold-to-regexp)
-  (ivy-mode 1)
-)
-
 ;; LaTeX
 (straight-use-package 'auctex)
 
 ;; Diminished modes from modeline
 (use-package diminish)
+
+;; Ivy
+(jawa/require 'setup-ivy)
 
 ;; Increase selected region by semantic units
 (use-package expand-region)
@@ -151,5 +142,8 @@
   (jawa/bind-register
     "M-y" #'yankpad-repeat)
   (jawa/require 'setup-yankpad))
+
+;;
+;; (jawa/require 'setup-all-the-icons)
 
 (provide 'setup-packages)

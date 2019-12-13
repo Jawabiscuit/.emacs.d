@@ -60,25 +60,6 @@
       (define-key map (kbd "M-]") 'end-kbd-macro)
       (define-key map (kbd "M-'") 'call-last-kbd-macro)
 
-      ;; Counsel, Ivy, Swiper
-      (define-key map (kbd "C-s") 'swiper)
-      (define-key map (kbd "C-c C-r") 'ivy-resume)
-      (define-key map (kbd "<f6>") 'ivy-resume)
-      ;; Provided by `counsel-mode'
-      ;; (define-key map (kbd "M-x") 'counsel-M-x)
-      ;; (define-key map (kbd "C-x C-f") 'counsel-find-file)
-      ;; (define-key map (kbd "<f1> f") 'counsel-describe-function)
-      ;; (define-key map (kbd "<f1> v") 'counsel-describe-variable)
-      ;; (define-key map (kbd "<f1> l") 'counsel-find-library)
-      ;; (define-key map (kbd "<f2> i") 'counsel-info-lookup-symbol)
-      (define-key map (kbd "H-u") 'counsel-unicode-char)
-      ;; Find file in the current Git repository.
-      (define-key map (kbd "C-c g") 'counsel-git)
-      (define-key map (kbd "C-c j") 'counsel-git-grep)
-      (define-key map (kbd "C-c k") 'counsel-ag)
-      (define-key map (kbd "C-x l") 'counsel-locate)
-      (define-key map (kbd "C-S-o") 'counsel-rhythmbox)
-
       ;; Experimental multiple-cursors
       (define-key map (kbd "C-S-c C-S-c") 'mc/edit-lines)
       (define-key map (kbd "C-S-c C-e") 'mc/edit-ends-of-lines)
@@ -111,8 +92,8 @@
       (define-key map (kbd "C-x g") 'magit-status)
 
       ;; Smex
-      (define-key map (kbd "M-x") 'smex)
-      (define-key map (kbd "M-X") 'smex-major-mode-commands)
+      ;; (define-key map (kbd "M-x") 'smex)
+      ;; (define-key map (kbd "M-X") 'smex-major-mode-commands)
     map)
   "ja-keys-minor-mode keymap")
 
