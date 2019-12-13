@@ -155,15 +155,15 @@
 )
 
 ;; Hide the mode-line and display its information in minibuffer
-(use-package mini-modeline
-  :init
-  (setq mini-modeline-enhance-visual nil)
-  :straight (mini-modeline :host github :repo "kiennq/emacs-mini-modeline")
-  :after smart-mode-line
-  :config
-  (setq mini-modeline-echo-duration 8)
-  (setq mini-modeline--echo-keystrokes t)
-  (mini-modeline-mode t))
+;; (use-package mini-modeline
+;;   :init
+;;   (setq mini-modeline-enhance-visual nil)
+;;   :straight (mini-modeline :host github :repo "kiennq/emacs-mini-modeline")
+;;   :after smart-mode-line
+;;   :config
+;;   (setq mini-modeline-echo-duration 8)
+;;   (setq mini-modeline--echo-keystrokes t)
+;;   (mini-modeline-mode t))
 
 ;; Yasnippet
 (jawa/require 'setup-yasnippet)
