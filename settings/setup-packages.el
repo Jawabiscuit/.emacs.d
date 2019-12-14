@@ -5,8 +5,17 @@
 ;; Diminished modes from modeline
 (use-package diminish)
 
-;; Ivy
+;; Project management
+(use-package projectile)
+
+;; A generic completion mechanism
 (jawa/require 'setup-ivy)
+
+;; 
+(use-package posframe)
+
+;; Tie related commands into a family of short bindings with a prefix
+(jawa/require 'setup-hydra)
 
 ;; Increase selected region by semantic units
 (use-package expand-region)
@@ -35,18 +44,14 @@
 ;; Auto closure for parenthesis and other characters
 (jawa/require 'setup-smartparens)
 
-;; Smart M-x
+;; Smart M-x (Deactivated)
 (use-package smex
+  :disabled t
   :config
   (smex-initialize))
 
 ;; Make emacs scroll smoothly
 (use-package smooth-scrolling)
-
-;; Various completion functions using Ivy, Swiper for search
-(use-package counsel
-  :config
-  (counsel-mode 1))
 
 ;; Emacs Major mode for Markdown-formatted files
 (use-package markdown-mode
@@ -55,9 +60,6 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "pandoc")
 )
-
-;; Pandoc dependency
-(use-package hydra)
 
 ;; Pandoc-mode is for interacting with pandoc, a program that converts
 ;; text files written in one markup language to another
@@ -90,9 +92,6 @@
 (use-package polymode)
 
 ;; END EIN dependencies
-
-;; Project management
-(use-package projectile)
 
 ;; Fuzzy matching
 (use-package flx-ido)
