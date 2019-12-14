@@ -1,4 +1,5 @@
 ;; A utility package to collect various Icon Fonts and propertize them within Emacs.
+;; NOTE: It is necessary to install fonts manually on Windows after they are downloaded.
 (use-package all-the-icons
   :general
   ;; ("C-x 8 i" #'all-the-icons-ivy)

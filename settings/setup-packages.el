@@ -144,6 +144,6 @@
   (jawa/require 'setup-yankpad))
 
 ;;
-;; (jawa/require 'setup-all-the-icons)
+(jawa/require 'setup-all-the-icons)
 
 (provide 'setup-packages)
