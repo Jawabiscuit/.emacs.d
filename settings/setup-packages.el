@@ -1,4 +1,10 @@
 
+;; Set exec path from shell
+(use-package exec-path-from-shell
+  :config
+  (when (memq window-system '(mac ns x))
+     (exec-path-from-shell-initialize)))
+
 ;; LaTeX
 (straight-use-package 'auctex)
 
@@ -103,7 +109,25 @@
 (use-package epc)
 
 ;; Brains of Python auto-complete
-(use-package jedi)
+(use-package jedi
+  :init
+  ;; Uncomment next line if you like the menu right away
+  (setq ac-show-menu-immediately-on-auto-complete t)
+  ;; Can also express in terms of ac-delay var, e.g.:
+  ;;   (setq ac-auto-show-menu (* ac-delay 2))
+  ;; Enable Jedi setup on mode start
+  (general-add-hook 'python-mode-hook 'jedi:setup)
+  :config
+  ;; Don't let tooltip show up automatically
+  (setq jedi:get-in-function-call-delay 10000000)
+  ;; Start completion at method dot
+  (setq jedi:complete-on-dot t)
+  :bind
+  (("M-." . jedi:goto-definition)
+   ("M-," . jedi:goto-definition-pop-marker)
+   ("M-?" . jedi:show-doc)
+   ("M-/" . jedi:get-in-function-call))
+)
 
 ;; Mel mode dependencies
 (use-package browse-url-dwim)

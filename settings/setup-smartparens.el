@@ -6,8 +6,6 @@
   :config
   (require 'smartparens-config)
   (--each '(css-mode-hook
-            ;; groovy-mode
-            ;; scala-mode
             restclient-mode-hook
             js-mode-hook
             java-mode-hook

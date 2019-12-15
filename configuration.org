@@ -396,7 +396,7 @@ Dependency: [[*Install packages if they're missing][setup packages]]
 Dependency: [[*Install packages if they're missing][setup packages]]
 
 #+BEGIN_SRC emacs-lisp
-(require 'jedi-starter)
+(setq jedi-config:use-system-python t)
 #+END_SRC
 
 
