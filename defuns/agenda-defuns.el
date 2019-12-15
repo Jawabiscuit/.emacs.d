@@ -9,7 +9,6 @@
       (org-agenda-redo t)
       (beginning-of-buffer))))
 
-;; TODO: Maybe make a macro
 (defun org-buffer-todo ()
   (interactive)
   "Creates a todo-list for the current buffer.
@@ -19,7 +18,6 @@ Equivalent to the sequence: org-agenda,
     (org-agenda-set-restriction-lock 'file)
     (org-todo-list)))
 
-;; TODO: Maybe make a macro
 (defun org-buffer-agenda ()
   (interactive)
   "Creates an agenda for the current buffer.
@@ -29,7 +27,6 @@ Equivalent to the sequence: org-agenda,
     (org-agenda-set-restriction-lock 'file)
     (org-agenda-list)))
 
-;; TODO: Maybe make a macro
 (defun org-buffer-day-agenda ()
   (interactive)
   "Creates an agenda for the current buffer.

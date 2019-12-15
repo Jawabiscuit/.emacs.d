@@ -31,9 +31,7 @@
   ;; (ivy-height 10)
   (ivy-initial-inputs-alist nil "Don't prepend `^' to any of the ivy prompts")
   (projectile-completion-system 'ivy)
-  (ivy-ignore-buffers (quote ("\\` ")))
-  
-)
+  (ivy-ignore-buffers (quote ("\\` "))))
 
 (use-package ivy-filthy-rich
   :straight (ivy-filthy-rich :host github :repo "akirak/ivy-filthy-rich"
@@ -42,9 +40,8 @@
   :after ivy
   :config
   (ivy-filthy-rich-mode t)
-  ;; :custom
-  ;; (ivy-filthy-rich-max-length 120)
-)
+  :custom
+  (ivy-filthy-rich-max-length 120))
 
 ;; Various completion functions using Ivy, Swiper for search
 (use-package counsel

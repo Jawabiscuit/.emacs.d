@@ -109,6 +109,7 @@
 (use-package epc)
 
 ;; Brains of Python auto-complete
+;; IMPORTANT: Jedi not fully compatible with `major-mode-hydra'
 (use-package jedi
   :init
   ;; Uncomment next line if you like the menu right away

@@ -216,7 +216,8 @@ Requirements: [[*Improved keybinding][setup keybindings]]
   (unless (daemonp) (desktop-save-mode t))
   :custom
   (desktop-save 'if-exists)
-  (desktop-restore-reuses-frames 'keep))
+  ;;(desktop-restore-reuses-frames 'keep)
+)
 #+end_src
 
 Setup a bunch of useful features (Disabled for now)

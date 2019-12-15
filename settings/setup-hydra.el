@@ -1,11 +1,30 @@
 (use-package hydra)
+;; NOTE: depends on hydra and posframe
+(use-package hydra-posframe
+  :straight (hydra-posframe :host github :repo "Ladicle/hydra-posframe")
+  :hook (after-init . hydra-posframe-mode))
+(use-package major-mode-hydra
+  :bind
+  ("M-SPC" . major-mode-hydra))
 
-(use-package pretty-hydra)
+;; Define some major mode hydras
+(major-mode-hydra-define emacs-lisp-mode nil
+  ("Eval"
+   (("b" eval-buffer "buffer")
+    ("e" eval-defun "defun")
+    ("r" eval-region "region"))
+   "REPL"
+   (("I" ielm "ielm"))
+   "Test"
+   (("t" ert "prompt")
+    ("T" (ert t) "all")
+    ("F" (ert :failed) "failed"))
+   "Doc"
+   (("d" describe-foo-at-point "thing-at-pt")
+    ("f" describe-function "function")
+    ("v" describe-variable "variable")
+    ("i" info-lookup-symbol "info lookup"))))
 
-(use-package major-mode-hydra)
-
-;;;; Define some (but not all) major mode hydras
-;; These major-mode hydras are mostly for intended for mnemonics.
 (major-mode-hydra-define 'Info-mode
   (:title "Info navigation")
   ("Navigation"
