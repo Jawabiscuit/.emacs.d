@@ -6,10 +6,6 @@
 	path = site-lisp/ox-twbs
 	url = https://github.com/marsmining/ox-twbs.git
         ignore = dirty
-[submodule "site-lisp/jedi-starter"]
-	path = site-lisp/jedi-starter
-	url = https://github.com/Jawabiscuit/jedi-starter.git
-        ignore = dirty
 [submodule "site-lisp/emacs-ipython-notebook"]
 	path = site-lisp/emacs-ipython-notebook
 	url = https://github.com/millejoh/emacs-ipython-notebook.git
