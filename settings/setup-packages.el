@@ -17,8 +17,11 @@
 ;; A generic completion mechanism
 (jawa/require 'setup-ivy)
 
-;; 
+;; Popup frame
 (use-package posframe)
+
+;; Icons everywhere
+(jawa/require 'setup-all-the-icons)
 
 ;; Tie related commands into a family of short bindings with a prefix
 (jawa/require 'setup-hydra)
@@ -166,8 +169,5 @@
   (jawa/bind-register
     "M-y" #'yankpad-repeat)
   (jawa/require 'setup-yankpad))
-
-;;
-(jawa/require 'setup-all-the-icons)
 
 (provide 'setup-packages)

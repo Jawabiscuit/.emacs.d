@@ -29,8 +29,8 @@
       (define-key map (kbd "C-c <up>") 'rotate-yank-pointer)
       (define-key map (kbd "C-q") 'append-as-kill)
       (define-key map (kbd "C-Q") 'copy-region-as-kill)
-      (define-key map (kbd "C-c h") 'casey-replace-string)
-      (define-key map (kbd "C-c H") 'casey-replace-in-region)
+      ;; (define-key map (kbd "C-c h") 'casey-replace-string)
+      ;; (define-key map (kbd "C-c H") 'casey-replace-in-region)
 
       ;; Navigation
       (define-key map (kbd "M-w") 'other-window)
@@ -47,12 +47,19 @@
       (define-key map (kbd "S-<up>") 'scroll-down-in-place)
 
       ;; Tools
-      (define-key map (kbd "C-c C-q") 'quick-calc)
+      ;; (define-key map (kbd "C-c C-q") 'quick-calc)
+      (jawa/bind-user "q" 'quick-calc)
+
       ;; Window
-      (define-key map (kbd "C-c M") 'maximize-frame)
-      (define-key map (kbd "C-c m") 'minimize-window)
+      (jawa/bind-user "M" 'maximize-frame)
+      (jawa/bind-user "m" 'minimize-frame)
+      ;; (define-key map (kbd "C-c M") 'maximize-frame)
+      ;; (define-key map (kbd "C-c m") 'minimize-window)
+
       ;; Selection
-      (define-key map (kbd "C-=") 'er/expand-region)
+      (jawa/bind-user "=" 'er/expand-region)
+      ;; (define-key map (kbd "C-=") 'er/expand-region)
+
       ;; Buffer
       (define-key map (kbd "M-r") 'revert-buffer)
       ;; Macro editing

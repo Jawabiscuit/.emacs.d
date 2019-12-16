@@ -11,6 +11,15 @@
 ;; (defadvice kill-whole-line (after fix-cookies activate)
 ;;   (myorg-update-parent-cookie))
 
+(use-package org-link-edit
+  :straight (org-link-edit :host github :repo "kyleam/org-link-edit"))
+
+;; Pretty bullets :) instead of ugly asterisks :(
+(use-package org-bullets
+  :init
+  (add-hook 'org-mode-hook #'org-bullets-mode)
+)
+
 (setq org-directory "~/Documents/org")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
 
@@ -29,12 +38,6 @@
      (python . t)
      (ditaa . t)
 )))
-
-;; Pretty bullets :) instead of ugly asterisks :(
-(use-package org-bullets
-  :init
-  (add-hook 'org-mode-hook #'org-bullets-mode)
-)
 
 ;; Hide leading asterisks and indent correctly
 (setq org-hide-leading-stars t)
@@ -199,5 +202,33 @@
 ;; Ellipsis
 (setq org-ellipsis "»")
 (custom-set-faces '(org-ellipsis ((t (:underline nil)))))
+
+;; Org mode links
+;; `https://github.com/abo-abo/hydra/wiki/Org-mode-links'
+(defun jk/unlinkify ()
+  "Replace an org-link with the description, or if this is absent, the path."
+  (interactive)
+  (let ((eop (org-element-context)))
+    (when (eq 'link (car eop))
+      (message "%s" eop)
+      (let* ((start (org-element-property :begin eop))
+             (end (org-element-property :end eop))
+             (contents-begin (org-element-property :contents-begin eop))
+             (contents-end (org-element-property :contents-end eop))
+             (path (org-element-property :path eop))
+             (desc (and contents-begin
+                        contents-end
+                        (buffer-substring contents-begin contents-end))))
+        (setf (buffer-substring start end)
+              (concat (or desc path)
+                      (make-string (org-element-property :post-blank eop) ?\s)))))))
+
+(pretty-hydra-define+ hydra-org ()
+  ("Web"
+  (("fj" org-link-edit-forward-slurp "forward slurp")
+   ("fk" org-link-edit-forward-barf "forward barf")
+   ("fu" org-link-edit-backward-slurp "backward slurp")
+   ("fi" org-link-edit-backward-barf "backward barf")
+   ("fr" jk/unlinkify "remove link"))))
 
 (provide 'setup-org)

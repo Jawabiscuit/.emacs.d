@@ -197,7 +197,7 @@ Allow use of =:wk= keyword in general.el keybinding definitions
 
 Requirements: [[core/setup.el][setup.el: jawa/require]]
 
-The bulk of the packages to install
+The bulk of packages to install
 
 #+BEGIN_SRC emacs-lisp
 (require 'setup-packages)
