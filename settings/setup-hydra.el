@@ -3,6 +3,7 @@
   :bind (("C-c h o" . hydra-org/body)
          ("C-c h t" . hydra-toggles/body)
          ("C-c h w" . hydra-windows/body)
+         ("C-c h p" . hydra-projectile/body)
 ))
 
 (use-package hydra-posframe
@@ -91,9 +92,11 @@
    :title hydra-toggles-title
    :foreign-keys warn
    :color blue
-   :quit-key "q")
+   :quit-key "q"
+  )
   ("Focus"
-   (("v" view-mode :toggle t))
+   (("v" view-mode :toggle t)
+   )
    "Info/check/linting"
    (("fd" eldoc-mode :toggle t)
     ("fc" flycheck-mode :toggle t)
@@ -104,10 +107,11 @@
     ("A" apheleia-global-mode :toggle t)
     ("ld" lsp-ui-doc-mode :toggle t)
     ("lp" lsp-ui-peek-mode :toggle t)
-    ("ls" lsp-ui-sideline-mode :toggle t))
+    ("ls" lsp-ui-sideline-mode :toggle t)
+   )
    "Edit/assistance"
    (("s" smartparens-mode :toggle t)
-    ("p" show-paren-mode :toggle t)
+    ("ep" show-paren-mode :toggle t)
     ("S" smartparens-strict-mode :toggle t)
     ("y" lispy-mode :toggle t)
     ("el" electric-layout-mode :toggle t)
@@ -115,14 +119,17 @@
     ("eq" electric-quote-local-mode :toggle t)
     ("ea" aggressive-indent-mode :toggle t)
     ("o" origami-mode :toggle t)
-    ("W" whitespace-cleanup-mode))
+    ("W" whitespace-cleanup-mode)
+   )
    "Visual"
    (("w" whitespace-mode :toggle t)
     ("r" rainbow-delimiters-mode :toggle t)
     ("p" page-break-lines-mode :toggle t)
     ("n" linum-mode :toggle t)
     ("hi" highlight-indent-guides-mode :toggle t)
-    ("hc" fci-mode :toggle t))
+    ("hc" fci-mode :toggle t)
+    ("iv" ivy-filthy-rich-mode :toggle t)
+   )
    ;; "LSP"
    ;; (("lh" lsp-describe-session)
    ;;  ("lR" lsp-restart-workspace)
@@ -137,7 +144,8 @@
    :title hydra-org-title
    :foreign-keys warn
    ;; :color teal
-   :quit-key "q")
+   :quit-key "q"
+  )
   ("Action"
    (("a" org-agenda "Agenda")
     ("c" org-capture "Capture")
@@ -177,18 +185,45 @@
    :post (setq which-key-inhibit nil)
    :title hydra-windows-title
    :foreign-keys warn
-   :quit-key "q")
+   :quit-key "q"
+  )
   ("Window"
-   (("b" balance-windows "balance")
-    ("i" enlarge-window "heighten")
-    ("j" shrink-window-horizontally "narrow")
-    ("k" shrink-window "lower")
-    ("l" enlarge-window-horizontally "widen")
-    ("s" switch-window-then-swap-buffer "swap" :color teal))
+   (("b" balance-windows "Balance")
+    ("i" enlarge-window "Scale up")
+    ("j" shrink-window-horizontally "Scale down X")
+    ("k" shrink-window "Scale down")
+    ("l" enlarge-window-horizontally "Scale up X")
+   )
    "Zoom"
    (("-" text-scale-decrease "out")
     ("+" text-scale-increase "in")
     ("=" (text-scale-increase 0) "reset"))))
+
+(defvar hydra-projectile-title (with-faicon "rocket" "Projectile" 1.5 -0.05))
+
+(pretty-hydra-define hydra-projectile
+  (:pre (setq which-key-inhibit t)
+   :post (setq which-key-inhibit nil)
+   :title hydra-projectile-title
+   :color green
+   :foreign-keys warn
+   :quit-key "q"
+  )
+  ("Buffers"
+   (("b" counsel-projectile-switch-to-buffer "Switch to buffer" :exit t)
+    ("k" projectile-kill-buffers "Kill all" :exit t)
+    ("S" projectile-save-project-buffers "Save all" :exit t))
+   "Find"
+   (("d" counsel-projectile-find-dir "Find directory" :exit t)
+    ("D" projectile-dired "Dired root" :exit t)
+    ("f" counsel-projectile-find-file "Find file" :exit t)
+    ("p" counsel-projectile-switch-project "Switch project" :exit t))
+   "Other"
+   (("i" projectile-invalidate-cache "Reset cache" :exit t))
+   "Search"
+   (("r" projectile-replace "Search/replace")
+    ("R" projectile-replace-regexp "Regexp replace")
+    ("s" counsel-ag "Ag search"))))
 
 (provide 'setup-hydra)
 

@@ -165,4 +165,6 @@
      (all-the-icons-ivy . ivy-posframe-display-at-point)
      (t . akirak/ivy-posframe-display-smart-center))))
 
+(use-package counsel-projectile)
+
 (provide 'setup-ivy)

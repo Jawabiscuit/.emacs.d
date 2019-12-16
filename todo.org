@@ -8,14 +8,22 @@
 #+TAGS: 
 
 
-* DONE Configuration [1/1]
-  CLOSED: [2018-09-28 Fri 20:37]
-** [X] sane-defaults [5/5]
+* DONE Configuration [0/0]
+CLOSED: [2019-12-16 Mon 09:42]
+
+** sane-defaults [5/5]
  - [X] install smooth-scrolling
  - [X] install undo-tree
  - [X] +install uniquify+
  - [X] [[file:org/getting-started-with-org-mode.org::*Package%20"minted"%20for%20syntax%20highlighted%20export]["minted" for syntax highlighted export]]
  - [X] init.org
+
+
+** hydras [3/3]
+- [X] find dir
+- [X] find file
+- [X] switch project
+  
 
 * DONE Org-mode [0/1]
 CLOSED: [2019-07-30 Tue 21:40]
@@ -28,6 +36,7 @@ CLOSED: [2019-07-30 Tue 21:40]
  - [X] +Install [[https://hunspell.github.io/][hunspell]]+
  - [X] More Todo statuses, like Waiting...
  - [X] +Syntax highlighting completely working in LaTeX+
+
 
 * DONE Wish List [4/4]
   CLOSED: [2018-10-08 Mon 21:57]

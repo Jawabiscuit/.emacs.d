@@ -26,6 +26,10 @@
 ;; Tie related commands into a family of short bindings with a prefix
 (jawa/require 'setup-hydra)
 
+;; Window switching convenience
+(use-package switch-window
+  :straight (switch-window :host github :repo "dimitri/switch-window"))
+
 ;; Increase selected region by semantic units
 (use-package expand-region)
 
