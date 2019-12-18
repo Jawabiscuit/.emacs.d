@@ -1,4 +1,34 @@
+;;; `setup-hydra.el' --- Setup hydra packages and pretty hydras  -*- lexical-binding: t -*-
 
+;; Author: Jonas Avrin
+;; Maintainer: Jonas Avrin
+;; Version: 0.0.1
+;; Package-Requires: (`all-the-icons')
+;; Homepage:
+;; Keywords:
+
+
+;; This file is not part of GNU Emacs
+
+;; This file is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 3, or (at your option)
+;; any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; For a full copy of the GNU General Public License
+;; see <http://www.gnu.org/licenses/>.
+
+
+;;; Commentary:
+
+;;
+
+;;; Code:
 (use-package hydra
   :bind (("C-c h o" . hydra-org/body)
          ("C-c h t" . hydra-toggles/body)
@@ -91,7 +121,7 @@
    :post (setq which-key-inhibit nil)
    :title hydra-toggles-title
    :foreign-keys warn
-   :color blue
+   ;; :color blue
    :quit-key "q"
   )
   ("Focus"
@@ -119,13 +149,18 @@
     ("eq" electric-quote-local-mode :toggle t)
     ("ea" aggressive-indent-mode :toggle t)
     ("o" origami-mode :toggle t)
-    ("W" whitespace-cleanup-mode)
+    ("W" whitespace-cleanup-mode :toggle t)
+    ("ew" toggle-word-wrap :toggle t)
+    ("et" toggle-truncate-lines :toggle t)
+    ("F" auto-fill-mode :toggle t) ; TODO: Toggle face does not change
+    ("F" auto-fill-mode :toggle t) ; TODO: Duplicate - displays only once
    )
    "Visual"
    (("w" whitespace-mode :toggle t)
     ("r" rainbow-delimiters-mode :toggle t)
     ("p" page-break-lines-mode :toggle t)
     ("n" linum-mode :toggle t)
+    ("g" global-git-gutter-mode :toggle t)
     ("hi" highlight-indent-guides-mode :toggle t)
     ("hc" fci-mode :toggle t)
     ("iv" ivy-filthy-rich-mode :toggle t)
@@ -225,5 +260,86 @@
     ("R" projectile-replace-regexp "Regexp replace")
     ("s" counsel-ag "Ag search"))))
 
-(provide 'setup-hydra)
+(defvar hydra-origami-title (with-faicon "connectdevelop" "Origami" 1.5 -0.05))
 
+(pretty-hydra-define hydra-origami
+  (:pre (setq which-key-inhibit t)
+   :post (setq which-key-inhibit nil)
+   :title hydra-origami-title
+   :color red
+   :hint nil
+   :foreign-keys warn
+   :quit-key "q"
+  )
+  ("State"
+    (("RET" origami-mode :toggle t)
+     ("u" origami-undo "Undo")
+     ("r" origami-redo "Redo")
+     ("x" origami-reset "Reset")
+    )
+   "Fold"
+    (("<" origami-open-node "Open")
+     (">" origami-close-node "Close")
+     ("f" origami-forward-toggle-node "Fwd toggle")
+     ("a" origami-toggle-all-nodes "All toggle")
+     ("s" origami-show-node "Show")
+     ("o" origami-show-only-node "Show Only" :exit t)
+     ("o" origami-show-only-node "Show Only" :exit t) ; TODO: Duplicate, displays only one
+    )
+   "Navigation"
+    (("k" origami-next-fold "Fwd >>")
+     ("j" origami-previous-fold "Bwd <<")
+    )))
+
+(defvar hydra-flycheck-title (with-faicon "check-circle" "Flycheck" 1.5 -0.05))
+
+(pretty-hydra-define hydra-flycheck
+  (:pre (setq which-key-inhibit t)
+   :post (setq which-key-inhibit nil)
+   :title hydra-flycheck-title
+   ;; :color red
+   :hint nil
+   :foreign-keys warn
+   :quit-key "q"
+  )
+  ("Misc"
+   (("RET" global-flycheck-mode :toggle t)
+    ("f" flycheck-error-list-set-filter "Filter")
+    ("s" flycheck-select-checker "Select checker")
+  )"Navigation"
+   (("j" flycheck-next-error "Next error")
+    ("k" flycheck-previous-error "Previous error")
+    ("<" flycheck-first-error "First error")
+    (">" flycheck-previous-error "Previous error")
+    ("g" avy-flycheck-goto-error "Goto error")
+    ("g" avy-flycheck-goto-error "Goto error") ; TODO: Duplicate, displays only one
+  )))
+
+(defvar hydra-flyspell-title (with-faicon "check-circle" "Flyspell" 1.5 -0.05))
+
+(defun akirak/turn-on-flyspell-mode-in-text-mode ()
+  "Turn flyspell on when hydra head is activated."
+  (when (derived-mode-p 'text-mode)
+    (flyspell-mode t)))
+
+(pretty-hydra-define hydra-flyspell
+  (:pre
+   (setq which-key-inhibit t)
+   :pre
+   (akirak/turn-on-flyspell-mode-in-text-mode)
+   :post (setq which-key-inhibit nil)
+   :title hydra-flyspell-title
+   :hint nil
+   :foreign-keys warn
+   :quit-key "q"
+  )
+  ("Auto-correct"
+   (("n" flyspell-goto-next-error "Next error")
+    ("p" flyspell-check-previous-highlighted-word "Auto correct previous highlighted")
+    ("b" flyspell-buffer "Check entire buffer")
+    ("c" flyspell-auto-correct-word "Current word")
+    ("c" flyspell-auto-correct-word "Current word") ; TODO: Duplicate, displays only one
+   )))
+
+(provide 'setup-hydra)
+;;; setup-hydra.el ends here

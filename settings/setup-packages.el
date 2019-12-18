@@ -1,3 +1,34 @@
+;;; `setup-packages.el' --- Where most packages are installed. -*- lexical-binding: t -*-
+
+;; Author: Jonas Avrin
+;; Maintainer: Jonas Avrin
+;; Version: 0.0.1
+;; Package-Requires: (`use-package')
+;; Homepage:
+;; Keywords:
+
+
+;; This file is not part of GNU Emacs
+
+;; This file is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 3, or (at your option)
+;; any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; For a full copy of the GNU General Public License
+;; see <http://www.gnu.org/licenses/>.
+
+
+;;; Commentary:
+
+;; `use-package' blocks should be tidy, or else converted to a setup file
+
+;;; Code:
 
 ;; Set exec path from shell
 (use-package exec-path-from-shell
@@ -5,17 +36,34 @@
   (when (memq window-system '(mac ns x))
      (exec-path-from-shell-initialize)))
 
-;; LaTeX
-(straight-use-package 'auctex)
+;; string manipulation library
+(use-package s)
+
+;; Library for working with xml via esxml and sxml
+(use-package esxml)
+
+;; Compatible layer for URL request in Emacs
+(use-package request)
+
+;; Functions and commands useful for retrieving web page content and processing it into
+;; Org-mode content
+(use-package org-web-tools)
+
+;; Flexible text folding
+(use-package origami
+  :bind (("C-c h f" . hydra-origami/body)))
+
+;; A generic completion mechanism
+(jawa/require 'setup-ivy)
+
+;; Jump around windows using character keys
+(jawa/require 'setup-avy)
 
 ;; Diminished modes from modeline
 (use-package diminish)
 
 ;; Project management
 (use-package projectile)
-
-;; A generic completion mechanism
-(jawa/require 'setup-ivy)
 
 ;; Popup frame
 (use-package posframe)
@@ -25,6 +73,21 @@
 
 ;; Tie related commands into a family of short bindings with a prefix
 (jawa/require 'setup-hydra)
+
+;; Standard auto-completion
+(jawa/require 'setup-auto-complete)
+
+;; Spell checker
+(jawa/require 'setup-spell-check)
+
+;; On-the-fly syntax checking
+(jawa/require 'setup-linting)
+
+;; Graphically indicate the fill column
+(use-package fill-column-indicator)
+
+;; LaTeX
+(straight-use-package 'auctex)
 
 ;; Window switching convenience
 (use-package switch-window
@@ -44,7 +107,7 @@
 ;; Gitflow extension for magit
 (use-package magit-gitflow
   :config
-  (add-hook 'magit-mode-hook 'turn-on-magit-gitflow))
+  :hook turn-on-magit-gitflow)
 
 ;; Multiple cursors for Emacs
 (use-package multiple-cursors)
@@ -80,9 +143,6 @@
 
 ;; BEGIN Emacs iPython notebook (EIN) dependencies
 
-;; string manipulation library
-(use-package s)
-
 ;; live browser JavaScript, CSS, and HTML interaction
 (use-package skewer-mode)
 
@@ -108,9 +168,6 @@
 
 ;; Fuzzy matching
 (use-package flx-ido)
-
-;; Standard auto-completion
-(use-package auto-complete)
 
 ;; Middleware so python-land can communicate with emacs-land
 (use-package epc)
@@ -140,6 +197,8 @@
 ;; Mel mode dependencies
 (use-package browse-url-dwim)
 
+(defvar sml/no-confirm-load-theme nil)
+(defvar sml/theme nil)
 ;; Sexy modeline
 (use-package smart-mode-line
   :init
@@ -164,9 +223,6 @@
 ;; Yasnippet
 (jawa/require 'setup-yasnippet)
 
-;; Avy
-(jawa/require 'setup-avy)
-
 ;; Yankpad
 (use-package yankpad
   :config
@@ -175,3 +231,4 @@
   (jawa/require 'setup-yankpad))
 
 (provide 'setup-packages)
+;;; setup-packages.el ends here

@@ -1,0 +1,45 @@
+2019-12-17    <Jonas@VREXTON>
+
+        * settings/setup-spell-check.el:
+        Separate out spell check setup into a new file
+        Install hunspell on Windows to `~/.emacs.d/hunspell`
+
+        * settings/setup-linting.el:
+        Separate out linting setup into a new file
+
+        * settings/setup-auto-complete.el:
+        Separate out auto-complete setup into a new file
+        Enable auto-complete in text-mode, org-mode, and prog-mode
+
+        * ChangeLog:
+        Create ChangeLog
+
+        * .emacs (file-exists-p):
+        Autoload desktop file
+
+        * settings/setup-yasnippet.el (yasnippet):
+        Tab expansion tested
+        Redefine hooks
+
+        * settings/setup-packages.el:
+        Add header/footer
+        Add esxml, request, org-web-tools, origami packages
+        (setup-auto-complete):
+        Setup files for auto-complete, spell check, and fci-mode
+        Have some packages load earlier
+
+        * settings/setup-key-bindings.el (ja-keys-minor-mode-map):
+        Remove some bindings that are defined in use-packages
+
+        * settings/setup-hydra.el:
+        Add boilerplate
+        (hydra-toggles): Add more focus toggles
+        (hydra-origami-title): Add origami hydra
+        (hydra-flycheck-title): Add flycheck and flyspell hydras
+
+        * .emacs_template:
+        Rename .emacs_template
+
+        * defuns/agenda-defuns.el:
+        Run flycheck, add header/footer
+

@@ -1,13 +1,19 @@
 (use-package yasnippet
   ;; :diminish 'yas-minor-mode
+  ;; :bind (("<tab>" . nil) ;; Unbind Tab completion
+  ;;        ("TAB" . nil)
+  ;;        ;; Bind `SPC' to `yas-expand' when snippet expansion available (it
+  ;;        ;; will still call `self-insert-command' otherwise).
+  ;;        ("SPC" . yas-maybe-expand)
+  ;;        ;; Bind `C-c y' to `yas-expand' ONLY.
+  ;;        ("C-c y" . #'yas-expand))
   :config
   (defun jawa/visit-yas-snippet-dir ()
     (interactive)
     (find-file (car yas-snippet-dirs)))
-  ;; (add-hook 'emacs-lisp-mode-hook #'yas-minor-mode)
-  ;; (add-hook 'org-mode-hook #'yas-minor-mode)
-  ;; (add-hook 'python-mode-hook #'yas-minor-mode)
-  (yas-global-mode 1))
+  :hook (emacs-lisp-mode-hook org-mode-hook python-mode-hook)
+  ;; (yas-global-mode 1)
+)
 
 (use-package yasnippet-snippets
   :after yasnippet
