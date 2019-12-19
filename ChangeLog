@@ -1,3 +1,14 @@
+2019-12-18    <Jonas@VREXTON>
+
+        * configuration.org (Site-lisp packages):
+        Switch from submodule to straight use-package for some packages
+
+        (ivy-yasnippet):
+        New bindings for inserting and creating snippets
+
+        * .gitignore
+        Ignore hunspell
+
 2019-12-17    <Jonas@VREXTON>
 
         * settings/setup-spell-check.el:

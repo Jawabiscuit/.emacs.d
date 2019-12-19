@@ -1,3 +1,6 @@
+# Spell Checker
+hunspell
+
 # Ignore packages installed by straight.el 
 straight/repos
 straight/build

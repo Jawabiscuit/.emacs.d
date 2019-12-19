@@ -1,3 +1,35 @@
+;;; setup-org.el --- Setup packages for org-mode  -*- lexical-binding: t -*-
+;;
+;; Author: Jonas Avrin
+;; Maintainer: Jonas Avrin
+;; Version: 0.0.1
+;; Package-Requires: (`')
+;; Homepage:
+;; Keywords:
+;;
+;;
+;; This file is not part of GNU Emacs
+;;
+;; This file is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 3, or (at your option)
+;; any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+;;
+;; For a full copy of the GNU General Public License
+;; see <http://www.gnu.org/licenses/>.
+;;
+;;
+;;; Commentary:
+;;
+;;
+;;
+;;; Code:
+
 ;; (defun myorg-update-parent-cookie ()
 ;;   (when (equal major-mode 'org-mode)
 ;;     (save-excursion
@@ -11,6 +43,16 @@
 ;; (defadvice kill-whole-line (after fix-cookies activate)
 ;;   (myorg-update-parent-cookie))
 
+;; Library for working with xml via esxml and sxml
+(use-package esxml)
+
+;; Compatible layer for URL request in Emacs
+(use-package request)
+
+;; Functions and commands useful for retrieving web page content and processing it into
+;; Org-mode content
+(use-package org-web-tools)
+
 (use-package org-link-edit
   :straight (org-link-edit :host github :repo "kyleam/org-link-edit"))
 
@@ -19,6 +61,9 @@
   :init
   (add-hook 'org-mode-hook #'org-bullets-mode)
 )
+
+;; Bootstrap compatible HTML Back-End for Org
+(use-package ox-twbs)
 
 (setq org-directory "~/Documents/org")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
@@ -232,3 +277,7 @@
    ("fr" jk/unlinkify "remove link"))))
 
 (provide 'setup-org)
+(message "Hello World!")
+
+(provide 'setup-org)
+;;; setup-org.el ends here

@@ -39,16 +39,6 @@
 ;; string manipulation library
 (use-package s)
 
-;; Library for working with xml via esxml and sxml
-(use-package esxml)
-
-;; Compatible layer for URL request in Emacs
-(use-package request)
-
-;; Functions and commands useful for retrieving web page content and processing it into
-;; Org-mode content
-(use-package org-web-tools)
-
 ;; Flexible text folding
 (use-package origami
   :bind (("C-c h f" . hydra-origami/body)))
@@ -229,6 +219,12 @@
   (jawa/bind-register
     "M-y" #'yankpad-repeat)
   (jawa/require 'setup-yankpad))
+
+;; Log keyboard commands to buffer
+(use-package command-log-mode)
+
+;; Allows you to edit a grep buffer and apply those changes to the file buffer
+(use-package wgrep)
 
 (provide 'setup-packages)
 ;;; setup-packages.el ends here

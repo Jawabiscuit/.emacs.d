@@ -296,10 +296,7 @@ Dependency: [[*Improved keybinding][general]]
 Requirements: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
 
 #+BEGIN_SRC emacs-lisp
-(require 'ox-twbs)            ; Bootstrap compatible HTML Back-End for Org
-(require 'command-log-mode)   ; log keyboard commands to buffer
-(require 'wgrep)              ; wgrep allows you to edit a grep buffer and apply those changes to the file buffer
-(require 'dired-details+)     ; show and hide directory detail information
+;; (jawa/require 'some-package-here)
 #+END_SRC
 
 
@@ -352,7 +349,12 @@ Dependency: [[*Install packages if they're missing][setup packages]]
 Requirements: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
 
 #+BEGIN_SRC emacs-lisp
-(load "dired-x")
+(eval-and-compile
+  (when (version< emacs-version "24.4") (with-no-warnings
+    ;; Shrink-wrap Dired's frame when you show or hide details
+    (use-package autofit-frame)
+    ;; `dired-details+.el' enhances `dired-details.el'
+    (jawa/require 'dired-details+))))
 #+END_SRC
 
 

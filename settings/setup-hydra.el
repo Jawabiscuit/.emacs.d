@@ -152,6 +152,7 @@
     ("W" whitespace-cleanup-mode :toggle t)
     ("ew" toggle-word-wrap :toggle t)
     ("et" toggle-truncate-lines :toggle t)
+    ("ey" yas-minor-mode :toggle t)
     ("F" auto-fill-mode :toggle t) ; TODO: Toggle face does not change
     ("F" auto-fill-mode :toggle t) ; TODO: Duplicate - displays only once
    )
@@ -188,7 +189,7 @@
     ("d" org-decrypt-entry "Decrypt")
     ("k" org-cut-subtree "Cut subtree")
     ("r" org-refile "Refile")
-    ("o" org-open-at-point-global "Open link")
+    ("o" org-open-at-point-global "Open link" :exit t)
    )
    "Clock"
    (("hs" org-timer-start "Start timer")
