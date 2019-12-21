@@ -53,7 +53,8 @@
 (use-package diminish)
 
 ;; Project management
-(use-package projectile)
+(use-package projectile
+  :bind ("C-c h p" . hydra-projectile/body))
 
 ;; Popup frame
 (use-package posframe)
@@ -81,7 +82,11 @@
 
 ;; Window switching convenience
 (use-package switch-window
-  :straight (switch-window :host github :repo "dimitri/switch-window"))
+  :straight (switch-window :host github :repo "dimitri/switch-window")
+  :bind ("C-c h w" . hydra-windows/body))
+
+;; More window switching
+(use-package ace-window)
 
 ;; Increase selected region by semantic units
 (use-package expand-region)
@@ -108,7 +113,7 @@
 (use-package restclient)
 
 ;; Auto closure for parenthesis and other characters
-(jawa/require 'setup-smartparens)
+(jawa/require 'setup-delimiters)
 
 ;; Smart M-x (Deactivated)
 (use-package smex
@@ -121,10 +126,12 @@
 
 ;; Emacs Major mode for Markdown-formatted files
 (use-package markdown-mode
+  :init
+  (setq markdown-command "pandoc")
+  (setq-default markdown-hide-markup t)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "pandoc")
 )
 
 ;; Pandoc-mode is for interacting with pandoc, a program that converts
@@ -215,10 +222,9 @@
 
 ;; Yankpad
 (use-package yankpad
+  :bind ("C-c h y" . hydra-yankpad/body)
   :config
-  (jawa/bind-register
-    "M-y" #'yankpad-repeat)
-  (jawa/require 'setup-yankpad))
+  (jawa/bind-register "M-y" #'yankpad-repeat))
 
 ;; Log keyboard commands to buffer
 (use-package command-log-mode)

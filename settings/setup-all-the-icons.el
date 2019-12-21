@@ -1,9 +1,6 @@
 ;; A utility package to collect various Icon Fonts and propertize them within Emacs.
 ;; NOTE: It is necessary to install fonts manually on Windows after they are downloaded.
-(use-package all-the-icons
-  :general
-  ;; ("C-x 8 i" #'all-the-icons-ivy)
-)
+(use-package all-the-icons)
 
 (use-package all-the-icons-ivy
   ;; Integrate it with ivy-filthy-rich
@@ -17,8 +14,7 @@
         counsel-file-jump
         counsel-recentf
         counsel-projectile-find-file
-        counsel-projectile-find-dir))
-)
+        counsel-projectile-find-dir)))
 
 (use-package all-the-icons-dired
   :config

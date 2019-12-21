@@ -43,8 +43,8 @@
   (defun jawa/visit-yas-snippet-dir ()
     (interactive)
     (find-file (car yas-snippet-dirs)))
-  ;; (yas-global-mode 1)
-  :hook (emacs-lisp-mode-hook org-mode-hook python-mode-hook)
+  (yas-global-mode 1)
+  ;; :hook (emacs-lisp-mode org-mode python-mode)
 )
 
 (use-package yasnippet-snippets

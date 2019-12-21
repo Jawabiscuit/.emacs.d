@@ -65,14 +65,54 @@
 ;; Bootstrap compatible HTML Back-End for Org
 (use-package ox-twbs)
 
-(setq org-directory "~/Documents/org")
-(setq org-default-notes-file (concat org-directory "/notes.org"))
+;; Group items in Org agenda views
+(use-package org-super-agenda
+  :after org-agenda
+  :config
+  
+  (setq org-agenda-custom-commands '())
+  (add-to-list 'org-agenda-custom-commands
+   '("H" "Someday/Maybe"
+     ((tags-todo "SCHEDULED>=\"<tomorrow>\"")
+      (todo "INCUBATE"))
+     (;;(org-agenda-overriding-header "Someday/Maybe tasks")
+      (org-agenda-sorting-strategy '(priority-up effort-down))
+      ;; (org-super-agenda-groups
+      ;;  '((:auto-map my-org-super-agenda-group-by-project-or-task-group)))
+     )
+     ("someday-maybe.html")))
 
-;; keep track of when a certain TODO item was finished
-(setq org-log-done 'time)
+  (defun my-org-super-agenda ()
+    (interactive)
+    (let ((org-super-agenda-groups
+            '((:log t)
+              (:name "Schedule"
+                     :time-grid t)
+              ;; Group habit items (items which have a STYLE: habit Org property).
+              (:habit t)
+              (:name "Tag"
+                     :auto-tags)
+              (:name "Due Today"
+                     :deadline today)
+              (:name "Overdue"
+                     :deadline past)
+              (:name "Due Soon"
+                     :deadline future)
+              (:name "Waiting"
+                     :todo "WAITING"
+                     ;; A number setting the order sections will be displayed in the agenda, lowest number first. Defaults to 0.
+                     :order 98)
+              (:name "Someday/Maybe"
+                     :tag ("someday")
+                     :order 100)
+              (:name "Scheduled Earlier"
+                     :scheduled past))))
+      (org-agenda-list)))
 
-;; record a note along with the timestamp
-;; (setq org-log-done 'note)
+  (org-super-agenda-mode 1)
+
+  :bind (("C-c h o" . hydra-org/body)
+         ("C-c O" . my-org-super-agenda)))
 
 ;; Active Babel languages
 (with-eval-after-load 'org
@@ -128,109 +168,110 @@
 
 ;; GTD TODO keywords and hide logs
 (setq org-todo-keywords
-      '((sequence "TODO" "ACTION" "INCUBATE" "DEFERRED" "WAITING(w@)" "|" "DONE" "DELEGATED" "ARCHIVE")))
+      '((sequence "TODO" "ACTION" "IN-PROGRESS" "DEFERRED" "WAITING(w@)" "|" "DONE" "INCUBATE" "DELEGATED(d@)" "ARCHIVE" "PROJECT")))
 (setq org-log-into-drawer 1)
 
 ;; GTD fast tag selection
-(setq org-tag-persistent-alist '(("gtd" . ?G)
-                      (:startgroup)
-                      ("engage" . ?N)  ;; Day to day engagement
-                      ("review" . ?R)  ;; Periodic review
-                      ("someday" . ?S) ;; Someday maybe project list
-                      (:endgroup)
-
-                      ;; Three Models for making action choices
-
-                      ;; 1 - The Four-Criteria Model for choosing actions in the moment
-
-                        ("context" . ?C)
-                        ;; 1 - Context : are you in the right space to do this action?
-                        (:startgroup)
-                        ("@home" . ?h) ("@work" . ?w) ("@anywhere" . ?a) ("@mobile")
-                        (:endgroup)
-
-                        ("sub_context" . ?X)
-                        (:startgroup)
-                        ("office" . ?1) ("outside" . ?2) ("garage" . ?3)
-                        ("kitchen" . ?4) ("bathroom" . ?5) ("storage" . ?6)
-                        (:endgroup)
-                        
-                        ("status" . ?B)
-                        (:startgroup)
-                        ;; ("status" . ?X))
-                        ("online". ?o) ("offline" . ?O)
-                        (:endgroup)
-                        
-                        ("type" . ?E)
-                        (:startgroup)
-                        ("meeting" . ?m) ("discussion" . ?t) ("call" . ?c)
-                        (:endgroup)
-                        
-                        ;; 2 - Time Available : do you have enough time to complete it?
-                        ("time" . ?T)
-                        (:startgroup)
-                        ("5m_or_less" . ?q)  ; quick
-                        ("30m_or_less" . ?l)  ; less quick
-                        ("30m_or_more" . ?s)  ; slow
-                        (:endgroup)
-                        
-                        ;; 3 - Energy available : are you alert enough to do this?
-                        ("intensity" . ?I)
-                        (:startgroup)
-                        ("high" . ?9)
-                        ("low" . ?0)
-                        (:endgroup)
-                              
-                        ;; 4 - Priority : what's going to give you the highest payoff
-                        ;; Track this using TODO priority
-
-                      ;; 2 - The Threefold Model for Identifying Daily Work
-                      ;; Doing predefined work - working from NAs and calendar
-                      ;; Do work as it shows up
-                      ;; Defining your work - clearing inboxes, processing meeting notes, breaking down new projects
-                      ;; Do during periodic review meeting
-                      ;; Track this using :review: tag
-
-                      ;; 3 - The Six-Level Model for Reviewing Your Own Work
-
-                        ;; There are 6 perspectives to define priorities
-
-                        ;; 1 - Ground : current next actions list
-
-                        ;; 2 - Projects : Current projects, they are generating the most NAs
-                        ("project" . ?p)
-                        (:startgroup)
-                        ("clarify" . ?y)
-                        ("brainstorm" .?b)
-                        ("reference" . ?r)
-                        ("research" . ?j)
-                        (:endgroup)
-
-                        ;; 3 - Areas of Focus and Accountability : key areas of life and work.
-                        ;; TODO Identify areas of focus
-                        ("aof" . ?k)
-                        (:startgroup)
-                        (:endgroup)
-
-                        ;; 4 - Goals : one to two years from now
-                        ;; TODO Identify goals
-                        ("goals" . ?g)
-                        (:startgroup)
-                        (:endgroup)
-
-                        ;; 5 - Vision : projecting three to five years out into bigger categories
-                        ("vision" . ?v)
-                        (:startgroup)
-                        ("strategies" . ?z)
-                        ("trends" . ?d)
-                        ("career" . ?e)
-                        (:endgroup)
-
-                        ;; 6 - Purpose and principles : Big picture view
-                        ;; TODO Identify principles
-                        ("principles" . ?i)
-                        (:startgroup)
-                        (:endgroup)
+(setq org-tag-persistent-alist '(
+   ("gtd" . ?G)
+   (:startgroup)
+   ("engage" . ?N)  ;; Day to day engagement
+   ("review" . ?R)  ;; Periodic review
+   ("someday" . ?S) ;; Someday maybe project list
+   (:endgroup)
+   
+   ;; Three Models for making action choices
+   
+   ;; 1 - The Four-Criteria Model for choosing actions in the moment
+   
+     ("context" . ?C)
+     ;; 1 - Context : are you in the right space to do this action?
+     (:startgroup)
+     ("@home" . ?h) ("@work" . ?w) ("@anywhere" . ?a) ("@mobile")
+     (:endgroup)
+     
+     ("sub_context" . ?X)
+     (:startgroup)
+     ("office" . ?1) ("outside" . ?2) ("garage" . ?3)
+     ("kitchen" . ?4) ("bathroom" . ?5) ("storage" . ?6)
+     (:endgroup)
+     
+     ("status" . ?B)
+     (:startgroup)
+     ;; ("status" . ?X))
+     ("online". ?o) ("offline" . ?O)
+     (:endgroup)
+     
+     ("type" . ?E)
+     (:startgroup)
+     ("meeting" . ?m) ("discussion" . ?t) ("call" . ?c)
+     (:endgroup)
+     
+     ;; 2 - Time Available : do you have enough time to complete it?
+     ("time" . ?T)
+     (:startgroup)
+     ("5m_or_less" . ?q)  ; quick
+     ("30m_or_less" . ?l)  ; less quick
+     ("30m_or_more" . ?s)  ; slow
+     (:endgroup)
+     
+     ;; 3 - Energy available : are you alert enough to do this?
+     ("intensity" . ?I)
+     (:startgroup)
+     ("high" . ?9)
+     ("low" . ?0)
+     (:endgroup)
+     
+     ;; 4 - Priority : what's going to give you the highest payoff
+     ;; Track this using TODO priority
+     
+   ;; 2 - The Threefold Model for Identifying Daily Work
+   ;; Doing predefined work - working from NAs and calendar
+   ;; Do work as it shows up
+   ;; Defining your work - clearing inboxes, processing meeting notes, breaking down new projects
+   ;; Do during periodic review meeting
+   ;; Track this using :review: tag
+     
+   ;; 3 - The Six-Level Model for Reviewing Your Own Work
+     
+     ;; There are 6 perspectives to define priorities
+     
+     ;; 1 - Ground : current next actions list
+     
+     ;; 2 - Projects : Current projects, they are generating the most NAs
+     ("project" . ?p)("area" . ?A)
+     (:startgroup)
+     ("clarify" . ?y)
+     ("brainstorm" .?b)
+     ("reference" . ?r)
+     ("research" . ?j)
+     (:endgroup)
+     
+     ;; 3 - Areas of Focus and Accountability : key areas of life and work.
+     ;; TODO Identify areas of focus
+     ("aof" . ?k)
+     (:startgroup)
+     (:endgroup)
+     
+     ;; 4 - Goals : one to two years from now
+     ;; TODO Identify goals
+     ("goals" . ?g)
+     (:startgroup)
+     (:endgroup)
+     
+     ;; 5 - Vision : projecting three to five years out into bigger categories
+     ("vision" . ?v)
+     (:startgroup)
+     ("strategies" . ?z)
+     ("trends" . ?d)
+     ("career" . ?e)
+     (:endgroup)
+     
+     ;; 6 - Purpose and principles : Big picture view
+     ;; TODO Identify principles
+     ("principles" . ?i)
+     (:startgroup)
+     (:endgroup)
 ))
 
 ;; Format timestamps
@@ -242,11 +283,48 @@
     ;; EDT (summer months)
     ;; quote (" %Y-%m-%d " . " %Y-%m-%d %H:%M:%S -0400 "))))
     ;; EST
-    quote (" %Y-%m-%d " . " %Y-%m-%d %H:%M:%S -0500 "))))
+    quote (" %Y-%m-%d " . " %Y-%m-%d %H:%M:%S %z "))))
 
 ;; Ellipsis
 (setq org-ellipsis "»")
 (custom-set-faces '(org-ellipsis ((t (:underline nil)))))
+
+;; Todo Tasks and Agenda
+(setq org-columns-default-format "%60ITEM(Task) %10Effort(Effort){:} %PRIORITY %10CLOCKSUM(T Spent) %10CLOCKSUM_T(T Spent Today) %TAGS")
+(setq org-global-properties
+      (quote (("Effort_ALL" . "0:05 0:10 0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 8:00")
+              ("SYTLE_ALL" . "habit"))))
+
+;; Keep track of when a certain TODO item was finished
+(setq org-log-done 'time
+      ;; record a note along with the timestamp
+      org-log-done 'note
+      ;; hide markup elements
+      org-hide-emphasis-markers t)
+
+;; TODO: state is undefined
+;; ;; Auto Clock-in and Clock-out
+;; (defun wicked/org-clock-in-if-starting ()
+;;    "Clock in when the task is marked IN-PROGRESS."
+;;    (when (and (string= state "IN-PROGRESS")
+;;               (not (string= last-state state)))
+;;      (org-clock-in)))
+;;
+;; (add-hook 'org-after-todo-state-change-hook
+;;           'wicked/org-clock-in-if-starting)
+;;
+;; (defun wicked/org-clock-out-if-waiting ()
+;;   "Clock out when the task is marked WAITING.
+;;    TODO: Clock out when task gets set to any number of done states"
+;;   (when (and (string= state "WAITING")
+;;              (equal (marker-buffer org-clock-marker) (current-buffer))
+;;              (< (point) org-clock-marker)
+;;              (> (save-excursion (outline-next-heading) (point))
+;;                 org-clock-marker)
+;;              (not (string= last-state state)))
+;;     (org-clock-out)))
+;; (add-hook 'org-after-todo-state-change-hook
+;;           'wicked/org-clock-out-if-waiting)
 
 ;; Org mode links
 ;; `https://github.com/abo-abo/hydra/wiki/Org-mode-links'
@@ -275,9 +353,6 @@
    ("fu" org-link-edit-backward-slurp "backward slurp")
    ("fi" org-link-edit-backward-barf "backward barf")
    ("fr" jk/unlinkify "remove link"))))
-
-(provide 'setup-org)
-(message "Hello World!")
 
 (provide 'setup-org)
 ;;; setup-org.el ends here

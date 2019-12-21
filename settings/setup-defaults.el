@@ -1,3 +1,8 @@
+;; Who am I?
+(setq user-full-name "Jonas Avrin"
+      user-login-name "jonasavrin"
+      user-mail-address "jawabiscuit@users.noreply.github.com")
+
 ;; Don't beep. Don't visible-bell (fails on el capitan). Just blink the modeline on errors.
 (setq visible-bell nil)
 (setq ring-bell-function (lambda ()
@@ -72,8 +77,8 @@
 ;; Always highlight lines
 (global-hl-line-mode 1)
 
-;; Lines should be 80 characters wide, not 72
-(setq fill-column 80)
+;; Lines should be 90 characters wide, not 72
+(setq fill-column 90)
 
 ;; Save a list of recent files visited. (open recent file with C-x f)
 (recentf-mode 1)
@@ -85,8 +90,8 @@
 
 ;; Stop Emacs from losing undo information by
 ;; setting very high limits for undo buffers
-(setq undo-limit 20000000)
-(setq undo-strong-limit 40000000)
+(setq undo-limit 20000000
+      undo-strong-limit 40000000)
 
 ;; Undo/redo window configuration with C-c <left>/<right>
 (winner-mode 1)
@@ -123,12 +128,14 @@
 
 ;; Add parts of each file's directory to the buffer name if not unique
 (require 'uniquify)
-(setq uniquify-buffer-name-style 'forward)
+(setq uniquify-buffer-name-style 'forward
+      uniquify-after-kill-buffer-p t
+      uniquify-ignore-buffers-re "^\\*")
 
 ;; A saner ediff
-(setq ediff-diff-options "-w")
-(setq ediff-split-window-function 'split-window-horizontally)
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-diff-options "-w"
+      ediff-split-window-function 'split-window-horizontally
+      ediff-window-setup-function 'ediff-setup-windows-plain)
 
 ;; No electric indent
 (setq electric-indent-mode nil)

@@ -20,14 +20,13 @@
       (define-key map (kbd "M-T") 'load-log)
 
       ;; Editing
-      (define-key map (kbd "S-<tab>") 'indent-for-tab-command)
+      ;; (define-key map (kbd "S-<tab>") 'indent-for-tab-command)
       (define-key map (kbd "C-<tab>") 'indent-region)
       (define-key map (kbd "C-d") 'duplicate-line)
       (define-key map (kbd "M-S-<up>") 'move-text-up)
       (define-key map (kbd "M-S-<down>") 'move-text-down)
       (define-key map (kbd "M-.") 'fill-paragraph)
       (define-key map (kbd "C-c <up>") 'rotate-yank-pointer)
-      (define-key map (kbd "C-q") 'append-as-kill)
       (define-key map (kbd "C-Q") 'copy-region-as-kill)
 
       ;; Navigation
@@ -46,6 +45,8 @@
 
       ;; Buffer
       (define-key map (kbd "M-r") 'revert-buffer)
+      (define-key map (kbd "C-x k") 'kill-this-buffer)
+      
       ;; Macro editing
       (define-key map (kbd "M-[") 'start-kbd-macro)
       (define-key map (kbd "M-]") 'end-kbd-macro)
@@ -92,7 +93,7 @@
   "A minor mode so that my key settings override all major modes
    with the added benefit of being able to turn off all at once"
   :init-value t
-  :lighter " ja-keys")
+  :lighter " jaK")
 
 (ja-keys-minor-mode 1)
 ;; Disable custom keys in the minibuffer
@@ -111,6 +112,10 @@
 
 ;; Selection
 (jawa/bind-user "=" 'er/expand-region)
+
+;; Editing
+(jawa/bind-user "c" 'copy-region-as-kill)
+(jawa/bind-user "v" 'kill-region)
 
 ;; Undo tree
 (eval-after-load 'undo-tree '(define-key undo-tree-map (kbd "C-?") nil))

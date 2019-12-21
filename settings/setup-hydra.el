@@ -1,39 +1,37 @@
 ;;; `setup-hydra.el' --- Setup hydra packages and pretty hydras  -*- lexical-binding: t -*-
-
+;;
 ;; Author: Jonas Avrin
 ;; Maintainer: Jonas Avrin
 ;; Version: 0.0.1
 ;; Package-Requires: (`all-the-icons')
 ;; Homepage:
 ;; Keywords:
-
-
+;;
+;;
 ;; This file is not part of GNU Emacs
-
+;;
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation; either version 3, or (at your option)
 ;; any later version.
-
+;;
 ;; This program is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;; GNU General Public License for more details.
-
+;;
 ;; For a full copy of the GNU General Public License
 ;; see <http://www.gnu.org/licenses/>.
-
-
-;;; Commentary:
-
 ;;
-
+;;
+;;; Commentary:
+;;
+;;
+;;
 ;;; Code:
+
 (use-package hydra
-  :bind (("C-c h o" . hydra-org/body)
-         ("C-c h t" . hydra-toggles/body)
-         ("C-c h w" . hydra-windows/body)
-         ("C-c h p" . hydra-projectile/body)
+  :bind (("C-c h t" . hydra-toggles/body)
 ))
 
 (use-package hydra-posframe
@@ -135,16 +133,12 @@
     ("fp" flyspell-prog-mode :toggle t)
     ("a" apheleia-mode :toggle t)
     ("A" apheleia-global-mode :toggle t)
-    ("ld" lsp-ui-doc-mode :toggle t)
-    ("lp" lsp-ui-peek-mode :toggle t)
-    ("ls" lsp-ui-sideline-mode :toggle t)
+    ;; ("ld" lsp-ui-doc-mode :toggle t)
+    ;; ("lp" lsp-ui-peek-mode :toggle t)
+    ;; ("ls" lsp-ui-sideline-mode :toggle t)
    )
    "Edit/assistance"
-   (("s" smartparens-mode :toggle t)
-    ("ep" show-paren-mode :toggle t)
-    ("S" smartparens-strict-mode :toggle t)
-    ("y" lispy-mode :toggle t)
-    ("el" electric-layout-mode :toggle t)
+   (("el" electric-layout-mode :toggle t)
     ("ei" electric-indent-local-mode :toggle t)
     ("eq" electric-quote-local-mode :toggle t)
     ("ea" aggressive-indent-mode :toggle t)
@@ -154,16 +148,19 @@
     ("et" toggle-truncate-lines :toggle t)
     ("ey" yas-minor-mode :toggle t)
     ("F" auto-fill-mode :toggle t) ; TODO: Toggle face does not change
-    ("F" auto-fill-mode :toggle t) ; TODO: Duplicate - displays only once
+    ("y" lispy-mode :toggle t)
    )
    "Visual"
-   (("w" whitespace-mode :toggle t)
+   (("s" smartparens-mode :toggle t)
+    ("S" smartparens-strict-mode :toggle t)
+    ("hp" turn-on-show-smartparens-mode :toggle t) ; TODO: Toggle face does not change
     ("r" rainbow-delimiters-mode :toggle t)
-    ("p" page-break-lines-mode :toggle t)
     ("n" linum-mode :toggle t)
+    ("w" whitespace-mode :toggle t)
+    ("p" page-break-lines-mode :toggle t)
     ("g" global-git-gutter-mode :toggle t)
     ("hi" highlight-indent-guides-mode :toggle t)
-    ("hc" fci-mode :toggle t)
+    ("hr" fci-mode :toggle t)
     ("iv" ivy-filthy-rich-mode :toggle t)
    )
    ;; "LSP"
@@ -183,8 +180,8 @@
    :quit-key "q"
   )
   ("Action"
-   (("a" org-agenda "Agenda")
-    ("c" org-capture "Capture")
+   (("a" org-agenda "Agenda" :exit t)
+    ("c" org-capture "Capture" :exit t)
     ("l" org-capture-goto-last-stored "Last capture stored")
     ("d" org-decrypt-entry "Decrypt")
     ("k" org-cut-subtree "Cut subtree")
@@ -224,7 +221,7 @@
    :quit-key "q"
   )
   ("Window"
-   (("b" balance-windows "Balance")
+   (("b" balance-windows "Balance" :exit t)
     ("i" enlarge-window "Scale up")
     ("j" shrink-window-horizontally "Scale down X")
     ("k" shrink-window "Scale down")
@@ -233,7 +230,22 @@
    "Zoom"
    (("-" text-scale-decrease "out")
     ("+" text-scale-increase "in")
-    ("=" (text-scale-increase 0) "reset"))))
+    ("=" (text-scale-increase 0) "reset"))
+   "Switch"
+   (("f" counsel-projectile-find-file "find file" :exit t)
+    ("a" (lambda ()
+      (interactive)
+      (ace-window 1)
+      (add-hook 'ace-window-end-once-hook
+                'hydra-window/body))
+     "switch" :exit t)
+    ("s" (lambda ()
+      (interactive)
+      (ace-swap-window)
+      (add-hook 'ace-window-end-once-hook
+                'hydra-window/body))
+     "swap" :exit t)
+    )))
 
 (defvar hydra-projectile-title (with-faicon "rocket" "Projectile" 1.5 -0.05))
 
@@ -341,6 +353,25 @@
     ("c" flyspell-auto-correct-word "Current word")
     ("c" flyspell-auto-correct-word "Current word") ; TODO: Duplicate, displays only one
    )))
+
+(defvar hydra-yankpad-title (with-faicon "pencil-square" "Yankpad" 1.5 -0.05))
+
+(pretty-hydra-define hydra-yankpad
+  (:pre (setq which-key-inhibit t)
+   :post (setq which-key-inhibit nil)
+   :title hydra-yankpad-title
+   ;; :color red
+   :hint nil
+   :foreign-keys warn
+   :quit-key "q"
+  )
+  ("Yankpad"
+   (("C" yankpad-set-category "Set category")
+    ("A" yankpad-append-category "Append category")
+    ("i" yankpad-insert "Insert")
+    ("a" yankpad-aya-persist "Aya persist")
+    ("c" yankpad-capture-snippet "Capture snippet")
+  )))
 
 (provide 'setup-hydra)
 ;;; setup-hydra.el ends here

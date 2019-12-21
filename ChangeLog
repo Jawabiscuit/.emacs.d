@@ -1,56 +1,115 @@
-2019-12-18    <Jonas@VREXTON>
+2019-12-21  Jonas Avrin  <jawabiscuit@users.noreply.github.com>
 
-        * configuration.org (Site-lisp packages):
-        Switch from submodule to straight use-package for some packages
+        * settings/setup-yasnippet.el
+        (yasnippet):
+            - Enable `yas-global-mode`
+
+        * settings/setup-packages.el
+        (projectile):
+            - Change where hydra body bindings are being defined
+        (setup-delimiters):
+            - Rename setup-smartparens to setup-delimiters
+        (yankpad):
+            - Remove setup-yankpad.el, define hydras in setup-hydra.el
+
+        * settings/setup-org.el
+            - Configure a basic org super agenda view
+
+        (org-tag-persistent-alist):
+            - Add IN-PROGRESS status and change INCUBATE to be a done status
+
+        * settings/setup-org-starter.el
+        (org-directory):
+            - Set file paths for org-mode
+        (org-starter):
+            - Configure org-starter with a todo file and a key for config
+
+        * settings/setup-key-bindings.el
+        (ja-keys-minor-mode-map):
+            - Fix key binding for toggling all headings in org mode
+        (ja-keys-minor-mode-map):
+            - Change "C-x k" to `kill-this-buffer`
+
+        * settings/setup-hydra.el
+        (hydra-toggles):
+            - Set some better hydra keys
+        (hydra-yankpad-title):
+            - Yankpad hydra
+
+        * settings/setup-defaults.el
+        (user-full-name):
+            - Set full name, login, and mail address
+            - Change fill column from 80 to 90
+
+        * org/
+            - Remove org files
+
+        * configuration.org:
+        (Emacs Configuration):
+            - Set current fill column to 90 instead of 80
+
+        * .emacs
+        (file-exists-p):
+            - Discontinue adding org/todo.org to org-agenda-files
+
+2019-12-18  Jonas Avrin  <jawabiscuit@users.noreply.github.com>
+
+        * configuration.org
+        (Site-lisp packages):
+            - Switch from submodule to straight use-package for some packages
 
         (ivy-yasnippet):
-        New bindings for inserting and creating snippets
+            - New bindings for inserting and creating snippets
 
         * .gitignore
-        Ignore hunspell
+            - Ignore hunspell
 
-2019-12-17    <Jonas@VREXTON>
+2019-12-17  Jonas Avrin  <jawabiscuit@users.noreply.github.com>
 
-        * settings/setup-spell-check.el:
-        Separate out spell check setup into a new file
-        Install hunspell on Windows to `~/.emacs.d/hunspell`
+        * settings/setup-spell-check.el
+            - Separate out spell check setup into a new file
+            - Install hunspell on Windows to `~/.emacs.d/hunspell`
 
-        * settings/setup-linting.el:
-        Separate out linting setup into a new file
+        * settings/setup-linting.el
+            - Separate out linting setup into a new file
 
-        * settings/setup-auto-complete.el:
-        Separate out auto-complete setup into a new file
-        Enable auto-complete in text-mode, org-mode, and prog-mode
+        * settings/setup-auto-complete.el
+            - Separate out auto-complete setup into a new file
+            - Enable auto-complete in text-mode, org-mode, and prog-mode
 
-        * ChangeLog:
-        Create ChangeLog
+        * ChangeLog
+            - Create ChangeLog
 
-        * .emacs (file-exists-p):
-        Autoload desktop file
+        * .emacs (file-exists-p)
+            - Autoload desktop file
 
-        * settings/setup-yasnippet.el (yasnippet):
-        Tab expansion tested
-        Redefine hooks
+        * settings/setup-yasnippet.el
+        (yasnippet):
+            - Tab expansion tested
+            - Redefine hooks
 
-        * settings/setup-packages.el:
-        Add header/footer
-        Add esxml, request, org-web-tools, origami packages
+        * settings/setup-packages.el
+            - Add header/footer
+            - Add esxml, request, org-web-tools, origami packages
         (setup-auto-complete):
-        Setup files for auto-complete, spell check, and fci-mode
-        Have some packages load earlier
+            - Setup files for auto-complete, spell check, and fci-mode
+            - Have some packages load earlier
 
-        * settings/setup-key-bindings.el (ja-keys-minor-mode-map):
-        Remove some bindings that are defined in use-packages
+        * settings/setup-key-bindings.el
+        (ja-keys-minor-mode-map):
+            - Remove some bindings that are defined in use-packages
 
-        * settings/setup-hydra.el:
-        Add boilerplate
-        (hydra-toggles): Add more focus toggles
-        (hydra-origami-title): Add origami hydra
-        (hydra-flycheck-title): Add flycheck and flyspell hydras
+        * settings/setup-hydra.el
+            Add boilerplate
+        (hydra-toggles):
+            - Add more focus toggles
+        (hydra-origami-title):
+            - Add origami hydra
+        (hydra-flycheck-title):
+            - Add flycheck and flyspell hydras
 
-        * .emacs_template:
-        Rename .emacs_template
+        * .emacs_template
+            - Rename .emacs_template
 
-        * defuns/agenda-defuns.el:
-        Run flycheck, add header/footer
-
+        * defuns/agenda-defuns.el
+            - Run flycheck, add header/footer
