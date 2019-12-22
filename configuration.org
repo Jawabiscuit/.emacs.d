@@ -288,8 +288,13 @@ Dependency: [[*Improved keybinding][general]]
 ;; Used alot in setup-org-starter
 (use-package posframe)
 
-(jawa/require 'setup-org t)
 (jawa/require 'setup-org-starter)
+(jawa/require 'setup-org t)
+
+(use-package org-edna
+  :straight (org-edna :host github :repo "akirak/org-edna" :branch "edit")
+  :config
+  (org-edna-load))
 #+END_SRC
 
 

@@ -46,7 +46,8 @@
 ;; Various completion functions using Ivy, Swiper for search
 (use-package counsel
   :config
-  (counsel-mode 1))
+  (counsel-mode 1)
+  :bind ("C-x C-j" . counsel-dired-jump))
 
 ;; https://github.com/abo-abo/swiper/wiki/Sort-files-by-mtime#a-simple-version
 (defun eh-ivy-sort-file-by-mtime (x y)

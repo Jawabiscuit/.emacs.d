@@ -188,8 +188,7 @@
   (("M-." . jedi:goto-definition)
    ("M-," . jedi:goto-definition-pop-marker)
    ("M-?" . jedi:show-doc)
-   ("M-/" . jedi:get-in-function-call))
-)
+   ("M-/" . jedi:get-in-function-call)))
 
 ;; Mel mode dependencies
 (use-package browse-url-dwim)
