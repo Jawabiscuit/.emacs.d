@@ -30,10 +30,6 @@
 ;;
 ;;; Code:
 
-(setq org-directory "~/org")
-(setq org-default-notes-file (concat org-directory "/notes.org"))
-(setq org-agenda-files (list org-directory))
-
 (use-package org-reverse-datetree)
 
 (use-package org-ql-search

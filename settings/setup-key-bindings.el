@@ -65,8 +65,8 @@
       (define-key map (kbd "C-c x") 'mc/mark-more-like-this-extended)
       
       ;; Symbol and word specific mark-more
-      (define-key map (kbd "C-c n") 'mc/mark-next-word-like-this)
-      (define-key map (kbd "C-c N") 'mc/mark-previous-word-like-this)
+      ;; (define-key map (kbd "C-c n") 'mc/mark-next-word-like-this)
+      ;; (define-key map (kbd "C-c N") 'mc/mark-previous-word-like-this)
       (define-key map (kbd "C-<f3>") 'mc/mark-all-words-like-this)
       (define-key map (kbd "C-c s") 'mc/mark-next-symbol-like-this)
       (define-key map (kbd "C-c S") 'mc/mark-previous-symbol-like-this)

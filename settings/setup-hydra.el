@@ -368,9 +368,10 @@
   ("Yankpad"
    (("C" yankpad-set-category "Set category")
     ("A" yankpad-append-category "Append category")
-    ("i" yankpad-insert "Insert")
+    ("i" yankpad-insert "Insert" :exit t)
     ("a" yankpad-aya-persist "Aya persist")
-    ("c" yankpad-capture-snippet "Capture snippet")
+    ("c" yankpad-capture-snippet "Capture snippet" :exit t)
+    ("c" yankpad-capture-snippet "Capture snippet" :exit t) ; TODO: Duplicate, displays only once
   )))
 
 (provide 'setup-hydra)

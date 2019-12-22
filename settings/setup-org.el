@@ -43,6 +43,10 @@
 ;; (defadvice kill-whole-line (after fix-cookies activate)
 ;;   (myorg-update-parent-cookie))
 
+(setq org-directory "~/org")
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+(setq org-agenda-files (list org-directory))
+
 ;; Library for working with xml via esxml and sxml
 (use-package esxml)
 
