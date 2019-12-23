@@ -149,11 +149,7 @@
     ("F" auto-fill-mode :toggle t) ; TODO: Toggle face does not change
     ("y" lispy-mode :toggle t))
    "Visual"
-   (("s" smartparens-mode :toggle t)
-    ("S" smartparens-strict-mode :toggle t)
-    ("hp" turn-on-show-smartparens-mode :toggle t) ; TODO: Toggle face does not change
-    ("r" rainbow-delimiters-mode :toggle t)
-    ("n" linum-mode :toggle t)
+   (("n" linum-mode :toggle t)
     ("w" whitespace-mode :toggle t)
     ("p" page-break-lines-mode :toggle t)
     ("g" global-git-gutter-mode :toggle t)
@@ -278,7 +274,7 @@
     ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
     ("ESC" nil "Quit"))))
 
-(defvar hydra-origami-title (with-faicon "connectdevelop" "Origami" 1.5 -0.05))
+(defvar hydra-origami-title (with-octicon "unfold" "Origami" 1.5 -0.05))
 
 (pretty-hydra-define hydra-origami
   (:pre (setq which-key-inhibit t)
@@ -499,7 +495,7 @@
 
    "Edit" (
     ("l" mc/edit-lines "Edit lines" :exit t)
-    ("e" mc/edit-empty-lines "Edit empty lines" :exit t)
+    ("L" mc/edit-empty-lines "Edit empty lines" :exit t)
     ("b" mc/edit-beginnings-of-lines "Edit beginnings" :exit t)
     ("e" mc/edit-ends-of-lines "Edit ends" :exit t)
 
@@ -525,6 +521,45 @@
     ("#" mc/insert-numbers "Insert numbers")
     ("C-s r" mc/sort-regions "Sort regions")
     ("C-s v" mc/reverse-regions "Reverse regions")
+    ("ESC" nil "Quit"))))
+
+(defvar hydra-delims-title (with-faicon "quote-left" "Delims" 1.5 -0.05))
+
+(pretty-hydra-define hydra-delims
+  (:pre (setq which-key-inhibit t)
+   :post (setq which-key-inhibit nil)
+   :title hydra-delims-title
+   :hint nil
+   :foreign-keys warn
+   :quit-key "q"
+  )
+  ("Toggle"
+   (("RET" smartparens-mode :toggle t)
+    ("s" smartparens-strict-mode :toggle t)
+    ("p" turn-on-show-smartparens-mode :toggle t) ; TODO: Toggle face does not change
+    ("r" rainbow-delimiters-mode :toggle t))
+   "Wrap"
+   (("(" sp-wrap-round "Wrap ()")
+    ("{" sp-wrap-curly "Wrap {}")
+    ("[" sp-wrap-square "Wrap []")
+    ("u" sp-unwrap-sexp "Unwrap"))
+   "Point"
+   (("." sp-forward-symbol "Fwd symbol")
+    ("," sp-backward-symbol "Bwd symbol")
+    (">" sp-forward-sexp "Fwd expression")
+    ("<" sp-backward-sexp "Bwd expression"))
+   "Edit"
+   (("k" sp-kill-sexp "Kill")
+    ("K" sp-backward-kill-sexp "Bwd kill expression")
+
+    ("'" sp-forward-slurp-sexp "Fwd slurp")
+    (";" sp-backward-slurp-sexp "Bwd slurp")
+    ("C-'" sp-forward-barf-sexp "Fwd barf")
+    ("C-;" sp-backward-barf-sexp "Bwd barf")
+
+    ("W" sp-forward-whitespace "Fwd kill whitespace")
+    ("w" sp-backward-whitespace "Bwd kill whitespace")
+    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
     ("ESC" nil "Quit"))))
 
 (provide 'setup-hydra)

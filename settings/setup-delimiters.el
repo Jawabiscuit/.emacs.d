@@ -56,7 +56,7 @@
   (sp-local-pair 'org-mode "=" "=" :wrap "C-+")
   
   ;; New pair
-  (sp-pair "<" ">")
+  (sp-pair "<" ">" :wrap "C-<")
   
   ;; Local pairs can be removed by calling `sp-local-pair' with optional keyword argument `:actions' with value `:rem'
   ;; (sp-local-pair 'LaTeX-mode "`" nil :actions :rem)
@@ -67,7 +67,8 @@
   ;; |foobar
   ;; hit C-(
   ;; becomes (|foobar)
-  (sp-pair "(" ")" :wrap "C-("))
+  (sp-pair "(" ")" :wrap "C-(") ; `sp-wrap-round' does this without having to define
+  :bind ("C-c h d" . hydra-delims/body))
 
 ;; Display nested sets of delimiters in different colors
 (use-package rainbow-delimiters
