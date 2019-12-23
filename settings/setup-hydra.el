@@ -222,29 +222,39 @@
    :quit-key "q"
   )
   ("Window"
-   (("b" balance-windows "Balance" :exit t)
+   (("9" balance-windows "Balance" :exit t)
     ("i" enlarge-window "Scale up")
-    ("j" shrink-window-horizontally "Scale down X")
     ("k" shrink-window "Scale down")
+    ("j" shrink-window-horizontally "Scale down X")
     ("l" enlarge-window-horizontally "Scale up X"))
    "Zoom"
    (("-" text-scale-decrease "out")
-    ("+" text-scale-increase "in")
-    ("=" (text-scale-increase 0) "reset"))
+    ("=" text-scale-increase "in")
+    ("0" (text-scale-increase 0) "reset"))
    "Switch"
-   (("f" counsel-projectile-find-file "find file" :exit t)
-    ("a" (lambda ()
+   (("a" (lambda ()
       (interactive)
       (ace-window 1)
       (add-hook 'ace-window-end-once-hook
                 'hydra-window/body))
-     "switch" :exit t)
+     "Ace switch")
     ("s" (lambda ()
       (interactive)
       (ace-swap-window)
       (add-hook 'ace-window-end-once-hook
                 'hydra-window/body))
-     "swap" :exit t))))
+     "Ace swap")
+    ("m" switch-window-then-maximize "Maximize")
+    ("b" switch-window-then-split-below "Split below")
+    ("r" switch-window-then-split-right "Split right")
+    ("d" switch-window-then-delete "Delete" :exit t)
+    ("D" switch-window-then-dired "Dired" :exit t)
+    ("f" switch-window-then-find-file "Find file" :exit t)
+    ("F" switch-window-then-find-file-read-only "Find file r/o" :exit t)
+    ("c" switch-window-then-compose-mail "Compose mail" :exit t)
+    ("B" switch-window-then-display-buffer "Display buffer")
+    ("k" switch-window-then-kill-buffer "Kill buffer") ; TODO: Duplicate, displays only one
+    ("k" switch-window-then-kill-buffer "Kill buffer"))))
 
 (defvar hydra-projectile-title (with-faicon "rocket" "Projectile" 1.5 -0.05))
 
@@ -397,7 +407,6 @@
    (("h" smeargle "Activate")
     ("c" smeargle-commits "Commits")
     ("C" smeargle-clear "Clear" :exit t))))
-
 
 (defvar hydra-clock-title (with-octicon "clock" "Clock" 1.5 -0.05))
 
