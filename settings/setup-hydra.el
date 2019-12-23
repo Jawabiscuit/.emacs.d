@@ -179,24 +179,24 @@
     ("o" org-open-at-point-global "Open link" :exit t)
    )
    "Clock"
-   (("hs" org-timer-start "Start timer")
-    ("hq" org-timer-stop "Stop timer")
-    ("ht" org-timer-set-timer "Set timer (at timer)")
-    ("hn" org-clock-in "Clock in")
-    ("ho" org-clock-out "Clock out")
-    ("hg" org-clock-goto "Clock goto")
+   (("C-s" org-timer-start "Start timer")
+    ("C-q" org-timer-stop "Stop timer")
+    ("C-t" org-timer-set-timer "Set timer (at timer)")
+    ("C-i" org-clock-in "Clock in")
+    ("C-o" org-clock-out "Clock out")
+    ("C-g" org-clock-goto "Clock goto")
    )
    "Web"
    (("i" org-web-tools-insert-link-for-url :exit t)
     ("p" org-web-tools-insert-web-page-as-entry :exit t)
-    ("hl" org-insert-link-global "Insert link")
+    ("C-l" org-insert-link-global "Insert link")
     ("s" org-store-link "Store link")
    )
    "Navigation"
-   (("hj" outline-next-visible-heading "Next visible headline")
-    ("hk" outline-previous-visible-heading "Prev visible headline")
-    ("h." org-forward-heading-same-level "Fwd to heading, same lvl")
-    ("h," org-backward-heading-same-level "Bwd to heading, same lvl")
+   (("C-j" outline-next-visible-heading "Next visible headline")
+    ("C-k" outline-previous-visible-heading "Prev visible headline")
+    ("C-n" org-forward-heading-same-level "Fwd to heading, same lvl")
+    ("C-p" org-backward-heading-same-level "Bwd to heading, same lvl")
     ("u" outline-up-heading "Up to parent heading")
     ("g" org-goto "Different loc in current file")
     ("ESC" nil "Quit"))))
@@ -476,50 +476,37 @@
     ("P" mc/unmark-previous-like-this "Unmark prev")
     ("n" mc/mark-next-like-this "Mark next")
     ("N" mc/unmark-next-like-this "Unmark next")
-
     ("C-v" mc/cycle-forward "Cycle Fwd")
     ("C-S-v" mc/cycle-backward "Cycle Bwd")
     ("r" mc/remove-current-cursor "Remove cursor")
-
     ("j" mc/skip-to-previous-like-this "Skip to prev")
     ("k" mc/skip-to-next-like-this "Skip to next")
-
     ("a" mc/mark-all-dwim "Mark all dwim")
     ("A" mc/mark-all-like-this "Mark all")
     ("x" mc/mark-all-in-region-regexp "Region regex" :exit t)
-
     ("c" mc/move-to-column "Column")
-
     ("C-S-b" mc/mark-all-below "Mark below")
     ("C-S-a" mc/mark-all-above "Mark above")
     ("C-t" mc/mark-sgml-tag-pair "Mark tag pair")
-
     ("C-h" mc-hide-unmatched-lines-mode "Hide unmatched") ; TODO: Duplicate, displays only one
     ("C-h" mc-hide-unmatched-lines-mode "Hide unmatched"))
-
    "Edit" (
     ("l" mc/edit-lines "Edit lines" :exit t)
     ("b" mc/edit-beginnings-of-lines "Edit beginnings" :exit t)
     ("e" mc/edit-ends-of-lines "Edit ends" :exit t)
-
     ("fu" mc/unfreeze-fake-cursors "Unfreeze fake")
     ("ff" mc/freeze-fake-cursors "Freeze fake"))
-
    "Remove" (
     ("fr" mc/remove-fake-cursor "Remove fake")
-
     ("C-e" mc/remove-cursors-at-eol "Remove eol")
     ("C-b" mc/remove-cursors-at-bol "Remove bol")
     ("C-l" mc/remove-cursors-on-blank-lines "Remove blank lines")
     ("C-d" mc/remove-duplicated-cursors "Remove duplicated")
-
     ("hd" hungry-delete "Delete white space")
     ("hb" hungry-backspace "Backspace white space"))
-
    "Transform" (
     ("v" mc/vertical-align "Vertical align" :exit t)
     ("V" mc/vertical-align-with-space "Vertical align space" :exit t)
-
     ("#" mc/insert-numbers "Insert numbers")
     ("C-s r" mc/sort-regions "Sort regions")
     ("C-s v" mc/reverse-regions "Reverse regions")
@@ -553,12 +540,10 @@
    "Edit"
    (("k" sp-kill-sexp "Kill")
     ("K" sp-backward-kill-sexp "Bwd kill expression")
-
     ("'" sp-forward-slurp-sexp "Fwd slurp")
     (";" sp-backward-slurp-sexp "Bwd slurp")
     ("C-'" sp-forward-barf-sexp "Fwd barf")
     ("C-;" sp-backward-barf-sexp "Bwd barf")
-
     ("W" sp-forward-whitespace "Fwd kill whitespace")
     ("w" sp-backward-whitespace "Bwd kill whitespace")
     ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
