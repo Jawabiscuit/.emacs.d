@@ -31,7 +31,7 @@
 ;;; Code:
 
 (use-package magit
-  :bind (("C-c h m" . hydra-magit/body))
+  :bind (("C-c h g" . hydra-magit/body))
   :config
   (defun magit-status-fullscreen (prefix)
     "Full screen magit-status.

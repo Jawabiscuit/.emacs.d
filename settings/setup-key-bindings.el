@@ -28,6 +28,7 @@
       (define-key map (kbd "M-.") 'fill-paragraph)
       (define-key map (kbd "C-c <up>") 'rotate-yank-pointer)
       (define-key map (kbd "C-Q") 'copy-region-as-kill)
+      (define-key map (kbd "M-s r") 'replace-string)
 
       ;; Navigation
       (define-key map (kbd "M-w") 'other-window)

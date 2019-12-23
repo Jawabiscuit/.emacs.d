@@ -103,7 +103,10 @@
   :hook turn-on-magit-gitflow)
 
 ;; Multiple cursors for Emacs
-(use-package multiple-cursors)
+(use-package multiple-cursors
+  :bind ("C-c h m" . hydra-mc/body))
+(use-package mc-extras
+  :straight (mc-extras :host github :repo "knu/mc-extras.el"))
 
 (use-package paredit)
 

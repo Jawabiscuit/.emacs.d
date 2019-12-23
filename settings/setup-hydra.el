@@ -124,8 +124,7 @@
    :quit-key "q"
   )
   ("Focus"
-   (("v" view-mode :toggle t)
-   )
+   (("v" view-mode :toggle t))
    "Info/check/linting"
    (("fd" eldoc-mode :toggle t)
     ("fc" flycheck-mode :toggle t)
@@ -133,11 +132,10 @@
     ("fs" flyspell-mode :toggle t)
     ("fp" flyspell-prog-mode :toggle t)
     ("a" apheleia-mode :toggle t)
-    ("A" apheleia-global-mode :toggle t)
+    ("A" apheleia-global-mode :toggle t))
     ;; ("ld" lsp-ui-doc-mode :toggle t)
     ;; ("lp" lsp-ui-peek-mode :toggle t)
-    ;; ("ls" lsp-ui-sideline-mode :toggle t)
-   )
+    ;; ("ls" lsp-ui-sideline-mode :toggle t))
    "Edit/assistance"
    (("el" electric-layout-mode :toggle t)
     ("ei" electric-indent-local-mode :toggle t)
@@ -149,8 +147,7 @@
     ("et" toggle-truncate-lines :toggle t)
     ("ey" yas-minor-mode :toggle t)
     ("F" auto-fill-mode :toggle t) ; TODO: Toggle face does not change
-    ("y" lispy-mode :toggle t)
-   )
+    ("y" lispy-mode :toggle t))
    "Visual"
    (("s" smartparens-mode :toggle t)
     ("S" smartparens-strict-mode :toggle t)
@@ -163,12 +160,8 @@
     ("hi" highlight-indent-guides-mode :toggle t)
     ("hr" fci-mode :toggle t)
     ("iv" ivy-filthy-rich-mode :toggle t)
-   )
-   ;; "LSP"
-   ;; (("lh" lsp-describe-session)
-   ;;  ("lR" lsp-restart-workspace)
-   ;;  ("lS" lsp-shutdown-workspace))
-))
+    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
+    ("ESC" nil "Quit"))))
 
 (defvar hydra-org-title (with-fileicon "org" "Org" 1.5 -0.05))
 
@@ -193,7 +186,7 @@
    (("hs" org-timer-start "Start timer")
     ("hq" org-timer-stop "Stop timer")
     ("ht" org-timer-set-timer "Set timer (at timer)")
-    ("hn" (org-clock-in '(4)) "Clock in")
+    ("hn" org-clock-in "Clock in")
     ("ho" org-clock-out "Clock out")
     ("hg" org-clock-goto "Clock goto")
    )
@@ -210,7 +203,7 @@
     ("h," org-backward-heading-same-level "Bwd to heading, same lvl")
     ("u" outline-up-heading "Up to parent heading")
     ("g" org-goto "Different loc in current file")
-   )))
+    ("ESC" nil "Quit"))))
 
 (defvar hydra-windows-title (with-faicon "windows" "Windows" 1.5 -0.05))
 
@@ -253,8 +246,9 @@
     ("F" switch-window-then-find-file-read-only "Find file r/o" :exit t)
     ("c" switch-window-then-compose-mail "Compose mail" :exit t)
     ("B" switch-window-then-display-buffer "Display buffer")
-    ("k" switch-window-then-kill-buffer "Kill buffer") ; TODO: Duplicate, displays only one
-    ("k" switch-window-then-kill-buffer "Kill buffer"))))
+    ("k" switch-window-then-kill-buffer "Kill buffer")
+    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
+    ("ESC" nil "Quit"))))
 
 (defvar hydra-projectile-title (with-faicon "rocket" "Projectile" 1.5 -0.05))
 
@@ -280,7 +274,9 @@
    "Search"
    (("r" projectile-replace "Search/replace")
     ("R" projectile-replace-regexp "Regexp replace")
-    ("s" counsel-ag "Ag search"))))
+    ("s" counsel-ag "Ag search")
+    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
+    ("ESC" nil "Quit"))))
 
 (defvar hydra-origami-title (with-faicon "connectdevelop" "Origami" 1.5 -0.05))
 
@@ -308,7 +304,8 @@
      ("o" origami-show-only-node "Show Only" :exit t))
    "Navigation"
     (("k" origami-next-fold "Fwd >>")
-     ("j" origami-previous-fold "Bwd <<"))))
+     ("j" origami-previous-fold "Bwd <<")
+     ("ESC" nil "Quit"))))
 
 (defvar hydra-flycheck-title (with-faicon "check-circle" "Flycheck" 1.5 -0.05))
 
@@ -329,8 +326,9 @@
     ("k" flycheck-previous-error "Previous error")
     ("<" flycheck-first-error "First error")
     (">" flycheck-previous-error "Previous error")
-    ("g" avy-flycheck-goto-error "Goto error") ; TODO: Duplicate, displays only one
-    ("g" avy-flycheck-goto-error "Goto error"))))
+    ("g" avy-flycheck-goto-error "Goto error")
+    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
+    ("ESC" nil "Quit"))))
 
 (defvar hydra-flyspell-title (with-faicon "check-circle" "Flyspell" 1.5 -0.05))
 
@@ -354,8 +352,9 @@
    (("n" flyspell-goto-next-error "Next error")
     ("p" flyspell-check-previous-highlighted-word "Auto correct previous highlighted")
     ("b" flyspell-buffer "Check entire buffer")
-    ("c" flyspell-auto-correct-word "Current word") ; TODO: Duplicate, displays only one
-    ("c" flyspell-auto-correct-word "Current word"))))
+    ("c" flyspell-auto-correct-word "Current word")
+    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
+    ("ESC" nil "Quit"))))
 
 (defvar hydra-yankpad-title (with-faicon "pencil-square" "Yankpad" 1.5 -0.05))
 
@@ -372,8 +371,9 @@
     ("A" yankpad-append-category "Append category")
     ("i" yankpad-insert "Insert" :exit t)
     ("a" yankpad-aya-persist "Aya persist")
-    ("c" yankpad-capture-snippet "Capture snippet" :exit t) ; TODO: Duplicate, displays only one
-    ("c" yankpad-capture-snippet "Capture snippet" :exit t))))
+    ("c" yankpad-capture-snippet "Capture snippet" :exit t)
+    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
+    ("ESC" nil "Quit"))))
 
 (defvar hydra-magit-title (with-octicon "octoface" "Magit" 1.5 -0.05))
 
@@ -406,7 +406,8 @@
   "Smeargle"
    (("h" smeargle "Activate")
     ("c" smeargle-commits "Commits")
-    ("C" smeargle-clear "Clear" :exit t))))
+    ("C" smeargle-clear "Clear" :exit t)
+    ("ESC" nil "Quit"))))
 
 (defvar hydra-clock-title (with-octicon "clock" "Clock" 1.5 -0.05))
 
@@ -426,7 +427,8 @@
     ("o" org-clock-out "Clock-out" :exit t)
     ("r" org-clock-report "Report")
     ("s" org-schedule "Schedule" :exit t)
-    ("d" org-deadline "Deadline" :exit t))))
+    ("d" org-deadline "Deadline" :exit t)
+    ("ESC" nil "Quit"))))
 
 (defvar hydra-straight-title (with-octicon "package" "Straight" 1.5 -0.05))
 
@@ -460,7 +462,70 @@
     ("W" straight-watcher-stop "Watcher stop" :exit t)
     ("g" straight-get-recipe "Get recipe" :exit t)
     ("e" straight-prune-build "Prune build" :exit t)
-    )))
+    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
+    ("ESC" nil "Quit"))))
+
+(defvar hydra-mc-title (with-faicon "i-cursor" "Multiple Cursors" 1.5 -0.05))
+
+(pretty-hydra-define hydra-mc
+  (:pre (setq which-key-inhibit t)
+   :post (setq which-key-inhibit nil)
+   :title hydra-mc-title
+   :hint nil
+   :foreign-keys warn
+   :quit-key "q"
+  )
+  ("Mark" (
+    ("p" mc/mark-previous-like-this "Mark prev")
+    ("P" mc/unmark-previous-like-this "Unmark prev")
+    ("n" mc/mark-next-like-this "Mark next")
+    ("N" mc/unmark-next-like-this "Unmark next")
+
+    ("j" mc/skip-to-previous-like-this "Skip to prev")
+    ("k" mc/skip-to-next-like-this "Skip to next")
+
+    ("a" mc/mark-all-dwim "Mark all dwim")
+    ("A" mc/mark-all-like-this "Mark all")
+    ("x" mc/mark-all-in-region-regexp "Region regex")
+
+    ("c" mc/move-to-column "Column")
+
+    ("C-S-b" mc/mark-all-below "Mark below")
+    ("C-S-a" mc/mark-all-above "Mark above")
+    ("C-t" mc/mark-sgml-tag-pair "Mark tag pair")
+
+    ("C-h" mc-hide-unmatched-lines-mode "Hide unmatched") ; TODO: Duplicate, displays only one
+    ("C-h" mc-hide-unmatched-lines-mode "Hide unmatched"))
+
+   "Edit" (
+    ("l" mc/edit-lines "Edit lines" :exit t)
+    ("e" mc/edit-empty-lines "Edit empty lines" :exit t)
+    ("b" mc/edit-beginnings-of-lines "Edit beginnings" :exit t)
+    ("e" mc/edit-ends-of-lines "Edit ends" :exit t)
+
+    ("fu" mc/unfreeze-fake-cursors "Unfreeze fake")
+    ("ff" mc/freeze-fake-cursors "Freeze fake"))
+
+   "Remove" (
+    ("r" mc/remove-current-cursor "Remove current")
+    ("fr" mc/remove-fake-cursor "Remove fake")
+
+    ("C-e" mc/remove-cursors-at-eol "Remove eol")
+    ("C-b" mc/remove-cursors-at-bol "Remove bol")
+    ("C-l" mc/remove-cursors-on-blank-lines "Remove blank lines")
+    ("C-d" mc/remove-duplicated-cursors "Remove duplicated")
+
+    ("hd" hungry-delete "Delete white space")
+    ("hb" hungry-backspace "Backspace white space"))
+
+   "Transform" (
+    ("v" mc/vertical-align "Vertical align" :exit t)
+    ("V" mc/vertical-align-with-space "Vertical align space" :exit t)
+
+    ("#" mc/insert-numbers "Insert numbers")
+    ("C-s r" mc/sort-regions "Sort regions")
+    ("C-s v" mc/reverse-regions "Reverse regions")
+    ("ESC" nil "Quit"))))
 
 (provide 'setup-hydra)
 ;;; setup-hydra.el ends here
