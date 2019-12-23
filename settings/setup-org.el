@@ -118,6 +118,8 @@
   :bind (("C-c h o" . hydra-org/body)
          ("C-c O" . my-org-super-agenda)))
 
+(jawa/bind-jump "k" 'org-clock-goto)
+
 ;; Active Babel languages
 (with-eval-after-load 'org
   (org-babel-do-load-languages

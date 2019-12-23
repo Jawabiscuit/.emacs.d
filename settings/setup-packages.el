@@ -95,9 +95,7 @@
 (use-package htmlize)
 
 ;; Complete Git interface
-(use-package magit
-  :config
-  (jawa/require 'setup-magit))
+(jawa/require 'setup-magit)
 
 ;; Gitflow extension for magit
 (use-package magit-gitflow

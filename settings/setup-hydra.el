@@ -32,7 +32,8 @@
 
 (use-package hydra
   :bind (("C-c h t" . hydra-toggles/body)
-))
+         ("C-c h k" . hydra-clock/body)
+         ("C-c h r" . hydra-straight/body)))
 
 (use-package hydra-posframe
   :after (hydra posframe)
@@ -225,8 +226,7 @@
     ("i" enlarge-window "Scale up")
     ("j" shrink-window-horizontally "Scale down X")
     ("k" shrink-window "Scale down")
-    ("l" enlarge-window-horizontally "Scale up X")
-   )
+    ("l" enlarge-window-horizontally "Scale up X"))
    "Zoom"
    (("-" text-scale-decrease "out")
     ("+" text-scale-increase "in")
@@ -244,8 +244,7 @@
       (ace-swap-window)
       (add-hook 'ace-window-end-once-hook
                 'hydra-window/body))
-     "swap" :exit t)
-    )))
+     "swap" :exit t))))
 
 (defvar hydra-projectile-title (with-faicon "rocket" "Projectile" 1.5 -0.05))
 
@@ -288,21 +287,18 @@
     (("RET" origami-mode :toggle t)
      ("u" origami-undo "Undo")
      ("r" origami-redo "Redo")
-     ("x" origami-reset "Reset")
-    )
+     ("x" origami-reset "Reset"))
    "Fold"
     (("<" origami-open-node "Open")
      (">" origami-close-node "Close")
      ("f" origami-forward-toggle-node "Fwd toggle")
      ("a" origami-toggle-all-nodes "All toggle")
      ("s" origami-show-node "Show")
-     ("o" origami-show-only-node "Show Only" :exit t)
      ("o" origami-show-only-node "Show Only" :exit t) ; TODO: Duplicate, displays only one
-    )
+     ("o" origami-show-only-node "Show Only" :exit t))
    "Navigation"
     (("k" origami-next-fold "Fwd >>")
-     ("j" origami-previous-fold "Bwd <<")
-    )))
+     ("j" origami-previous-fold "Bwd <<"))))
 
 (defvar hydra-flycheck-title (with-faicon "check-circle" "Flycheck" 1.5 -0.05))
 
@@ -310,7 +306,6 @@
   (:pre (setq which-key-inhibit t)
    :post (setq which-key-inhibit nil)
    :title hydra-flycheck-title
-   ;; :color red
    :hint nil
    :foreign-keys warn
    :quit-key "q"
@@ -318,15 +313,14 @@
   ("Misc"
    (("RET" global-flycheck-mode :toggle t)
     ("f" flycheck-error-list-set-filter "Filter")
-    ("s" flycheck-select-checker "Select checker")
-  )"Navigation"
+    ("s" flycheck-select-checker "Select checker"))
+   "Navigation"
    (("j" flycheck-next-error "Next error")
     ("k" flycheck-previous-error "Previous error")
     ("<" flycheck-first-error "First error")
     (">" flycheck-previous-error "Previous error")
-    ("g" avy-flycheck-goto-error "Goto error")
     ("g" avy-flycheck-goto-error "Goto error") ; TODO: Duplicate, displays only one
-  )))
+    ("g" avy-flycheck-goto-error "Goto error"))))
 
 (defvar hydra-flyspell-title (with-faicon "check-circle" "Flyspell" 1.5 -0.05))
 
@@ -350,9 +344,8 @@
    (("n" flyspell-goto-next-error "Next error")
     ("p" flyspell-check-previous-highlighted-word "Auto correct previous highlighted")
     ("b" flyspell-buffer "Check entire buffer")
-    ("c" flyspell-auto-correct-word "Current word")
     ("c" flyspell-auto-correct-word "Current word") ; TODO: Duplicate, displays only one
-   )))
+    ("c" flyspell-auto-correct-word "Current word"))))
 
 (defvar hydra-yankpad-title (with-faicon "pencil-square" "Yankpad" 1.5 -0.05))
 
@@ -360,7 +353,6 @@
   (:pre (setq which-key-inhibit t)
    :post (setq which-key-inhibit nil)
    :title hydra-yankpad-title
-   ;; :color red
    :hint nil
    :foreign-keys warn
    :quit-key "q"
@@ -370,9 +362,96 @@
     ("A" yankpad-append-category "Append category")
     ("i" yankpad-insert "Insert" :exit t)
     ("a" yankpad-aya-persist "Aya persist")
-    ("c" yankpad-capture-snippet "Capture snippet" :exit t)
-    ("c" yankpad-capture-snippet "Capture snippet" :exit t) ; TODO: Duplicate, displays only once
-  )))
+    ("c" yankpad-capture-snippet "Capture snippet" :exit t) ; TODO: Duplicate, displays only one
+    ("c" yankpad-capture-snippet "Capture snippet" :exit t))))
+
+(defvar hydra-magit-title (with-octicon "octoface" "Magit" 1.5 -0.05))
+
+(pretty-hydra-define hydra-magit
+  (:pre (setq which-key-inhibit t)
+   :post (setq which-key-inhibit nil)
+   :title hydra-magit-title
+   :hint nil
+   :foreign-keys warn
+   :quit-key "q"
+  )
+  ("Action"
+   (("b" magit-blame "Blame")
+    ("c" magit-clone "Clone" :exit t)
+    ("i" magit-init "Init" :exit t)
+    ("l" magit-log-buffer-file "Commit log (current file)" :exit t)
+    ("L" magit-log-current "Commit log (project)" :exit t)
+    ("m" magit-status "Status" :exit t)
+    ("M" magit-status-fullscreen "Status FS" :exit t) ; TODO: Duplicate, displays only one
+    ("M" magit-status-fullscreen "Status FS" :exit t))
+  "Git Gutter"
+   (("g" global-git-gutter-mode :toggle t)
+    ("k" git-gutter:previous-hunk "Prev hunk")
+    ("u" git-gutter:update-all-windows "Refresh visible bufs")
+    ("j" git-gutter:next-hunk "Next hunk")
+    ("S" git-gutter:stage-hunk "Stage hunk" :exit t)
+    ("R" git-gutter:revert-hunk "Revert hunk" :exit t))
+  "Time Machine"
+   (("RET" git-timemachine-toggle :toggle t :exit t))
+  "Smeargle"
+   (("h" smeargle "Activate")
+    ("c" smeargle-commits "Commits")
+    ("C" smeargle-clear "Clear" :exit t))))
+
+
+(defvar hydra-clock-title (with-octicon "clock" "Clock" 1.5 -0.05))
+
+(pretty-hydra-define hydra-clock
+  (:pre (setq which-key-inhibit t)
+   :post (setq which-key-inhibit nil)
+   :title hydra-clock-title
+   :hint nil
+   :foreign-keys warn
+   :quit-key "q"
+  )
+  ("Clock"
+   (("c" org-clock-cancel "Cancel")
+    ("e" org-clock-modify-effort-estimate "Effort" :exit t)
+    ("i" org-clock-in "Clock-in" :exit t)
+    ("g" org-clock-goto "Go-to")
+    ("o" org-clock-out "Clock-out" :exit t)
+    ("r" org-clock-report "Report")
+    ("s" org-schedule "Schedule" :exit t)
+    ("d" org-deadline "Deadline" :exit t))))
+
+(defvar hydra-straight-title (with-octicon "package" "Straight" 1.5 -0.05))
+
+(pretty-hydra-define hydra-straight
+  (:pre (setq which-key-inhibit t)
+   :post (setq which-key-inhibit nil)
+   :title hydra-straight-title
+   :title "Straight"
+   :hint nil
+   :foreign-keys warn
+   :quit-key "q"
+  )
+  ("Straight"
+   (("c" straight-check-all "Check all")
+    ("C" straight-check-package "Check Package")
+    ("r" straight-rebuild-all "Rebuild all" :exit t)
+    ("R" straight-rebuild-package "Rebuild packge" :exit t)
+    ("f" straight-fetch-all "Fetch" :exit t)
+    ("F" straight-fetch-package "Fetch package" :exit t)
+    ("p" straight-pull-all "Pull all" :exit t)
+    ("P" straight-pull-package "Pull package" :exit t)
+    ("m" straight-merge-all "Merge all" :exit t)
+    ("M" straight-merge-package "Merge package" :exit t)
+    ("n" straight-normalize-all "Normalize all" :exit t)
+    ("N" straight-normalize-package "Normalize package" :exit t)
+    ("u" straight-push-all "Push all" :exit t)
+    ("U" straight-push-package "Push package" :exit t)
+    ("v" straight-freeze-versions "Freeze versions" :exit t)
+    ("V" straight-thaw-versions "Thaw versions" :exit t)
+    ("w" straight-watcher-start "Watcher start" :exit t)
+    ("W" straight-watcher-stop "Watcher stop" :exit t)
+    ("g" straight-get-recipe "Get recipe" :exit t)
+    ("e" straight-prune-build "Prune build" :exit t)
+    )))
 
 (provide 'setup-hydra)
 ;;; setup-hydra.el ends here
