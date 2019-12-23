@@ -96,6 +96,8 @@
   :init-value t
   :lighter " jaK")
 
+(diminish 'ja-keys-minor-mode)
+
 (ja-keys-minor-mode 1)
 ;; Disable custom keys in the minibuffer
 (defun ja-minibuffer-setup-hook ()
@@ -117,6 +119,7 @@
 ;; Editing
 (jawa/bind-user "c" 'copy-region-as-kill)
 (jawa/bind-user "v" 'kill-region)
+(jawa/bind-user "'" 'quoted-insert)
 
 ;; Undo tree
 (eval-after-load 'undo-tree '(define-key undo-tree-map (kbd "C-?") nil))

@@ -477,12 +477,16 @@
     ("n" mc/mark-next-like-this "Mark next")
     ("N" mc/unmark-next-like-this "Unmark next")
 
+    ("C-v" mc/cycle-forward "Cycle Fwd")
+    ("C-S-v" mc/cycle-backward "Cycle Bwd")
+    ("r" mc/remove-current-cursor "Remove cursor")
+
     ("j" mc/skip-to-previous-like-this "Skip to prev")
     ("k" mc/skip-to-next-like-this "Skip to next")
 
     ("a" mc/mark-all-dwim "Mark all dwim")
     ("A" mc/mark-all-like-this "Mark all")
-    ("x" mc/mark-all-in-region-regexp "Region regex")
+    ("x" mc/mark-all-in-region-regexp "Region regex" :exit t)
 
     ("c" mc/move-to-column "Column")
 
@@ -495,7 +499,6 @@
 
    "Edit" (
     ("l" mc/edit-lines "Edit lines" :exit t)
-    ("L" mc/edit-empty-lines "Edit empty lines" :exit t)
     ("b" mc/edit-beginnings-of-lines "Edit beginnings" :exit t)
     ("e" mc/edit-ends-of-lines "Edit ends" :exit t)
 
@@ -503,7 +506,6 @@
     ("ff" mc/freeze-fake-cursors "Freeze fake"))
 
    "Remove" (
-    ("r" mc/remove-current-cursor "Remove current")
     ("fr" mc/remove-fake-cursor "Remove fake")
 
     ("C-e" mc/remove-cursors-at-eol "Remove eol")

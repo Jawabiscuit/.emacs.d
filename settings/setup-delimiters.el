@@ -53,10 +53,13 @@
   ;; elisp comment highlighting
   ;; Redefine this global pair (`LaTex') to a new value locally
   (sp-local-pair 'emacs-lisp-mode "`" "'")
-  (sp-local-pair 'org-mode "=" "=" :wrap "C-+")
   
-  ;; New pair
-  (sp-pair "<" ">" :wrap "C-<")
+  ;; New Org pairs
+  (sp-local-pair 'org-mode "=" "=" :wrap "C-+")
+  (sp-local-pair 'org-mode "<" ">" :wrap "C-<")
+
+  ;; Yas pairs
+  (sp-pair "${" ":}" :wrap "C-$")
   
   ;; Local pairs can be removed by calling `sp-local-pair' with optional keyword argument `:actions' with value `:rem'
   ;; (sp-local-pair 'LaTeX-mode "`" nil :actions :rem)
