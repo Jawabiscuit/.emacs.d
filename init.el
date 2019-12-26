@@ -11,6 +11,9 @@
 ;; Configure straight.el
 (load-file (expand-file-name "core/straight.el" user-emacs-directory))
 
+;; Diminished modes from modeline
+(use-package diminish)
+
 ;; Use the latest Git version of Org mode
 (require 'cl-lib)
 (require 'subr-x)

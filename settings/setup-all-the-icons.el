@@ -17,7 +17,6 @@
         counsel-projectile-find-dir)))
 
 (use-package all-the-icons-dired
-  :config
-  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+  :hook (dired-mode . all-the-icons-dired-mode))
 
 (provide 'setup-all-the-icons)

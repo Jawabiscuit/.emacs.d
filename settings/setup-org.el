@@ -43,10 +43,6 @@
 ;; (defadvice kill-whole-line (after fix-cookies activate)
 ;;   (myorg-update-parent-cookie))
 
-(setq org-directory "~/org")
-(setq org-default-notes-file (concat org-directory "/notes.org"))
-(setq org-agenda-files (list org-directory))
-
 ;; Library for working with xml via esxml and sxml
 (use-package esxml)
 
@@ -62,8 +58,7 @@
 
 ;; Pretty bullets :) instead of ugly asterisks :(
 (use-package org-bullets
-  :init
-  (add-hook 'org-mode-hook #'org-bullets-mode)
+  :hook (org-mode . org-bullets-mode)
 )
 
 ;; Bootstrap compatible HTML Back-End for Org
@@ -174,7 +169,7 @@
 
 ;; GTD TODO keywords and hide logs
 (setq org-todo-keywords
-      '((sequence "TODO" "ACTION" "IN-PROGRESS" "DEFERRED" "WAITING(w@)" "|" "DONE" "INCUBATE" "DELEGATED(d@)" "ARCHIVE" "PROJECT")))
+      '((sequence "TODO" "ACTION" "IN-PROGRESS" "DEFERRED(@d)" "WAITING(w@)" "|" "DONE(@o)" "DELEGATED(l@)" "ARCHIVE")))
 (setq org-log-into-drawer 1)
 
 ;; GTD fast tag selection
@@ -283,13 +278,13 @@
 ;; Format timestamps
 ;; First element formats date
 ;; Second element formats date + time
-(custom-set-variables
- '(org-display-custom-times t)
- '(org-time-stamp-custom-formats (
-    ;; EDT (summer months)
-    ;; quote (" %Y-%m-%d " . " %Y-%m-%d %H:%M:%S -0400 "))))
-    ;; EST
-    quote (" %Y-%m-%d " . " %Y-%m-%d %H:%M:%S %z "))))
+;; (custom-set-variables
+;;  '(org-display-custom-times t)
+;;  '(org-time-stamp-custom-formats (
+;;     ;; EDT (summer months)
+;;     ;; quote (" %Y-%m-%d " . " %Y-%m-%d %H:%M:%S -0400 "))))
+;;     ;; EST
+;;     quote (" %Y-%m-%d " . " %Y-%m-%d %H:%M:%S %z "))))
 
 ;; Ellipsis
 (setq org-ellipsis "»")
@@ -301,36 +296,12 @@
       (quote (("Effort_ALL" . "0:05 0:10 0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 8:00")
               ("SYTLE_ALL" . "habit"))))
 
-;; Keep track of when a certain TODO item was finished
+;; Keep track of when a certain Todo item was finished
 (setq org-log-done 'time
       ;; record a note along with the timestamp
       org-log-done 'note
       ;; hide markup elements
       org-hide-emphasis-markers t)
-
-;; TODO: state is undefined
-;; ;; Auto Clock-in and Clock-out
-;; (defun wicked/org-clock-in-if-starting ()
-;;    "Clock in when the task is marked IN-PROGRESS."
-;;    (when (and (string= state "IN-PROGRESS")
-;;               (not (string= last-state state)))
-;;      (org-clock-in)))
-;;
-;; (add-hook 'org-after-todo-state-change-hook
-;;           'wicked/org-clock-in-if-starting)
-;;
-;; (defun wicked/org-clock-out-if-waiting ()
-;;   "Clock out when the task is marked WAITING.
-;;    TODO: Clock out when task gets set to any number of done states"
-;;   (when (and (string= state "WAITING")
-;;              (equal (marker-buffer org-clock-marker) (current-buffer))
-;;              (< (point) org-clock-marker)
-;;              (> (save-excursion (outline-next-heading) (point))
-;;                 org-clock-marker)
-;;              (not (string= last-state state)))
-;;     (org-clock-out)))
-;; (add-hook 'org-after-todo-state-change-hook
-;;           'wicked/org-clock-out-if-waiting)
 
 ;; Org mode links
 ;; `https://github.com/abo-abo/hydra/wiki/Org-mode-links'

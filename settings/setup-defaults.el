@@ -5,18 +5,25 @@
 
 ;; Don't beep. Don't visible-bell (fails on el capitan). Just blink the modeline on errors.
 (setq visible-bell nil)
-(setq ring-bell-function (lambda ()
-    (invert-face 'mode-line)
-        (run-with-timer 0.05 nil 'invert-face 'mode-line))
-)
+;; (setq ring-bell-function (lambda ()
+;;     (invert-face 'mode-line)
+;;         (run-with-timer 0.05 nil 'invert-face 'mode-line))
+;; )
 
 ;; Fonts (disabled, system specific)
 ;; (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-12"))
 ;; (set-face-attribute 'default t :font "DejaVu Sans Mono-12")
 
-;; Smooth scroll
+;; Mouse & Smooth Scroll
 (require 'smooth-scrolling)
 (smooth-scrolling-mode 1)
+;; Scroll one line at a time (less "jumpy" than defaults)
+(when (display-graphic-p)
+  (setq mouse-wheel-scroll-amount '(4 ((shift) . 1))
+        mouse-wheel-progressive-speed nil))
+(setq scroll-step 1
+      scroll-margin 0
+      scroll-conservatively 100000)
 
 ;; Clock
 (display-time)
@@ -49,14 +56,23 @@
 ;; Answering just 'y' or 'n' will do
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;; UTF-8 please
-(setq locale-coding-system 'utf-8) ; pretty
-(set-terminal-coding-system 'utf-8) ; pretty
-(set-keyboard-coding-system 'utf-8) ; pretty
-(set-selection-coding-system 'utf-8) ; please
-(prefer-coding-system 'utf-8) ; with sugar on top
+;; UTF-8 as the default coding system
+;; Explicitly set the prefered coding systems to avoid annoying prompt
+;; from emacs (especially on Microsoft Windows)
+(prefer-coding-system 'utf-8)
 
-(setq default-buffer-file-coding-system 'utf-8-unix)
+(set-language-environment 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
+(set-clipboard-coding-system 'utf-8)
+(set-file-name-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(modify-coding-system-alist 'process "*" 'utf-8)
+
+(setq locale-coding-system 'utf-8
+      default-process-coding-system '(utf-8 . utf-8))
 
 ;; Show active region
 (transient-mark-mode 1)
@@ -107,9 +123,6 @@
 
 ;; Don't break lines for me, please
 (setq-default truncate-lines t)
-
-;; Keep cursor away from edges when scrolling up/down
-; (require 'smooth-scrolling)
 
 ;; Allow recursive minibuffers
 (setq enable-recursive-minibuffers t)

@@ -32,23 +32,31 @@
 
 (use-package smartparens
   ;; Unclutter the modeline
-  :diminish smartparens
+  :diminish smartparens-mode
   :init
   (setq sp-autoescape-string-quote nil)
+  :hook ((css-mode . smartparens-mode)
+         (restclient-mode . smartparens-mode)
+         (js-mode . smartparens-mode)
+         (java-mode . smartparens-mode)
+         (ruby-mode . smartparens-mode)
+         (markdown-mode . smartparens-mode)
+         (emacs-lisp-mode . smartparens-mode)
+         (org-mode . smartparens-mode)
+         (python-mode . smartparens-mode)
+         (c++-mode . smartparens-mode)
+         (css-mode . show-smartparens-mode)
+         (restclient-mode . show-smartparens-mode)
+         (js-mode . show-smartparens-mode)
+         (java-mode . show-smartparens-mode)
+         (ruby-mode . show-smartparens-mode)
+         (markdown-mode . show-smartparens-mode)
+         (emacs-lisp-mode . show-smartparens-mode)
+         (org-mode . show-smartparens-mode)
+         (python-mode . show-smartparens-mode)
+         (c++-mode . show-smartparens-mode))
   :config
   (require 'smartparens-config)
-  (--each '(css-mode-hook
-            restclient-mode-hook
-            js-mode-hook
-            java-mode-hook
-            ruby-mode-hook
-            markdown-mode-hook
-            emacs-lisp-mode-hook
-            org-mode-hook
-            python-mode-hook
-            c++-mode-hook)
-    (add-hook it 'turn-on-smartparens-mode)
-    (add-hook it 'turn-on-show-smartparens-mode))
 
   ;; elisp comment highlighting
   ;; Redefine this global pair (`LaTex') to a new value locally
@@ -81,7 +89,8 @@
 
 ;; Display ugly form feed characters as tidy horizontal rules
 (use-package page-break-lines
-  :straight (page-break-lines :host github :repo "purcell/page-break-lines"))
+  ;; :straight (page-break-lines :host github :repo "purcell/page-break-lines"))
+  :straight nil)
 
 (provide 'setup-delimiters)
 ;;; setup-delimiters.el ends here

@@ -31,7 +31,7 @@
 ;;; Code:
 
 (use-package yasnippet
-  ;; :diminish 'yas-minor-mode
+  :diminish yas-minor-mode
   ;; :bind (("<tab>" . nil) ;; Unbind Tab completion
   ;;        ("TAB" . nil)
   ;;        ;; Bind `SPC' to `yas-expand' when snippet expansion available (it

@@ -113,6 +113,34 @@
    (("n" forward-button "Forward")
     ("p" backward-button "Backward"))))
 
+(defvar hydra-dired-title (with-faicon "compass" "Dired Navigation" 1.5 -0.05))
+
+(major-mode-hydra-define 'dired-mode
+  (:title hydra-dired-title
+   :quit-key "q")
+  ("Navigation"
+   (("i" dired-subtree-insert "Insert" :exit nil)
+    ("/" dired-subtree-apply-filter "Filter" :exit nil)
+    ("k" dired-subtree-remove "Kill" :exit nil)
+    ("n" dired-subtree-next-sibling "Next sibling" :exit nil)
+    ("p" dired-subtree-previous-sibling "Prev sibling" :exit nil)
+    ("j" dired-subtree-up "Up" :exit nil)
+    ("k" dired-subtree-down "Down" :exit nil)
+    ("b" dired-subtree-beginning "Beginning" :exit nil)
+    ("e" dired-subtree-end "End" :exit nil)
+    ("m" dired-subtree-mark-subtree "Mark" :exit nil)
+    ("u" dired-subtree-unmark-subtree "Unmark" :exit nil)
+    ("C-f" dired-subtree-only-this-file "Remove this file" :exit t)
+    ("C-d" dired-subtree-only-this-directory "Remove this directory" :exit t) ; TODO: Duplicate, displays only one
+    ("C-d" dired-subtree-only-this-directory "Remove this directory" :exit t))
+   "View"
+   (("RET" dired-subtree-toggle "Toggle" :exit nil)
+    ("c" dired-subtree-cycle "Cycle" :exit nil)
+    (">" dired-subtree-narrow "Narrow" :exit t)
+    ("r" dired-subtree-revert "Revert" :exit t))
+   "Open"
+   (("x" dired-open-xdg "xdg-open"))))
+
 (defvar hydra-toggles-title (with-faicon "toggle-on" "Toggles" 1.5 -0.05))
 
 (pretty-hydra-define hydra-toggles
@@ -123,40 +151,41 @@
    ;; :color blue
    :quit-key "q"
   )
-  ("Focus"
-   (("v" view-mode :toggle t))
-   "Info/check/linting"
-   (("fd" eldoc-mode :toggle t)
-    ("fc" flycheck-mode :toggle t)
-    ("fv" flycheck-verify-setup)
-    ("fs" flyspell-mode :toggle t)
-    ("fp" flyspell-prog-mode :toggle t)
-    ("a" apheleia-mode :toggle t)
-    ("A" apheleia-global-mode :toggle t))
+  ("Focus Mode"
+   (("v" toggle-frame-fullscreen "Fullscreen view" :toggle t))
+   "Info/check/linting Modes"
+   (("e" eldoc-mode "Echo Lisp objs" :toggle t)
+    ("a" apheleia-mode "Code format" :toggle t)
+    ("A" apheleia-global-mode "Format global" :toggle t)
+    ("fc" flycheck-mode "Code linter" :toggle t)
+    ("fs" flyspell-mode "Spell check" :toggle t)
+    ("fp" flyspell-prog-mode "Spell check prog" :toggle t)
+    ("fv" flycheck-verify-setup "Verify setup"))
     ;; ("ld" lsp-ui-doc-mode :toggle t)
     ;; ("lp" lsp-ui-peek-mode :toggle t)
     ;; ("ls" lsp-ui-sideline-mode :toggle t))
    "Edit/assistance"
-   (("el" electric-layout-mode :toggle t)
-    ("ei" electric-indent-local-mode :toggle t)
-    ("eq" electric-quote-local-mode :toggle t)
-    ("ea" aggressive-indent-mode :toggle t)
-    ("o" origami-mode :toggle t)
-    ("W" whitespace-cleanup-mode :toggle t)
-    ("ew" toggle-word-wrap :toggle t)
-    ("et" toggle-truncate-lines :toggle t)
-    ("ey" yas-minor-mode :toggle t)
-    ("F" auto-fill-mode :toggle t) ; TODO: Toggle face does not change
-    ("y" lispy-mode :toggle t))
+   (("C-a" global-auto-complete-mode "AC global" :toggle t)
+    ("C-l" electric-layout-mode "Elec layout" :toggle t)
+    ("C-i" electric-indent-local-mode "Elec indent" :toggle t)
+    ("C-q" electric-quote-local-mode "Elec quote" :toggle t)
+    ("C-g" aggressive-indent-mode "Aggro indent" :toggle t)
+    ("C-w" toggle-word-wrap "Word wrap" :toggle t)
+    ("C-t" toggle-truncate-lines "Trunc lines" :toggle t)
+    ("C-y" yas-minor-mode "Yas" :toggle t)
+    ("C-c" whitespace-cleanup-mode "Whtspc cleanup" :toggle t)
+    ("C-f" auto-fill-mode "Autofill" :toggle t) ; TODO: Toggle face does not change
+    ("C-y" lispy-mode "Lispy" :toggle t) ; TODO: Duplicate, displays only one
+    ("C-y" lispy-mode "Lispy" :toggle t))
    "Visual"
-   (("n" linum-mode :toggle t)
-    ("w" whitespace-mode :toggle t)
-    ("p" page-break-lines-mode :toggle t)
-    ("g" global-git-gutter-mode :toggle t)
-    ("hi" highlight-indent-guides-mode :toggle t)
-    ("hr" fci-mode :toggle t)
-    ("iv" ivy-filthy-rich-mode :toggle t)
-    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
+   (("o" origami-mode "Origami" :toggle t)
+    ("n" linum-mode "Linum" :toggle t)
+    ("w" whitespace-mode "Whtspc" :toggle t)
+    ("p" page-break-lines-mode "Page break lines" :toggle t)
+    ("g" global-git-gutter-mode "Git gutter" :toggle t)
+    ("f" fci-mode "Fill column ind" :toggle t)
+    ("C-i" highlight-indent-guides-mode "Hilite indent" :toggle t)
+    ("C-r" ivy-filthy-rich-mode "Ivy filty rich" :toggle t)
     ("ESC" nil "Quit"))))
 
 (defvar hydra-org-title (with-fileicon "org" "Org" 1.5 -0.05))
@@ -193,12 +222,14 @@
     ("s" org-store-link "Store link")
    )
    "Navigation"
-   (("C-j" outline-next-visible-heading "Next visible headline")
+   (("C->" org-toggle-narrow-to-subtree "Narrow/Widen" :toggle t)
+    ("C-j" outline-next-visible-heading "Next visible headline")
     ("C-k" outline-previous-visible-heading "Prev visible headline")
     ("C-n" org-forward-heading-same-level "Fwd to heading, same lvl")
     ("C-p" org-backward-heading-same-level "Bwd to heading, same lvl")
     ("u" outline-up-heading "Up to parent heading")
     ("g" org-goto "Different loc in current file")
+    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
     ("ESC" nil "Quit"))))
 
 (defvar hydra-windows-title (with-faicon "windows" "Windows" 1.5 -0.05))
@@ -270,7 +301,7 @@
    "Search"
    (("r" projectile-replace "Search/replace")
     ("R" projectile-replace-regexp "Regexp replace")
-    ("s" counsel-ag "Ag search")
+    ("s" counsel-ag "Ag search" :exit t)
     ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
     ("ESC" nil "Quit"))))
 

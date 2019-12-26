@@ -34,14 +34,13 @@
   :straight (fuzzy :host github :repo "auto-complete/fuzzy-el"))
 
 (use-package auto-complete
+  :diminish ac-mode
   :commands (ac-config-default)
   :bind
   ("C-c /" . ac-fuzzy-complete)
   :config
-  (require 'auto-complete-config)
-
-  (dolist (ac-mode '(text-mode org-mode))
-    (add-to-list 'ac-modes ac-mode))
+  ;; (dolist (ac-mode '(text-mode org-mode))
+  ;;   (add-to-list 'ac-modes ac-mode))
 
   (dolist (ac-mode-hook '(text-mode-hook org-mode-hook prog-mode-hook))
     (add-hook ac-mode-hook
@@ -49,8 +48,6 @@
         (setq ac-fuzzy-enable t)
         (add-to-list 'ac-sources 'ac-source-files-in-current-dir)
         (add-to-list 'ac-sources 'ac-source-filename))))
-
-  (ac-config-default)
 
   ;; Known bug
   (ac-flyspell-workaround))

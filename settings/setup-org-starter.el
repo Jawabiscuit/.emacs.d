@@ -38,6 +38,13 @@
 (use-package org-ql-view
   :straight org-ql)
 
+;; Use `org-starter' with swiper
+(use-package org-starter-swiper)
+
+(use-package org-starter-extras
+  :straight (org-starter-extras :host github :repo "akirak/org-starter"
+                                :files ("org-starter-extras.el")))
+
 ;; `org-starter-path': "Load path" for Org files
 (unless (bound-and-true-p org-starter-path)
   (setq org-starter-path `(,(abbreviate-file-name
@@ -46,38 +53,29 @@
                               no-littering-etc-directory)))))
 
 (use-package org-starter
+  :diminish org-starter-mode
   :config
   (org-starter-mode 1)
   (jawa/bind-user "t" 'org-starter-find-file-by-key)
-  (org-starter-def org-default-notes-file
-    :key "n"
-    :refile (:maxlevel . 5))
-  (org-starter-def (concat org-directory "/todo.org")
-    :key "t"
-    :refile (:maxlevel . 3))
-  (org-starter-def (expand-file-name "configuration.org" user-emacs-directory)
-    :key "c"
-    :refile (:maxlevel . 3))
   (general-add-hook 'org-starter-extra-find-file-map
                     '((";" org-starter-find-config-file "config")
                       ;; ("w" org-plain-wiki "wiki")
                       )
-                     t)
+                    t)
   (general-add-hook 'org-starter-extra-alternative-find-file-map
                     '((";" org-starter-swiper-config-files "config")
                       ;; ("w" helm-org-rifle-wiki "wiki/writing")
                       )
-                     t)
+                    t)
   (general-add-hook 'org-starter-extra-refile-map
                     '(("'" avy-org-refile-as-child "avy")
                       ("?" akirak/org-refile-same-buffer "same buffer"))
-                     t)
+                    t)
+  ;; Force load configuration files loaded from `org-starter-path'
+  ;; Just setting `org-starter-load-config-files' (the var) isn't
+  ;; doing it on it's own anymore
+  (org-starter-load-config-files)
   :custom
-  ;; Define where org files are kept
-  (org-starter-define-directory org-directory)
-
-  ;; Enable external configuration files loaded from `org-starter-path'
-  (org-starter-load-config-files t)
   (org-starter-require-file-by-default nil)
   (org-starter-exclude-from-recentf '(known-files path))
 
@@ -85,13 +83,6 @@
   (org-starter-find-file-visit-window t)
   (org-starter-override-agenda-window-setup 'other-window)
   (org-starter-enable-local-variables :all))
-
-;; Use `org-starter' with swiper
-(use-package org-starter-swiper)
-
-(use-package org-starter-extras
-  :straight (org-starter-extras :host github :repo "akirak/org-starter"
-                                :files ("org-starter-extras.el")))
 
 (provide 'setup-org-starter)
 ;;; setup-org-starter.el ends here

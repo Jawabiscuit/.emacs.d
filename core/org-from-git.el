@@ -34,5 +34,6 @@
 (provide 'org-version)
 
 (use-package org
+  :diminish org-indent-mode
   :config
   (require 'org-loaddefs))

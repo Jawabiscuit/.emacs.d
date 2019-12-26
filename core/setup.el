@@ -50,4 +50,17 @@
       (jawa/settings-find-failed-module)
       (error "Aborted due to a failed module."))))
 
+(defvar jawa/is-wsl)
+
+(defun jawa/windows-subsystem-for-linux-p ()
+  "Return non-nil if Emacs is running inside WSL."
+  (if (boundp 'jawa/is-wsl)
+      jawa/is-wsl
+    (setq jawa/is-wsl (and (eq system-type 'gnu/linux)
+                             (with-temp-buffer
+                               (insert-file-contents "/proc/sys/kernel/osrelease")
+                               (insert-file-contents "/proc/version")
+                               (string-match-p (rx (or "Microsoft" "WSL"))
+                                               (buffer-string)))))))
+
 (defalias 'jawa/require 'jawa/settings-load)

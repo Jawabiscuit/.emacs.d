@@ -30,19 +30,20 @@
 ;;
 ;;; Code:
 
+(defun magit-status-fullscreen (prefix)
+  "Full screen magit-status.
+  Unless PREFIX, delete other windows"
+  (interactive "P")
+  (magit-status-setup-buffer)
+  (unless prefix
+    (delete-other-windows)))
+
+(autoload 'magit-status-fullscreen "magit")
+
 (use-package magit
   :bind (("C-c h g" . hydra-magit/body))
+  :hook ((git-commit-mode . jawa/magit-cursor-fix))
   :config
-  (defun magit-status-fullscreen (prefix)
-    "Full screen magit-status.
-  Unless PREFIX, delete other windows"
-    (interactive "P")
-    (magit-status-setup-buffer)
-    (unless prefix
-      (delete-other-windows)))
-  
-  (autoload 'magit-status-fullscreen "magit")
-  
   ;; Don't prompt me
   (set-default 'magit-push-always-verify nil)
   (set-default 'magit-revert-buffers 'silent)
@@ -54,9 +55,7 @@
     (goto-char (point-min))
     (when (looking-at "#")
       (forward-line 2)))
-  
-  (add-hook 'git-commit-mode-hook 'jawa/magit-cursor-fix)
-  
+    
   (defun vc-annotate-quit ()
     "Restore the previous window configuration and kill the `vc-annotate' buffer."
     (interactive)
@@ -75,17 +74,12 @@
   (set-default 'magit-diff-refine-hunk t))
 
 ;; update diff-hl (not installed)
-
 ;;(global-diff-hl-mode)
 ;;(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 
 ;; Navigate historic versions of the file
 (use-package git-timemachine
   :straight (git-timemachine :host github :repo "emacsmirror/git-timemachine"))
-
-;; File highlighting based on age
-(use-package smeargle
-  :straight (smeargle :host github :repo "emacsmirror/smeargle"))
 
 (provide 'setup-magit)
 ;;; setup-magit.el ends here

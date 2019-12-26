@@ -39,9 +39,22 @@
 ;; string manipulation library
 (use-package s)
 
+;; Tree plugin like NerdTree for Vim
+(use-package neotree
+  :bind ("<f8>" . neotree-toggle))
+
+;; Emacs version of the Vim powerline
+(jawa/require 'setup-modeline)
+
+;; Directory editing and tree view
+(jawa/require 'setup-directory)
+
 ;; Flexible text folding
 (use-package origami
   :bind (("C-c h f" . hydra-origami/body)))
+
+;; Used alot in org and ivy
+(use-package posframe)
 
 ;; A generic completion mechanism
 (jawa/require 'setup-ivy)
@@ -49,12 +62,11 @@
 ;; Jump around windows using character keys
 (jawa/require 'setup-avy)
 
-;; Diminished modes from modeline
-(use-package diminish)
+;; Persistant window configurations
+(jawa/require 'setup-persp)
 
 ;; Project management
-(use-package projectile
-  :bind ("C-c h p" . hydra-projectile/body))
+(jawa/require 'setup-project-mgmt)
 
 ;; Popup frame
 (use-package posframe)
@@ -62,8 +74,14 @@
 ;; Icons everywhere
 (jawa/require 'setup-all-the-icons)
 
+;; History
+(jawa/require 'setup-history)
+
 ;; Tie related commands into a family of short bindings with a prefix
 (jawa/require 'setup-hydra)
+
+;; Rad dashboard
+(jawa/require 'setup-dashboard)
 
 ;; Standard auto-completion
 (jawa/require 'setup-auto-complete)
@@ -73,6 +91,22 @@
 
 ;; On-the-fly syntax checking
 (jawa/require 'setup-linting)
+
+;; Popular method to navigate and edit Lisp code
+;; Custom bindings look like this
+;; :bind (:map lispy-mode-map
+;;             ("C-e" . my-custom-eol)
+;;             ("C-j" . nil)
+;;             ("s" . lispy-down))
+(use-package lispy
+  :straight (lispy :host github :repo "abo-abo/lispy")
+  :hook
+  (emacs-lisp-mode . (lambda () (lispy-mode 1)))
+  (minibuffer-setup-hook . conditionally-enable-lispy)
+  :config
+  (defun conditionally-enable-lispy ()
+    (when (eq this-command 'eval-expression)
+      (lispy-mode 1))))
 
 ;; Graphically indicate the fill column
 (use-package fill-column-indicator)
@@ -87,6 +121,17 @@
 
 ;; More window switching
 (use-package ace-window)
+
+;; Popup window management
+(use-package shackle
+  :init
+  (setq helm-display-function 'pop-to-buffer) ; make helm play nice
+  ;; provides a less intrusive user experience to select all windows
+  ;; by default unless they are spawned by compilation-mode and
+  ;; demonstrates how to use exceptions
+  (setq shackle-rules '((compilation-mode :noselect t)
+                        ("\\`\\*helm.*?\\*\\'" :regexp t :align t :size 0.4))
+        shackle-default-rule '(:select t)))
 
 ;; Increase selected region by semantic units
 (use-package expand-region)
@@ -126,14 +171,7 @@
 (use-package smooth-scrolling)
 
 ;; Emacs Major mode for Markdown-formatted files
-(use-package markdown-mode
-  :init
-  (setq markdown-command "pandoc")
-  (setq-default markdown-hide-markup t)
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-)
+(jawa/require 'setup-markdown-mode)
 
 ;; Pandoc-mode is for interacting with pandoc, a program that converts
 ;; text files written in one markup language to another
@@ -154,7 +192,14 @@
 (use-package websocket)
 
 ;; Python major mode
-(use-package python-mode)
+(use-package python-mode
+  :hook
+  ((python-mode-hook
+    .
+    (lambda ()
+      (require 'etom)
+      (setq etom-default-host "localhost")
+      (setq etom-default-port 2222)))))
 
 ;; Support sequential operation which omits prefix keys
 (use-package smartrep)
@@ -194,17 +239,17 @@
 ;; Mel mode dependencies
 (use-package browse-url-dwim)
 
-(defvar sml/no-confirm-load-theme nil)
-(defvar sml/theme nil)
-;; Sexy modeline
-(use-package smart-mode-line
-  :init
-  (setq sml/no-confirm-load-theme t)
-  :config
-  ;; Bypass Emacs' loading themes warning
-  (sml/setup)
-  (setq sml/theme 'dark)
-)
+;; (defvar sml/no-confirm-load-theme nil)
+;; (defvar sml/theme nil)
+;; ;; Sexy modeline
+;; (use-package smart-mode-line
+;;   :init
+;;   (setq sml/no-confirm-load-theme t)
+;;   :config
+;;   ;; Bypass Emacs' loading themes warning
+;;   (sml/setup)
+;;   (setq sml/theme 'dark)
+;; )
 
 ;; Hide the mode-line and display its information in minibuffer
 ;; (use-package mini-modeline

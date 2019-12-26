@@ -1,3 +1,72 @@
+2019-12-26  Jonas Avrin  <jawabiscuit@users.noreply.github.com>
+
+	* settings/setup-persp.el
+	(persp-mode):
+	    - Replace desktop
+	(persp-mode-projectile-bridge):
+	    - Integrate projectile with persp
+
+	* settings/setup-history.el
+	(recentf):
+	    - Use package
+	(savehist):
+	    - Use package
+
+	* settings/setup-dashboard.el:
+	    - Awesome new dashboard
+
+	* settings/setup-packages.el
+	(neotree):
+	    - Use package
+	(setup-modeline):
+	    - Use doom-modeline
+	(setup-directory):
+	    - Use dired-hacks for better dired experience
+
+	* settings/setup-org-starter.el
+	(org-starter):
+	    - Fix issue with org-starter not loading config files
+
+	* settings/setup-magit.el
+	(magit-status-fullscreen):
+	    - Fix fullscreen when magit status has not been run lately
+
+	* settings/setup-linting.el
+	(apheleia):
+	    - Use a code formatter
+
+	* settings/setup-hydra.el
+	    - Lots new hydra functionality
+	(dired-mode):
+	    - Major mode hydra mainly to simplify subtree navigation
+	(hydra-toggles):
+	    - Actual full screen mode
+
+	* settings/setup-delimiters.el
+	(smartparens):
+	    - Cleanup hooks and diminish mode
+
+	* settings/setup-defaults.el:
+	    - Actual smoother scrolling
+	    - Actual utf-8 everywhere
+
+	* core/setup.el
+	(jawa/windows-subsystem-for-linux-p):
+	    - Add function for detecting if running in WSL
+
+	* configuration.org
+	(Monokai theme):
+	    - Disable
+	(DOOM theme):
+	    - Enable
+	(Window):
+	    - Cleanup hooks
+	(Diminish):
+	    - Diminish many modes
+
+	* .emacs:
+	    - Transition from using desktop files to persp
+
 2019-12-21  Jonas Avrin  <jawabiscuit@users.noreply.github.com>
 
         * settings/setup-yasnippet.el

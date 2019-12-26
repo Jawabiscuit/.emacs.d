@@ -23,6 +23,7 @@
 
 ;; Txt mode handling
 (defun casey-big-fun-text-hook ()
+  "DEPRECATED"
   ;; 4-space tabs
   (setq tab-width 4
         indent-tabs-mode nil)

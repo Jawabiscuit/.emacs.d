@@ -4,7 +4,6 @@
 
 * Emacs Configuration
 
-
 ** Support older versions of Emacs
 
 [[https://github.com/akirak/emacs.d/blob/master/main.org][@akirak]]
@@ -41,7 +40,7 @@
 ** No splash screen please ... jeez
 
 #+BEGIN_SRC emacs-lisp
-(setq inhibit-startup-message t)
+;; (setq inhibit-startup-message t)
 #+END_SRC
 
 
@@ -270,24 +269,45 @@ faces and the like are done here
 #+END_SRC
 
 
-** Load Monokai theme
+** Monokai theme
 
 #+BEGIN_SRC emacs-lisp
 (setq monokai-dir
       (expand-file-name "themes/monokai-emacs/" user-emacs-directory))
 (add-to-list 'custom-theme-load-path monokai-dir)
-(load-theme 'monokai t)
+;; (load-theme 'monokai t)
 #+END_SRC
+
+
+** DOOM theme
+
+#+begin_src emacs-lisp
+(use-package doom-themes
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-one t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  ;; (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
+  ;; (doom-themes-treemacs-config)
+  
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
+#+end_src
 
 
 ** Org-mode
 
-Dependency: [[*Improved keybinding][general]]
+Dependency: [[*Improved keybinding][general]], [[*Install packages][install packages]]
 
 #+BEGIN_SRC emacs-lisp
-;; Used alot in setup-org-starter
-(use-package posframe)
-
 (jawa/require 'setup-org-starter)
 (jawa/require 'setup-org t)
 
@@ -332,15 +352,6 @@ Requirements: [[*Add external project submodules (site-lisp) to load path][Add s
 
 #+BEGIN_SRC emacs-lisp
 (require 'python-magic)
-#+END_SRC
-
-
-** Pandoc
-
-Dependency: [[*Install packages if they're missing][setup packages]]
-
-#+BEGIN_SRC emacs-lisp
-(add-hook 'markdown-mode-hook 'pandoc-mode)
 #+END_SRC
 
 
@@ -457,28 +468,6 @@ Dependency: [[*Install packages if they're missing][setup packages]]
 #+END_SRC
 
 
-** Emacs to Maya
-
-Send Python to Maya
-
-#+BEGIN_SRC emacs-lisp
-  (add-hook
-   'python-mode-hook
-   (lambda ()
-     (require 'etom)
-     (setq etom-default-host "localhost")
-     (setq etom-default-port 2222)))
-#+END_SRC
-
-
-** Editing (some definitions are in editing_defuns.el)
-
-#+BEGIN_SRC emacs-lisp
-(add-hook 'text-mode-hook 'casey-big-fun-text-hook)
-(setq current-fill-column 90)
-#+END_SRC
-
-
 ** Mel Mode
 
 Mel syntax
@@ -503,7 +492,7 @@ Mel documentation lookup
 ** Window
 
 #+BEGIN_SRC emacs-lisp
-(add-hook 'window-setup-hook 'post-load-stuff t)
+(general-add-hook 'window-setup-hook 'post-load-stuff t)
 #+END_SRC
 
 
@@ -518,4 +507,10 @@ Mel documentation lookup
   ;;     ))
 #+END_SRC
 
+
+** Diminish
+
+#+begin_src emacs-lisp
+(diminish 'subword-mode)
+#+end_src
 

@@ -103,7 +103,7 @@
 (defun ja-minibuffer-setup-hook ()
   (ja-keys-minor-mode 0))
 
-(add-hook 'minibuffer-setup-hook 'ja-minibuffer-setup-hook)
+(general-add-hook 'minibuffer-setup-hook 'ja-minibuffer-setup-hook)
 ;; End `ja-keys' minor mode setup
 
 ;; Tools

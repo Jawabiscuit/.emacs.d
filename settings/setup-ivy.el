@@ -1,4 +1,5 @@
 (use-package ivy
+  :diminish
   :demand
   :config
   (setq ivy-use-virtual-buffers t
@@ -34,9 +35,9 @@
   (ivy-ignore-buffers (quote ("\\` "))))
 
 (use-package ivy-filthy-rich
+  :diminish
   :straight (ivy-filthy-rich :host github :repo "akirak/ivy-filthy-rich"
                              :branch "fix-max-length")
-  ;; :diminish 'ivy-filthy-rich-mode
   :after ivy
   :config
   (ivy-filthy-rich-mode t)
@@ -45,9 +46,9 @@
 
 ;; Various completion functions using Ivy, Swiper for search
 (use-package counsel
+  :diminish
   :config
-  (counsel-mode 1)
-  :bind ("C-x C-j" . counsel-dired-jump))
+  (counsel-mode 1))
 
 ;; https://github.com/abo-abo/swiper/wiki/Sort-files-by-mtime#a-simple-version
 (defun eh-ivy-sort-file-by-mtime (x y)
@@ -66,6 +67,7 @@
 (defcustom akirak/ivy-posframe-width-alist nil "Alist of height.")
 
 (use-package ivy-posframe
+  :diminish
   ;; Use posframe to display candidates in ivy commands.
   ;;
   ;; 1. The default display function is ivy-posframe-display-at-frame-center.
