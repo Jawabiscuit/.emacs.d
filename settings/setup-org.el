@@ -169,7 +169,7 @@
 
 ;; GTD TODO keywords and hide logs
 (setq org-todo-keywords
-      '((sequence "TODO" "ACTION" "IN-PROGRESS" "DEFERRED(@d)" "WAITING(w@)" "|" "DONE(@o)" "DELEGATED(l@)" "ARCHIVE")))
+      '((sequence "TODO" "ACTION" "IN-PROGRESS" "INCUBATE" "DEFERRED(@d)" "WAITING(w@)" "|" "DONE(@o)" "DELEGATED(l@)" "ARCHIVE")))
 (setq org-log-into-drawer 1)
 
 ;; GTD fast tag selection
@@ -330,6 +330,12 @@
    ("fu" org-link-edit-backward-slurp "backward slurp")
    ("fi" org-link-edit-backward-barf "backward barf")
    ("fr" jk/unlinkify "remove link"))))
+
+;; Make clock history persist across sessions
+;; (docs) ...the incomplete clock will be found (see Resolving idle time) and
+;; you will be prompted about what to do with it
+(setq org-clock-persist 'history)
+(org-clock-persistence-insinuate)
 
 (provide 'setup-org)
 ;;; setup-org.el ends here
