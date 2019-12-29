@@ -507,10 +507,19 @@ Mel documentation lookup
   ;;     ))
 #+END_SRC
 
-
 ** Diminish
 
 #+begin_src emacs-lisp
 (diminish 'subword-mode)
+#+end_src
+
+
+** Google this
+
+Seems like a [[https://github.com/Malabarba/emacs-google-this][decent package]] for googling things from emacs.
+
+#+begin_src emacs-lisp
+(use-package google-this
+  :hook (after-init . google-this-mode))
 #+end_src
 
