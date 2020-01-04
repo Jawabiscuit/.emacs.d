@@ -69,7 +69,9 @@
            ("q" . quit-dashboard)
            ("h" . major-mode-hydra)
            ("?" . major-mode-hydra))
-    :hook (dashboard-mode . (lambda () (setq-local frame-title-format "")))
+    :hook (dashboard-mode . (lambda ()
+                              (setq-local frame-title-format "")
+                              (jawa/turn-off-tabs)))
     :init
     (dashboard-setup-startup-hook)
     (defun with-material (icon str &optional height v-adjust)
@@ -77,30 +79,30 @@
       (s-concat (all-the-icons-material icon :v-adjust (or v-adjust 0) :height (or height 1)) " " str))
     :mode-hydra
     (dashboard-mode
-       (:title (with-material "dashboard" "Dashboard" 1.1 -0.225)
-        :quit-key "q")
-       ("Navigator"
-        (("b" browse-homepage "Browse Github" :exit t)
-         ("s" restore-session "Recover session" :exit t)
-         ("l" persp-load-state-from-file "List sessions" :exit t)
-         ("c" open-custom-file "Settings" :exit t))
-        "Section"
-        ((">" dashboard-next-section "Next section")
-         ("<" dashboard-previous-section "Previous section")
-         ("r" dashboard-goto-recent-files "Recent files")
-         ("m" dashboard-goto-bookmarks "Bookmarks")
-         ("p" dashboard-goto-projects "Projects"))
-        "Item"
-        (("RET" widget-button-press "Open" :exit t)
-         ("<tab>" widget-forward "Next")
-         ("C-i" widget-forward "Next")
-         ("<backtab>" widget-backward "Previous")
-         ("C-n" next-line "Next line")
-         ("C-p" previous-line "Previous line"))
-        "Misc"
-        (("<f2>" open-dashboard "Open dash" :exit t)
-         ("g" dashboard-refresh-buffer "Refresh" :exit t)
-         ("ESC" quit-dashboard "Quit dash" :exit t))))
+     (:title (with-material "dashboard" "Dashboard" 1.1 -0.225)
+             :quit-key "q")
+     ("Navigator"
+      (("b" browse-homepage "Browse Github" :exit t)
+       ("s" restore-session "Recover session" :exit t)
+       ("l" persp-load-state-from-file "List sessions" :exit t)
+       ("c" open-custom-file "Settings" :exit t))
+      "Section"
+      ((">" dashboard-next-section "Next section")
+       ("<" dashboard-previous-section "Previous section")
+       ("r" dashboard-goto-recent-files "Recent files")
+       ("m" dashboard-goto-bookmarks "Bookmarks")
+       ("p" dashboard-goto-projects "Projects"))
+      "Item"
+      (("RET" widget-button-press "Open" :exit t)
+       ("<tab>" widget-forward "Next")
+       ("C-i" widget-forward "Next")
+       ("<backtab>" widget-backward "Previous")
+       ("C-n" next-line "Next line")
+       ("C-p" previous-line "Previous line"))
+      "Misc"
+      (("<f2>" open-dashboard "Open dash" :exit t)
+       ("g" dashboard-refresh-buffer "Refresh" :exit t)
+       ("ESC" quit-dashboard "Quit dash" :exit t))))
     :config
     (setq dashboard-banner-logo-title "Program or be programmed..."
           dashboard-startup-banner (or jawa-logo 'official)
@@ -154,6 +156,12 @@
               (lambda (&rest _) (major-mode-hydra))
               font-lock-string-face))))
 
+    (defun jawa/turn-off-tabs ()
+      "Turn off centaur tabs"
+      (if (and (fboundp 'centaur-tabs-mode-on-p)
+               (eq (centaur-tabs-mode-on-p) 't))
+          (centaur-tabs-local-mode nil)))
+    
     (defun my-banner-path (&rest _)
       "Return the full path to banner."
       (expand-file-name "banner.txt" user-emacs-directory))
@@ -198,6 +206,9 @@
           (kill-buffer dashboard-buffer-name))
       (dashboard-insert-startupify-lists)
       (switch-to-buffer dashboard-buffer-name)
+
+      ;; Turn off tabs
+      (jawa/turn-off-tabs)
 
       ;; Jump to the first section
       (goto-char (point-min))

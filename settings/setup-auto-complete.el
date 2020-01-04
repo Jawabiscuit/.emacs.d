@@ -44,13 +44,14 @@
 
   (dolist (ac-mode-hook '(text-mode-hook org-mode-hook prog-mode-hook))
     (add-hook ac-mode-hook
-      (lambda ()
-        (setq ac-fuzzy-enable t)
-        (add-to-list 'ac-sources 'ac-source-files-in-current-dir)
-        (add-to-list 'ac-sources 'ac-source-filename))))
+              (lambda ()
+                (setq ac-fuzzy-enable t)
+                (add-to-list 'ac-sources 'ac-source-files-in-current-dir)
+                (add-to-list 'ac-sources 'ac-source-filename))))
 
   ;; Known bug
-  (ac-flyspell-workaround))
+  (ac-flyspell-workaround)
+  (global-auto-complete-mode))
 
 (provide 'setup-auto-complete)
 ;;; setup-auto-complete.el ends here

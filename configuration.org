@@ -19,6 +19,15 @@
       (function-put #'if-let* 'lisp-indent-function 2))))
 #+end_src
 
+If you run emacs <= 24.3 the macro with-eval-after-load is not defined. Here is the definition:
+
+#+begin_src emacs-lisp
+(unless (fboundp 'with-eval-after-load)
+      (defmacro with-eval-after-load (file &rest body)
+        (declare (indent 1) (debug t))
+        `(eval-after-load ,file '(progn ,@body))))
+#+end_src
+
 
 ** Turn on functions disabled by default
 
@@ -83,6 +92,9 @@ configuration.
 #+BEGIN_SRC emacs-lisp
 (require 'package)
 (package-initialize 'noactivate)
+
+;; Minimal melpa configuration, mostly for trying out packages.
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
 (use-package dash)
 (use-package dash-functional)
@@ -266,6 +278,9 @@ faces and the like are done here
 (modify-face 'font-lock-research-face "Purple" nil nil t nil t nil nil)
 (modify-face 'font-lock-important-face "Orange" nil nil t nil t nil nil)
 (modify-face 'font-lock-note-face "Blue" nil nil t nil t nil nil)
+
+(custom-set-faces
+ '(minibuffer-prompt ((t (:background "SystemBackground" :foreground "#51afef" :box (:line-width -1 :color "black" :style released-button) :weight bold)))))
 #+END_SRC
 
 
@@ -315,6 +330,13 @@ Dependency: [[*Improved keybinding][general]], [[*Install packages][install pack
   :straight (org-edna :host github :repo "akirak/org-edna" :branch "edit")
   :config
   (org-edna-load))
+
+(jawa/bind-jump "k" 'org-clock-goto)
+(jawa/bind-user "C-x 4" 'jawa/org-archive-subtree-as-completed)
+
+;; Crushes table editing problems
+(use-package tabcrush
+  :straight (tabcrush :host github :repo "raxod502/tabcrush"))
 #+END_SRC
 
 
@@ -412,14 +434,15 @@ Dependency: [[*Activate package.el for loading built-in packages][package.el]]
 Dependency: [[*Install packages if they're missing][setup packages]]
 
 #+BEGIN_SRC emacs-lisp
-(require 'flx-ido)
-(ido-mode 1)
-(ido-everywhere 1)
-(flx-ido-mode 1)
-;; disable ido faces to see flx highlights.
-(setq ido-enable-flex-matching t)
-(setq ido-use-faces nil)
-;; (setq flx-ido-use-faces nil)
+  ;; (require 'flx-ido)
+  ;; (ido-mode 1)
+  ;; (ido-everywhere 1)
+  ;; (flx-ido-mode 1)
+
+  ;; disable ido faces to see flx highlights.
+  ;; (setq ido-enable-flex-matching t)
+  ;; (setq ido-use-faces nil)
+  ;; (setq flx-ido-use-faces nil)
 #+END_SRC
 
 
@@ -507,6 +530,7 @@ Mel documentation lookup
   ;;     ))
 #+END_SRC
 
+
 ** Diminish
 
 #+begin_src emacs-lisp
@@ -522,4 +546,5 @@ Seems like a [[https://github.com/Malabarba/emacs-google-this][decent package]] 
 (use-package google-this
   :hook (after-init . google-this-mode))
 #+end_src
+
 

@@ -76,7 +76,7 @@
   (yas-reload-all))
 
 (use-package auto-yasnippet
-  ;; :commands (aya-create aya-expand)
+  :commands (aya-create aya-expand)
 )
 
 (use-package ivy-yasnippet

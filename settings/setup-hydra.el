@@ -59,7 +59,11 @@
 
   (defun with-octicon (icon str &optional height v-adjust)
     "Displays an icon from the GitHub Octicons."
-    (s-concat (all-the-icons-octicon icon :v-adjust (or v-adjust 0) :height (or height 1)) " " str)))
+    (s-concat (all-the-icons-octicon icon :v-adjust (or v-adjust 0) :height (or height 1)) " " str))
+
+  (defun with-material (icon str &optional height v-adjust)
+      "Displays an icon from all-the-icon."
+      (s-concat (all-the-icons-material icon :v-adjust (or v-adjust 0) :height (or height 1)) " " str)))
 
 ;; Define some major mode hydras
 (major-mode-hydra-define emacs-lisp-mode nil
@@ -165,14 +169,16 @@
     ;; ("lp" lsp-ui-peek-mode :toggle t)
     ;; ("ls" lsp-ui-sideline-mode :toggle t))
    "Edit/assistance"
-   (("C-a" global-auto-complete-mode "AC global" :toggle t)
+   (("C-p" persp-mode-projectile-bridge-mode "Projectile bridge mode" :toggle t)
+    ("C-j" ja-keys-minor-mode "My keys minor mode" :toggle t)
+    ("C-a" global-auto-complete-mode "AC global" :toggle t)
     ("C-l" electric-layout-mode "Elec layout" :toggle t)
     ("C-i" electric-indent-local-mode "Elec indent" :toggle t)
     ("C-q" electric-quote-local-mode "Elec quote" :toggle t)
     ("C-g" aggressive-indent-mode "Aggro indent" :toggle t)
     ("C-w" toggle-word-wrap "Word wrap" :toggle t)
     ("C-t" toggle-truncate-lines "Trunc lines" :toggle t)
-    ("C-y" yas-minor-mode "Yas" :toggle t)
+    ("C-s" yas-minor-mode "Yas" :toggle t)
     ("C-c" whitespace-cleanup-mode "Whtspc cleanup" :toggle t)
     ("C-f" auto-fill-mode "Autofill" :toggle t) ; TODO: Toggle face does not change
     ("C-y" lispy-mode "Lispy" :toggle t) ; TODO: Duplicate, displays only one
@@ -183,7 +189,7 @@
     ("w" whitespace-mode "Whtspc" :toggle t)
     ("p" page-break-lines-mode "Page break lines" :toggle t)
     ("g" global-git-gutter-mode "Git gutter" :toggle t)
-    ("f" fci-mode "Fill column ind" :toggle t)
+    ("i" fci-mode "Fill column ind" :toggle t)
     ("C-i" highlight-indent-guides-mode "Hilite indent" :toggle t)
     ("C-r" ivy-filthy-rich-mode "Ivy filty rich" :toggle t)
     ("ESC" nil "Quit"))))
@@ -206,14 +212,6 @@
     ("k" org-cut-subtree "Cut subtree")
     ("r" org-refile "Refile")
     ("o" org-open-at-point-global "Open link" :exit t)
-   )
-   "Clock"
-   (("C-s" org-timer-start "Start timer")
-    ("C-q" org-timer-stop "Stop timer")
-    ("C-t" org-timer-set-timer "Set timer (at timer)")
-    ("C-i" org-clock-in "Clock in")
-    ("C-o" org-clock-out "Clock out")
-    ("C-g" org-clock-goto "Clock goto")
    )
    "Web"
    (("i" org-web-tools-insert-link-for-url :exit t)
@@ -377,7 +375,7 @@
   )
   ("Auto-correct"
    (("n" flyspell-goto-next-error "Next error")
-    ("p" flyspell-check-previous-highlighted-word "Auto correct previous highlighted")
+    ("p" flyspell-check-previous-highlighted-word "Auto correct previous highlighted" :exit t)
     ("b" flyspell-buffer "Check entire buffer")
     ("c" flyspell-auto-correct-word "Current word")
     ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
@@ -385,6 +383,10 @@
 
 (defvar hydra-yankpad-title (with-faicon "pencil-square" "Yankpad" 1.5 -0.05))
 
+;; NOTE about `yankpad' and aya (`auto-yasnippet')
+;; You can also add snippets to the current `yankpad-category' by
+;; using M-x `yankpad-capture', or with M-x `yankpad-aya-persist'
+;; if you're an `auto-yasnippet' user.
 (pretty-hydra-define hydra-yankpad
   (:pre (setq which-key-inhibit t)
    :post (setq which-key-inhibit nil)
@@ -399,7 +401,7 @@
     ("i" yankpad-insert "Insert" :exit t)
     ("a" yankpad-aya-persist "Aya persist")
     ("c" yankpad-capture-snippet "Capture snippet" :exit t)
-    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
+    ("ESC" nil "Quit")            ; TODO: Duplicate, displays only one
     ("ESC" nil "Quit"))))
 
 (defvar hydra-magit-title (with-octicon "octoface" "Magit" 1.5 -0.05))
@@ -445,9 +447,12 @@
    :hint nil
    :foreign-keys warn
    :quit-key "q"
-  )
+   )
   ("Clock"
-   (("c" org-clock-cancel "Cancel")
+   (("C-s" org-timer-start "Start timer")
+    ("C-q" org-timer-stop "Stop timer")
+    ("C-t" org-timer-set-timer "Set timer (at timer)")
+    ("c" org-clock-cancel "Cancel")
     ("e" org-clock-modify-effort-estimate "Effort" :exit t)
     ("i" org-clock-in "Clock-in" :exit t)
     ("g" org-clock-goto "Go-to")
@@ -577,6 +582,42 @@
     ("C-;" sp-backward-barf-sexp "Bwd barf")
     ("W" sp-forward-whitespace "Fwd kill whitespace")
     ("w" sp-backward-whitespace "Bwd kill whitespace")
+    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
+    ("ESC" nil "Quit"))))
+
+(defvar hydra-persp-title (with-material "dashboard" "Persp" 1.5 -0.05))
+
+(pretty-hydra-define hydra-persp
+  (:pre (setq which-key-inhibit t)
+   :post (setq which-key-inhibit nil)
+   :title hydra-persp-title
+   :hint nil
+   :foreign-keys warn
+   :quit-key "q"
+  )
+  ("Persp"
+   (("RET" persp-mode :toggle t)
+    ("b" persp-mode-projectile-bridge-mode :toggle t)
+    ("n" persp-next "Next")
+    ("p" persp-prev "Prev")
+    ("s" persp-switch "Create/switch" :exit t)
+    ("S" persp-window-switch "Create/switch in a window" :exit t)
+    ("r" persp-rename "Rename" :exit t)
+    ("c" persp-copy "Copy" :exit t)
+    ;; Killing "default" (nil buf) will kill all buffers
+    ("C" persp-kill "Kill persp" :exit t)
+    ("a" persp-add-buffer "Add buffer")
+    ("b" persp-switch-to-buffer "Switch to buffer")
+    ("t" persp-temporarily-display-buffer "Display temp buffer" :exit t)
+    ("i" persp-import-buffers "Import buffers" :exit t)
+    ("I" persp-import-win-conf "Import win config" :exit t)
+    ;; With prefix argument reverses the effect of the persp-autokill-buffer-on-remove
+    ("k" persp-remove-buffer "Remove buffer")
+    ("K" persp-kill-buffer "Kill buffer")
+    ("w" persp-save-state-to-file "Save all to file" :exit t)
+    ("W" persp-save-to-file-by-names "Save some to file" :exit t)
+    ("l" persp-load-state-from-file "Load all from file" :exit t)
+    ("L" persp-load-from-file-by-names "Load some from file" :exit t)
     ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
     ("ESC" nil "Quit"))))
 

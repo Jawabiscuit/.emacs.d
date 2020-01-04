@@ -113,8 +113,6 @@
   :bind (("C-c h o" . hydra-org/body)
          ("C-c O" . my-org-super-agenda)))
 
-(jawa/bind-jump "k" 'org-clock-goto)
-
 ;; Active Babel languages
 (with-eval-after-load 'org
   (org-babel-do-load-languages
@@ -123,7 +121,7 @@
      (C . t)
      (python . t)
      (ditaa . t)
-)))
+     )))
 
 ;; Hide leading asterisks and indent correctly
 (setq org-hide-leading-stars t)
@@ -140,6 +138,7 @@
 (setq org-src-window-setup 'current-window)
 
 ;; BEGIN structure templates
+(require 'org-tempo)
 
 ;; Elisp block
 (add-to-list 'org-structure-template-alist

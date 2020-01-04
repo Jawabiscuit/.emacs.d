@@ -30,11 +30,17 @@
 
 ;;; Code:
 
+;; Try a package without installing it
+(use-package try)
+
+;; Integrate emacs with powerthesaurus.org
+(use-package powerthesaurus)
+
 ;; Set exec path from shell
 (use-package exec-path-from-shell
   :config
   (when (memq window-system '(mac ns x))
-     (exec-path-from-shell-initialize)))
+    (exec-path-from-shell-initialize)))
 
 ;; string manipulation library
 (use-package s)
@@ -82,6 +88,9 @@
 
 ;; Rad dashboard
 (jawa/require 'setup-dashboard)
+
+;; Tabbed interface
+;; (jawa/require 'setup-tabs)
 
 ;; Standard auto-completion
 (jawa/require 'setup-auto-complete)
@@ -167,8 +176,9 @@
   :config
   (smex-initialize))
 
-;; Make emacs scroll smoothly
-(use-package smooth-scrolling)
+;; Fuzzy matching
+(use-package flx-ido
+  :disabled t)
 
 ;; Emacs Major mode for Markdown-formatted files
 (jawa/require 'setup-markdown-mode)
@@ -208,9 +218,6 @@
 (use-package polymode)
 
 ;; END EIN dependencies
-
-;; Fuzzy matching
-(use-package flx-ido)
 
 ;; Middleware so python-land can communicate with emacs-land
 (use-package epc)

@@ -1,3 +1,53 @@
+2020-01-03  Jonas Avrin  <jawabiscuit@users.noreply.github.com>
+
+	* settings/setup-persp.el
+	(persp-mode):
+	    - Persp ibuffer filter groups
+
+	* settings/setup-packages.el
+	(powerthesaurus):
+	    - Use package
+	(try):
+	    - Use package
+	(setup-tabs):
+	    - Don't use tabs for now (maybe test on Linux?)
+	    - Looks ugly
+	(flx-ido):
+	    - Disable
+
+	* settings/setup-ivy.el
+	(ivy-posframe):
+	    - Use my configuration
+	    - Display posframes top and center of frame
+
+	* settings/setup-hydra.el
+	(hydra-toggles):
+	    - Fix some duplicate hydra key bindings
+	    - New key bindings for modes
+	(major-mode-hydra):
+	    - New persp mode hydra
+
+	* settings/setup-defaults.el
+	(locale-coding-system):
+	    - Update emace to use UNIX line endings
+
+	* settings/setup-dashboard.el
+	(jawa-dashboard):
+	    - Prevent tabs from displaying in dashboard mode
+
+	* configuration.org
+	(Support older versions of Emacs):
+	    - Older version of with-eval-after-load
+	(Activate package.el for loading built-in packages):
+	    - Minimal melpa package archives
+	(Appearance):
+	    - Fix ugly minibuffer prompt font face
+	(Org-mode):
+	    - More bindings
+	    - Use tabcrush package
+	(Projectile minor mode):
+	    - Comment unused flx-ido
+
 2019-12-26  Jonas Avrin  <jawabiscuit@users.noreply.github.com>
 
 	* settings/setup-org.el

@@ -15,7 +15,8 @@
 ;; (set-face-attribute 'default t :font "DejaVu Sans Mono-12")
 
 ;; Mouse & Smooth Scroll
-(require 'smooth-scrolling)
+(use-package smooth-scrolling)
+
 (smooth-scrolling-mode 1)
 ;; Scroll one line at a time (less "jumpy" than defaults)
 (when (display-graphic-p)
@@ -72,7 +73,12 @@
 (modify-coding-system-alist 'process "*" 'utf-8)
 
 (setq locale-coding-system 'utf-8
-      default-process-coding-system '(utf-8 . utf-8))
+      default-process-coding-system '(utf-8 . utf-8)
+      ;; Update emacs to use UNIX line endings for files
+      ;; Fixes crlf git warning messages on windows
+      ;; Set core.autocrlf=false in git config and
+      ;; have Emacs handle the line endings appropriately
+      default-buffer-file-coding-system 'utf-8-unix)
 
 ;; Show active region
 (transient-mark-mode 1)
@@ -123,9 +129,6 @@
 
 ;; Don't break lines for me, please
 (setq-default truncate-lines t)
-
-;; Allow recursive minibuffers
-(setq enable-recursive-minibuffers t)
 
 ;; Don't be so stingy on the memory, we have lots now. It's the distant future.
 (setq gc-cons-threshold 20000000)

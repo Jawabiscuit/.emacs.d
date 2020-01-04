@@ -79,7 +79,7 @@
   ;; If the current focus is on an EXWM window, ivy-posframe is never used.
   ;; Instead, the default display function is used. This is configured in setup-exwm.el.
   :config
-  (general-add-hook 'ivy-height-alist akirak/ivy-posframe-height-alist)
+  ;; (general-add-hook 'ivy-height-alist akirak/ivy-posframe-height-alist)
   (ivy-posframe-mode 1)
 
   (defun akirak/frame-contains-exwm-window-p (&optional frame)
@@ -136,37 +136,56 @@
     (let ((caller (ivy-state-caller ivy-last)))
       (cdr (assoc caller akirak/ivy-posframe-width-alist))))
 
-  :config/el-patch
-  (el-patch-defun ivy-posframe-display-at-window-bottom-left (str)
-    (el-patch-wrap 1
-      (let ((ivy-posframe-size-function #'akirak/ivy-posframe-window-bottom-left-size))
-        (ivy-posframe--display str #'posframe-poshandler-window-bottom-left-corner))))
+  ;; :config/el-patch
+  ;; (el-patch-defun ivy-posframe-display-at-window-bottom-left (str)
+  ;;   (el-patch-wrap 1
+  ;;     (let ((ivy-posframe-size-function #'akirak/ivy-posframe-window-bottom-left-size))
+  ;;       (ivy-posframe--display str #'posframe-poshandler-window-bottom-left-corner))))
 
-  :custom
-  (ivy-decorator-width #'akirak/ivy-decorator-width)
-  (ivy-posframe-height 12)
-  (ivy-posframe-width 100)
-  (akirak/ivy-posframe-width-alist
-   `((counsel-ibuffer . 120)
-     (ivy-omni-org . 80)
-     (all-the-icons-ivy . 50)
-     ,@(--map (cons it 130)
-              '(counsel-describe-function
-                counsel-describe-variable
-                counsel-faces
-                counsel-M-x))))
-  (akirak/ivy-posframe-height-alist
-   '((ivy-omni-org . 30)
-     (all-the-icons-ivy . 30)))
-  (ivy-posframe-size-function #'akirak/ivy-posframe-default-size)
-  (org-starter-swiper-width-function (lambda () (- (window-body-width) 5)))
-  (ivy-posframe-display-functions-alist
-   `(,@(--map (cons it nil)
-              '(swiper swiper-all swiper-multi org-starter-swiper-config-files))
-     (counsel-minibuffer-history . nil)
-     (counsel-yank-pop . ivy-posframe-display-at-point)
-     (all-the-icons-ivy . ivy-posframe-display-at-point)
-     (t . akirak/ivy-posframe-display-smart-center))))
+  ;; My configuration
+  (setq ivy-posframe-parameters
+        '((left-fringe . 8)
+          (right-fringe . 8)))
+
+  (setq ivy-posframe-height-alist '((swiper . 20)
+                                    (t      . 40)))
+
+  (setq ivy-posframe-display-functions-alist
+        '((swiper . nil)
+          (swiper-all . nil)
+          (swiper-multi . nil)
+          (org-starter-swiper-config-files . nil)
+          (counsel-minibuffer-history . nil)
+          (counsel-yank-pop . ivy-posframe-display-at-point)
+          (all-the-icons-ivy . ivy-posframe-display-at-point)
+          (t . ivy-posframe-display-at-frame-top-center)))
+
+  ;; :custom
+  ;; (ivy-decorator-width #'akirak/ivy-decorator-width)
+  ;; (ivy-posframe-height 12)
+  ;; (ivy-posframe-width 100)
+  ;; (akirak/ivy-posframe-width-alist
+  ;;  `((counsel-ibuffer . 120)
+  ;;    (ivy-omni-org . 80)
+  ;;    (all-the-icons-ivy . 50)
+  ;;    ,@(--map (cons it 130)
+  ;;             '(counsel-describe-function
+  ;;               counsel-describe-variable
+  ;;               counsel-faces
+  ;;               counsel-M-x))))
+  ;; (akirak/ivy-posframe-height-alist
+  ;;  '((ivy-omni-org . 30)
+  ;;    (all-the-icons-ivy . 30)))
+  ;; (ivy-posframe-size-function #'akirak/ivy-posframe-default-size)
+  ;; (org-starter-swiper-width-function (lambda () (- (window-body-width) 5)))
+  ;; (ivy-posframe-display-functions-alist
+  ;;  `(,@(--map (cons it nil)
+  ;;             '(swiper swiper-all swiper-multi org-starter-swiper-config-files))
+  ;;    (counsel-minibuffer-history . nil)
+  ;;    (counsel-yank-pop . ivy-posframe-display-at-point)
+  ;;    (all-the-icons-ivy . ivy-posframe-display-at-point)
+  ;;       (t . akirak/ivy-posframe-display-smart-center)))
+  )
 
 (use-package counsel-projectile)
 

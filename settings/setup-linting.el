@@ -40,6 +40,9 @@
   :after avy
   :commands (avy-flycheck-setup))
 
+(use-package flycheck-indicator
+  :after flycheck)
+
 ;; Shows error under point in pos-tip popups
 (use-package flycheck-pos-tip
   :after flycheck-package
