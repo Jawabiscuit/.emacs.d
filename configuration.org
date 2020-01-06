@@ -69,21 +69,32 @@ configuration.
 #+end_src
 
 #+begin_src emacs-lisp
-(defcustom jawa/no-littering-use-my-etc-library t
-  "Whether to use my configuration file library in ~/lib/emacs as `no-littering-etc-directory'.")
+  (defcustom jawa/no-littering-use-my-etc-library t
+    "Whether to use my configuration file library in ~/lib/emacs as `no-littering-etc-directory'.")
 
-(use-package no-littering
-  :init
-  (when jawa/no-littering-use-my-etc-library
-    (let ((dir "~/lib/emacs"))
-      (when (or (file-directory-p dir)
-                (and (yes-or-no-p "~/lib/emacs does not exist. Clone it from GitHub?")
-                     (= 0 (call-process-shell-command
-                           (format "git clone %s %s"
-                                   "https://github.com/Jawabiscuit/emacs-config-library.git"
-                                   (shell-quote-argument (expand-file-name dir)))
-                           nil nil nil))))
-        (setq no-littering-etc-directory dir)))))
+  (use-package no-littering
+    :init
+    (when jawa/no-littering-use-my-etc-library
+      (let ((dir "~/lib/emacs"))
+        (when (or (file-directory-p dir)
+                  (and (yes-or-no-p "~/lib/emacs does not exist. Clone it from GitHub?")
+                       (= 0 (call-process-shell-command
+                             (format "git clone %s %s"
+                                     "https://github.com/Jawabiscuit/emacs-config-library.git"
+                                     (shell-quote-argument (expand-file-name dir)))
+                             nil nil nil))))
+          (setq no-littering-etc-directory dir))))
+    :config
+    ;; Autosave and custom.el settings
+    (setq auto-save-file-name-transforms
+          `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+    (if jawa/no-littering-use-my-etc-library
+        (setq custom-file
+              (no-littering-expand-etc-file-name "custom.el"))
+      (setq custom-file (expand-file-name "custom.el" user-emacs-directory)))
+
+    ;; Load custom.el
+    (load custom-file))
 #+end_src
 
 
@@ -242,12 +253,13 @@ Setup a bunch of useful features (Disabled for now)
 
 ** Keep emacs Custom-settings in separate file
 
-#+BEGIN_SRC emacs-lisp
-(setq custom-file
-      (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
-#+END_SRC
+This is in no-littering setup now.
 
+#+BEGIN_SRC emacs-lisp
+;; (setq custom-file
+;;       (expand-file-name "custom.el" user-emacs-directory))
+;; (load custom-file)
+#+END_SRC
 
 
 ** Appearance
@@ -516,18 +528,6 @@ Mel documentation lookup
 
 #+BEGIN_SRC emacs-lisp
 (general-add-hook 'window-setup-hook 'post-load-stuff t)
-#+END_SRC
-
-
-** Babel sh Command
-
-#+BEGIN_SRC emacs-lisp
-  ;; (require 'ob-shell)
-  ;; (defadvice org-babel-sh-evaluate (around set-shell activate)
-  ;;   "Add header argument :shcmd that determines the shell to be called."
-  ;;   (let* ((org-babel-sh-command (or (cdr (assoc :shcmd params)) org-babel-sh-command)))
-  ;;     ad-do-it
-  ;;     ))
 #+END_SRC
 
 

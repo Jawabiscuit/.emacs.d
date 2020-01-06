@@ -189,4 +189,17 @@
 
 (use-package counsel-projectile)
 
+;; Search youtube with ivy
+(use-package ivy-youtube
+  :init
+  (setq ivy-youtube-key "AIzaSyBATckYEVBOzZFEkqq_xWQOBxHvqJvciVU")
+  :config
+  (require 'ivy-youtube)
+  (let* ((ivy-yt-history-file-name (file-name-nondirectory ivy-youtube-history-file))
+        (ivy-yt-history-no-littering-sub-dir (file-name-as-directory "ivy-youtube"))
+        (ivy-yt-history-no-littering-dir (concat no-littering-var-directory ivy-yt-history-no-littering-sub-dir)))
+    (setq ivy-youtube-history-file (expand-file-name ivy-yt-history-file-name ivy-yt-history-no-littering-dir))
+    (message (concat "Set ivy-youtube-history-file to: " ivy-youtube-history-file))
+    (make-directory (file-name-directory ivy-youtube-history-file) t)))
+  
 (provide 'setup-ivy)

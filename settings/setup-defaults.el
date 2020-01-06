@@ -186,4 +186,7 @@
 ;; silence warning in emacs <25.1
 (setq byte-compile--use-old-handlers nil)
 
+;; Tired of lock files, I'm in a single user environment
+(setq create-lockfiles nil)
+
 (provide 'setup-defaults)

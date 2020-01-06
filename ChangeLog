@@ -1,3 +1,14 @@
+2020-01-04  Jonas Avrin  <jawabiscuit@users.noreply.github.com>
+
+	* configuration.org
+	(Before using =use-package=):
+	    - Put custom.el in no-littering etc directory
+	    - Put autosave files in no-littering var directory
+
+	* settings/setup-ivy.el
+	(ivy-youtube):
+	    - Use package
+
 2020-01-03  Jonas Avrin  <jawabiscuit@users.noreply.github.com>
 
 	* settings/setup-persp.el
