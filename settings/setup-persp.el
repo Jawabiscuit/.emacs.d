@@ -27,6 +27,7 @@
 ;;; Code:
 
 (use-package persp-mode
+  :after recentf
   :diminish
   :defines (recentf-exclude ivy-ignore-buffers ivy-sort-functions-alist)
   :commands (get-current-persp persp-contain-buffer-p)
