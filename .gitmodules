@@ -2,10 +2,6 @@
 	path = site-lisp/emacs-ipython-notebook
 	url = https://github.com/millejoh/emacs-ipython-notebook.git
         ignore = dirty
-[submodule "themes/monokai-emacs"]
-	path = themes/monokai-emacs
-	url = https://github.com/oneKelvinSmith/monokai-emacs.git
-        ignore = dirty
 [submodule "site-lisp/outline-magic"]
 	path = site-lisp/outline-magic
 	url = https://github.com/tj64/outline-magic.git
