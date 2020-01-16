@@ -92,6 +92,9 @@
 ;; Tabbed interface
 ;; (jawa/require 'setup-tabs)
 
+;; Grepping
+(jawa/require 'setup-search)
+
 ;; Standard auto-completion
 (jawa/require 'setup-auto-complete)
 
