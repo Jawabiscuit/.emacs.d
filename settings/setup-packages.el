@@ -75,7 +75,8 @@
 (jawa/require 'setup-project-mgmt)
 
 ;; Popup frame
-(use-package posframe)
+(use-package posframe
+  :disabled t)
 
 ;; Icons everywhere
 (jawa/require 'setup-all-the-icons)
@@ -263,6 +264,20 @@
 
 (use-package dockerfile-mode
   :straight (dockerfile-mode :host github :repo "spotify/dockerfile-mode"))
+
+;; Visualize undos
+(use-package undo-tree
+  :config
+  (setq undo-tree-mode-lighter "")
+  (global-undo-tree-mode))
+
+;; Extensions to outline mode
+(use-package outline-magic
+  :bind (:map outline-minor-mode
+	      ("<C-tab>" . outline-cycle)))
+
+;; Jupyter notebooks in Emacs
+(jawa/require 'setup-jupyter)
 
 (provide 'setup-packages)
 ;;; setup-packages.el ends here

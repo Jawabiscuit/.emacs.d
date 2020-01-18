@@ -46,21 +46,30 @@
 
 ;; Ripgrep
 (use-package rg
-  :init
-  (add-hook 'after-init-hook #'rg-enable-default-bindings)
-  (if (fboundp 'wgrep-ag-setup)
-      (add-hook 'rg-mode-hook #'wgrep-ag-setup))
-  (with-eval-after-load 'projectile
-    (bind-key "C-c p s r" 'rg-project projectile-mode-map))
+  :after (projectile ivy)
+  :hook
+  ((after-init . rg-enable-default-bindings)
+   (rg-mode . wgrep-ag-setup))
+  ;; :init
+  ;; (add-hook 'after-init-hook #'rg-enable-default-bindings)
+  ;; (if (fboundp 'wgrep-ag-setup)
+  ;;     (add-hook 'rg-mode-hook #'wgrep-ag-setup))
+  ;; (with-eval-after-load 'projectile
+  ;;   (bind-key "C-c p s r" 'rg-project projectile-mode-map))
   :config
   (setq rg-custom-type-aliases nil)
   (setq rg-group-result t)
   (setq rg-show-columns t)
-  (with-eval-after-load 'counsel
-    (bind-key "c" 'counsel-rg rg-global-map)))
+  ;; (with-eval-after-load 'counsel
+  ;;   (bind-key "c" 'counsel-rg rg-global-map))
+  :bind (:map rg-global-map
+	 ("c" . counsel-rg)
+	 :map projectile-mode-map
+	 ("C-c p s r" . rg-project)))
 
 ;; Platinum grep
 (use-package pt
+  :disabled t				; Executable not installed yet
   :init
   (with-eval-after-load 'projectile
     (bind-key "C-c p s p" 'projectile-pt projectile-mode-map)))

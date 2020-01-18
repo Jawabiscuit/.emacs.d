@@ -53,7 +53,7 @@ If you run emacs <= 24.3 the macro with-eval-after-load is not defined. Here is 
 #+END_SRC
 
 
-** Before using =use-package=
+** Before using use-package
 
 #+BEGIN_SRC emacs-lisp
 (jawa/require 'setup-gc)
@@ -373,10 +373,10 @@ Requirements: [[*Add external project submodules (site-lisp) to load path][Add s
 Requirements: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
 
 #+BEGIN_SRC emacs-lisp
-(eval-after-load 'outline
-  '(progn
-    (require 'outline-magic)
-    (define-key outline-minor-mode-map (kbd "<C-tab>") 'outline-cycle)))
+  ;; (eval-after-load 'outline
+  ;;   '(progn
+  ;;     (require 'outline-magic)
+  ;;     (define-key outline-minor-mode-map (kbd "<C-tab>") 'outline-cycle)))
 #+END_SRC
 
 
@@ -415,9 +415,9 @@ Requirements: [[*Add external project submodules (site-lisp) to load path][Add s
 Requirements: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
 
 #+BEGIN_SRC emacs-lisp
-(setq undo-tree-mode-lighter "")
-(require 'undo-tree)
-(global-undo-tree-mode)
+  ;; (setq undo-tree-mode-lighter "")
+  ;; (require 'undo-tree)
+  ;; (global-undo-tree-mode)
 #+END_SRC
 
 
@@ -488,18 +488,18 @@ Dependency: [[*Install packages if they're missing][setup packages]]
 Dependency: [[*Install packages if they're missing][setup packages]]
 
 #+BEGIN_SRC emacs-lisp
-(require 'ein)
-(require 'ein-notebook)
-(require 'ein-subpackages)
-;; Omit a bunch of key chord prefix typing
-(setq ein:use-smartrep t)
-;; Use jedi autocomplete backend
-(setq ein:completion-backend 'ein:use-ac-jedi-backend)
-;; Execute ein source blocks in org-mode
-(org-babel-do-load-languages
-   'org-babel-load-languages
-   '((ein . t)
-))
+  ;; (require 'ein)
+  ;; (require 'ein-notebook)
+  ;; (require 'ein-subpackages)
+  ;; ;; Omit a bunch of key chord prefix typing
+  ;; (setq ein:use-smartrep t)
+  ;; ;; Use jedi autocomplete backend
+  ;; (setq ein:completion-backend 'ein:use-ac-jedi-backend)
+  ;; ;; Execute ein source blocks in org-mode
+  ;; (org-babel-do-load-languages
+  ;;    'org-babel-load-languages
+  ;;    '((ein . t)
+  ;; ))
 #+END_SRC
 
 
