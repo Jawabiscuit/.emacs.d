@@ -62,8 +62,8 @@
       
       (require 'ibuf-ext)
       
-      (define-ibuffer-filter persp
-          "Toggle current view to buffers of current perspective."
+      (define-ibuffer-filter persp-all
+          "Toggle current view to buffers of all current perspectives."
         (:description "persp-mode"
                       :reader (persp-prompt nil nil (safe-persp-name (get-frame-persp)) t))
         (find buf (safe-persp-buffers (persp-get-by-name qualifier))))
@@ -93,6 +93,34 @@
       ;; TODO
       ;; (define-key ibuffer-mode-map (kbd "RET") 'persp-ibuffer-visit-buffer)
       
+      (add-hook 'ibuffer-mode-hook
+                #'(lambda ()
+                    (persp-add-ibuffer-group)
+                    (ibuffer-switch-to-saved-filter-groups "persp-mode")))))
+
+  ;; Simplified variant. Add only current perspective group.
+  (defun jawa/persp-mode-ibuffer-filter-groups-current ()
+
+    (with-eval-after-load "ibuffer"
+
+      (require 'ibuf-ext)
+
+      (define-ibuffer-filter persp-current
+          "Toggle current view to buffers of current perspective."
+        (:description "persp-mode"
+         :reader (persp-prompt nil nil (safe-persp-name (get-frame-persp)) t))
+        (find buf (safe-persp-buffers (persp-get-by-name qualifier))))
+
+      (defun persp-add-ibuffer-group ()
+        (let ((perspslist (list (safe-persp-name (get-frame-persp))
+                                (cons 'persp (safe-persp-name (get-frame-persp))))))
+          (setq ibuffer-saved-filter-groups
+                (delete* "persp-mode" ibuffer-saved-filter-groups
+                         :test 'string= :key 'car))
+          (push
+           (cons "persp-mode" perspslist)
+           ibuffer-saved-filter-groups)))
+
       (add-hook 'ibuffer-mode-hook
                 #'(lambda ()
                     (persp-add-ibuffer-group)

@@ -284,8 +284,8 @@
 ;; Log keyboard commands to buffer
 (use-package command-log-mode)
 
-;; Allows you to edit a grep buffer and apply those changes to the file buffer
-(use-package wgrep)
+(use-package dockerfile-mode
+  :straight (dockerfile-mode :host github :repo "spotify/dockerfile-mode"))
 
 (provide 'setup-packages)
 ;;; setup-packages.el ends here

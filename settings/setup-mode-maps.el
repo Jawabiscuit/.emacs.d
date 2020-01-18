@@ -25,6 +25,7 @@
          ("\\.m$"          . objc-mode)
          ("\\.mm$"         . objc-mode)
 	 ("\\.restclient$" . restclient-mode)
+         ("Dockerfile\\'"  . dockerfile-mode)
          )
     auto-mode-alist)
 )

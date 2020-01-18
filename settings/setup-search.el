@@ -26,6 +26,7 @@
 
 ;;; Code:
 
+;; Silver searcher
 (use-package ag
   :init
   (with-eval-after-load 'projectile
@@ -34,11 +35,16 @@
   (setq ag-highlight-search t)
   (setq ag-reuse-buffers t))
 
+;; Allows you to edit a grep buffer
+;; and apply those changes to the file buffer
+(use-package wgrep)
+
 (use-package wgrep-ag
   :config
   (setq wgrep-auto-save-buffer t)
   (setq wgrep-change-readonly-file t))
 
+;; Ripgrep
 (use-package rg
   :init
   (add-hook 'after-init-hook #'rg-enable-default-bindings)
@@ -53,6 +59,7 @@
   (with-eval-after-load 'counsel
     (bind-key "c" 'counsel-rg rg-global-map)))
 
+;; Platinum grep
 (use-package pt
   :init
   (with-eval-after-load 'projectile
