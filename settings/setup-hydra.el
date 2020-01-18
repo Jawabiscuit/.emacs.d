@@ -36,6 +36,8 @@
          ("C-c h r" . hydra-straight/body)))
 
 (use-package hydra-posframe
+  ;; Floating windows are making it impossible to use.
+  :disabled t
   :after (hydra posframe)
   :straight (hydra-posframe :host github :repo "Ladicle/hydra-posframe")
   :hook (after-init . hydra-posframe-mode))
@@ -135,7 +137,6 @@
     ("m" dired-subtree-mark-subtree "Mark" :exit nil)
     ("u" dired-subtree-unmark-subtree "Unmark" :exit nil)
     ("C-f" dired-subtree-only-this-file "Remove this file" :exit t)
-    ("C-d" dired-subtree-only-this-directory "Remove this directory" :exit t) ; TODO: Duplicate, displays only one
     ("C-d" dired-subtree-only-this-directory "Remove this directory" :exit t))
    "View"
    (("RET" dired-subtree-toggle "Toggle" :exit nil)
@@ -181,7 +182,6 @@
     ("C-s" yas-minor-mode "Yas" :toggle t)
     ("C-c" whitespace-cleanup-mode "Whtspc cleanup" :toggle t)
     ("C-f" auto-fill-mode "Autofill" :toggle t) ; TODO: Toggle face does not change
-    ("C-y" lispy-mode "Lispy" :toggle t) ; TODO: Duplicate, displays only one
     ("C-y" lispy-mode "Lispy" :toggle t))
    "Visual"
    (("o" origami-mode "Origami" :toggle t)
@@ -227,7 +227,6 @@
     ("C-p" org-backward-heading-same-level "Bwd to heading, same lvl")
     ("u" outline-up-heading "Up to parent heading")
     ("g" org-goto "Different loc in current file")
-    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
     ("ESC" nil "Quit"))))
 
 (defvar hydra-windows-title (with-faicon "windows" "Windows" 1.5 -0.05))
@@ -272,7 +271,6 @@
     ("c" switch-window-then-compose-mail "Compose mail" :exit t)
     ("B" switch-window-then-display-buffer "Display buffer")
     ("k" switch-window-then-kill-buffer "Kill buffer")
-    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
     ("ESC" nil "Quit"))))
 
 (defvar hydra-projectile-title (with-faicon "rocket" "Projectile" 1.5 -0.05))
@@ -300,7 +298,6 @@
    (("r" projectile-replace "Search/replace")
     ("R" projectile-replace-regexp "Regexp replace")
     ("s" counsel-ag "Ag search" :exit t)
-    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
     ("ESC" nil "Quit"))))
 
 (defvar hydra-origami-title (with-octicon "unfold" "Origami" 1.5 -0.05))
@@ -325,7 +322,6 @@
      ("f" origami-forward-toggle-node "Fwd toggle")
      ("a" origami-toggle-all-nodes "All toggle")
      ("s" origami-show-node "Show")
-     ("o" origami-show-only-node "Show Only" :exit t) ; TODO: Duplicate, displays only one
      ("o" origami-show-only-node "Show Only" :exit t))
    "Navigation"
     (("k" origami-next-fold "Fwd >>")
@@ -352,7 +348,6 @@
     ("<" flycheck-first-error "First error")
     (">" flycheck-previous-error "Previous error")
     ("g" avy-flycheck-goto-error "Goto error")
-    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
     ("ESC" nil "Quit"))))
 
 (defvar hydra-flyspell-title (with-faicon "check-circle" "Flyspell" 1.5 -0.05))
@@ -378,7 +373,6 @@
     ("p" flyspell-check-previous-highlighted-word "Auto correct previous highlighted" :exit t)
     ("b" flyspell-buffer "Check entire buffer")
     ("c" flyspell-auto-correct-word "Current word")
-    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
     ("ESC" nil "Quit"))))
 
 (defvar hydra-yankpad-title (with-faicon "pencil-square" "Yankpad" 1.5 -0.05))
@@ -401,7 +395,6 @@
     ("i" yankpad-insert "Insert" :exit t)
     ("a" yankpad-aya-persist "Aya persist")
     ("c" yankpad-capture-snippet "Capture snippet" :exit t)
-    ("ESC" nil "Quit")            ; TODO: Duplicate, displays only one
     ("ESC" nil "Quit"))))
 
 (defvar hydra-magit-title (with-octicon "octoface" "Magit" 1.5 -0.05))
@@ -421,7 +414,6 @@
     ("l" magit-log-buffer-file "Commit log (current file)" :exit t)
     ("L" magit-log-current "Commit log (project)" :exit t)
     ("m" magit-status "Status" :exit t)
-    ("M" magit-status-fullscreen "Status FS" :exit t) ; TODO: Duplicate, displays only one
     ("M" magit-status-fullscreen "Status FS" :exit t))
   "Git Gutter"
    (("g" global-git-gutter-mode :toggle t)
@@ -494,7 +486,6 @@
     ("W" straight-watcher-stop "Watcher stop" :exit t)
     ("g" straight-get-recipe "Get recipe" :exit t)
     ("e" straight-prune-build "Prune build" :exit t)
-    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
     ("ESC" nil "Quit"))))
 
 (defvar hydra-mc-title (with-faicon "i-cursor" "Multiple Cursors" 1.5 -0.05))
@@ -524,7 +515,6 @@
     ("C-S-b" mc/mark-all-below "Mark below")
     ("C-S-a" mc/mark-all-above "Mark above")
     ("C-t" mc/mark-sgml-tag-pair "Mark tag pair")
-    ("C-h" mc-hide-unmatched-lines-mode "Hide unmatched") ; TODO: Duplicate, displays only one
     ("C-h" mc-hide-unmatched-lines-mode "Hide unmatched"))
    "Edit" (
     ("l" mc/edit-lines "Edit lines" :exit t)
@@ -561,7 +551,6 @@
   ("Toggle"
    (("RET" smartparens-mode :toggle t)
     ("s" smartparens-strict-mode :toggle t)
-    ("p" turn-on-show-smartparens-mode :toggle t) ; TODO: Toggle face does not change
     ("r" rainbow-delimiters-mode :toggle t))
    "Wrap"
    (("(" sp-wrap-round "Wrap ()")
@@ -582,7 +571,6 @@
     ("C-;" sp-backward-barf-sexp "Bwd barf")
     ("W" sp-forward-whitespace "Fwd kill whitespace")
     ("w" sp-backward-whitespace "Bwd kill whitespace")
-    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
     ("ESC" nil "Quit"))))
 
 (defvar hydra-persp-title (with-material "dashboard" "Persp" 1.5 -0.05))
@@ -618,7 +606,6 @@
     ("W" persp-save-to-file-by-names "Save some to file" :exit t)
     ("l" persp-load-state-from-file "Load all from file" :exit t)
     ("L" persp-load-from-file-by-names "Load some from file" :exit t)
-    ("ESC" nil "Quit") ; TODO: Duplicate, displays only one
     ("ESC" nil "Quit"))))
 
 (provide 'setup-hydra)

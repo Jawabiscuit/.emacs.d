@@ -159,7 +159,7 @@
 
 ;; Projectile integration
 (use-package persp-mode-projectile-bridge
-  :after projectile
+  :after (persp, projectile)
   :functions (persp-get-by-name
               persp-add-new
               persp-add-buffer
