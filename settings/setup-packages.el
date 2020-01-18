@@ -49,7 +49,7 @@
 (use-package neotree
   :bind ("<f8>" . neotree-toggle))
 
-;; Emacs version of the Vim powerline
+;; Doom modeline
 (jawa/require 'setup-modeline)
 
 ;; Directory editing and tree view
@@ -248,29 +248,6 @@
 
 ;; Mel mode dependencies
 (use-package browse-url-dwim)
-
-;; (defvar sml/no-confirm-load-theme nil)
-;; (defvar sml/theme nil)
-;; ;; Sexy modeline
-;; (use-package smart-mode-line
-;;   :init
-;;   (setq sml/no-confirm-load-theme t)
-;;   :config
-;;   ;; Bypass Emacs' loading themes warning
-;;   (sml/setup)
-;;   (setq sml/theme 'dark)
-;; )
-
-;; Hide the mode-line and display its information in minibuffer
-;; (use-package mini-modeline
-;;   :init
-;;   (setq mini-modeline-enhance-visual nil)
-;;   :straight (mini-modeline :host github :repo "kiennq/emacs-mini-modeline")
-;;   :after smart-mode-line
-;;   :config
-;;   (setq mini-modeline-echo-duration 8)
-;;   (setq mini-modeline--echo-keystrokes t)
-;;   (mini-modeline-mode t))
 
 ;; Yasnippet
 (jawa/require 'setup-yasnippet)
