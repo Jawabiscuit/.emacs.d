@@ -134,10 +134,13 @@
 (define-key python-mode-map (kbd "C-+") 'outline-cycle)
 
 ;; Emacs to Maya
-(define-key python-mode-map (kbd "<C-return>") 'etom-send-region)
-(define-key python-mode-map (kbd "C-c C-c") 'etom-send-buffer)
-(define-key python-mode-map (kbd "C-c C-l") 'etom-send-buffer)
-(define-key python-mode-map (kbd "C-c C-z") 'etom-show-buffer)
+(define-key python-mode-map (kbd "C-c <C-return>") 'etom-send-region)
+(define-key python-mode-map (kbd "C-c C-S-c") 'etom-send-buffer)
+(define-key python-mode-map (kbd "C-c C-S-b") 'etom-show-buffer)
+
+(define-key org-mode-map (kbd "C-c <C-return>") 'etom-send-region)
+(define-key org-mode-map (kbd "C-c C-S-c") 'etom-send-buffer)
+(define-key org-mode-map (kbd "C-c C-S-b") 'etom-show-buffer)
 
 ;; Ask for a key then insert its html description
 (define-key org-mode-map (kbd "C-c i") 'endless/insert-key)

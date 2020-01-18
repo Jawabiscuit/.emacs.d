@@ -514,6 +514,9 @@ Mel documentation lookup
 
 ;; mel outline mode
 (require 'mel-magic)
+
+;; Emacs to Maya
+(require 'etom)
 #+END_SRC
 
 
