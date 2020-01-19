@@ -29,9 +29,23 @@
 ;;
 ;;
 ;;; Code:
+
+(when (executable-find "hunspell")
+  (setq ispell-program-name "hunspell"
+        ispell-alternate-dictionary "/usr/share/hunspell/en_US.dic"
+        ispell-local-dictionary-alist
+        '(("english"
+           "[[:alpha:]]"
+           "[^[:alpha:]]"
+           "[']"
+           t
+           ("-d" "en_US" "-p" "/usr/share/hunspell")
+           nil
+           iso-8859-1))
+        ispell-dictionary "english"))
+
 (use-package flyspell
   :when (executable-find "hunspell")
-  :init (when (executable-find "hunspell") (setq ispell-program-name "hunspell"))
   :bind (("C-c h s" . hydra-flyspell/body))
   :config
   (general-unbind
@@ -39,32 +53,24 @@
     :package 'flyspell
     "C-," "C-." "C-M-i" "C-c $" "C-;"))
 
-;; Automatic dictionary selection based on buffer content
-(use-package auto-dictionary)
-
 (use-package ac-ispell
+  :when (executable-find "hunspell")
   :after auto-complete
   :config
-  ;; Binary downloaded and placed in ~/.emacs.d/hunspell
-  (setq ispell-complete-word-dict
-    (concat (expand-file-name user-emacs-directory)
-            "hunspell/share/hunspell/en_US.dic"))
-
-  ;; Completion words longer than 4 characters
+  ;; Completion words longer than 3 characters
   (custom-set-variables
-    '(ac-ispell-requires 4)
-    '(ac-ispell-fuzzy-limit 2))
+   '(ac-ispell-requires 3)
+   '(ac-ispell-fuzzy-limit 3))
   
   (eval-after-load "auto-complete"
     '(progn
-        (ac-ispell-setup)))
+       (ac-ispell-setup)))
   
-  (general-add-hook 'git-commit-mode-hook 'ac-ispell-ac-setup)
-  (general-add-hook 'mail-mode-hook 'ac-ispell-ac-setup)
-  (general-add-hook 'org-mode-hook 'ac-ispell-ac-setup)
-  (general-add-hook 'text-mode-hook 'ac-ispell-ac-setup)
-
-  (ac-ispell-ac-setup))
+  ;; (ac-ispell-ac-setup)
+  :hook ((git-commit-mode . ac-ispell-ac-setup)
+         (mail-mode . ac-ispell-ac-setup)
+         (org-mode . ac-ispell-ac-setup)
+         (text-mode . ac-ispell-ac-setup)))
 
 (provide 'setup-spell-check)
 ;;; setup-spell-check.el ends here

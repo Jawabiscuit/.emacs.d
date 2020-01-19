@@ -1,10 +1,37 @@
+;;; setup-jedi -- Python auto-completion  -*- lexical-binding: t -*-
+
+;; Author: Jonas Avrin
+;; URL: https://www.github.com/jawabiscuit
+;; Package-Requires: (`python-mode')
+
+;; This file is not part of GNU Emacs
+;;
+;; This file is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 3, or (at your option)
+;; any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+;;
+;; For a full copy of the GNU General Public License
+;; see <http://www.gnu.org/licenses/>.
+;;
+
+;;; Commentary:
+;;
+;;
+
+;;; Code:
+
 (use-package python-environment)
 
-;; NOTE: depends on hydra-posframe
 ;; The brains of Python autocomplete
 (use-package emacs-jedi
   :straight (emacs-jedi :host github :repo "tkf/emacs-jedi")
-  :after (hydra-posframe python-environment)
+  :after (python-environment)
   :init
   ;; Uncomment next line if you like the menu right away
   (setq ac-show-menu-immediately-on-auto-complete t)
@@ -29,3 +56,4 @@
      ("/" jedi:get-in-function-call "Manually show call signature")))))
 
 (provide 'setup-jedi)
+;;; setup-jedi.el ends here
