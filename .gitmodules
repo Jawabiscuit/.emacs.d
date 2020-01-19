@@ -6,3 +6,7 @@
 	path = python/parso
 	url = https://github.com/davidhalter/parso.git
         ignore = dirty
+[submodule "site-lisp/yasnippet-snippets"]
+	path = site-lisp/yasnippet-snippets
+	url = https://github.com/Jawabiscuit/yasnippet-snippets.git
+        ignore = dirty
