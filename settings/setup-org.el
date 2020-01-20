@@ -113,6 +113,9 @@
   :bind (("C-c h o" . hydra-org/body)
          ("C-c O" . my-org-super-agenda)))
 
+;; Capture notes from pdfs and sync with org
+(use-package org-noter)
+
 ;; Active Babel languages
 (with-eval-after-load 'org
   (org-babel-do-load-languages
@@ -131,7 +134,7 @@
 
 ;; Make TAB act as if it were issued in a buffer of the language's
 ;; major mode. 
-(setq org-src-tab-acts-natively t)
+(setq org-src-tab-acts-natively nil)
 
 ;; When editing a code snippet, use the current window rather than
 ;; popping open a new one (which shows the same information). 
