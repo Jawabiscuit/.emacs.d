@@ -126,7 +126,9 @@
                                     (registers . "database"))
 
           dashboard-set-footer t
-          dashboard-footer (format "Powered by biscuits, %s\n\nAdapted from: Centaur dashboard by Vincent Zhang" (format-time-string "%Y"))
+          dashboard-footer (format "Powered by biscuits, %s\n\n
+Adapted from: Centaur dashboard by Vincent Zhang\n
+Original ascii art: Franz P. de Vries" (format-time-string "%Y"))
           dashboard-footer-icon (cond ((display-graphic-p)
                                        (all-the-icons-faicon "heart"
                                                              :height 1

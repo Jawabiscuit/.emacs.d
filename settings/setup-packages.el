@@ -205,15 +205,8 @@
 ;; Emacs WebSocket client and server
 (use-package websocket)
 
-;; Python major mode
-(use-package python-mode
-  :hook
-  ((python-mode-hook
-    .
-    (lambda ()
-      (require 'etom)
-      (setq etom-default-host "localhost")
-      (setq etom-default-port 2222)))))
+;; Python
+(jawa/require 'setup-python)
 
 ;; Support sequential operation which omits prefix keys
 (use-package smartrep)
