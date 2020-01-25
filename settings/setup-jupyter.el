@@ -26,7 +26,29 @@
 
 ;;; Code:
 
+;; live browser JavaScript, CSS, and HTML interaction
+(use-package skewer-mode)
+
+;; Compatible layer for URL request in Emacs
+(use-package request)
+
+;; Wrap request.el by deferred
+(use-package request-deferred)
+
+;; Emacs WebSocket client and server
+(use-package websocket)
+
+;; Support sequential operation which omits prefix keys
+(use-package smartrep)
+
+;; Multiple modes
+(use-package polymode)
+
+;; Emacs iPython notebook
 (use-package ein
+  ;; Apparently ob-ipython is better, and I like org-mode so...
+  ;; I've found working with `ein' pretty clunky.
+  :disabled t
   :init
   ;; Omit a bunch of key chord prefix typing
   (setq ein:use-smartrep t)
@@ -36,8 +58,23 @@
   ;; Execute ein source blocks in org-mode
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((ein . t)
-     )))
+   (append org-babel-load-languages '((ein . t))))
+)
+
+;; Allow org-mode to evaluate code blocks using a Jupyter kernel
+(if (executable-find "jupyter")
+    (use-package ob-ipython
+      :straight (ob-ipython
+                 :type git
+                 :flavor melpa
+                 :files (:defaults "*.py" "ob-ipython-pkg.el")
+                 :host github
+                 :repo "gregsexton/ob-ipython")
+      :config
+      (org-babel-do-load-languages
+       'org-babel-load-languages
+       (append org-babel-load-languages '((ipython . t)))))
+  (message "jupyter was not found on the path. ob-ipython package was not loaded."))
 
 (provide 'setup-jupyter)
 ;;; setup-jupyter.el ends here

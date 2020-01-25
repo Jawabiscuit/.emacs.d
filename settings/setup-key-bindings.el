@@ -124,28 +124,7 @@
 ;; Undo tree
 (eval-after-load 'undo-tree '(define-key undo-tree-map (kbd "C-?") nil))
 
-;; Projectile
-(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-
-;; Python magic
-(define-key python-mode-map (kbd "C--") 'outline-hide-body)
-(define-key python-mode-map (kbd "C-=") 'outline-show-all)
-(define-key python-mode-map (kbd "C-+") 'outline-cycle)
-
-;; Emacs to Maya
-(define-key python-mode-map (kbd "C-c <C-return>") 'etom-send-region)
-(define-key python-mode-map (kbd "C-c C-S-c") 'etom-send-buffer)
-(define-key python-mode-map (kbd "C-c C-S-b") 'etom-show-buffer)
-
-(define-key org-mode-map (kbd "C-c <C-return>") 'etom-send-region)
-(define-key org-mode-map (kbd "C-c C-S-c") 'etom-send-buffer)
-(define-key org-mode-map (kbd "C-c C-S-b") 'etom-show-buffer)
-
 ;; Ask for a key then insert its html description
 (define-key org-mode-map (kbd "C-c i") 'endless/insert-key)
-
-;; Counsel, Ivy, Swiper
-(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
 (provide 'setup-key-bindings)

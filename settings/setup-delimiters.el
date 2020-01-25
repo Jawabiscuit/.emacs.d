@@ -1,13 +1,9 @@
-;;; `setup-delimiters.el' --- Setup for parens and delimiters -*- lexical-binding: t -*-
-;;
+;;; setup-delimiters --- Setup for parens and delimiters -*- lexical-binding: t -*-
+
 ;; Author: Jonas Avrin
-;; Maintainer: Jonas Avrin
-;; Version: 0.0.1
+;; URL: https://www.github.com/jawabiscuit
 ;; Package-Requires: (`')
-;; Homepage:
-;; Keywords:
-;;
-;;
+
 ;; This file is not part of GNU Emacs
 ;;
 ;; This file is free software; you can redistribute it and/or modify
@@ -23,11 +19,11 @@
 ;; For a full copy of the GNU General Public License
 ;; see <http://www.gnu.org/licenses/>.
 ;;
-;;
+
 ;;; Commentary:
 ;;
 ;;
-;;
+
 ;;; Code:
 
 (use-package smartparens
@@ -89,8 +85,7 @@
 
 ;; Display ugly form feed characters as tidy horizontal rules
 (use-package page-break-lines
-  ;; :straight (page-break-lines :host github :repo "purcell/page-break-lines"))
-  :straight nil)
+  :straight (page-break-lines :host github :repo "purcell/page-break-lines"))
 
 (provide 'setup-delimiters)
 ;;; setup-delimiters.el ends here

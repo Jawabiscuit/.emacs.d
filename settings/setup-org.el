@@ -120,7 +120,8 @@
 (with-eval-after-load 'org
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((R . t)
+   '((emacs-lisp . t)
+     (R . t)
      (C . t)
      (python . t)
      (ditaa . t)

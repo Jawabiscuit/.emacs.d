@@ -41,6 +41,7 @@
 (autoload 'magit-status-fullscreen "magit")
 
 (use-package magit
+  :init (setq magit-completing-read-function 'ivy-completing-read)
   :bind (("C-c h g" . hydra-magit/body))
   :hook ((git-commit-mode . jawa/magit-cursor-fix))
   :config
@@ -80,6 +81,19 @@
 ;; Navigate historic versions of the file
 (use-package git-timemachine
   :straight (git-timemachine :host github :repo "emacsmirror/git-timemachine"))
+
+;; Gitflow extension for magit
+(use-package magit-gitflow
+  :config
+  :hook turn-on-magit-gitflow)
+
+(use-package jedi-direx
+  :straight (jedi-direx :type git :flavor melpa
+                        :host github :repo "tkf/emacs-jedi-direx"))
+
+(use-package magithub
+  :straight (magithub :type git :flavor melpa
+                      :host github :repo "vermiculus/magithub"))
 
 (provide 'setup-magit)
 ;;; setup-magit.el ends here

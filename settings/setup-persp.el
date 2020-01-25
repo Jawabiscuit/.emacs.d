@@ -26,6 +26,16 @@
 
 ;;; Code:
 
+(use-package desktop
+  :config
+  ;; Desktop sessions
+  ;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Emacs-Sessions.html
+  (unless (daemonp) (desktop-save-mode t))
+  :custom
+  (desktop-save 'if-exists)
+  ;;(desktop-restore-reuses-frames 'keep)
+  )
+
 (use-package persp-mode
   :after recentf
   :diminish

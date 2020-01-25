@@ -33,9 +33,6 @@
 ;; Try a package without installing it
 (use-package try)
 
-;; Integrate emacs with powerthesaurus.org
-(use-package powerthesaurus)
-
 ;; Set exec path from shell
 (use-package exec-path-from-shell
   :config
@@ -59,8 +56,10 @@
 (use-package origami
   :bind (("C-c h f" . hydra-origami/body)))
 
-;; Used alot in org and ivy
-(use-package posframe)
+;; Popup frame
+(use-package posframe
+;; Issues on Linux
+  :disabled t)
 
 ;; A generic completion mechanism
 (jawa/require 'setup-ivy)
@@ -72,11 +71,7 @@
 (jawa/require 'setup-persp)
 
 ;; Project management
-(jawa/require 'setup-project-mgmt)
-
-;; Popup frame
-(use-package posframe
-  :disabled t)
+(jawa/require 'setup-projects)
 
 ;; Icons everywhere
 (jawa/require 'setup-all-the-icons)
@@ -102,24 +97,14 @@
 ;; Spell checker
 (jawa/require 'setup-spell-check)
 
+;; Integrate emacs with powerthesaurus.org
+(use-package powerthesaurus)
+
 ;; On-the-fly syntax checking
 (jawa/require 'setup-linting)
 
 ;; Popular method to navigate and edit Lisp code
-;; Custom bindings look like this
-;; :bind (:map lispy-mode-map
-;;             ("C-e" . my-custom-eol)
-;;             ("C-j" . nil)
-;;             ("s" . lispy-down))
-(use-package lispy
-  :straight (lispy :host github :repo "abo-abo/lispy")
-  :hook
-  (emacs-lisp-mode . (lambda () (lispy-mode 1)))
-  (minibuffer-setup-hook . conditionally-enable-lispy)
-  :config
-  (defun conditionally-enable-lispy ()
-    (when (eq this-command 'eval-expression)
-      (lispy-mode 1))))
+(jawa/require 'setup-elisp)
 
 ;; Graphically indicate the fill column
 (use-package fill-column-indicator)
@@ -155,11 +140,6 @@
 ;; Complete Git interface
 (jawa/require 'setup-magit)
 
-;; Gitflow extension for magit
-(use-package magit-gitflow
-  :config
-  :hook turn-on-magit-gitflow)
-
 ;; Multiple cursors for Emacs
 (use-package multiple-cursors
   :bind ("C-c h m" . hydra-mc/body))
@@ -191,57 +171,17 @@
 ;; text files written in one markup language to another
 (use-package pandoc-mode)
 
-;; BEGIN Emacs iPython notebook (EIN) dependencies
+;; Mel mode dependencies
+(use-package browse-url-dwim)
 
-;; live browser JavaScript, CSS, and HTML interaction
-(use-package skewer-mode)
-
-;; Compatible layer for URL request in Emacs
-(use-package request)
-
-;; Wrap request.el by deferred
-(use-package request-deferred)
-
-;; Emacs WebSocket client and server
-(use-package websocket)
+;; Mel
+(jawa/require 'setup-mel)
 
 ;; Python
 (jawa/require 'setup-python)
 
-;; Support sequential operation which omits prefix keys
-(use-package smartrep)
-
-;; Multiple modes
-(use-package polymode)
-
-;; END EIN dependencies
-
-;; Middleware so python-land can communicate with emacs-land
-(use-package epc)
-
-;; Brains of Python auto-complete
-;; IMPORTANT: Jedi not fully compatible with `major-mode-hydra'
-(use-package jedi
-  :init
-  ;; Uncomment next line if you like the menu right away
-  (setq ac-show-menu-immediately-on-auto-complete t)
-  ;; Can also express in terms of ac-delay var, e.g.:
-  ;;   (setq ac-auto-show-menu (* ac-delay 2))
-  ;; Enable Jedi setup on mode start
-  (general-add-hook 'python-mode-hook 'jedi:setup)
-  :config
-  ;; Don't let tooltip show up automatically
-  (setq jedi:get-in-function-call-delay 10000000)
-  ;; Start completion at method dot
-  (setq jedi:complete-on-dot t)
-  :bind
-  (("M-." . jedi:goto-definition)
-   ("M-," . jedi:goto-definition-pop-marker)
-   ("M-?" . jedi:show-doc)
-   ("M-/" . jedi:get-in-function-call)))
-
-;; Mel mode dependencies
-(use-package browse-url-dwim)
+;; Jupyter notebooks in Emacs
+(jawa/require 'setup-jupyter)
 
 ;; Yasnippet
 (jawa/require 'setup-yasnippet)
@@ -263,14 +203,6 @@
   :config
   (setq undo-tree-mode-lighter "")
   (global-undo-tree-mode))
-
-;; Extensions to outline mode
-(use-package outline-magic
-  :bind (:map outline-minor-mode
-	      ("<C-tab>" . outline-cycle)))
-
-;; Jupyter notebooks in Emacs
-(jawa/require 'setup-jupyter)
 
 (provide 'setup-packages)
 ;;; setup-packages.el ends here

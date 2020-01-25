@@ -50,7 +50,7 @@
 
 (defconst mel-mode-version "0.8.1")
 
-(defvar mel-mode-document-base "C:/Program Files/Autodesk/Maya2018/en-US/"
+(defvar mel-mode-document-base "help.autodesk.com/cloudhelp/2019/ENU/Maya-Tech-Docs"
   "Directory name(string) of the Maya online document.
 Set to the directory in which GlobalIndex.html is located.
 For example, if you have /home/myname/Maya/html/en_US/MasterIndex.html,
@@ -101,16 +101,16 @@ end with slash")
 (browse-url-dwim (mel-mode-command-name-to-url keyword)))
 
 (defun mel-mode-command-name-to-url (name)
-  (let ((protocol "file://")
+  (let ((protocol "https://")
 	(dir-delimiter "/")
 	(command-directory "Commands")
-	(html-prefix ".html"))
+	(ext ".html"))
   (concat protocol
 	  mel-mode-document-base
 	  command-directory
 	  dir-delimiter
 	  name
-	  html-prefix)))
+	  ext)))
 
 ;; font-lock definitions
 ;; adding additional types: matrix, string, vector (See UserGuide/Mel/Mel.htm)

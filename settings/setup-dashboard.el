@@ -27,26 +27,15 @@
 
 ;;; Code:
 
+(require 'system-const)
+
 (defcustom jawa-logo (expand-file-name "images/logo.png" user-emacs-directory)
   "Set logo. nil means official logo."
   :group 'jawa
   :type 'string)
 
-(defconst emacs/>=25p
-  (>= emacs-major-version 25)
-  "Emacs is 25 or above.")
-
-(defconst emacs/>=26p
-  (>= emacs-major-version 26)
-  "Emacs is 26 or above.")
-
-(defconst emacs/>=25.3p
-  (or emacs/>=26p
-      (and (= emacs-major-version 25) (>= emacs-minor-version 3)))
-  "Emacs is 25.3 or above.")
-
 (defvar jawa-dashboard t)
-(unless emacs/>=25.3p (setq jawa-dashboard nil))
+(unless emacs/>=25.2p (setq jawa-dashboard nil))
 
 (when jawa-dashboard
   (use-package dashboard

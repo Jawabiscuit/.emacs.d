@@ -89,5 +89,5 @@
       (and (= emacs-major-version 25) (>= emacs-minor-version 2)))
   "Emacs is 25.2 or above.")
 
-(provide 'system-defuns)
-;;; system-defuns.el ends here
+(provide 'system-const)
+;;; system-const.el ends here

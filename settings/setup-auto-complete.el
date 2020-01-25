@@ -53,5 +53,32 @@
   (ac-flyspell-workaround)
   (global-auto-complete-mode))
 
+;; Middleware so python-land can communicate with emacs-land
+(use-package epc)
+
+;; Brains of Python auto-complete
+;; IMPORTANT: Jedi not fully compatible with `major-mode-hydra'
+;; NOTE: Before using, must run jedi:install-server
+;; and jedi:setup if the current buffer is visiting a python file
+(use-package jedi
+  :init
+  ;; Uncomment next line if you like the menu right away
+  (setq ac-show-menu-immediately-on-auto-complete t)
+  ;; Can also express in terms of ac-delay var, e.g.:
+  ;;   (setq ac-auto-show-menu (* ac-delay 2))
+  :config
+  ;; Don't let tooltip show up automatically
+  (setq jedi:get-in-function-call-delay 10000000)
+  ;; Start completion at method dot
+  (setq jedi:complete-on-dot t)
+  :bind
+  (("M-." . jedi:goto-definition)
+   ("M-," . jedi:goto-definition-pop-marker)
+   ("M-?" . jedi:show-doc)
+   ("M-/" . jedi:get-in-function-call))
+  :hook
+  ;; Enable Jedi setup on mode start
+  (python-mode . jedi:setup))
+
 (provide 'setup-auto-complete)
 ;;; setup-auto-complete.el ends here

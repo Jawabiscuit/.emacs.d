@@ -26,15 +26,36 @@
 
 ;;; Code:
 
+;; Extensions to outline mode
+(use-package outline-magic
+  :bind (:map outline-minor-mode
+	      ("<C-tab>" . outline-cycle)))
+
+(use-package python-magic
+  :after outline-magic
+  :load-path "site-lisp"
+  :straight (python-magic :type built-in))
+
 ;; Python major mode
 (use-package python-mode
   :hook
-  ((python-mode
+  (((python-mode org-mode)
     . (lambda ()
         ;; Emacs to Maya
         (require 'etom)
         (setq etom-default-host "localhost")
-        (setq etom-default-port 2222)))))
+        (setq etom-default-port 2222))))
+  :bind (("C--" . outline-hide-body)
+         ("C-=" . outline-show-all)
+         ("C-+" . outline-cycle)
+         ("C-c <C-return>" . etom-send-region)
+         ("C-c C-S-c" . etom-send-buffer)
+         ("C-c C-S-b" . etom-show-buffer)
+         :map org-mode
+         ("C-c <C-return>" . etom-send-region)
+         ("C-c C-S-c" . etom-send-buffer)
+         ("C-c C-S-b" . etom-show-buffer)
+         ))
 
 ;; Automatically activates python virtualenv
 (use-package auto-virtualenvwrapper
@@ -43,14 +64,21 @@
   :hook
   ((python-mode . auto-virtualenvwrapper-activate)))
 
+;; Python auto-formatter
+(if (executable-find "autopep8")
+    (use-package py-autopep8
+      :ensure t
+      :commands (py-autopep8-before-save py-autopep8-enable-on-save)
+      ;; :hook
+      ;; (python-mode . py-autopep8-enable-on-save)
+      )
+  (message "autopep8 was not found on the path. py-autopep8 package was not loaded."))
+
 ;; Minor mode for inserting docstring skeleton
 (use-package sphinx-doc
   ;; C-c M-d
   :hook
-  ((python-mode
-    . (lambda
-        (require 'sphinx-doc)
-        (sphinx-doc-mode t)))))
+  ((python-mode . sphinx-doc-mode)))
 
 ;; Minor mode that understands/highlights sphinx
 (use-package python-docstring-mode

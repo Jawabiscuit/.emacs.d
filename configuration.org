@@ -123,9 +123,9 @@ configuration.
 ** Ipython site-lisp dir
 
 #+BEGIN_SRC emacs-lisp
-(setq ein-site-lisp-dir
-      (concat site-lisp-dir
-        (convert-standard-filename "/emacs-ipython-notebook/lisp")))
+  ;; (setq ein-site-lisp-dir
+  ;;       (concat site-lisp-dir
+  ;;         (convert-standard-filename "/emacs-ipython-notebook/lisp")))
 #+END_SRC
 
 
@@ -151,7 +151,7 @@ configuration.
 #+BEGIN_SRC emacs-lisp
 ;; (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path site-lisp-dir)
-(add-to-list 'load-path ein-site-lisp-dir)
+;; (add-to-list 'load-path ein-site-lisp-dir)
 #+END_SRC
 
 
@@ -229,26 +229,6 @@ The bulk of packages to install
 
 
 ** Setup convenience packages
-
-Requirements: [[*Improved keybinding][setup keybindings]] 
-
-#+begin_src emacs-lisp
-(use-package desktop
-  :config
-  ;; Desktop sessions
-  ;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Emacs-Sessions.html
-  (unless (daemonp) (desktop-save-mode t))
-  :custom
-  (desktop-save 'if-exists)
-  ;;(desktop-restore-reuses-frames 'keep)
-)
-#+end_src
-
-Setup a bunch of useful features (Disabled for now)
-
-#+begin_src emacs-lisp
-;; (jawa/require 'setup-meta)
-#+end_src
 
 
 ** Keep emacs Custom-settings in separate file
@@ -385,7 +365,7 @@ Requirements: [[*Add external project submodules (site-lisp) to load path][Add s
 Requirements: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
 
 #+BEGIN_SRC emacs-lisp
-(require 'python-magic)
+;; Moved to setup-python.el 
 #+END_SRC
 
 
@@ -488,6 +468,7 @@ Dependency: [[*Install packages if they're missing][setup packages]]
 Dependency: [[*Install packages if they're missing][setup packages]]
 
 #+BEGIN_SRC emacs-lisp
+;; Moved to setup-jupyter.el
   ;; (require 'ein)
   ;; (require 'ein-notebook)
   ;; (require 'ein-subpackages)
@@ -509,12 +490,12 @@ Mel syntax
 Mel documentation lookup
 
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'auto-mode-alist '("\\.mel$" . mel-mode))
-(autoload 'mel-mode "mel-mode" nil t)
-
-;; mel outline mode
-(require 'mel-magic)
-
+;; Moved to setup-mel.el
+;; (add-to-list 'auto-mode-alist '("\\.mel$" . mel-mode))
+;; (autoload 'mel-mode "mel-mode" nil t)
+;; 
+;; ;; mel outline mode
+;; (require 'mel-magic)
 #+END_SRC
 
 
