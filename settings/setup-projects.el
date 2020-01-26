@@ -39,28 +39,27 @@
         projectile-sort-order 'recentf
         projectile-use-git-grep t)
   :config
-  ;; Update mode-line at the first time
-  ;; (projectile-update-mode-line)
-
-  ;; TODO: Use the faster searcher to handle project files: ripgrep `rg'.
-  ;; (when (and (not (executable-find "fd"))
-  ;;            (executable-find "rg"))
-  ;;   (setq projectile-generic-command
-  ;;         (let ((rg-cmd ""))
-  ;;           (dolist (dir projectile-globally-ignored-directories)
-  ;;             (setq rg-cmd (format "%s --glob '!%s'" rg-cmd dir)))
-  ;;           (concat "rg -0 --files --color=never --hidden" rg-cmd))))
+  ;; Use the faster searcher to handle project files: ripgrep `rg'.
+  (when (and (not (executable-find "fd"))
+             (executable-find "rg"))
+    (setq projectile-generic-command
+          (let ((rg-cmd ""))
+            (dolist (dir projectile-globally-ignored-directories)
+              (setq rg-cmd (format "%s --glob '!%s'" rg-cmd dir)))
+            (concat "rg -0 --files --color=never --hidden" rg-cmd))))
 
   ;; Faster searching on Windows
-  ;; (when sys/win32p
-  ;;   (when (or (executable-find "fd") (executable-find "rg"))
-  ;;     (setq projectile-indexing-method 'alien
-  ;;           projectile-enable-caching nil))
+  (when sys/win32p
+    (when (or (executable-find "fd") (executable-find "rg"))
+      (setq projectile-indexing-method 'alien
+            projectile-enable-caching nil))
+    ;; Too slow while getting submodule files on Windows
+    (setq projectile-git-submodule-command nil))
 
-  ;; TODO: too slow while getting submodule files on Windows
-  ;; (setq projectile-git-submodule-command nil))
+  ;; Update mode-line at the first time
+  (projectile-update-mode-line)
   :bind
-  (:map projectile-mode
+  (:map projectile-mode-map
         ("s-p" . projectile-command-map)
         ("C-c p" . projectile-command-map)))
 
