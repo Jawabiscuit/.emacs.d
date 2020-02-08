@@ -60,6 +60,22 @@
 ;; IMPORTANT: Jedi not fully compatible with `major-mode-hydra'
 ;; NOTE: Before using, must run jedi:install-server
 ;; and jedi:setup if the current buffer is visiting a python file
+(use-package jedi-core
+  :straight (jedi-core
+             :type git
+             :flavor melpa
+             :files ("jedi-core.el" "jediepcserver.py" "Makefile" "setup.py" "jedi-core-pkg.el")
+             :host github
+             :repo "tkf/emacs-jedi")
+  :commands (jedi:start-dedicated-server
+             helm-jedi-related-names
+             jedi:setup
+             jedi:install-server
+             jedi:reinstall-server
+             jedi:install-server-block)
+  :init
+  (setq jedi:environment-root "~/.virtualenvs/jedi"))
+
 (use-package jedi
   :init
   ;; Uncomment next line if you like the menu right away

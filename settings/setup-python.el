@@ -57,12 +57,23 @@
          ("C-c C-S-b" . etom-show-buffer)
          ))
 
+
 ;; Automatically activates python virtualenv
-(use-package auto-virtualenvwrapper
-  ;; Try at home first
-  :disabled t
-  :hook
-  ((python-mode . auto-virtualenvwrapper-activate)))
+(cond ((executable-find "virtualenvwrapper.sh")
+       (use-package virtualenvwrapper
+         :commands (venv-projectile-auto-workon
+                    venv-workon
+                    venv-mkvirtualenv-using
+                    venv-mkvirtualenv
+                    venv-rmvirtualenv
+                    venv-lsvirtualenv
+                    venv-cdvirtualenv
+                    venv-cpvirtualenv))
+       (use-package auto-virtualenvwrapper
+         :hook
+         ((python-mode . auto-virtualenvwrapper-activate))))
+      (t (message "virtualenvwrapper was not found on the path.
+ auto-virtualenvwrapper package was not loaded.")))
 
 ;; Python auto-formatter
 (if (executable-find "autopep8")
@@ -72,7 +83,8 @@
       ;; :hook
       ;; (python-mode . py-autopep8-enable-on-save)
       )
-  (message "autopep8 was not found on the path. py-autopep8 package was not loaded."))
+  (message "autopep8 was not found on the path.
+ py-autopep8 package was not loaded."))
 
 ;; Minor mode for inserting docstring skeleton
 (use-package sphinx-doc

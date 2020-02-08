@@ -85,7 +85,8 @@
 
 ;; Display ugly form feed characters as tidy horizontal rules
 (use-package page-break-lines
-  :straight (page-break-lines :host github :repo "purcell/page-break-lines"))
+  :straight (page-break-lines :host github :repo "purcell/page-break-lines")
+  :config (turn-on-page-break-lines-mode))
 
 (provide 'setup-delimiters)
 ;;; setup-delimiters.el ends here

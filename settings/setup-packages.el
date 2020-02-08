@@ -142,7 +142,10 @@
 
 ;; Multiple cursors for Emacs
 (use-package multiple-cursors
-  :bind ("C-c h m" . hydra-mc/body))
+  :bind (("C-c h m" . hydra-mc/body)
+         :map mc/keymap
+         ("<return>" . nil)))
+
 (use-package mc-extras
   :straight (mc-extras :host github :repo "knu/mc-extras.el"))
 

@@ -74,11 +74,36 @@
 
 ;; Various completion functions using Ivy, Swiper for search
 (use-package counsel
+  :after ivy
   :diminish
   :config
   (counsel-mode 1)
   :bind (:map minibuffer-local-map
-              ("C-r" . counsel-minibuffer-history)))
+              ("C-r" . counsel-minibuffer-history)
+              :map ivy-minibuffer-map
+              ("C-<SPC>" . ivy-dispatching-done)
+              ("C-<return>" .
+               (lambda ()
+                 "Apply action and move to next/prev candidate."
+                 (interactive)
+                 (ivy-call)
+                 (ivy-next-line)))
+              ("M-<return>" .
+               (lambda ()
+                 "Apply default action to all candidates."
+                 (interactive)
+                 (ivy-beginning-of-buffer)
+                 (loop for i from 0 to (- ivy--length 1)
+                       do
+                       (ivy-call)
+                       (ivy-next-line)
+                       (ivy--exhibit))
+                 exit-minibuffer))
+              ("?" .
+               (lambda ()
+                 "Show keys"
+                 (interactive)
+                 (describe-keymap ivy-minibuffer-map)))))
 
 ;; https://github.com/abo-abo/swiper/wiki/Sort-files-by-mtime#a-simple-version
 (defun eh-ivy-sort-file-by-mtime (x y)
