@@ -125,6 +125,7 @@
      (C . t)
      (python . t)
      (ditaa . t)
+     (shell . t)
      )))
 
 ;; Hide leading asterisks and indent correctly

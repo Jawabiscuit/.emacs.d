@@ -198,8 +198,13 @@
 ;; Log keyboard commands to buffer
 (use-package command-log-mode)
 
+;; Docker highlighting
 (use-package dockerfile-mode
   :straight (dockerfile-mode :host github :repo "spotify/dockerfile-mode"))
+
+;; Docker tramp
+(use-package docker-tramp
+  :straight (docker-tramp :type git :flavor melpa :host github :repo "emacs-pe/docker-tramp.el"))
 
 ;; Visualize undos
 (use-package undo-tree
