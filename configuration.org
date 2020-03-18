@@ -540,3 +540,10 @@ Seems like a [[https://github.com/Malabarba/emacs-google-this][decent package]] 
 (setq org-confirm-babel-evaluate nil)
 #+end_src
 
+
+** Do not check signatures
+
+#+begin_src emacs-lisp -n :results none :output none
+(setq package-check-signature nil)
+#+end_src
+
