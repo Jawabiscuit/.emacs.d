@@ -204,7 +204,18 @@
 
 ;; Docker tramp
 (use-package docker-tramp
-  :straight (docker-tramp :type git :flavor melpa :host github :repo "emacs-pe/docker-tramp.el"))
+  :straight (docker-tramp
+             :type git
+             :flavor melpa
+             :host github
+             :repo "emacs-pe/docker-tramp.el"))
+
+;; auto-fill without editing
+(use-package virtual-auto-fill
+  :straight (virtual-auto-fill
+             :type git
+             :host github
+             :repo "luisgerhorst/virtual-auto-fill"))
 
 ;; Visualize undos
 (use-package undo-tree
