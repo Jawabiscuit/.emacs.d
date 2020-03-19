@@ -223,5 +223,14 @@
   (setq undo-tree-mode-lighter "")
   (global-undo-tree-mode))
 
+;; Emacs wide font scale
+(use-package default-text-scale
+  :straight (default-text-scale
+             :type git
+             :flavor melpa
+             :host github
+             :repo "purcell/default-text-scale"))
+
+
 (provide 'setup-packages)
 ;;; setup-packages.el ends here
