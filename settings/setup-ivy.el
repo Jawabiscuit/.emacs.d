@@ -39,7 +39,7 @@
   ;; (setq search-default-mode #'char-fold-to-regexp)
   (ivy-mode 1)
   :bind
-  (("C-s" . swiper)
+  (;; ("C-s" . swiper)
    ("C-c C-r" . ivy-resume)
    ("<f6>" . ivy-resume)
    ("M-x" . counsel-M-x)
@@ -79,7 +79,8 @@
   :config
   (counsel-mode 1)
   :bind (:map minibuffer-local-map
-              ("C-r" . counsel-minibuffer-history)
+              ;; CTRLF
+              ;; ("C-r" . counsel-minibuffer-history)
               :map ivy-minibuffer-map
               ("C-<SPC>" . ivy-dispatching-done)
               ("C-<return>" .

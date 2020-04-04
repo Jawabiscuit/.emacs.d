@@ -82,5 +82,15 @@
       )
   (message "pt was not found on the path. pt package was not loaded."))
 
+;; CTRLF
+(use-package ctrlf
+  :straight (ctrlf
+             :type git
+             :host github
+             :repo "raxod502/ctrlf")
+  :config (ctrlf-mode +1)
+  :bind (:map minibuffer-local-map
+              ("C-r" . ctrlf-backward-literal)))
+
 (provide 'setup-search)
 ;;; .el ends here
