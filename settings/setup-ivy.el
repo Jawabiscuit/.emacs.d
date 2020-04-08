@@ -39,12 +39,12 @@
   ;; (setq search-default-mode #'char-fold-to-regexp)
   (ivy-mode 1)
   :bind
-  (;; ("C-s" . swiper)
+  ( ;; ("C-s" . swiper)
    ("C-c C-r" . ivy-resume)
    ("<f6>" . ivy-resume)
    ("M-x" . counsel-M-x)
    ("C-x C-f" . counsel-find-file)
-   ("C-x C-d" . counsel-find-dir)
+   ;; ("C-x C-d" . counsel-find-dir)
    ("<f1> f" . counsel-describe-function)
    ("<f1> v" . counsel-describe-variable)
    ("<f1> l" . counsel-find-library)
@@ -54,7 +54,8 @@
    ("C-c j" . counsel-git-grep)
    ("C-c k" . counsel-ag)
    ("C-x l" . counsel-locate)
-   ("C-S-o" . counsel-rhythmbox))
+   ;; ("C-S-o" . counsel-rhythmbox)
+   )
   :custom
   (enable-recursive-minibuffers t)
   ;; (ivy-height 10)
@@ -123,6 +124,7 @@
 (defcustom akirak/ivy-posframe-width-alist nil "Alist of height.")
 
 (use-package ivy-posframe
+  :disabled t
   :diminish
   ;; Use posframe to display candidates in ivy commands.
   ;;
