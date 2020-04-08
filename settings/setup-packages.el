@@ -231,6 +231,8 @@
              :host github
              :repo "purcell/default-text-scale"))
 
+;; Jira
+(jawa/require 'setup-jira)
 
 (provide 'setup-packages)
 ;;; setup-packages.el ends here

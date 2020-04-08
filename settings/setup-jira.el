@@ -35,12 +35,13 @@
 
 
 (use-package ejira
+  :disabled t
   :straight (ejira :type git :host github :repo "nyyManni/ejira")
   :init
   (setq jiralib2-url              "https://titicus.atlassian.net"
         jiralib2-auth             'token
         jiralib2-user-login-name  "jawabiscuit"
-        jiralib2-token            "Z88cFh378ZBb9LNhQwmT9884"
+        jiralib2-token            ""
 
         ejira-org-directory       "~/org/jira"
         ejira-projects            '("WCK")
