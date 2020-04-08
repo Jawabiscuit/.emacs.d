@@ -84,11 +84,10 @@
 
 ;; CTRLF
 (use-package ctrlf
-  :straight (ctrlf
-             :type git
-             :host github
+  :straight (:host github
              :repo "raxod502/ctrlf")
-  :config (ctrlf-mode +1)
+  :defer t
+  :init (ctrlf-mode +1)
   :bind (:map minibuffer-local-map
               ("C-r" . ctrlf-backward-literal)))
 
