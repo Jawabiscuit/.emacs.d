@@ -114,6 +114,14 @@
 ;; Capture notes from pdfs and sync with org
 (use-package org-noter)
 
+;; Facilitate moving images from point A to point B
+(use-package org-download
+  :straight (:type git
+             :flavor melpa
+             :host github
+             :repo "abo-abo/org-download")
+  :hook (dired-mode . org-download-enable))
+
 ;; Active Babel languages
 (with-eval-after-load 'org
   (org-babel-do-load-languages
