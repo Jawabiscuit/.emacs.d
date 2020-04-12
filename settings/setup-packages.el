@@ -225,11 +225,12 @@
 
 ;; Emacs wide font scale
 (use-package default-text-scale
-  :straight (default-text-scale
-             :type git
-             :flavor melpa
-             :host github
-             :repo "purcell/default-text-scale"))
+  :straight (:type git
+                   :flavor melpa
+                   :host github
+                   :repo "purcell/default-text-scale")
+  :config
+  (default-text-scale-mode +1))
 
 ;; Jira
 (jawa/require 'setup-jira)
