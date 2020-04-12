@@ -184,7 +184,8 @@
     ("C-f" auto-fill-mode "Autofill" :toggle t) ; TODO: Toggle face does not change
     ("C-y" lispy-mode "Lispy" :toggle t))
    "Visual"
-   (("o" origami-mode "Origami" :toggle t)
+   (("e" jawa/toggle-org-emphasis-markers "Org emphasis" :toggle t)
+    ("o" origami-mode "Origami" :toggle t)
     ("n" linum-mode "Linum" :toggle t)
     ("w" whitespace-mode "Whtspc" :toggle t)
     ("p" page-break-lines-mode "Page break lines" :toggle t)

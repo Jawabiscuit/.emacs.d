@@ -307,6 +307,15 @@
       ;; hide markup elements
       org-hide-emphasis-markers t)
 
+;; Toggle display of special markdown formatting characters in org buffers
+(defun jawa/toggle-org-emphasis-markers (&optional arg)
+  (interactive)
+  "Toggle emphasis markers"
+  (setq org-hide-emphasis-markers
+        (if (null arg)
+            (not org-hide-emphasis-markers)
+          arg)))
+
 ;; Org mode links
 ;; `https://github.com/abo-abo/hydra/wiki/Org-mode-links'
 (defun jk/unlinkify ()
