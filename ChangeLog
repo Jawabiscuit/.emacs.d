@@ -1,0 +1,249 @@
+2020-01-04  Jonas Avrin  <jawabiscuit@users.noreply.github.com>
+
+	* configuration.org
+	(Before using =use-package=):
+	    - Put custom.el in no-littering etc directory
+	    - Put autosave files in no-littering var directory
+
+	* settings/setup-ivy.el
+	(ivy-youtube):
+	    - Use package
+
+2020-01-03  Jonas Avrin  <jawabiscuit@users.noreply.github.com>
+
+	* settings/setup-persp.el
+	(persp-mode):
+	    - Persp ibuffer filter groups
+
+	* settings/setup-packages.el
+	(powerthesaurus):
+	    - Use package
+	(try):
+	    - Use package
+	(setup-tabs):
+	    - Don't use tabs for now (maybe test on Linux?)
+	    - Looks ugly
+	(flx-ido):
+	    - Disable
+
+	* settings/setup-ivy.el
+	(ivy-posframe):
+	    - Use my configuration
+	    - Display posframes top and center of frame
+
+	* settings/setup-hydra.el
+	(hydra-toggles):
+	    - Fix some duplicate hydra key bindings
+	    - New key bindings for modes
+	(major-mode-hydra):
+	    - New persp mode hydra
+
+	* settings/setup-defaults.el
+	(locale-coding-system):
+	    - Update emace to use UNIX line endings
+
+	* settings/setup-dashboard.el
+	(jawa-dashboard):
+	    - Prevent tabs from displaying in dashboard mode
+
+	* configuration.org
+	(Support older versions of Emacs):
+	    - Older version of with-eval-after-load
+	(Activate package.el for loading built-in packages):
+	    - Minimal melpa package archives
+	(Appearance):
+	    - Fix ugly minibuffer prompt font face
+	(Org-mode):
+	    - More bindings
+	    - Use tabcrush package
+	(Projectile minor mode):
+	    - Comment unused flx-ido
+
+2019-12-26  Jonas Avrin  <jawabiscuit@users.noreply.github.com>
+
+	* settings/setup-org.el
+	(org-todo-keywords):
+	    - Make clock history persist across sessions
+
+	* settings/setup-persp.el
+	(persp-mode):
+	    - Replace desktop
+	(persp-mode-projectile-bridge):
+	    - Integrate projectile with persp
+
+	* settings/setup-history.el
+	(recentf):
+	    - Use package
+	(savehist):
+	    - Use package
+
+	* settings/setup-dashboard.el:
+	    - Awesome new dashboard
+
+	* settings/setup-packages.el
+	(neotree):
+	    - Use package
+	(setup-modeline):
+	    - Use doom-modeline
+	(setup-directory):
+	    - Use dired-hacks for better dired experience
+
+	* settings/setup-org-starter.el
+	(org-starter):
+	    - Fix issue with org-starter not loading config files
+
+	* settings/setup-magit.el
+	(magit-status-fullscreen):
+	    - Fix fullscreen when magit status has not been run lately
+
+	* settings/setup-linting.el
+	(apheleia):
+	    - Use a code formatter
+
+	* settings/setup-hydra.el
+	    - Lots new hydra functionality
+	(dired-mode):
+	    - Major mode hydra mainly to simplify subtree navigation
+	(hydra-toggles):
+	    - Actual full screen mode
+
+	* settings/setup-delimiters.el
+	(smartparens):
+	    - Cleanup hooks and diminish mode
+
+	* settings/setup-defaults.el:
+	    - Actual smoother scrolling
+	    - Actual utf-8 everywhere
+
+	* core/setup.el
+	(jawa/windows-subsystem-for-linux-p):
+	    - Add function for detecting if running in WSL
+
+	* configuration.org
+	(Monokai theme):
+	    - Disable
+	(DOOM theme):
+	    - Enable
+	(Window):
+	    - Cleanup hooks
+	(Diminish):
+	    - Diminish many modes
+
+	* .emacs:
+	    - Transition from using desktop files to persp
+
+2019-12-21  Jonas Avrin  <jawabiscuit@users.noreply.github.com>
+
+        * settings/setup-yasnippet.el
+        (yasnippet):
+            - Enable `yas-global-mode`
+
+        * settings/setup-packages.el
+        (projectile):
+            - Change where hydra body bindings are being defined
+        (setup-delimiters):
+            - Rename setup-smartparens to setup-delimiters
+        (yankpad):
+            - Remove setup-yankpad.el, define hydras in setup-hydra.el
+
+        * settings/setup-org.el
+            - Configure a basic org super agenda view
+
+        (org-tag-persistent-alist):
+            - Add IN-PROGRESS status and change INCUBATE to be a done status
+
+        * settings/setup-org-starter.el
+        (org-directory):
+            - Set file paths for org-mode
+        (org-starter):
+            - Configure org-starter with a todo file and a key for config
+
+        * settings/setup-key-bindings.el
+        (ja-keys-minor-mode-map):
+            - Fix key binding for toggling all headings in org mode
+        (ja-keys-minor-mode-map):
+            - Change "C-x k" to `kill-this-buffer`
+
+        * settings/setup-hydra.el
+        (hydra-toggles):
+            - Set some better hydra keys
+        (hydra-yankpad-title):
+            - Yankpad hydra
+
+        * settings/setup-defaults.el
+        (user-full-name):
+            - Set full name, login, and mail address
+            - Change fill column from 80 to 90
+
+        * org/
+            - Remove org files
+
+        * configuration.org:
+        (Emacs Configuration):
+            - Set current fill column to 90 instead of 80
+
+        * .emacs
+        (file-exists-p):
+            - Discontinue adding org/todo.org to org-agenda-files
+
+2019-12-18  Jonas Avrin  <jawabiscuit@users.noreply.github.com>
+
+        * configuration.org
+        (Site-lisp packages):
+            - Switch from submodule to straight use-package for some packages
+
+        (ivy-yasnippet):
+            - New bindings for inserting and creating snippets
+
+        * .gitignore
+            - Ignore hunspell
+
+2019-12-17  Jonas Avrin  <jawabiscuit@users.noreply.github.com>
+
+        * settings/setup-spell-check.el
+            - Separate out spell check setup into a new file
+            - Install hunspell on Windows to `~/.emacs.d/hunspell`
+
+        * settings/setup-linting.el
+            - Separate out linting setup into a new file
+
+        * settings/setup-auto-complete.el
+            - Separate out auto-complete setup into a new file
+            - Enable auto-complete in text-mode, org-mode, and prog-mode
+
+        * ChangeLog
+            - Create ChangeLog
+
+        * .emacs (file-exists-p)
+            - Autoload desktop file
+
+        * settings/setup-yasnippet.el
+        (yasnippet):
+            - Tab expansion tested
+            - Redefine hooks
+
+        * settings/setup-packages.el
+            - Add header/footer
+            - Add esxml, request, org-web-tools, origami packages
+        (setup-auto-complete):
+            - Setup files for auto-complete, spell check, and fci-mode
+            - Have some packages load earlier
+
+        * settings/setup-key-bindings.el
+        (ja-keys-minor-mode-map):
+            - Remove some bindings that are defined in use-packages
+
+        * settings/setup-hydra.el
+            Add boilerplate
+        (hydra-toggles):
+            - Add more focus toggles
+        (hydra-origami-title):
+            - Add origami hydra
+        (hydra-flycheck-title):
+            - Add flycheck and flyspell hydras
+
+        * .emacs_template
+            - Rename .emacs_template
+
+        * defuns/agenda-defuns.el
+            - Run flycheck, add header/footer

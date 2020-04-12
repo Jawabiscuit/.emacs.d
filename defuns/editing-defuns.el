@@ -11,46 +11,13 @@
          (format tag (help-key-description key nil)))
       (insert (format tag ""))
       (forward-char (if is-org-mode -8 -6)))
-   )
-)
-
-;; Replace string
-(defun casey-replace-string (FromString ToString)
-  "Replace a string without moving point."
-  (interactive "sReplace: \nsReplace: %s  With: ")
-  (save-excursion
-    (replace-string FromString ToString)
-  )
-)
-
-;; Txt mode handling
-(defun casey-big-fun-text-hook ()
-  ;; 4-space tabs
-  (setq tab-width 4
-        indent-tabs-mode nil)
-
-  ;; Newline indents, semi-colon doesn't
-  (define-key text-mode-map "\C-m" 'newline-and-indent)
-
-  ;; Prevent overriding of alt-s
-  (define-key text-mode-map "\es" 'casey-save-buffer)
-)
+   ))
 
 (defun append-as-kill ()
   "Performs copy-region-as-kill as an append."
   (interactive)
   (append-next-kill) 
-  (copy-region-as-kill (mark) (point))
-)
-
-(defun casey-replace-in-region (old-word new-word)
-  "Perform a replace-string in the current region."
-  (interactive "sReplace: \nsReplace: %s  With: ")
-  (save-excursion (save-restriction
-		    (narrow-to-region (mark) (point))
-		    (beginning-of-buffer)
-		    (replace-string old-word new-word)))
-)
+  (copy-region-as-kill (mark) (point)))
 
 ;; Duplicate line
 ;; https://stackoverflow.com/a/88828
@@ -61,8 +28,7 @@
   (yank)
   (open-line 1)
   (next-line 1)
-  (yank)
-)
+  (yank))
 
 ;; Move line or region up/down
 ;; https://stackoverflow.com/a/2426347
@@ -109,13 +75,11 @@
 (defun previous-blank-line ()
   "Moves to the previous line containing nothing but whitespace."
   (interactive)
-  (search-backward-regexp "^[ \t]*\n")
-)
+  (search-backward-regexp "^[ \t]*\n"))
 
 (defun next-blank-line ()
   "Moves to the next line containing nothing but whitespace."
   (interactive)
   (forward-line)
   (search-forward-regexp "^[ \t]*\n")
-  (forward-line -1)
-)
+  (forward-line -1))

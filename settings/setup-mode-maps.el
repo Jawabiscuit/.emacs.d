@@ -1,0 +1,42 @@
+;; Accepted file extensions and their appropriate modes
+(setq auto-mode-alist
+    (append
+       '(("\\.tag$"        . html-mode)
+	 ("\\.vm$"         . html-mode)
+	 ("\\.ejs$"        . html-mode)
+	 ("\\.scss$"       . css-mode)
+	 ("\\.aliases$"    . shell-script-mode)
+	 ("\\.bxt$"        . shell-script-mode)
+	 ("\\.poi$"        . shell-script-mode)
+	 ("\\.org$"        . org-mode)
+	 ("\\.cpp$"        . c++-mode)
+         ("\\.hin$"        . c++-mode)
+         ("\\.cin$"        . c++-mode)
+         ("\\.inl$"        . c++-mode)
+         ("\\.rdc$"        . c++-mode)
+         ("\\.h$"          . c++-mode)
+         ("\\.c$"          . c++-mode)
+         ("\\.cc$"         . c++-mode)
+         ("\\.c8$"         . c++-mode)
+         ("\\.txt$"        . indented-text-mode)
+         ("\\.emacs$"      . emacs-lisp-mode)
+         ("\\.gen$"        . gen-mode)
+         ("\\.ms$"         . fundamental-mode)
+         ("\\.m$"          . objc-mode)
+         ("\\.mm$"         . objc-mode)
+	 ("\\.restclient$" . restclient-mode)
+         ("Dockerfile\\'"  . dockerfile-mode)
+         )
+    auto-mode-alist)
+)
+
+(bind-keys :prefix-map toggle-map
+           :prefix "C-x t"
+           ("d" . toggle-debug-on-error)
+           ("l" . linum-mode)
+           ("o" . org-mode)
+           ("s" . smartparens-mode)
+           ("n" . snippet-mode)
+)
+
+(provide 'setup-mode-maps)
