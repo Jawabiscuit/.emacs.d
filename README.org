@@ -1,0 +1,37 @@
+:SETTINGS:        
+#+TITLE: README
+#+SUBTITLE: 
+#+DESCRIPTION: 
+#+AUTHOR: Jonas Avrin
+#+EMAIL: jonas@cghijinks.com
+#+DATE: 2020-04-12 18:43:37 -0400
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t c:nil creator:comment d:(not LOGBOOK) date:t e:t
+#+OPTIONS: email:nil f:t inline:t num:nil p:nil pri:nil stat:t tags:t
+#+OPTIONS: tasks:nil tex:t timestamp:t title:nil toc:nil todo:t |:t
+#+OPTIONS: html-postamble:nil
+#+EXCLUDE_TAGS: noexport
+#+EXPORT_FILE_NAME: README
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+# # By default I do not want that source code blocks are evaluated on export.
+# # I want to evaluate them interactively and retain the original results.
+#+PROPERTY: header-args :eval never-export
+#+STARTUP: content indent hidestars hideblocks
+#+KEYWORDS: emacs
+#+TAGS: configuration
+# # Original start of this document
+# #+DATE: <2020-04-12>
+# #+CREATOR: Emacs 25.2.1 (Org mode 9.3.1)
+:END:
+
+* My Emacs Configuration
+
+Take a look at [[configuration.org][configuration.org]] and [[init.el][init.el]]
+
+#+DOWNLOADED: /c/users/jonas/Desktop/Capture.PNG @ 2020-04-12 18:46:51
+[[file:images/2020-04-12_18-46-51_Capture.PNG]]
+
+
+#+DOWNLOADED: /c/users/jonas/Desktop/Capture-1.PNG @ 2020-04-12 18:46:16
+[[file:images/2020-04-12_18-46-16_Capture-1.PNG]]
