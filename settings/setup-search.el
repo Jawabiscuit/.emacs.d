@@ -50,7 +50,6 @@
 ;; Ripgrep
 (if (executable-find "rg")
     (use-package rg
-      :after (projectile ivy)
       :hook
       ((after-init . rg-enable-default-bindings)
        (rg-mode . wgrep-ag-setup))

@@ -186,7 +186,6 @@
   :init
   (setq mini-modeline-enhance-visual nil)
   :straight (mini-modeline :host github :repo "kiennq/emacs-mini-modeline")
-  :after smart-mode-line
   :config
   (setq mini-modeline-echo-duration 8)
   (setq mini-modeline--echo-keystrokes t)

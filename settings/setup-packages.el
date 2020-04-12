@@ -42,6 +42,9 @@
 ;; string manipulation library
 (use-package s)
 
+;; History, recent files
+(jawa/require 'setup-history)
+
 ;; Tree plugin like NerdTree for Vim
 (use-package neotree
   :bind ("<f8>" . neotree-toggle))
@@ -67,17 +70,14 @@
 ;; Jump around windows using character keys
 (jawa/require 'setup-avy)
 
-;; Persistant window configurations
-(jawa/require 'setup-persp)
-
 ;; Project management
 (jawa/require 'setup-projects)
 
+;; Persistant window configurations
+(jawa/require 'setup-persp)
+
 ;; Icons everywhere
 (jawa/require 'setup-all-the-icons)
-
-;; History
-(jawa/require 'setup-history)
 
 ;; Tie related commands into a family of short bindings with a prefix
 (jawa/require 'setup-hydra)

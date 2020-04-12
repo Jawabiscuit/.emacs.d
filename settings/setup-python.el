@@ -32,7 +32,6 @@
 	      ("<C-tab>" . outline-cycle)))
 
 (use-package python-magic
-  :after outline-magic
   :load-path "site-lisp"
   :straight (python-magic :type built-in))
 

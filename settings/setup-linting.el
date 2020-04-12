@@ -37,15 +37,16 @@
 
 ;; Jump to and fix syntax errors using flycheck with avy interface
 (use-package avy-flycheck
-  :after avy
   :commands (avy-flycheck-setup))
 
 (use-package flycheck-indicator
-  :after flycheck)
+  :straight (:type git
+             :flavor melpa
+             :host github
+             :repo "gexplorer/flycheck-indicator"))
 
 ;; Shows error under point in pos-tip popups
 (use-package flycheck-pos-tip
-  :after flycheck-package
   :config
   (with-eval-after-load 'flycheck
     (flycheck-pos-tip-mode)))

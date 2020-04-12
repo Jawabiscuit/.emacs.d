@@ -67,7 +67,6 @@
   :diminish
   :straight (ivy-filthy-rich :host github :repo "akirak/ivy-filthy-rich"
                              :branch "fix-max-length")
-  :after ivy
   :config
   (ivy-filthy-rich-mode t)
   :custom
@@ -75,7 +74,6 @@
 
 ;; Various completion functions using Ivy, Swiper for search
 (use-package counsel
-  :after ivy
   :diminish
   :config
   (counsel-mode 1)

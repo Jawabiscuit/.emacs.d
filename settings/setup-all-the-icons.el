@@ -5,7 +5,6 @@
 (use-package all-the-icons-ivy
   ;; Integrate it with ivy-filthy-rich
   ;; :disabled t
-  :after ivy
   ;; :straight (all-the-icons-ivy :host github :repo "asok/all-the-icons-ivy")
   :config
   (all-the-icons-ivy-setup)

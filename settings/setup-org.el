@@ -66,9 +66,7 @@
 
 ;; Group items in Org agenda views
 (use-package org-super-agenda
-  :after org-agenda
-  :config
-  
+  :config 
   (setq org-agenda-custom-commands '())
   (add-to-list 'org-agenda-custom-commands
    '("H" "Someday/Maybe"

@@ -31,7 +31,6 @@
 ;; The brains of Python autocomplete
 (use-package emacs-jedi
   :straight (emacs-jedi :host github :repo "tkf/emacs-jedi")
-  :after (python-environment)
   :init
   ;; Uncomment next line if you like the menu right away
   (setq ac-show-menu-immediately-on-auto-complete t)

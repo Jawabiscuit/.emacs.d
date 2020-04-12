@@ -38,12 +38,10 @@
 (use-package hydra-posframe
   ;; Floating windows are making it impossible to use.
   :disabled t
-  :after (hydra posframe)
   :straight (hydra-posframe :host github :repo "Ladicle/hydra-posframe")
   :hook (after-init . hydra-posframe-mode))
 
 (use-package major-mode-hydra
-  :after (hydra all-the-icons)
   :bind ("M-SPC" . major-mode-hydra)
   :preface
   (require 'all-the-icons)

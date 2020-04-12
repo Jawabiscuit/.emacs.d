@@ -43,7 +43,6 @@
 (setq dired-listing-switches "-alh")
 
 (use-package ls-lisp
-  :after dired
   :straight nil
   :config
   (cond
@@ -77,31 +76,26 @@
 
 ;; Enhancing Dired
 (use-package dired-hide-dotfiles
-  :after dired
   :commands (dired-hide-dotfiles-mode))
 
 ;; Many extensions of dired here
 ;; https://github.com/Fuco1/dired-hacks
 (use-package dired-hacks-utils
-  :after dired
   :general
   (:keymaps 'dired-mode-map
             "n" 'dired-hacks-next-file
             "p" 'dired-hacks-previous-file))
 
 (use-package dired-open
-  :after dired
   :custom
   (dired-open-functions '(dired-open-by-extension
                           dired-open-subdir)))
 
 (use-package ivy-dired-history
-  :after (dired savehist)
   :init
   (add-to-list 'savehist-additional-variables 'ivy-dired-history-variable))
 
 (use-package dired-filter
-  :after dired
   :config
   (setq dired-filter-group-saved-groups
    `(("default"

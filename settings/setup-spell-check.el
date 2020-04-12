@@ -74,7 +74,6 @@
 
 (use-package ac-ispell
   :when (executable-find "hunspell")
-  :after auto-complete
   :config
   ;; Completion words longer than 3 characters
   (custom-set-variables

@@ -48,7 +48,6 @@
 )
 
 (use-package yasnippet-snippets
-  :after yasnippet
   :load-path "site-lisp/yasnippet-snippets"
   :straight (yasnippet-snippets :type built-in)
   :init
