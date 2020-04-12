@@ -6,12 +6,6 @@
 ; `eval-last-sexp' is bound to `C-x' `C-e'.
 (define-key lisp-interaction-mode-map (kbd "<C-return>") 'eval-defun)
 
-;; C++
-;; Use projectile command: C-c p a
-;; (define-key c++-mode-map [f12] 'casey-find-corresponding-file)
-;; M-S-f12
-;; (define-key c++-mode-map [M-f12] 'casey-find-corresponding-file-other-window)
-
 ;; All custom global override key bindings
 (defvar ja-keys-minor-mode-map
   (let ((map (make-sparse-keymap)))

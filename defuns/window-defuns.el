@@ -1,24 +1,21 @@
 ;; Window Commands
-
-;; Determine the underlying operating system
-(setq casey-aquamacs (featurep 'aquamacs))
-(setq casey-linux (featurep 'x))
-(setq casey-win32 (not (or casey-aquamacs casey-linux)))
-
-(defun w32-restore-frame ()
-    "Restore a minimized frame"
-     (interactive)
-     (w32-send-sys-command 61728))
+;;; `window-defuns' --- Summary: Interacting with Windows
+;;; Requires: `system-const.el'
+;;; Commentary:
+;;; Code:
+(require 'system-const)
 
 (defun maximize-frame ()
     "Maximize the current frame"
-     (interactive)
-     (when casey-aquamacs (aquamacs-toggle-full-frame))
-     (when casey-win32 (w32-send-sys-command 61488)))
+    (interactive)
+     (when sys/win32p (w32-send-sys-command 61488)))
 
-(defun post-load-stuff ()
+(defun minimize-frame ()
+  "Minimize the current frame"
   (interactive)
-  ;(menu-bar-mode -1)
-  (maximize-frame)
-  ;(split-window-horizontally)
-  (setq frame-title-format "%b - emacs"))
+  (when sys/win32p (w32-send-sys-command 61472)))
+
+(defun restore-frame ()
+    "Restore a minimized frame"
+     (interactive)
+     (when sys/win32p (w32-send-sys-command 61728)))

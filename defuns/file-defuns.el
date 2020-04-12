@@ -18,26 +18,8 @@
    ;; (insert (format-time-string "** Log <%a, %d %b %y: %I:%M%p>"))
    (insert (format-time-string "** Log <%a, %Y-%m-%d (%I:%M %p)>")))
 
-;; Todo loading
-(defun load-todo ()
-  "DEPRECATED"
-  (interactive)
-  (find-file casey-todo-file))
-
-;; Log loading
-(defun load-log ()
-  "DEPRECATED"
-  (interactive)
-  (find-file casey-log-file)
-  (end-of-buffer)
-  (newline)
-  (insert-timeofday)
-  (newline)
-  (newline)
-  (end-of-buffer))
-
 ;; Save buffer
-(defun casey-save-buffer ()
+(defun jawa/untabify-and-save-buffer ()
   "Save the buffer after untabifying it."
   (interactive)
   (save-excursion
@@ -113,69 +95,5 @@
   (insert " ")
   (backward-delete-char 1)
   (save-buffer))
-
-(defun casey-header-format ()
-   "Format the given file as a header file."
-   (interactive)
-   (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-   (insert "#if !defined(")
-   (push-mark)
-   (insert BaseFileName)
-   (upcase-region (mark) (point))
-   (pop-mark)
-   (insert "_H)\n")
-   (insert "/* ========================================================================\n")
-   (insert "   $File: $\n")
-   (insert "   $Date: $\n")
-   (insert "   $Revision: $\n")
-   (insert "   $Creator: Jonas Avrin $\n")
-   (insert "   $Notice: (C) Copyright 2019. All Rights Reserved. $\n")
-   (insert "   ======================================================================== */\n")
-   (insert "\n")
-   (insert "#define ")
-   (push-mark)
-   (insert BaseFileName)
-   (upcase-region (mark) (point))
-   (pop-mark)
-   (insert "_H\n")
-   (insert "#endif"))
-
-(defun casey-source-format ()
-   "Format the given file as a source file."
-   (interactive)
-   (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-   (insert "/* ========================================================================\n")
-   (insert "   $File: $\n")
-   (insert "   $Date: $\n")
-   (insert "   $Revision: $\n")
-   (insert "   $Creator: Jonas Avrin $\n")
-   (insert "   $Notice: (C) Copyright 2019. All Rights Reserved. $\n")
-   (insert "   ======================================================================== */\n"))
-
-(defun casey-find-corresponding-file ()
-  "(DEPRECATED: USE PROJECTILE CMD. Find the file that corresponds to this one."
-  (interactive)
-  (setq CorrespondingFileName nil)
-  (setq BaseFileName (file-name-sans-extension buffer-file-name))
-  (if (string-match "\\.c" buffer-file-name)
-     (setq CorrespondingFileName (concat BaseFileName ".h")))
-  (if (string-match "\\.h" buffer-file-name)
-     (if (file-exists-p (concat BaseFileName ".c")) (setq CorrespondingFileName (concat BaseFileName ".c"))
-  (setq CorrespondingFileName (concat BaseFileName ".cpp"))))
-  (if (string-match "\\.hin" buffer-file-name)
-     (setq CorrespondingFileName (concat BaseFileName ".cin")))
-  (if (string-match "\\.cin" buffer-file-name)
-     (setq CorrespondingFileName (concat BaseFileName ".hin")))
-  (if (string-match "\\.cpp" buffer-file-name)
-     (setq CorrespondingFileName (concat BaseFileName ".h")))
-  (if CorrespondingFileName (find-file CorrespondingFileName)
-     (error "Unable to find a corresponding file")))
-
-(defun casey-find-corresponding-file-other-window ()
-  "DEPRECATED: USE PROJECTILE CMD. Find the file that corresponds to this one."
-  (interactive)
-  (find-file-other-window buffer-file-name)
-  (casey-find-corresponding-file)
-  (other-window -1))
 
 (provide 'file-defuns)
