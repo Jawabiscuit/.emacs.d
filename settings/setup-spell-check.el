@@ -61,6 +61,10 @@
   (when sys/win32p (setq ispell-program-name "hunspell"
                          ispell-complete-word-dict
                          (concat (expand-file-name user-emacs-directory)
+                                 "hunspell/share/hunspell/en_US.dic")))
+  (when sys/linuxp (setq ispell-program-name "hunspell"
+                         ispell-complete-word-dict
+                         (concat (expand-file-name user-emacs-directory)
                                  "hunspell/share/hunspell/en_US.dic"))))
 
 (use-package flyspell

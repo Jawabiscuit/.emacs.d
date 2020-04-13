@@ -42,7 +42,7 @@
   :hook (after-init . hydra-posframe-mode))
 
 (use-package major-mode-hydra
-  :bind ("C-c M-SPC" . major-mode-hydra)
+  :bind ("<f7>" . major-mode-hydra)
   :preface
   (require 'all-the-icons)
   (defun with-alltheicon (icon str &optional height v-adjust)
