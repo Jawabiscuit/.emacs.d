@@ -66,7 +66,9 @@
       (s-concat (all-the-icons-material icon :v-adjust (or v-adjust 0) :height (or height 1)) " " str)))
 
 ;; Define some major mode hydras
-(major-mode-hydra-define emacs-lisp-mode nil
+(major-mode-hydra-define 'emacs-lisp-mode
+  (:title "Emacs Lisp Mode"
+   :quit-key "q")
   ("Eval"
    (("b" eval-buffer "buffer")
     ("e" eval-defun "defun")
@@ -84,7 +86,8 @@
     ("i" info-lookup-symbol "info lookup"))))
 
 (major-mode-hydra-define 'Info-mode
-  (:title "Info navigation")
+  (:title "Info navigation"
+   :quit-key "q")
   ("Navigation"
    (("n" Info-next "next")
     ("p" Info-previous "previous")
@@ -104,7 +107,8 @@
    (("f" Info-follow-reference "Follow"))))
 
 (major-mode-hydra-define 'help-mode
-  (:title "Help navigation")
+  (:title "Help navigation"
+   :quit-key "q")
   ("History"
    (("l" help-go-back "back")
     ("r" help-go-forward "forward"))
@@ -112,7 +116,8 @@
    (("f" help-follow-symbol "Follow"))))
 
 (major-mode-hydra-define 'helpful-mode
-  (:title "Helpful navigation")
+  (:title "Helpful navigation"
+   :quit-key "q")
   ("Buttons"
    (("n" forward-button "Forward")
     ("p" backward-button "Backward"))))
