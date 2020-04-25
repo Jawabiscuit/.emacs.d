@@ -40,7 +40,8 @@
   :diminish
   :defines (recentf-exclude ivy-ignore-buffers ivy-sort-functions-alist)
   :commands (get-current-persp persp-contain-buffer-p)
-  :hook ((after-init . persp-mode)
+  :hook (;; Interfering with dashbord
+         ;; (after-init . persp-mode)
          (window-setup . toggle-frame-maximized))
   :init (setq persp-keymap-prefix (kbd "C-x p")
               persp-nil-name "default"
