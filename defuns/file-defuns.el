@@ -14,9 +14,9 @@
 
 ;; Time of day
 (defun insert-timeofday ()
-   (interactive "*")
-   ;; (insert (format-time-string "** Log <%a, %d %b %y: %I:%M%p>"))
-   (insert (format-time-string "** Log <%a, %Y-%m-%d (%I:%M %p)>")))
+  (interactive "*")
+  ;; (insert (format-time-string "** Log <%a, %d %b %y: %I:%M%p>"))
+  (insert (format-time-string "%a, %Y-%m-%d %I:%M %p")))
 
 ;; Save buffer
 (defun jawa/untabify-and-save-buffer ()

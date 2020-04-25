@@ -40,16 +40,9 @@ If you run emacs <= 24.3 the macro with-eval-after-load is not defined. Here is 
 ** Turn off mouse interface early in startup to avoid momentary display
 
 #+BEGIN_SRC emacs-lisp
-  (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-  (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-  (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-#+END_SRC
-
-
-** No splash screen please ... jeez
-
-#+BEGIN_SRC emacs-lisp
-;; (setq inhibit-startup-message t)
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 #+END_SRC
 
 
@@ -58,6 +51,13 @@ If you run emacs <= 24.3 the macro with-eval-after-load is not defined. Here is 
 #+BEGIN_SRC emacs-lisp
 (jawa/require 'setup-gc)
 #+END_SRC
+
+Compute package use statistics.
+Run =use-package-report= before closing.
+
+#+begin_src emacs-lisp
+(setq use-package-compute-statistics t)
+#+end_src
 
 These packages are required in other use-package directives declared in this
 configuration.
@@ -120,12 +120,12 @@ configuration.
 #+END_SRC
 
 
-** Ipython site-lisp dir
+** Ein site-lisp dir (disabled)
 
-#+BEGIN_SRC emacs-lisp
-  ;; (setq ein-site-lisp-dir
-  ;;       (concat site-lisp-dir
-  ;;         (convert-standard-filename "/emacs-ipython-notebook/lisp")))
+#+BEGIN_SRC emacs-lisp :eval no :tangle no
+(setq ein-site-lisp-dir
+      (concat site-lisp-dir
+              (convert-standard-filename "/emacs-ipython-notebook/lisp")))
 #+END_SRC
 
 
@@ -463,24 +463,26 @@ Dependency: [[*Install packages if they're missing][setup packages]]
 #+END_SRC
 
 
-** Emacs iPython Notebooks!
+** Emacs iPython Notebooks (disabled)
 
-Dependency: [[*Install packages if they're missing][setup packages]]
+Moved to setup-jupyter.el
 
-#+BEGIN_SRC emacs-lisp
-;; Moved to setup-jupyter.el
-  ;; (require 'ein)
-  ;; (require 'ein-notebook)
-  ;; (require 'ein-subpackages)
-  ;; ;; Omit a bunch of key chord prefix typing
-  ;; (setq ein:use-smartrep t)
-  ;; ;; Use jedi autocomplete backend
-  ;; (setq ein:completion-backend 'ein:use-ac-jedi-backend)
-  ;; ;; Execute ein source blocks in org-mode
-  ;; (org-babel-do-load-languages
-  ;;    'org-babel-load-languages
-  ;;    '((ein . t)
-  ;; ))
+#+BEGIN_SRC emacs-lisp :eval no :tangle no
+(require 'ein)
+(require 'ein-notebook)
+(require 'ein-subpackages)
+
+;; Omit a bunch of key chord prefix typing
+(setq ein:use-smartrep t)
+
+;; Use jedi autocomplete backend
+(setq ein:completion-backend 'ein:use-ac-jedi-backend)
+
+;; Execute ein source blocks in org-mode
+(org-babel-do-load-languages
+   'org-babel-load-languages
+   '((ein . t)
+))
 #+END_SRC
 
 
@@ -506,9 +508,9 @@ Mel documentation lookup
 #+END_SRC
 
 
-** Window
+** Window (disabled)
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :eval no :tangle no
 (general-add-hook 'window-setup-hook 'post-load-stuff t)
 #+END_SRC
 
@@ -530,7 +532,6 @@ Seems like a [[https://github.com/Malabarba/emacs-google-this][decent package]] 
 #+end_src
 
 
-
 ** Stop asking to eval code blocks
 :PROPERTIES:
 :CREATED_TIME: [2020-01-11 23:37:28 -0500]
@@ -546,4 +547,5 @@ Seems like a [[https://github.com/Malabarba/emacs-google-this][decent package]] 
 #+begin_src emacs-lisp -n :results none :output none
 (setq package-check-signature nil)
 #+end_src
+
 

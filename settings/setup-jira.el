@@ -31,20 +31,20 @@
              :type git
              :host github
              :repo "ahungry/org-jira")
-  :config (setq jiralib-url "https://titicus.atlassian.net"))
+  :config (setq jiralib-url "https://jira.blueskystudios.com"))
 
 
 (use-package ejira
   :disabled t
   :straight (ejira :type git :host github :repo "nyyManni/ejira")
   :init
-  (setq jiralib2-url              "https://titicus.atlassian.net"
-        jiralib2-auth             'token
-        jiralib2-user-login-name  "jawabiscuit"
-        jiralib2-token            ""
+  (setq jiralib2-url              "https://jira.blueskystudios.com"
+        jiralib2-auth             'basic
+        jiralib2-user-login-name  "jonasavrin"
+        jiralib2-token
 
         ejira-org-directory       "~/org/jira"
-        ejira-projects            '("WCK")
+        ejira-projects            '("CHARDEV")
 
         ejira-priorities-alist    '(("Highest" . ?A)
                                     ("High"    . ?B)

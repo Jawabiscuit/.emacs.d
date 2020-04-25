@@ -180,8 +180,19 @@
 
 ;; GTD TODO keywords and hide logs
 (setq org-todo-keywords
-      '((sequence "TODO" "ACTION" "IN-PROGRESS" "INCUBATE" "DEFERRED" "WAITING" "|" "DONE" "DELEGATED" "ARCHIVE")))
-;; (setq org-log-into-drawer 1)
+      '((sequence
+         "TODO"
+         "ACTION"
+         "IN-PROGRESS"
+         "INCUBATE"
+         "DEFERRED(@d)"
+         "WAITING(w@)"
+         "|"
+         "DONE(@o)"
+         "DELEGATED(l@)"
+         "ARCHIVE"
+         )))
+(setq org-log-into-drawer 1)
 
 ;; GTD fast tag selection
 (setq org-tag-persistent-alist '(

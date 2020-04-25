@@ -89,5 +89,14 @@
       (and (= emacs-major-version 25) (>= emacs-minor-version 2)))
   "Emacs is 25.2 or above.")
 
+(defconst sys/bss-hostname-p
+  (or (equal system-name "x3395e")
+      (equal system-name "southbridge"))
+  "This is a bss machine.")
+
+(defconst sys/home-hostname-p
+  (equal system-name "vrexton")
+  "This is a machine at home.")
+
 (provide 'system-const)
 ;;; system-const.el ends here

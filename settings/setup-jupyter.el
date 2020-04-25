@@ -26,6 +26,9 @@
 
 ;;; Code:
 
+;; System constants
+(require 'system-const)
+
 ;; live browser JavaScript, CSS, and HTML interaction
 (use-package skewer-mode)
 
@@ -59,10 +62,12 @@
   (org-babel-do-load-languages
    'org-babel-load-languages
    (append org-babel-load-languages '((ein . t))))
-)
+  )
 
 ;; Allow org-mode to evaluate code blocks using a Jupyter kernel
-(if (executable-find "jupyter")
+;; Issues with loading ob-ipython on bss machine
+(if (not (or (and sys/bss-hostname-p (executable-find "jupyter"))
+         (and sys/home-hostname-p (not (executable-find "jupyter")))))
     (use-package ob-ipython
       :straight (ob-ipython
                  :type git
@@ -71,10 +76,13 @@
                  :host github
                  :repo "gregsexton/ob-ipython")
       :config
+      (message "Found jupyter. Loaded ob-ipython.")
       (org-babel-do-load-languages
        'org-babel-load-languages
        (append org-babel-load-languages '((ipython . t)))))
-  (message "jupyter was not found on the path. ob-ipython package was not loaded."))
+    (if sys/bss-hostname-p
+        (message "This host is prevented from loading ob-ipython."))
+    (message "ob-ipython package was not loaded."))
 
-(provide 'setup-jupyter)
+ (provide 'setup-jupyter)
 ;;; setup-jupyter.el ends here

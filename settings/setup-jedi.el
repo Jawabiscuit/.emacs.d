@@ -26,6 +26,9 @@
 
 ;;; Code:
 
+;; System constants
+(require 'system-const)
+
 (use-package python-environment)
 
 ;; The brains of Python autocomplete
@@ -43,6 +46,10 @@
   (setq jedi:get-in-function-call-delay 10000000)
   ;; Start completion at method dot
   (setq jedi:complete-on-dot t)
+  ;; Custom location where jedi is installed
+  (if sys/bss-hostname-p
+      (setq jedi:environment-root "jedi"
+            python-environment-directory "~/.virtualenvs"))
   :mode "\\.py\\'"
   :mode-hydra
   (python-mode
