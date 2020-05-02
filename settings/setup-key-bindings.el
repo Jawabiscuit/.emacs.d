@@ -109,11 +109,19 @@
 
 ;; Selection
 (jawa/bind-user "=" 'er/expand-region)
+;; Especially helpful when using Emacs terminal UI
+(general-define-key
+ :keymaps 'org-mode-map
+ "C-^" 'er/expand-region)
 
 ;; Editing
 (jawa/bind-user "c" 'copy-region-as-kill)
 (jawa/bind-user "v" 'kill-region)
 (jawa/bind-user "'" 'quoted-insert)
+
+;; Split all kinds of org blocks
+;; https://scripter.co/splitting-an-org-block-into-two/
+(jawa/bind-user "W" 'modi/org-split-block)
 
 ;; Undo tree
 (eval-after-load 'undo-tree '(define-key undo-tree-map (kbd "C-?") nil))

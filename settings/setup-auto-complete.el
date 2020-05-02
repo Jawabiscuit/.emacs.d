@@ -37,7 +37,7 @@
   :diminish ac-mode
   :commands (ac-config-default)
   :bind
-  ("C-c /" . ac-fuzzy-complete)
+  ("C-c f" . ac-fuzzy-complete)
   :config
   ;; (dolist (ac-mode '(text-mode org-mode))
   ;;   (add-to-list 'ac-modes ac-mode))
@@ -51,7 +51,8 @@
 
   ;; Known bug
   (ac-flyspell-workaround)
-  (global-auto-complete-mode))
+  ;; (global-auto-complete-mode)
+  )
 
 ;; Middleware so python-land can communicate with emacs-land
 (use-package epc)

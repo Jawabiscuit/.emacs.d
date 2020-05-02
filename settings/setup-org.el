@@ -149,6 +149,11 @@
 ;; popping open a new one (which shows the same information). 
 (setq org-src-window-setup 'current-window)
 
+;; Indentation for the content of a source code block.
+;; It has no effect if `org-src-preserve-indentation' is non-nil.
+(setq org-edit-src-content-indentation 0
+      org-src-preserve-indentation t)
+
 ;; BEGIN structure templates
 (require 'org-tempo)
 
@@ -175,6 +180,45 @@
 ;; Jekyll post front matter
 (add-to-list 'org-structure-template-alist
   '("hj" . "export html\n@@html:---\nlayout: post\ntitle: \ndate: \ncategory: \nauthor: Jonas Avrin\n---\n@@"))
+
+(defun org-begin-template ()
+  "Make a template at point."
+  (interactive)
+  (if (org-at-table-p)
+      (call-interactively 'org-table-rotate-recalc-marks)
+    (let* ((choices '(("s" . "SRC")
+                      ("e" . "EXAMPLE")
+                      ("q" . "QUOTE")
+                      ("v" . "VERSE")
+                      ("c" . "CENTER")
+                      ("l" . "LaTeX")
+                      ("h" . "HTML")
+                      ("a" . "ASCII")))
+           (key
+            (key-description
+             (vector
+              (read-key
+               (concat (propertize "Template type: " 'face 'minibuffer-prompt)
+                       (mapconcat (lambda (choice)
+                                    (concat (propertize (car choice) 'face 'font-lock-type-face)
+                                            ": "
+                                            (cdr choice)))
+                                  choices
+                                  ", ")))))))
+      (let ((result (assoc key choices)))
+        (when result
+          (let ((choice (cdr result)))
+            (cond
+             ((region-active-p)
+              (let ((start (region-beginning))
+                    (end (region-end)))
+                (goto-char end)
+                (insert "#+END_" choice "\n")
+                (goto-char start)
+                (insert "#+BEGIN_" choice "\n")))
+             (t
+              (insert "#+BEGIN_" choice "\n")
+              (save-excursion (insert "#+END_" choice))))))))))
 
 ;; END structure templates
 
