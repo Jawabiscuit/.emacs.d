@@ -236,7 +236,10 @@
          "DELEGATED(l@)"
          "ARCHIVE"
          )))
-(setq org-log-into-drawer 1)
+(setq org-log-into-drawer nil)
+
+;; tasks.el
+(add-hook 'org-checkbox-statistics-hook 'jawa/org-checkbox-todo)
 
 ;; GTD fast tag selection
 (setq org-tag-persistent-alist '(
@@ -365,7 +368,7 @@
 ;; Keep track of when a certain Todo item was finished
 (setq org-log-done 'time
       ;; record a note along with the timestamp
-      org-log-done 'note
+      ;; org-log-done 'note
       ;; hide markup elements
       org-hide-emphasis-markers t)
 
