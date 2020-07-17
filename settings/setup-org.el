@@ -123,6 +123,14 @@
   :hook ((dired-mode . org-download-enable)
          (org-mode . org-download-enable)))
 
+;; Asynchronous src_block evaluation for org-babel
+(use-package ob-async
+  :straight (ob-async
+             :type git
+             :flavor melpa
+             :host github
+             :repo "astahlman/ob-async"))
+
 ;; Active Babel languages
 (with-eval-after-load 'org
   (org-babel-do-load-languages
