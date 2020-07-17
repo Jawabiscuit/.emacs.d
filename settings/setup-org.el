@@ -123,6 +123,14 @@
   :hook ((dired-mode . org-download-enable)
          (org-mode . org-download-enable)))
 
+;; Asynchronous src_block evaluation for org-babel
+(use-package ob-async
+  :straight (ob-async
+             :type git
+             :flavor melpa
+             :host github
+             :repo "astahlman/ob-async"))
+
 ;; Active Babel languages
 (with-eval-after-load 'org
   (org-babel-do-load-languages
@@ -148,6 +156,11 @@
 ;; When editing a code snippet, use the current window rather than
 ;; popping open a new one (which shows the same information). 
 (setq org-src-window-setup 'current-window)
+
+;; Indentation for the content of a source code block.
+;; It has no effect if `org-src-preserve-indentation' is non-nil.
+(setq org-edit-src-content-indentation 0
+      org-src-preserve-indentation t)
 
 ;; BEGIN structure templates
 (require 'org-tempo)
@@ -176,6 +189,45 @@
 (add-to-list 'org-structure-template-alist
   '("hj" . "export html\n@@html:---\nlayout: post\ntitle: \ndate: \ncategory: \nauthor: Jonas Avrin\n---\n@@"))
 
+(defun org-begin-template ()
+  "Make a template at point."
+  (interactive)
+  (if (org-at-table-p)
+      (call-interactively 'org-table-rotate-recalc-marks)
+    (let* ((choices '(("s" . "SRC")
+                      ("e" . "EXAMPLE")
+                      ("q" . "QUOTE")
+                      ("v" . "VERSE")
+                      ("c" . "CENTER")
+                      ("l" . "LaTeX")
+                      ("h" . "HTML")
+                      ("a" . "ASCII")))
+           (key
+            (key-description
+             (vector
+              (read-key
+               (concat (propertize "Template type: " 'face 'minibuffer-prompt)
+                       (mapconcat (lambda (choice)
+                                    (concat (propertize (car choice) 'face 'font-lock-type-face)
+                                            ": "
+                                            (cdr choice)))
+                                  choices
+                                  ", ")))))))
+      (let ((result (assoc key choices)))
+        (when result
+          (let ((choice (cdr result)))
+            (cond
+             ((region-active-p)
+              (let ((start (region-beginning))
+                    (end (region-end)))
+                (goto-char end)
+                (insert "#+END_" choice "\n")
+                (goto-char start)
+                (insert "#+BEGIN_" choice "\n")))
+             (t
+              (insert "#+BEGIN_" choice "\n")
+              (save-excursion (insert "#+END_" choice))))))))))
+
 ;; END structure templates
 
 ;; GTD TODO keywords and hide logs
@@ -192,7 +244,10 @@
          "DELEGATED(l@)"
          "ARCHIVE"
          )))
-(setq org-log-into-drawer 1)
+(setq org-log-into-drawer nil)
+
+;; tasks.el
+(add-hook 'org-checkbox-statistics-hook 'jawa/org-checkbox-todo)
 
 ;; GTD fast tag selection
 (setq org-tag-persistent-alist '(
@@ -321,7 +376,7 @@
 ;; Keep track of when a certain Todo item was finished
 (setq org-log-done 'time
       ;; record a note along with the timestamp
-      org-log-done 'note
+      ;; org-log-done 'note
       ;; hide markup elements
       org-hide-emphasis-markers t)
 
