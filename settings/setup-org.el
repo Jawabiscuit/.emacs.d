@@ -30,19 +30,6 @@
 ;;
 ;;; Code:
 
-;; (defun myorg-update-parent-cookie ()
-;;   (when (equal major-mode 'org-mode)
-;;     (save-excursion
-;;       (ignore-errors
-;;         (org-back-to-heading)
-;;         (org-update-parent-todo-statistics)))))
-;;
-;; (defadvice org-kill-line (after fix-cookies activate)
-;;   (myorg-update-parent-cookie))
-;;
-;; (defadvice kill-whole-line (after fix-cookies activate)
-;;   (myorg-update-parent-cookie))
-
 ;; Library for working with xml via esxml and sxml
 (use-package esxml)
 
@@ -162,73 +149,8 @@
 (setq org-edit-src-content-indentation 0
       org-src-preserve-indentation t)
 
-;; BEGIN structure templates
+;; Structure templates
 (require 'org-tempo)
-
-;; Elisp block
-(add-to-list 'org-structure-template-alist
-  '("sl" . "src emacs-lisp\n"))
-
-;; Python block
-(add-to-list 'org-structure-template-alist
-  '("sp" . "src python\n"))
-
-;; Ditaa export args
-(add-to-list 'org-structure-template-alist
-  '("d" . "src ditaa :file ?.png :exports results\n"))
-
-;; More tag
-(add-to-list 'org-structure-template-alist
-  '("hm" . "export html\n<!--more-->"))
-
-;; Edit on Github div
-(add-to-list 'org-structure-template-alist
-  '("hg" . "export html\n<div class=\"right\">\n  <a href=\"https://github.com/fniessen/org-html-themes/blob/master/demo/example.org\" class=\"fa fa-github\"> Edit on GitHub</a>\n</div>"))
-
-;; Jekyll post front matter
-(add-to-list 'org-structure-template-alist
-  '("hj" . "export html\n@@html:---\nlayout: post\ntitle: \ndate: \ncategory: \nauthor: Jonas Avrin\n---\n@@"))
-
-(defun org-begin-template ()
-  "Make a template at point."
-  (interactive)
-  (if (org-at-table-p)
-      (call-interactively 'org-table-rotate-recalc-marks)
-    (let* ((choices '(("s" . "SRC")
-                      ("e" . "EXAMPLE")
-                      ("q" . "QUOTE")
-                      ("v" . "VERSE")
-                      ("c" . "CENTER")
-                      ("l" . "LaTeX")
-                      ("h" . "HTML")
-                      ("a" . "ASCII")))
-           (key
-            (key-description
-             (vector
-              (read-key
-               (concat (propertize "Template type: " 'face 'minibuffer-prompt)
-                       (mapconcat (lambda (choice)
-                                    (concat (propertize (car choice) 'face 'font-lock-type-face)
-                                            ": "
-                                            (cdr choice)))
-                                  choices
-                                  ", ")))))))
-      (let ((result (assoc key choices)))
-        (when result
-          (let ((choice (cdr result)))
-            (cond
-             ((region-active-p)
-              (let ((start (region-beginning))
-                    (end (region-end)))
-                (goto-char end)
-                (insert "#+END_" choice "\n")
-                (goto-char start)
-                (insert "#+BEGIN_" choice "\n")))
-             (t
-              (insert "#+BEGIN_" choice "\n")
-              (save-excursion (insert "#+END_" choice))))))))))
-
-;; END structure templates
 
 ;; GTD TODO keywords and hide logs
 (setq org-todo-keywords
@@ -243,6 +165,7 @@
          "DONE(@o)"
          "DELEGATED(l@)"
          "ARCHIVE"
+         "CANCELLED"
          )))
 (setq org-log-into-drawer nil)
 
@@ -379,35 +302,6 @@
       ;; org-log-done 'note
       ;; hide markup elements
       org-hide-emphasis-markers t)
-
-;; Toggle display of special markdown formatting characters in org buffers
-(defun jawa/toggle-org-emphasis-markers (&optional arg)
-  (interactive)
-  "Toggle emphasis markers"
-  (setq org-hide-emphasis-markers
-        (if (null arg)
-            (not org-hide-emphasis-markers)
-          arg)))
-
-;; Org mode links
-;; `https://github.com/abo-abo/hydra/wiki/Org-mode-links'
-(defun jk/unlinkify ()
-  "Replace an org-link with the description, or if this is absent, the path."
-  (interactive)
-  (let ((eop (org-element-context)))
-    (when (eq 'link (car eop))
-      (message "%s" eop)
-      (let* ((start (org-element-property :begin eop))
-             (end (org-element-property :end eop))
-             (contents-begin (org-element-property :contents-begin eop))
-             (contents-end (org-element-property :contents-end eop))
-             (path (org-element-property :path eop))
-             (desc (and contents-begin
-                        contents-end
-                        (buffer-substring contents-begin contents-end))))
-        (setf (buffer-substring start end)
-              (concat (or desc path)
-                      (make-string (org-element-property :post-blank eop) ?\s)))))))
 
 (pretty-hydra-define+ hydra-org ()
   ("Web"

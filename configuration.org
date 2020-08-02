@@ -537,15 +537,19 @@ Seems like a [[https://github.com/Malabarba/emacs-google-this][decent package]] 
 :CREATED_TIME: [2020-01-11 23:37:28 -0500]
 :END:
 
-#+begin_src emacs-lisp -n :results none :output none
+#+begin_src emacs-lisp
 (setq org-confirm-babel-evaluate nil)
 #+end_src
 
 
 ** Do not check signatures
 
-#+begin_src emacs-lisp -n :results none :output none
+#+begin_src emacs-lisp
 (setq package-check-signature nil)
 #+end_src
 
+** Macros
 
+#+begin_src emacs-lisp
+(jawa/require 'setup-macros)
+#+end_src

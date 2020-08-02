@@ -1,7 +1,15 @@
+;;; `setup-defaults' --- Summary: Setup sane defaults
+;;; Commentary:
+;;; Code:
+(jawa/require 'system-const)
+
 ;; Who am I?
-(setq user-full-name "Jonas Avrin"
-      user-login-name "jonasavrin"
-      user-mail-address "jawabiscuit@users.noreply.github.com")
+(setq user-full-name "Jonas Avrin")
+(if sys/bss-hostname-p
+    (setq user-login-name "jonasavrin"
+          user-mail-address "jonasavrin@blueskystudios.com")
+  (setq user-login-name "jonas"
+        user-mail-address "jawabiscuit@users.noreply.github.com"))
 
 ;; Don't beep. Don't visible-bell (fails on el capitan). Just blink the modeline on errors.
 (setq visible-bell nil)
