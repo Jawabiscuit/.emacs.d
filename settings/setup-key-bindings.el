@@ -129,4 +129,7 @@
 ;; Ask for a key then insert its html description
 (define-key org-mode-map (kbd "C-c i") 'endless/insert-key)
 
+;; Org src edit
+(eval-after-load 'org-src '(define-key org-src-mode-map (kbd "C-x C-s") #'org-edit-src-exit))
+
 (provide 'setup-key-bindings)

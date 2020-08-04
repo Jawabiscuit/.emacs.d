@@ -149,7 +149,7 @@
 (setq org-edit-src-content-indentation 0
       org-src-preserve-indentation t)
 
-;; Structure templates
+;; Post org v9.2 Requirement for structure templates
 (require 'org-tempo)
 
 ;; GTD TODO keywords and hide logs
