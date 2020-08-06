@@ -158,10 +158,9 @@
    :foreign-keys warn
    ;; :color blue
    :quit-key "q"
+   :exit t
   )
-  ("Focus Mode"
-   (("v" toggle-frame-fullscreen "Fullscreen view" :toggle t))
-   "Info/check/linting Modes"
+  ("Info/check/linting Modes"
    (("e" eldoc-mode "Echo Lisp objs" :toggle t)
     ("a" apheleia-mode "Code format" :toggle t)
     ("A" apheleia-global-mode "Format global" :toggle t)
@@ -175,7 +174,8 @@
    "Edit/assistance"
    (("C-p" persp-mode-projectile-bridge-mode "Projectile bridge mode" :toggle t)
     ("C-j" ja-keys-minor-mode "My keys minor mode" :toggle t)
-    ("C-a" global-auto-complete-mode "AC global" :toggle t)
+    ("C-A" global-auto-complete-mode "AC global" :toggle t)
+    ("C-a" auto-complete-mode "AC local" :toggle t)
     ("C-l" electric-layout-mode "Elec layout" :toggle t)
     ("C-i" electric-indent-local-mode "Elec indent" :toggle t)
     ("C-q" electric-quote-local-mode "Elec quote" :toggle t)
@@ -243,7 +243,8 @@
    :quit-key "q"
   )
   ("Window"
-   (("9" balance-windows "Balance" :exit t)
+   (("v" toggle-frame-fullscreen "Fullscreen view" :toggle t :exit t)
+    ("9" balance-windows "Balance" :exit t)
     ("i" enlarge-window "Scale up")
     ("k" shrink-window "Scale down")
     ("j" shrink-window-horizontally "Scale down X")
