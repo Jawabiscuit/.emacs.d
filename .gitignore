@@ -1,11 +1,8 @@
 # Spell Checker
 hunspell
 
-# Ignore packages installed by straight.el 
-straight/repos
-straight/build
-straight/build-cache.el
-straight/links
+# Ignore packages installed by straight.el
+straight/** 
 
 # Ignore packages installed in the standard way (possibly by mistake)
 elpa

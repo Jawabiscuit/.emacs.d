@@ -95,5 +95,7 @@
   :straight (magithub :type git :flavor melpa
                       :host github :repo "vermiculus/magithub"))
 
+(put 'magit-clean 'disabled nil)
+
 (provide 'setup-magit)
 ;;; setup-magit.el ends here
