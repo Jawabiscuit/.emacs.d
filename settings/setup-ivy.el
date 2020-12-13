@@ -77,6 +77,7 @@
   :diminish
   :config
   (counsel-mode 1)
+  (setq counsel-find-file-ignore-regexp "\\.elc\\|\\.pyc\\'")
   :bind (:map minibuffer-local-map
               ;; CTRLF
               ;; ("C-r" . counsel-minibuffer-history)
