@@ -39,9 +39,6 @@
         projectile-sort-order 'recentf
         projectile-use-git-grep t)
   (add-to-list 'projectile-globally-ignored-directories ".pyc")
-  ;; Ignore certain files in all projects
-  (setq projectile-globally-ignored-file-suffixes '("pyc"))
-  (setq projectile-globally-ignored-files '(".*pyc$"))
   :config
   ;; Use the faster searcher to handle project files: ripgrep `rg'.
   (when (and (not (executable-find "fd"))
