@@ -128,24 +128,24 @@
   (:title hydra-dired-title
    :quit-key "q")
   ("Navigation"
-   (("i" dired-subtree-insert "Insert" :exit nil)
-    ("/" dired-subtree-apply-filter "Filter" :exit nil)
-    ("k" dired-subtree-remove "Kill" :exit nil)
-    ("n" dired-subtree-next-sibling "Next sibling" :exit nil)
-    ("p" dired-subtree-previous-sibling "Prev sibling" :exit nil)
-    ("j" dired-subtree-up "Up" :exit nil)
-    ("k" dired-subtree-down "Down" :exit nil)
-    ("b" dired-subtree-beginning "Beginning" :exit nil)
-    ("e" dired-subtree-end "End" :exit nil)
-    ("m" dired-subtree-mark-subtree "Mark" :exit nil)
-    ("u" dired-subtree-unmark-subtree "Unmark" :exit nil)
+   (("i" dired-subtree-insert "Insert")
+    ("/" dired-subtree-apply-filter "Filter")
+    ("k" dired-subtree-remove "Kill")
+    ("n" dired-subtree-next-sibling "Next sibling")
+    ("p" dired-subtree-previous-sibling "Prev sibling")
+    ("j" dired-subtree-up "Up")
+    ("k" dired-subtree-down "Down")
+    ("b" dired-subtree-beginning "Beginning")
+    ("e" dired-subtree-end "End")
+    ("m" dired-subtree-mark-subtree "Mark")
+    ("u" dired-subtree-unmark-subtree "Unmark")
     ("C-f" dired-subtree-only-this-file "Remove this file" :exit t)
     ("C-d" dired-subtree-only-this-directory "Remove this directory" :exit t))
    "View"
-   (("RET" dired-subtree-toggle "Toggle" :exit nil)
-    ("c" dired-subtree-cycle "Cycle" :exit nil)
+   (("RET" dired-subtree-toggle "Toggle")
+    ("c" dired-subtree-cycle "Cycle")
     (">" dired-subtree-narrow "Narrow" :exit t)
-    ("r" dired-subtree-revert "Revert" :exit t))
+    ("<" dired-subtree-revert "Revert" :exit t))
    "Open"
    (("x" dired-open-xdg "xdg-open"))))
 
@@ -211,17 +211,17 @@
   ("Action"
    (("a" org-agenda "Agenda" :exit t)
     ("c" org-capture "Capture" :exit t)
-    ("l" org-capture-goto-last-stored "Last capture stored")
-    ("d" org-decrypt-entry "Decrypt")
-    ("k" org-cut-subtree "Cut subtree")
-    ("r" org-refile "Refile")
+    ("l" org-capture-goto-last-stored "Last capture stored" :exit t)
+    ("d" org-decrypt-entry "Decrypt" :exit t)
+    ("k" org-cut-subtree "Cut subtree" :exit t)
+    ("r" org-refile "Refile" :exit t)
     ("o" org-open-at-point-global "Open link" :exit t)
    )
    "Web"
    (("i" org-web-tools-insert-link-for-url :exit t)
     ("p" org-web-tools-insert-web-page-as-entry :exit t)
-    ("C-l" org-insert-link-global "Insert link")
-    ("s" org-store-link "Store link")
+    ("C-l" org-insert-link-global "Insert link" :exit t)
+    ("s" org-store-link "Store link" :exit t)
    )
    "Navigation"
    (("C->" org-toggle-narrow-to-subtree "Narrow/Widen" :toggle t)
@@ -286,23 +286,24 @@
    :title hydra-projectile-title
    :color green
    :foreign-keys warn
-   :quit-key "q"
+   ;; :quit-key "q"
+   :exit t
   )
   ("Buffers"
-   (("b" counsel-projectile-switch-to-buffer "Switch to buffer" :exit t)
-    ("k" projectile-kill-buffers "Kill all" :exit t)
-    ("S" projectile-save-project-buffers "Save all" :exit t))
+   (("b" counsel-projectile-switch-to-buffer "Switch to buffer")
+    ("k" projectile-kill-buffers "Kill all")
+    ("S" projectile-save-project-buffers "Save all"))
    "Find"
-   (("d" counsel-projectile-find-dir "Find directory" :exit t)
-    ("D" projectile-dired "Dired root" :exit t)
-    ("f" counsel-projectile-find-file "Find file" :exit t)
-    ("p" counsel-projectile-switch-project "Switch project" :exit t))
+   (("d" counsel-projectile-find-dir "Find directory")
+    ("D" projectile-dired "Dired root")
+    ("f" counsel-projectile-find-file "Find file")
+    ("p" counsel-projectile-switch-project "Switch project"))
    "Other"
-   (("i" projectile-invalidate-cache "Reset cache" :exit t))
+   (("i" projectile-invalidate-cache "Reset cache"))
    "Search"
    (("r" projectile-replace "Search/replace")
     ("R" projectile-replace-regexp "Regexp replace")
-    ("s" counsel-ag "Ag search" :exit t)
+    ("s" counsel-ag "Ag search")
     ("ESC" nil "Quit"))))
 
 (defvar hydra-origami-title (with-octicon "unfold" "Origami" 1.5 -0.05))
@@ -392,14 +393,15 @@
    :title hydra-yankpad-title
    :hint nil
    :foreign-keys warn
-   :quit-key "q"
+   ;; :quit-key "q"
+   :exit t
   )
   ("Yankpad"
    (("C" yankpad-set-category "Set category")
     ("A" yankpad-append-category "Append category")
-    ("i" yankpad-insert "Insert" :exit t)
+    ("i" yankpad-insert "Insert")
     ("a" yankpad-aya-persist "Aya persist")
-    ("c" yankpad-capture-snippet "Capture snippet" :exit t)
+    ("c" yankpad-capture-snippet "Capture snippet")
     ("ESC" nil "Quit"))))
 
 (defvar hydra-magit-title (with-octicon "octoface" "Magit" 1.5 -0.05))
@@ -421,12 +423,12 @@
     ("m" magit-status "Status" :exit t)
     ("M" magit-status-fullscreen "Status FS" :exit t))
   "Git Gutter"
-   (("g" global-git-gutter-mode :toggle t)
+   (("g" global-git-gutter-mode :toggle t :exit t)
     ("k" git-gutter:previous-hunk "Prev hunk")
     ("u" git-gutter:update-all-windows "Refresh visible bufs")
     ("j" git-gutter:next-hunk "Next hunk")
-    ("S" git-gutter:stage-hunk "Stage hunk" :exit t)
-    ("R" git-gutter:revert-hunk "Revert hunk" :exit t))
+    ("S" git-gutter:stage-hunk "Stage hunk")
+    ("R" git-gutter:revert-hunk "Revert hunk"))
   "Time Machine"
    (("RET" git-timemachine-toggle :toggle t :exit t))
   "Smeargle"
@@ -443,20 +445,21 @@
    :title hydra-clock-title
    :hint nil
    :foreign-keys warn
-   :quit-key "q"
+   ;; :quit-key "q"
+   :exit t
    )
   ("Clock"
    (("C-s" org-timer-start "Start timer")
     ("C-q" org-timer-stop "Stop timer")
     ("C-t" org-timer-set-timer "Set timer (at timer)")
     ("c" org-clock-cancel "Cancel")
-    ("e" org-clock-modify-effort-estimate "Effort" :exit t)
-    ("i" org-clock-in "Clock-in" :exit t)
+    ("e" org-clock-modify-effort-estimate "Effort")
+    ("i" org-clock-in "Clock-in")
     ("g" org-clock-goto "Go-to")
-    ("o" org-clock-out "Clock-out" :exit t)
+    ("o" org-clock-out "Clock-out")
     ("r" org-clock-report "Report")
-    ("s" org-schedule "Schedule" :exit t)
-    ("d" org-deadline "Deadline" :exit t)
+    ("s" org-schedule "Schedule")
+    ("d" org-deadline "Deadline")
     ("ESC" nil "Quit"))))
 
 (defvar hydra-straight-title (with-octicon "package" "Straight" 1.5 -0.05))
@@ -468,29 +471,30 @@
    :title "Straight"
    :hint nil
    :foreign-keys warn
-   :quit-key "q"
+   ;; :quit-key "q"
+   :exit t
   )
   ("Straight"
    (("c" straight-check-all "Check all")
     ("C" straight-check-package "Check Package")
-    ("r" straight-rebuild-all "Rebuild all" :exit t)
-    ("R" straight-rebuild-package "Rebuild packge" :exit t)
-    ("f" straight-fetch-all "Fetch" :exit t)
-    ("F" straight-fetch-package "Fetch package" :exit t)
-    ("p" straight-pull-all "Pull all" :exit t)
-    ("P" straight-pull-package "Pull package" :exit t)
-    ("m" straight-merge-all "Merge all" :exit t)
-    ("M" straight-merge-package "Merge package" :exit t)
-    ("n" straight-normalize-all "Normalize all" :exit t)
-    ("N" straight-normalize-package "Normalize package" :exit t)
-    ("u" straight-push-all "Push all" :exit t)
-    ("U" straight-push-package "Push package" :exit t)
-    ("v" straight-freeze-versions "Freeze versions" :exit t)
-    ("V" straight-thaw-versions "Thaw versions" :exit t)
-    ("w" straight-watcher-start "Watcher start" :exit t)
-    ("W" straight-watcher-stop "Watcher stop" :exit t)
-    ("g" straight-get-recipe "Get recipe" :exit t)
-    ("e" straight-prune-build "Prune build" :exit t)
+    ("r" straight-rebuild-all "Rebuild all")
+    ("R" straight-rebuild-package "Rebuild packge")
+    ("f" straight-fetch-all "Fetch")
+    ("F" straight-fetch-package "Fetch package")
+    ("p" straight-pull-all "Pull all")
+    ("P" straight-pull-package "Pull package")
+    ("m" straight-merge-all "Merge all")
+    ("M" straight-merge-package "Merge package")
+    ("n" straight-normalize-all "Normalize all")
+    ("N" straight-normalize-package "Normalize package")
+    ("u" straight-push-all "Push all")
+    ("U" straight-push-package "Push package")
+    ("v" straight-freeze-versions "Freeze versions")
+    ("V" straight-thaw-versions "Thaw versions")
+    ("w" straight-watcher-start "Watcher start")
+    ("W" straight-watcher-stop "Watcher stop")
+    ("g" straight-get-recipe "Get recipe")
+    ("e" straight-prune-build "Prune build")
     ("ESC" nil "Quit"))))
 
 (defvar hydra-mc-title (with-faicon "i-cursor" "Multiple Cursors" 1.5 -0.05))
@@ -513,42 +517,41 @@
     ("r" mc/remove-current-cursor "Remove cursor")
     ("j" mc/skip-to-previous-like-this "Skip to prev")
     ("k" mc/skip-to-next-like-this "Skip to next")
-    ("a" mc/mark-all-dwim "Mark all dwim")
-    ("A" mc/mark-all-like-this "Mark all")
+    ("a" mc/mark-all-dwim "Mark all dwim" :exit t)
+    ("A" mc/mark-all-like-this "Mark all" :exit t)
     ("x" mc/mark-all-in-region-regexp "Region regex" :exit t)
-    ("c" mc/move-to-column "Column")
-    ("C-S-b" mc/mark-all-below "Mark below")
-    ("C-S-a" mc/mark-all-above "Mark above")
-    ("C-t" mc/mark-sgml-tag-pair "Mark tag pair")
+    ("c" mc/move-to-column "Column" :exit t)
+    ("C-S-b" mc/mark-all-below "Mark below" :exit t)
+    ("C-S-a" mc/mark-all-above "Mark above" :exit t)
     ("C-h" mc-hide-unmatched-lines-mode "Hide unmatched"))
    "Edit" (
     ("l" mc/edit-lines "Edit lines" :exit t)
     ("b" mc/edit-beginnings-of-lines "Edit beginnings" :exit t)
     ("e" mc/edit-ends-of-lines "Edit ends" :exit t)
-    ("fu" mc/unfreeze-fake-cursors "Unfreeze fake")
-    ("ff" mc/freeze-fake-cursors "Freeze fake"))
+    ("fu" mc/unfreeze-fake-cursors "Unfreeze fake" :exit t)
+    ("ff" mc/freeze-fake-cursors "Freeze fake" :exit t))
    "Remove" (
-    ("fr" mc/remove-fake-cursor "Remove fake")
-    ("C-e" mc/remove-cursors-at-eol "Remove eol")
-    ("C-b" mc/remove-cursors-at-bol "Remove bol")
-    ("C-l" mc/remove-cursors-on-blank-lines "Remove blank lines")
-    ("C-d" mc/remove-duplicated-cursors "Remove duplicated")
-    ("hd" hungry-delete "Delete white space")
-    ("hb" hungry-backspace "Backspace white space"))
+    ("fr" mc/remove-fake-cursor "Remove fake" :exit t)
+    ("C-e" mc/remove-cursors-at-eol "Remove eol" :exit t)
+    ("C-b" mc/remove-cursors-at-bol "Remove bol" :exit t)
+    ("C-l" mc/remove-cursors-on-blank-lines "Remove blank lines" :exit t)
+    ("C-d" mc/remove-duplicated-cursors "Remove duplicated" :exit t)
+    ("hd" hungry-delete "Delete white space" :exit t)
+    ("hb" hungry-backspace "Backspace white space" :exit t))
    "Transform" (
     ("v" mc/vertical-align "Vertical align" :exit t)
     ("V" mc/vertical-align-with-space "Vertical align space" :exit t)
-    ("#" mc/insert-numbers "Insert numbers")
-    ("C-s r" mc/sort-regions "Sort regions")
-    ("C-s v" mc/reverse-regions "Reverse regions")
+    ("#" mc/insert-numbers "Insert numbers" :exit t)
+    ("C-s r" mc/sort-regions "Sort regions" :exit t)
+    ("C-s v" mc/reverse-regions "Reverse regions" :exit t)
     ("ESC" nil "Quit"))))
 
-(defvar hydra-delims-title (with-faicon "quote-left" "Delims" 1.5 -0.05))
+(defvar hydra-parens-title (with-faicon "quote-left" "Delims" 1.5 -0.05))
 
-(pretty-hydra-define hydra-delims
+(pretty-hydra-define hydra-parens
   (:pre (setq which-key-inhibit t)
    :post (setq which-key-inhibit nil)
-   :title hydra-delims-title
+   :title hydra-parens-title
    :hint nil
    :foreign-keys warn
    :quit-key "q"

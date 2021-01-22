@@ -104,7 +104,7 @@
 (jawa/require 'setup-linting)
 
 ;; Popular method to navigate and edit Lisp code
-(jawa/require 'setup-elisp)
+;; (jawa/require 'setup-elisp)
 
 ;; Graphically indicate the fill column
 (use-package fill-column-indicator)

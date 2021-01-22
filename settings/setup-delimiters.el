@@ -59,15 +59,16 @@
   (sp-local-pair 'emacs-lisp-mode "`" "'")
   
   ;; New Org pairs
-  (sp-local-pair 'org-mode "=" "=" :wrap "C-+")
-  (sp-local-pair 'org-mode "<" ">" :wrap "C-<")
+  ;; (sp-local-pair 'org-mode "=" "=" :wrap "C-+")
+  ;; (sp-local-pair 'org-mode "<" ">" :wrap "C-<")
 
   ;; Yas pairs
-  (sp-pair "${" ":}" :wrap "C-$")
+  ;; (sp-pair "${" ":}" :wrap "C-$")
   
   ;; Local pairs can be removed by calling `sp-local-pair' with optional keyword argument `:actions' with value `:rem'
   ;; (sp-local-pair 'LaTeX-mode "`" nil :actions :rem)
-  
+  (sp-local-pair 'org-mode "<" ">" :actions :rem)
+
   ;; Create a wrapping
   ;; Usage
   ;;
@@ -75,7 +76,7 @@
   ;; hit C-(
   ;; becomes (|foobar)
   (sp-pair "(" ")" :wrap "C-(") ; `sp-wrap-round' does this without having to define
-  :bind ("C-c h d" . hydra-delims/body))
+  :bind ("C-c h d" . hydra-parens/body))
 
 ;; Display nested sets of delimiters in different colors
 (use-package rainbow-delimiters
