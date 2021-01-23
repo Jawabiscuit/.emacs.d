@@ -1,29 +1,5 @@
-;;; setup-python --- Setup Python editing -*- lexical-binding: t -*-
-
-;; Author: Jonas Avrin
-;; URL: https://www.github.com/jawabiscuit
-;; Package-Requires: (`etom')
-
-;; This file is not part of GNU Emacs
-;;
-;; This file is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation; either version 3, or (at your option)
-;; any later version.
-;;
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-;;
-;; For a full copy of the GNU General Public License
-;; see <http://www.gnu.org/licenses/>.
-;;
-
+;;; `setup-python.el' --- Summary: Setup python IDE functionality
 ;;; Commentary:
-;;
-;; Requires `etom' for sending Python to Maya via socket connection
-
 ;;; Code:
 
 ;; Extensions to outline mode
@@ -55,6 +31,35 @@
          ("C-c C-S-c" . etom-send-buffer)
          ("C-c C-S-b" . etom-show-buffer)
          ))
+
+;; Python + elpy configuration
+(use-package python
+  :straight (python
+             :type git
+             :host github
+             :repo "emacs-straight/python")
+  :mode
+  (("\\.py$" . python-mode)
+   ("\\.wsgi$" . python-mode))
+  :config
+  (use-package elpy
+    :straight (elpy
+               :type git
+               :flavor melpa
+               :files ("*.el" "NEWS.rst" "snippets" "elpy" "elpy-pkg.el")
+               :host github
+               :repo "jorgenschaefer/elpy")
+    :commands elpy-enable
+    :init
+    (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
+    (add-to-list 'auto-mode-alist '("\\.wsgi$" . python-mode))
+    (with-eval-after-load 'python (elpy-enable))
+    :config
+    (setq elpy-rpc-backend "jedi")
+    :bind
+    (:map elpy-mode-map
+	  ("M-." . elpy-goto-definition)
+	  ("M-," . pop-tag-mark))))
 
 
 ;; Automatically activates python virtualenv
