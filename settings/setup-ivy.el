@@ -27,6 +27,19 @@
 ;;; Code:
 
 (use-package ivy
+  :straight
+  (ivy
+   :type git
+   :flavor melpa
+   :files
+   (:defaults
+    (:exclude "swiper.el"
+              "counsel.el"
+              "ivy-hydra.el")
+    "doc/ivy-help.org"
+    "ivy-pkg.el")
+   :host github
+   :repo "abo-abo/swiper")
   :diminish
   :demand
   :config
@@ -65,8 +78,8 @@
 
 (use-package ivy-filthy-rich
   :diminish
-  :straight (ivy-filthy-rich :host github :repo "akirak/ivy-filthy-rich"
-                             :branch "fix-max-length")
+  :straight (ivy-filthy-rich :host github :repo "casouri/ivy-filthy-rich"
+                             :branch "master")
   :config
   (ivy-filthy-rich-mode t)
   :custom
