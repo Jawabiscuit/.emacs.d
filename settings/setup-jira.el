@@ -25,9 +25,9 @@
       (setq jiralib2-url              jira-url
             jiralib2-auth             'basic
             jiralib2-user-login-name  jira-login-name
-            jiralib2-token
+            jiralib2-token            nil
 
-            ejira-org-directory       "~/org/jira"
+            ejira-org-directory       (convert-standard-filename "~/org/jira")
             ejira-projects            jira-projects-list
 
             ejira-priorities-alist    '(("Highest" . ?A)
