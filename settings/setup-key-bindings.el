@@ -91,12 +91,12 @@
 (define-minor-mode ja-keys-minor-mode
   "A minor mode so that my key settings override all major modes
    with the added benefit of being able to turn off all at once"
-  :init-value t
+  :init-value nil
   :lighter " jaK")
 
 (diminish 'ja-keys-minor-mode)
 
-(ja-keys-minor-mode 1)
+(ja-keys-minor-mode nil)
 ;; Disable custom keys in the minibuffer
 (defun ja-minibuffer-setup-hook ()
   (ja-keys-minor-mode 0))
