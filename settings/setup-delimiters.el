@@ -90,7 +90,7 @@
   ;;            :host github
   ;;            :repo "purcell/page-break-lines"
   ;;            )
-  :config (turn-on-page-break-lines-mode))
+  :config (page-break-lines-mode))
 
 (provide 'setup-delimiters)
 ;;; setup-delimiters.el ends here
