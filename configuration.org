@@ -438,11 +438,11 @@ Dependency: [[*Install packages if they're missing][setup packages]]
 #+END_SRC
 
 
-** Jedi auto-complete
+** Jedi auto-complete (disabled)
 
 Dependency: [[*Install packages if they're missing][setup packages]]
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :eval no :tangle no
 (setq jedi-config:use-system-python t)
 #+END_SRC
 
