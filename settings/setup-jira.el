@@ -16,6 +16,7 @@
              :type git
              :host github
              :repo "ahungry/org-jira")
+  :defer t
   :config (setq jiralib-url jira-url))
 
 (if sys/bss-hostname-p

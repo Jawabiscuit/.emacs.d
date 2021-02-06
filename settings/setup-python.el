@@ -2,36 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Extensions to outline mode
-(use-package outline-magic
-  :bind (:map outline-minor-mode
-	      ("<C-tab>" . outline-cycle)))
-
-(use-package python-magic
-  :load-path "site-lisp"
-  :straight (python-magic :type built-in))
-
-;; Python major mode
-(use-package python-mode
-  :hook
-  (((python-mode org-mode)
-    . (lambda ()
-        ;; Emacs to Maya
-        (require 'etom)
-        (setq etom-default-host "localhost")
-        (setq etom-default-port 2222))))
-  :bind (("C--" . outline-hide-body)
-         ("C-=" . outline-show-all)
-         ("C-+" . outline-cycle)
-         ("C-c <C-return>" . etom-send-region)
-         ("C-c C-S-c" . etom-send-buffer)
-         ("C-c C-S-b" . etom-show-buffer)
-         :map org-mode
-         ("C-c <C-return>" . etom-send-region)
-         ("C-c C-S-c" . etom-send-buffer)
-         ("C-c C-S-b" . etom-show-buffer)
-         ))
-
 ;; Python + elpy configuration
 (use-package python
   :straight (python
@@ -42,6 +12,7 @@
   (("\\.py$" . python-mode)
    ("\\.wsgi$" . python-mode))
   :config
+  ;; Elpy
   (use-package elpy
     :straight (elpy
                :type git
@@ -59,7 +30,47 @@
     :bind
     (:map elpy-mode-map
 	  ("M-." . elpy-goto-definition)
-	  ("M-," . pop-tag-mark))))
+	  ("M-," . pop-tag-mark)))
+
+  ;; Python major mode
+  (use-package python-mode
+    :hook
+    (((python-mode org-mode)
+      . (lambda ()
+          ;; Emacs to Maya
+          (require 'etom)
+        (setq etom-default-host "localhost")
+        (setq etom-default-port 2222))))
+    :bind (("C--" . outline-hide-body)
+         ("C-=" . outline-show-all)
+         ("C-+" . outline-cycle)
+         ("C-c <C-return>" . etom-send-region)
+         ("C-c C-S-c" . etom-send-buffer)
+         ("C-c C-S-b" . etom-show-buffer)
+         :map org-mode
+         ("C-c <C-return>" . etom-send-region)
+         ("C-c C-S-c" . etom-send-buffer)
+         ("C-c C-S-b" . etom-show-buffer)
+         )
+    :config
+    (message "python-mode configured!"))
+
+  (use-package jedi-direx
+    ;; elpy-occur-definitions
+    :disabled t
+    :after python-mode
+    :straight (jedi-direx :type git :flavor melpa
+                          :host github :repo "tkf/emacs-jedi-direx")
+    :bind (:map python-mode
+                ("C-c x" . jedi-direx:pop-to-buffer))
+    :hook (python-mode . jedi-direx:setup)
+    :config
+    (message "jedi-direx configured!"))
+  
+  (use-package python-magic
+    :load-path "site-lisp"
+    :straight (python-magic :type built-in))
+)
 
 
 ;; Automatically activates python virtualenv
@@ -82,7 +93,6 @@
 ;; Python auto-formatter
 (if (executable-find "autopep8")
     (use-package py-autopep8
-      :ensure t
       :commands (py-autopep8-before-save py-autopep8-enable-on-save)
       ;; :hook
       ;; (python-mode . py-autopep8-enable-on-save)
@@ -107,17 +117,16 @@
 ;; Formatter for sorting imports
 (use-package py-isort
   ;; Requires isort installation
-  ;; :disabled t
-  )
+  :disabled t)
 
 ;; Emacs front-end for interacting with external debuggers like pdb
-(use-package realgud)
+(use-package realgud
+  :commands realgud:pdb)
 
 ;; Pip requirements with autocomplete
 (use-package pip-requirements
   :hook
-  ((pip-requirements-mode
-    .
+  ((pip-requirements-mode .
     pip-requirements-auto-complete-setup)))
 
 (provide 'setup-python)

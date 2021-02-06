@@ -1,47 +1,78 @@
-;;; setup-org.el --- Setup packages for org-mode  -*- lexical-binding: t -*-
-;;
-;; Author: Jonas Avrin
-;; Maintainer: Jonas Avrin
-;; Version: 0.0.1
-;; Package-Requires: (`')
-;; Homepage:
-;; Keywords:
-;;
-;;
-;; This file is not part of GNU Emacs
-;;
-;; This file is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation; either version 3, or (at your option)
-;; any later version.
-;;
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-;;
-;; For a full copy of the GNU General Public License
-;; see <http://www.gnu.org/licenses/>.
-;;
-;;
-;;; Commentary:
-;;
-;;
-;;
+;; -*- lexical-binding: t -*-
+;;; `setup-org.el' --- Summary: Setup packages for using org-mode
+;;; Commentary: Uses `general' and some packages in `setup-packages.el'
 ;;; Code:
 
+;; `org-starter-path': "Load path" for Org files
+(unless (bound-and-true-p org-starter-path)
+  (setq org-starter-path `(,(abbreviate-file-name
+                             (expand-file-name
+                              "org-starter"
+                              no-littering-etc-directory)))))
+
+(use-package org-starter
+  :defer t
+  :diminish org-starter-mode
+  :config
+  ;; (org-starter-mode 1)
+  (jawa/bind-user "t" 'org-starter-find-file-by-key)
+  (general-add-hook 'org-starter-extra-find-file-map
+                    '((";" org-starter-find-config-file "config")
+                      ;; ("w" org-plain-wiki "wiki")
+                      )
+                    t)
+  (general-add-hook 'org-starter-extra-alternative-find-file-map
+                    '((";" org-starter-swiper-config-files "config")
+                      ;; ("w" helm-org-rifle-wiki "wiki/writing")
+                      )
+                    t)
+  (general-add-hook 'org-starter-extra-refile-map
+                    '(("'" avy-org-refile-as-child "avy")
+                      ("?" akirak/org-refile-same-buffer "same buffer"))
+                    t)
+  ;; Force load configuration files loaded from `org-starter-path'
+  ;; Just setting `org-starter-load-config-files' (the var) isn't
+  ;; doing it on it's own anymore
+  (org-starter-load-config-files)
+
+  ;; Use `org-starter' with swiper
+  (use-package org-starter-swiper)
+
+  (use-package org-starter-extras
+    :straight (org-starter-extras :host github :repo "akirak/org-starter"
+                                  :files ("org-starter-extras.el")))
+  :custom
+  (org-starter-require-file-by-default nil)
+  (org-starter-exclude-from-recentf '(known-files path))
+
+  ;; (org-starter-alternative-find-file-command #'helm-org-rifle-files)
+  (org-starter-find-file-visit-window t)
+  (org-starter-override-agenda-window-setup 'other-window)
+  (org-starter-enable-local-variables :all))
+
+(use-package org-reverse-datetree
+  :defer t)
+
+(use-package org-ql
+  :straight (org-ql :type git :flavor melpa :host github :repo "alphapapa/org-ql")
+  :commands (org-ql-search org-ql-view org-ql-view-sidebar org-ql-view-recent-items))
+
 ;; Library for working with xml via esxml and sxml
-(use-package esxml)
+(use-package esxml
+  :mode "\\.xml\\'")
 
 ;; Compatible layer for URL request in Emacs
-(use-package request)
+(use-package request
+  :defer t)
 
 ;; Functions and commands useful for retrieving web page content and processing it into
 ;; Org-mode content
-(use-package org-web-tools)
+(use-package org-web-tools
+  :defer t)
 
 (use-package org-link-edit
-  :straight (org-link-edit :host github :repo "kyleam/org-link-edit"))
+  :straight (org-link-edit :host github :repo "kyleam/org-link-edit")
+  :defer t)
 
 ;; Pretty bullets :) instead of ugly asterisks :(
 (use-package org-bullets
@@ -49,11 +80,12 @@
 )
 
 ;; Bootstrap compatible HTML Back-End for Org
-(use-package ox-twbs)
+(use-package ox-twbs
+  :defer t)
 
 ;; Group items in Org agenda views
 (use-package org-super-agenda
-  :config 
+  :config
   (setq org-agenda-custom-commands '())
   (add-to-list 'org-agenda-custom-commands
    '("H" "Someday/Maybe"
@@ -93,13 +125,14 @@
                      :scheduled past))))
       (org-agenda-list)))
 
-  (org-super-agenda-mode 1)
+  ;; (org-super-agenda-mode 1)
 
   :bind (("C-c h o" . hydra-org/body)
          ("C-c O" . my-org-super-agenda)))
 
 ;; Capture notes from pdfs and sync with org
-(use-package org-noter)
+(use-package org-noter
+  :defer t)
 
 ;; Facilitate moving images from point A to point B
 (use-package org-download
@@ -116,7 +149,20 @@
              :type git
              :flavor melpa
              :host github
-             :repo "astahlman/ob-async"))
+             :repo "astahlman/ob-async")
+  :defer t)
+
+(use-package org-edna
+  :straight (org-edna :host github :repo "akirak/org-edna" :branch "edit")
+  :defer t
+  :config
+  (org-edna-load))
+
+;; Crushes table editing problems
+;; Archived, may need to disable
+(use-package tabcrush
+  :straight (tabcrush :host github :repo "raxod502/tabcrush")
+  :defer t)
 
 ;; Active Babel languages
 (with-eval-after-load 'org
@@ -150,7 +196,8 @@
       org-src-preserve-indentation t)
 
 ;; Post org v9.2 Requirement for structure templates
-(require 'org-tempo)
+(with-eval-after-load 'org
+  (require 'org-tempo))
 
 ;; GTD TODO keywords and hide logs
 (setq org-todo-keywords
@@ -167,6 +214,7 @@
          "ARCHIVE"
          "CANCELLED"
          )))
+
 (setq org-log-into-drawer nil)
 
 ;; tasks.el

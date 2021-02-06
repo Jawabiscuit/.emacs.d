@@ -31,6 +31,7 @@
 ;;; Code:
 
 (use-package yasnippet
+  :defer t
   :diminish yas-minor-mode
   ;; :bind (("<tab>" . nil) ;; Unbind Tab completion
   ;;        ("TAB" . nil)
@@ -39,6 +40,7 @@
   ;;        ("SPC" . yas-maybe-expand)
   ;;        ;; Bind `C-c y' to `yas-expand' ONLY.
   ;;        ("C-c y" . #'yas-expand))
+  ;; :hook ((org-mode python-mode elisp-mode) . yas-minor-mode)
   :config
   (defun jawa/visit-yas-snippet-dir ()
     (interactive)
@@ -48,6 +50,7 @@
 )
 
 (use-package yasnippet-snippets
+  :after yasnippet
   :load-path "site-lisp/yasnippet-snippets"
   :straight (yasnippet-snippets :type built-in)
   :init
@@ -75,10 +78,12 @@
   (yas-reload-all))
 
 (use-package auto-yasnippet
+  :after yasnippet
   :commands (aya-create aya-expand)
 )
 
 (use-package ivy-yasnippet
+  :after (:all (ivy yasnippet))
   ;; When you use the :commands keyword, it creates autoloads for
   ;; those commands and defers loading of the module until they are used
   :commands (ivy-yasnippet)

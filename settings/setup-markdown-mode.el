@@ -1,37 +1,10 @@
-;;; setup-markdown-mode.el --- Setup Emacs Major mode for Markdown formatted files -*- lexical-binding: t -*-
-;;
-;; Author: Jonas Avrin
-;; Maintainer: Jonas Avrin
-;; Version: 0.0.1
-;; Package-Requires: (`pandoc')
-;; Homepage:
-;; Keywords:
-;;
-;;
-;; This file is not part of GNU Emacs
-;;
-;; This file is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation; either version 3, or (at your option)
-;; any later version.
-;;
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-;;
-;; For a full copy of the GNU General Public License
-;; see <http://www.gnu.org/licenses/>.
-;;
-;;
+;; -*- lexical-binding: t -*-
+;;; `setup-markdown-mode.el' --- Summary: Configure Markdown major mode
 ;;; Commentary:
-;;
-;;
-;;
 ;;; Code:
 
 (use-package markdown-mode
-  :init
+  :config
   (setq-default markdown-hide-markup t)
   (setq markdown-command "pandoc")
   (setq markdown-imenu-generic-expression
@@ -44,7 +17,7 @@
         ("h5"     "^##### \\(.*\\)$" 1)
         ("h6"     "^###### \\(.*\\)$" 1)
         ("fn"     "^\\[\\^\\(.*\\)\\]" 1)))
-  :mode (("README\\.md\\'" . gfm-mode)
+  :mode (("README\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :hook ((markdown-mode . pandoc-mode)

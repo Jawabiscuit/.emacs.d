@@ -60,21 +60,23 @@
 )
 
 (use-package company
+  :after (:any python-mode org-mode)
   :straight (company :type git :flavor melpa :host github :repo "company-mode/company-mode")
   :diminish company-mode
   :bind (:map company-mode-map ("<s-tab>" . company-complete))
-  ;; :hook ((emacs-lisp-mode    . company-mode)
-  ;;        (js2-mode           . company-mode)
-  ;;        (web-mode           . company-mode)
-  ;;        (css-mode           . company-mode)
-  ;;        (c++-mode           . company-mode)
-  ;;        (cider-repl-mode    . company-mode)
-  ;;        (cider-mode         . company-mode)
-  ;;        (sh-mode            . company-mode)
-  ;;        (typescript-mode    . company-mode)
-  ;;        (inferior-ess-mode  . company-mode)
-  ;;        (ledger-mode        . company-mode)
-  ;;        )
+  :hook ((emacs-lisp-mode    . company-mode)
+         (js2-mode           . company-mode)
+         (web-mode           . company-mode)
+         (css-mode           . company-mode)
+         (c++-mode           . company-mode)
+         (cider-repl-mode    . company-mode)
+         (cider-mode         . company-mode)
+         (sh-mode            . company-mode)
+         (typescript-mode    . company-mode)
+         (inferior-ess-mode  . company-mode)
+         (ledger-mode        . company-mode)
+         (python-mode        . company-mode)
+         )
   :custom
   ;; Decrease delay before autocompletion popup shows
   (company-idle-delay                .4)
@@ -118,15 +120,18 @@
                             'company-complete-selection
                           'company-abort)))
 
-  (use-package company-web)
+  (use-package company-web
+    :defer t)
 
-  (use-package company-auctex
-    :init
-    (company-auctex-init)
-    (eval-after-load "company-auctex"
-      ;; override this function, bad alignament in company
-      '(defun company-auctex-symbol-annotation (candidate)
-         nil)))
+  (when (executable-find "auctex")
+    (use-package company-auctex
+      :defer t
+      :init
+      (company-auctex-init)
+      (eval-after-load "company-auctex"
+        ;; override this function, bad alignament in company
+        '(defun company-auctex-symbol-annotation (candidate)
+           nil))))
 
   (use-package company-anaconda
     :hook (python-mode-hook . anaconda-mode))
@@ -137,7 +142,7 @@
   (use-package company-statistics
     :hook (company-mode . company-statistics-mode))
 
-  (global-company-mode t)
+  ;; (global-company-mode t)
 )
 
 (provide 'setup-auto-complete)

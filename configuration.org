@@ -46,27 +46,7 @@ If you run emacs <= 24.3 the macro with-eval-after-load is not defined. Here is 
 #+END_SRC
 
 
-** Before using use-package
-
-#+BEGIN_SRC emacs-lisp
-(jawa/require 'setup-gc)
-#+END_SRC
-
-Compute package use statistics.
-Run =use-package-report= before closing.
-
-#+begin_src emacs-lisp
-(setq use-package-compute-statistics t)
-#+end_src
-
-These packages are required in other use-package directives declared in this
-configuration.
-
-#+begin_src emacs-lisp
-(use-package el-patch
-  :custom
-  (el-patch-enable-use-package-integration t))
-#+end_src
+** No-Littering
 
 #+begin_src emacs-lisp
   (defcustom jawa/no-littering-use-my-etc-library t
@@ -156,7 +136,6 @@ configuration.
 
 
 ** Add external project submodules (site-lisp) to load path
-
 #+BEGIN_SRC emacs-lisp
 (dolist (project (directory-files site-lisp-dir t "\\w+"))
   (when (file-directory-p project)
@@ -219,7 +198,7 @@ Allow use of =:wk= keyword in general.el keybinding definitions
 
 ** Install packages
 
-Requirements: [[core/setup.el][setup.el: jawa/require]]
+Dependency: [[core/setup.el][setup.el: jawa/require]]
 
 The bulk of packages to install
 
@@ -312,29 +291,12 @@ faces and the like are done here
 
 ** Org-mode
 
-Dependency: [[*Improved keybinding][general]], [[*Install packages][install packages]]
-
-#+BEGIN_SRC emacs-lisp
-(jawa/require 'setup-org-starter)
-(jawa/require 'setup-org t)
-
-(use-package org-edna
-  :straight (org-edna :host github :repo "akirak/org-edna" :branch "edit")
-  :config
-  (org-edna-load))
-
-(jawa/bind-jump "k" 'org-clock-goto)
-(jawa/bind-user "C-x 4" 'jawa/org-archive-subtree-as-completed)
-
-;; Crushes table editing problems
-(use-package tabcrush
-  :straight (tabcrush :host github :repo "raxod502/tabcrush"))
-#+END_SRC
+Temporarily moved to setup-org.el
 
 
 ** Site-lisp packages
 
-Requirements: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
+Dependency: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
 
 #+BEGIN_SRC emacs-lisp
 ;; (jawa/require 'some-package-here)
@@ -350,7 +312,7 @@ Requirements: [[*Add external project submodules (site-lisp) to load path][Add s
 
 ** Outline minor mode
 
-Requirements: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
+Dependency: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
 
 #+BEGIN_SRC emacs-lisp
   ;; (eval-after-load 'outline
@@ -362,7 +324,7 @@ Requirements: [[*Add external project submodules (site-lisp) to load path][Add s
 
 ** Outline minor mode for Python
 
-Requirements: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
+Dependency: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
 
 #+BEGIN_SRC emacs-lisp
 ;; Moved to setup-python.el 
@@ -378,7 +340,7 @@ Requirements: [[*Add external project submodules (site-lisp) to load path][Add s
 
 ** More dired functionality (23.2+)
 
-Requirements: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
+Dependency: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
 
 #+BEGIN_SRC emacs-lisp
 (eval-and-compile
@@ -392,7 +354,7 @@ Requirements: [[*Add external project submodules (site-lisp) to load path][Add s
 
 ** Represent undo-history as an actual tree (visualize with C-x u)
 
-Requirements: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
+Dependency: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
 
 #+BEGIN_SRC emacs-lisp
   ;; (setq undo-tree-mode-lighter "")

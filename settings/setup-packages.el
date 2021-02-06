@@ -3,17 +3,18 @@
 ;; `use-package' blocks should be tidy, or else converted to a setup file
 ;;; Code:
 
-;; Try a package without installing it
-(use-package try)
-
-;; Set exec path from shell
-(use-package exec-path-from-shell
-  :config
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
-
 ;; string manipulation library
 (use-package s)
+
+;; Try a package without installing it
+(use-package try
+  :commands try)
+
+;; Set exec path from shell - for Unix-y terminals
+(when (memq window-system '(mac ns x))
+  (use-package exec-path-from-shell
+    :config
+    (exec-path-from-shell-initialize)))
 
 ;; History, recent files
 (jawa/require 'setup-history)
@@ -74,7 +75,8 @@
 (jawa/require 'setup-spell-check)
 
 ;; Integrate emacs with powerthesaurus.org
-(use-package powerthesaurus)
+(use-package powerthesaurus
+  :defer t)
 
 ;; On-the-fly syntax checking
 (jawa/require 'setup-linting)
@@ -83,22 +85,33 @@
 ;; (jawa/require 'setup-elisp)
 
 ;; Graphically indicate the fill column
-(use-package fill-column-indicator)
+(use-package fill-column-indicator
+  :defer t)
 
 ;; LaTeX
-(straight-use-package 'auctex)
+(when (executable-find "auctex")
+     (use-package auctex
+       :defer t
+       :straight
+       (auctex
+        :type git
+        :host github
+        :repo "emacs-straight/auctex")))
 
 ;; Window switching convenience
 (use-package switch-window
+  :defer t
   :straight (switch-window :host github :repo "dimitri/switch-window")
   :bind ("C-c h w" . hydra-windows/body))
 
 ;; More window switching
-(use-package ace-window)
+(use-package ace-window
+  :defer t)
 
 ;; Popup window management
 (use-package shackle
-  :init
+  :disabled t
+  :config
   (setq helm-display-function 'pop-to-buffer) ; make helm play nice
   ;; provides a less intrusive user experience to select all windows
   ;; by default unless they are spawned by compilation-mode and
@@ -108,10 +121,12 @@
         shackle-default-rule '(:select t)))
 
 ;; Increase selected region by semantic units
-(use-package expand-region)
+(use-package expand-region
+  :defer t)
 
 ;; Convert buffer text and decorations to HTML.
-(use-package htmlize)
+(use-package htmlize
+  :defer t)
 
 ;; Complete Git interface
 (jawa/require 'setup-magit)
@@ -123,12 +138,15 @@
          ("<return>" . nil)))
 
 (use-package mc-extras
+  :after multiple-cursors
   :straight (mc-extras :host github :repo "knu/mc-extras.el"))
 
-(use-package paredit)
+(use-package paredit
+  :defer t)
 
 ;; In editor rest server/client
-(use-package restclient)
+(use-package restclient
+  :defer t)
 
 ;; Auto closure for parenthesis and other characters
 (jawa/require 'setup-delimiters)
@@ -149,6 +167,11 @@
 ;; Pandoc-mode is for interacting with pandoc, a program that converts
 ;; text files written in one markup language to another
 (use-package pandoc-mode)
+
+;; Extensions to outline mode
+(use-package outline-magic
+  :bind (:map outline-minor-mode
+	      ("<C-tab>" . outline-cycle)))
 
 ;; Mel mode dependencies
 (use-package browse-url-dwim)
@@ -176,7 +199,11 @@
 
 ;; Docker highlighting
 (use-package dockerfile-mode
-  :straight (dockerfile-mode :host github :repo "spotify/dockerfile-mode"))
+  :straight (dockerfile-mode :host github :repo "spotify/dockerfile-mode")
+  :mode "\\Dockerfile\\'"
+  ;; Change the binary name
+  ;; :config (setq dockerfile-mode-command "docker")
+)
 
 ;; Docker tramp
 (use-package docker-tramp
@@ -184,7 +211,8 @@
              :type git
              :flavor melpa
              :host github
-             :repo "emacs-pe/docker-tramp.el"))
+             :repo "emacs-pe/docker-tramp.el")
+  :defer t)
 
 ;; auto-fill without editing
 (use-package virtual-auto-fill
@@ -210,6 +238,9 @@
 
 ;; Jira
 (jawa/require 'setup-jira)
+
+;; Org-mode
+(jawa/require 'setup-org t)
 
 (provide 'setup-packages)
 ;;; setup-packages.el ends here

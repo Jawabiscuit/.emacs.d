@@ -179,6 +179,10 @@
     (dotimes (i 10)
       (when (= p (point)) ad-do-it))))
 
+;; No blinking cursors
+(blink-cursor-mode 0)
+(setq visible-cursor nil)
+
 (setq set-mark-command-repeat-pop t)
 
 ;; Offer to create parent directories if they do not exist

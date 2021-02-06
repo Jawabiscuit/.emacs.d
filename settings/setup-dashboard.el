@@ -1,30 +1,6 @@
-;;; setup-dashboard.el --- Dashboard configuration -*- lexical-binding: t -*-
-
-;; Author: Jonas Avrin
-;; URL: https://www.github.com/jawabiscuit
-;; Package-Requires: (`persp-mode', `recentf')
-
-;; This file is not part of GNU Emacs
-;;
-;; This file is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation; either version 3, or (at your option)
-;; any later version.
-;;
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-;;
-;; For a full copy of the GNU General Public License
-;; see <http://www.gnu.org/licenses/>.
-;;
-
+;; -*- lexical-binding: t -*-
+;;; `setup-dashboard.el' --- Summary: Dashboard configuration
 ;;; Commentary:
-;;
-;; Inspired and borrowed seagle0128's Centaur dashboard
-;;
-
 ;;; Code:
 
 (require 'system-const)
@@ -60,7 +36,10 @@
            ("?" . major-mode-hydra))
     :hook (dashboard-mode . (lambda ()
                               (setq-local frame-title-format "")
-                              (jawa/turn-off-tabs)))
+                              (jawa/turn-off-tabs)
+                              (persp-mode)
+                              (recentf-mode)
+                              (savehist-mode)))
     :init
     (dashboard-setup-startup-hook)
     (defun with-material (icon str &optional height v-adjust)
@@ -202,7 +181,6 @@ Original ascii art: Franz P. de Vries" (format-time-string "%Y"))
       (jawa/turn-off-tabs)
 
       ;; Jump to the first section
-      (goto-char (point-min))
       (dashboard-goto-recent-files))
 
     (defun restore-session ()

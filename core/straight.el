@@ -18,3 +18,12 @@
 ;; Use straight.el by default in use-package directives
 (setq straight-use-package-by-default t)
 
+;; `use-package' statistics. Run `use-package-report' before closing.
+(setq use-package-compute-statistics t)
+
+(use-package el-patch
+  :custom
+  (el-patch-enable-use-package-integration t))
+
+;; Temporary variable to set for optimizing startup
+;; (setq use-package-verbose t)

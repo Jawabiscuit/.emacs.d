@@ -30,22 +30,28 @@
 (require 'system-const)
 
 ;; live browser JavaScript, CSS, and HTML interaction
-(use-package skewer-mode)
+(use-package skewer-mode
+  :defer t)
 
 ;; Compatible layer for URL request in Emacs
-(use-package request)
+(use-package request
+  :defer t)
 
 ;; Wrap request.el by deferred
-(use-package request-deferred)
+(use-package request-deferred
+  :defer t)
 
 ;; Emacs WebSocket client and server
-(use-package websocket)
+(use-package websocket
+  :defer t)
 
 ;; Support sequential operation which omits prefix keys
-(use-package smartrep)
+(use-package smartrep
+  :defer t)
 
 ;; Multiple modes
-(use-package polymode)
+(use-package polymode
+  :defer t)
 
 ;; Emacs iPython notebook
 (use-package ein
@@ -69,6 +75,7 @@
 (if (not (or (and sys/bss-hostname-p (executable-find "jupyter"))
          (and sys/home-hostname-p (not (executable-find "jupyter")))))
     (use-package ob-ipython
+      :after (:any python-mode org-mode)
       :straight (ob-ipython
                  :type git
                  :flavor melpa

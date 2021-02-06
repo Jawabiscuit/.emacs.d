@@ -104,6 +104,10 @@
 (general-add-hook 'minibuffer-setup-hook 'ja-minibuffer-setup-hook)
 ;; End `ja-keys' minor mode setup
 
+;; Org-mode
+(jawa/bind-jump "k" 'org-clock-goto)
+(jawa/bind-user "C-x 4" 'jawa/org-archive-subtree-as-completed)
+
 ;; Tools
 (jawa/bind-user "q" 'quick-calc)
 
@@ -126,6 +130,8 @@
 ;; Split all kinds of org blocks
 ;; https://scripter.co/splitting-an-org-block-into-two/
 (jawa/bind-user "W" 'modi/org-split-block)
+
+(jawa/bind-jump "d" 'dired-jump)
 
 ;; Undo tree
 (eval-after-load 'undo-tree '(define-key undo-tree-map (kbd "C-?") nil))

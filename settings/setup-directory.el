@@ -1,38 +1,10 @@
-;;; setup-directory.el --- Configurations for directory editing -*- lexical-binding: t -*-
-;;
-;; Author: Jonas Avrin
-;; Maintainer: Jonas Avrin
-;; Version: 0.0.1
-;; Package-Requires: (`use-package')
-;; Homepage:
-;; Keywords:
-;;
-;;
-;; This file is not part of GNU Emacs
-;;
-;; This file is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation; either version 3, or (at your option)
-;; any later version.
-;;
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-;;
-;; For a full copy of the GNU General Public License
-;; see <http://www.gnu.org/licenses/>.
-;;
-;;
+;; -*- lexical-binding: t -*-
+;;; `setup-directory.el' --- Summary: Dired configurations
 ;;; Commentary:
-;;
-;;
-;;
 ;;; Code:
 
-(require 'dired)
-
-(jawa/bind-jump "d" 'dired-jump)
+(with-eval-after-load 'dired
+  (require 'dired))
 
 (setq-default dired-dwim-target t
               dired-recursive-deletes 'always
@@ -86,13 +58,9 @@
             "n" 'dired-hacks-next-file
             "p" 'dired-hacks-previous-file))
 
-(use-package dired-open
-  :custom
-  (dired-open-functions '(dired-open-by-extension
-                          dired-open-subdir)))
-
 (use-package ivy-dired-history
-  :init
+  :defer t
+  :config
   (add-to-list 'savehist-additional-variables 'ivy-dired-history-variable))
 
 (use-package dired-filter
@@ -145,7 +113,8 @@
   (dired-mode . dired-filter-group-mode))
 
 (use-package dired-subtree
-  :init
+  :after dired-filter
+  :config
   (bind-keys
    :map dired-mode-map
    :prefix "C-,"
@@ -165,6 +134,12 @@
    ("C-u" . dired-subtree-unmark-subtree)
    ("C-o C-f" . dired-subtree-only-this-file)
    ("C-o C-d" . dired-subtree-only-this-directory)))
+
+(use-package dired-open
+  :after dired-filter
+  :custom
+  (dired-open-functions '(dired-open-by-extension
+                          dired-open-subdir)))
 
 (provide 'setup-directory)
 ;;; setup-directory.el ends here

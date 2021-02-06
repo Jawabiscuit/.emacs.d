@@ -1,29 +1,6 @@
-;;; setup-ivy --- Completion -*- lexical-binding: t -*-
-
-;; Author: Jonas Avrin
-;; URL: https://www.github.com/jawabiscuit
-;; Package-Requires: (`')
-
-;; This file is not part of GNU Emacs
-;;
-;; This file is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation; either version 3, or (at your option)
-;; any later version.
-;;
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-;;
-;; For a full copy of the GNU General Public License
-;; see <http://www.gnu.org/licenses/>.
-;;
-
+;; -*- lexical-binding: t -*-
+;;; `setup-ivy.el' --- Summary: Completion
 ;;; Commentary:
-;;
-;;
-
 ;;; Code:
 
 (use-package ivy
@@ -77,6 +54,7 @@
   (ivy-ignore-buffers (quote ("\\` "))))
 
 (use-package ivy-filthy-rich
+  :defer t
   :diminish
   :straight (ivy-filthy-rich :host github :repo "casouri/ivy-filthy-rich"
                              :branch "master")
@@ -256,13 +234,12 @@
   ;;       (t . akirak/ivy-posframe-display-smart-center)))
   )
 
-(use-package counsel-projectile)
-
 ;; Search youtube with ivy
 (use-package ivy-youtube
-  :init
-  (setq ivy-youtube-key "AIzaSyBATckYEVBOzZFEkqq_xWQOBxHvqJvciVU")
+  :straight (ivy-youtube :type git :flavor melpa :host github :repo "squiter/ivy-youtube")
+  :defer t
   :config
+  (setq ivy-youtube-key "AIzaSyBATckYEVBOzZFEkqq_xWQOBxHvqJvciVU")
   (require 'ivy-youtube)
   (let* ((ivy-yt-history-file-name (file-name-nondirectory ivy-youtube-history-file))
         (ivy-yt-history-no-littering-sub-dir (file-name-as-directory "ivy-youtube"))

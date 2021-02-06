@@ -1,29 +1,6 @@
-;;; setup-projects.el --- Configure project management tools -*- lexical-binding: t -*-
-
-;; Author: Jonas Avrin
-;; URL: https://www.github.com/jawabiscuit
-;; Package-Requires: (`')
-
-;; This file is not part of GNU Emacs
-;;
-;; This file is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation; either version 3, or (at your option)
-;; any later version.
-;;
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-;;
-;; For a full copy of the GNU General Public License
-;; see <http://www.gnu.org/licenses/>.
-;;
-
+;; -*- lexical-binding: t -*-
+;;; `setup-projects.el' --- Summary: Project management
 ;;; Commentary:
-;;
-;;
-
 ;;; Code:
 
 (defconst sys/win32p
@@ -31,15 +8,14 @@
   "Are we running on a WinTel system?")
 
 (use-package projectile
+  :defer t
   :diminish
-  :bind ("C-c h p" . hydra-projectile/body)
-  :hook (after-init . projectile-mode)
-  :init
+  :config
   (setq projectile-mode-line-prefix ""
         projectile-sort-order 'recentf
         projectile-use-git-grep t)
   (add-to-list 'projectile-globally-ignored-directories ".pyc")
-  :config
+
   ;; Use the faster searcher to handle project files: ripgrep `rg'.
   (when (and (not (executable-find "fd"))
              (executable-find "rg"))
@@ -59,10 +35,13 @@
 
   ;; Update mode-line at the first time
   (projectile-update-mode-line)
+
+  (use-package counsel-projectile)
   :bind
-  (:map projectile-mode-map
-        ("s-p" . projectile-command-map)
-        ("C-c p" . projectile-command-map)))
+  (("C-c h p" . hydra-projectile/body)
+   :map projectile-mode-map
+   ("s-p" . projectile-command-map)
+   ("C-c p" . projectile-command-map)))
 
 (provide 'setup-projects)
 ;;; setup-projects.el ends here

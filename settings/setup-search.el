@@ -3,6 +3,24 @@
 ;;; Commentary:
 ;;; Code:
 
+(jawa/require 'system-const)
+
+;; Install https://sourceforge.net/projects/unxutils
+;; find/grep executables
+;; (executable-find "find")
+;; "c:/tools/UnxUtils/usr/local/wbin/find.exe"
+;; (executable-find "grep")
+;; "c:/tools/UnxUtils/usr/local/wbin/grep.exe"
+;;
+;; Set in cmd shell startup.bat
+;; (when sys/win32p
+;;   (setq exec-path (append exec-path
+;;                           '("C:/tools/UnxUtils/bin"
+;;                             "C:/tools/UnxUtils/usr/local/wbin"
+;;                             ))))
+;; With UnxUtils installed on Windows, `grep-compute-defaults' built-in still needs to be run
+(when sys/win32p (grep-compute-defaults))
+
 ;; Silver searcher
 (if (executable-find "ag")
     (use-package ag
@@ -60,6 +78,7 @@
 
 ;; CTRLF
 (use-package ctrlf
+  :disabled t
   :straight (:host github
              :repo "raxod502/ctrlf")
   :defer t
