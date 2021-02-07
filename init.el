@@ -24,6 +24,7 @@
                               (time-subtract after-init-time before-init-time)))
                      gcs-done)))
 
+(require 'cl-lib)
 ;; Load configuration files
 (load-file (expand-file-name "core/setup.el" user-emacs-directory))
 
@@ -45,7 +46,6 @@
   (gcmh-idle-delay 15))
 
 ;; Use the latest Git version of Org mode
-(require 'cl-lib)
 (require 'subr-x)
 
 ;; Remove org-mode shipped with Emacs from load-path
