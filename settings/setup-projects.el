@@ -10,6 +10,7 @@
 (use-package projectile
   :defer t
   :diminish
+  :hook (after-init . projectile-mode)
   :config
   (setq projectile-mode-line-prefix ""
         projectile-sort-order 'recentf

@@ -3,7 +3,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (use-package desktop
   :config
   ;; Desktop sessions
@@ -19,7 +18,7 @@
   :defines (recentf-exclude ivy-ignore-buffers ivy-sort-functions-alist)
   :commands (get-current-persp persp-contain-buffer-p)
   :hook (;; Interfering with dashbord
-         ;; (after-init . persp-mode)
+         (after-init . persp-mode)
          (window-setup . toggle-frame-maximized))
   :init (setq persp-keymap-prefix (kbd "C-x p")
               persp-nil-name "default"
@@ -147,6 +146,7 @@
 
 ;; Projectile integration
 (use-package persp-mode-projectile-bridge
+  :after (:all (persp-mode projectile-mode))
   :functions (persp-get-by-name
               persp-add-new
               persp-add-buffer
@@ -156,7 +156,8 @@
              persp-mode-projectile-bridge-kill-perspectives
              persp-mode-projectile-bridge-add-new-persp
              projectile-project-buffers)
-  :hook ((persp-mode . persp-mode-projectile-bridge-mode)
+  :hook ((persp-mode . projectile-mode)
+         (persp-mode . persp-mode-projectile-bridge-mode)
          (persp-mode-projectile-bridge-mode
           .
           (lambda ()
