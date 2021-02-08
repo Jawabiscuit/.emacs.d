@@ -81,8 +81,9 @@ If you run emacs <= 24.3 the macro with-eval-after-load is not defined. Here is 
 ** Activate package.el for loading built-in packages
 
 #+BEGIN_SRC emacs-lisp
+(require 'package)
+
 (when (version< emacs-version "27")
-  (require 'package)
   (package-initialize 'noactivate)
 )
 
