@@ -128,12 +128,41 @@
 (use-package htmlize
   :defer t)
 
+(jawa/require 'setup-gitgutter)
+
 ;; Complete Git interface
 (jawa/require 'setup-magit)
 
 ;; Multiple cursors for Emacs
 (use-package multiple-cursors
+  :hook ((prog-mode text-mode) . multiple-cursors-mode)
   :bind (("C-c h m" . hydra-mc/body)
+         ;; Experimental multiple-cursors
+         ("C-S-c C-S-c" . mc/edit-lines)
+         ("C-S-c C-e" . mc/edit-ends-of-lines)
+         ("C-S-c C-a" . mc/edit-beginnings-of-lines)
+
+         ;; Mark additional regions matching current region
+         ("C-x W" . mc/mark-all-dwim)
+         ("C-x w" . mc/mark-all-in-region)
+         ("C-c R" . mc/mark-previous-like-this)
+         ("C-c r" . mc/mark-next-like-this)
+         ("C-c x" . mc/mark-more-like-this-extended)
+
+         ;; Symbol and word specific mark-more
+         ;; ("C-c n" . mc/mark-next-word-like-this)
+         ;; ("C-c N" . mc/mark-previous-word-like-this)
+         ("C-<f3>" . mc/mark-all-words-like-this)
+         ("C-c s" . mc/mark-next-symbol-like-this)
+         ("C-c S" . mc/mark-previous-symbol-like-this)
+         ("C-<f4>" . mc/mark-all-symbols-like-this)
+
+         ;; Extra multiple cursors stuff
+         ("C-~" . mc/reverse-regions)
+         ("M-~" . mc/sort-regions)
+         ("H-~" . mc/insert-numbers)
+         ("C-S-<mouse-1>" . mc/add-cursor-on-click)
+         ("C-c C-a" . mc/mark-all-like-this)
          :map mc/keymap
          ("<return>" . nil)))
 
@@ -223,6 +252,7 @@
 
 ;; Visualize undos
 (use-package undo-tree
+  :straight (undo-tree :type git :host gitlab :repo "tsc25/undo-tree")
   :config
   (setq undo-tree-mode-lighter "")
   (global-undo-tree-mode))
@@ -241,6 +271,9 @@
 
 ;; Org-mode
 (jawa/require 'setup-org t)
+
+(use-package google-this
+  :hook ((text-mode prog-mode) . google-this-mode))
 
 (provide 'setup-packages)
 ;;; setup-packages.el ends here

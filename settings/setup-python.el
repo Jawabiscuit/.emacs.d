@@ -51,9 +51,10 @@
          ("C-c <C-return>" . etom-send-region)
          ("C-c C-S-c" . etom-send-buffer)
          ("C-c C-S-b" . etom-show-buffer)
-         )
-    :config
-    (message "python-mode configured!"))
+         ;; Macros
+         ("<C-M-return>" . etom-src-block)
+         ("C-c C-v <C-return>" . etom-tangle-src-block)
+         ))
 
   (use-package jedi-direx
     ;; elpy-occur-definitions
@@ -69,8 +70,7 @@
   
   (use-package python-magic
     :load-path "site-lisp"
-    :straight (python-magic :type built-in))
-)
+    :straight (python-magic :type built-in)))
 
 
 ;; Automatically activates python virtualenv

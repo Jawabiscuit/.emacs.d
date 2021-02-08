@@ -6,7 +6,10 @@
 (use-package magit
   :commands magit-status
   :init (setq magit-completing-read-function 'ivy-completing-read)
-  :bind (("C-c h g" . hydra-magit/body))
+  :bind
+  (("C-c h g" . hydra-magit/body)
+   ("C-x m" . magit-status-fullscreen)
+   ("C-x g" . magit-status))
   :hook ((git-commit-mode . jawa/magit-cursor-fix))
   :config
   ;; Don't prompt me

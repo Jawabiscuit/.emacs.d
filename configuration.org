@@ -81,8 +81,10 @@ If you run emacs <= 24.3 the macro with-eval-after-load is not defined. Here is 
 ** Activate package.el for loading built-in packages
 
 #+BEGIN_SRC emacs-lisp
-(require 'package)
-(package-initialize 'noactivate)
+(when (version< emacs-version "27")
+  (require 'package)
+  (package-initialize 'noactivate)
+)
 
 ;; Minimal melpa configuration, mostly for trying out packages.
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -162,13 +164,13 @@ Allow use of =:wk= keyword in general.el keybinding definitions
 (jawa/require 'setup-which-key t)
 #+end_src
 
-*** Generic definer
+_Generic Definer_
 
-#+begin_emacs-lisp
+#+begin_src emacs-lisp
 (general-create-definer jawa/bind-key)
-#+end_emacs-lisp
+#+end_src
 
-*** Emacs standard prefix key definers
+_Emacs Standard Prefix Key Definers_
 
 #+begin_src emacs-lisp
 (general-create-definer jawa/bind-register :prefix "C-x r")
@@ -176,23 +178,29 @@ Allow use of =:wk= keyword in general.el keybinding definitions
     'jawa/bind-register)
 #+end_src
 
-**** M-g: Jump
+_M-g: Jump_
 
 #+begin_src emacs-lisp
-  (general-create-definer jawa/bind-jump :prefix "M-g")
+(general-create-definer jawa/bind-jump :prefix "M-g")
 #+end_src
 
-**** M-r: Registers
+_M-r: Registers_
 
 #+begin_src emacs-lisp
 ;; (general-def
 ;;   "M-r" (general-simulate-key "C-x r"))
 #+end_src
 
-*** Non-standard prefix key definers
+_Non-Standard Prefix Key Definers_
 
 #+begin_src emacs-lisp
 (general-create-definer jawa/bind-user :prefix "C-c")
+#+end_src
+
+_M-s: Search_
+
+#+begin_src emacs-lisp
+(general-create-definer jawa/bind-search :prefix "M-s")
 #+end_src
 
 
