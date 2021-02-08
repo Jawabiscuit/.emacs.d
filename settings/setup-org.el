@@ -11,7 +11,6 @@
                               no-littering-etc-directory)))))
 
 (use-package org-starter
-  :defer t
   :diminish org-starter-mode
   :config
   ;; (org-starter-mode 1)
@@ -164,6 +163,16 @@
   :straight (tabcrush :host github :repo "raxod502/tabcrush")
   :defer t)
 
+
+;; Workaround for these kinds of errors
+;; Failed to verify signature archive-contents.sig:
+;; 066DAFCB81E42C40 created at 2020-01-03T17:05:02-0500 using RSA
+;; Command output:
+;; gpg: Signature made 01/03/20 17:05:02 Eastern Standard Time
+;; gpg:                using RSA key C433554766D3DDC64221BFAA066DAFCB81E42C40
+;; gpg: Can't check signature: No public key
+(setq package-check-signature nil)
+
 ;; Active Babel languages
 (with-eval-after-load 'org
   (org-babel-do-load-languages
@@ -175,6 +184,9 @@
      (ditaa . t)
      (shell . t)
      )))
+
+;; Don't ask to eval src blocks
+(setq org-confirm-babel-evaluate nil)
 
 ;; Hide leading asterisks and indent correctly
 (setq org-hide-leading-stars t)

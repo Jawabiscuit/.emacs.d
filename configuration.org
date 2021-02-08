@@ -215,20 +215,6 @@ The bulk of packages to install
 #+END_SRC
 
 
-** Setup convenience packages
-
-
-** Keep emacs Custom-settings in separate file
-
-This is in no-littering setup now.
-
-#+BEGIN_SRC emacs-lisp
-;; (setq custom-file
-;;       (expand-file-name "custom.el" user-emacs-directory))
-;; (load custom-file)
-#+END_SRC
-
-
 ** Appearance
 
 Most things can be setup in =setup-defaults.el= however, changes to font
@@ -296,29 +282,6 @@ faces and the like are done here
   (doom-themes-org-config))
 #+end_src
 
-
-** Org-mode
-
-Temporarily moved to setup-org.el
-
-
-** Site-lisp packages
-
-Dependency: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
-
-#+BEGIN_SRC emacs-lisp
-;; (jawa/require 'some-package-here)
-#+END_SRC
-
-
-** Language specific setup files
-
-#+BEGIN_SRC emacs-lisp
-(eval-after-load 'markdown-mode '(jawa/require 'setup-markdown-mode))
-#+END_SRC
-
-
-** Outline minor mode
 
 Dependency: [[*Add external project submodules (site-lisp) to load path][Add site-lisp to load path]]
 
@@ -391,48 +354,6 @@ Dependency: [[*Activate package.el for loading built-in packages][package.el]]
 #+END_SRC
 
 
-** Flx Fuzzy Matching
-
-Dependency: [[*Install packages if they're missing][setup packages]]
-
-#+BEGIN_SRC emacs-lisp
-  ;; (require 'flx-ido)
-  ;; (ido-mode 1)
-  ;; (ido-everywhere 1)
-  ;; (flx-ido-mode 1)
-
-  ;; disable ido faces to see flx highlights.
-  ;; (setq ido-enable-flex-matching t)
-  ;; (setq ido-use-faces nil)
-  ;; (setq flx-ido-use-faces nil)
-#+END_SRC
-
-
-** Jedi auto-complete (disabled)
-
-Dependency: [[*Install packages if they're missing][setup packages]]
-
-#+BEGIN_SRC emacs-lisp :eval no :tangle no
-(setq jedi-config:use-system-python t)
-#+END_SRC
-
-
-** Projectile minor mode
-
-Dependency: [[*Install packages if they're missing][setup packages]]
-
-#+BEGIN_SRC emacs-lisp
-(projectile-mode +1)
-#+END_SRC
-
-
-** Git gutter global minor mode
-
-#+BEGIN_SRC emacs-lisp
-(jawa/require 'setup-gitgutter)
-#+END_SRC
-
-
 ** Emacs iPython Notebooks (disabled)
 
 Moved to setup-jupyter.el
@@ -456,21 +377,6 @@ Moved to setup-jupyter.el
 #+END_SRC
 
 
-** Mel Mode
-
-Mel syntax
-Mel documentation lookup
-
-#+BEGIN_SRC emacs-lisp
-;; Moved to setup-mel.el
-;; (add-to-list 'auto-mode-alist '("\\.mel$" . mel-mode))
-;; (autoload 'mel-mode "mel-mode" nil t)
-;; 
-;; ;; mel outline mode
-;; (require 'mel-magic)
-#+END_SRC
-
-
 ** Key bindings
 
 #+BEGIN_SRC emacs-lisp
@@ -478,7 +384,7 @@ Mel documentation lookup
 #+END_SRC
 
 
-** Window (disabled)
+** Post-Load (disabled)
 
 #+BEGIN_SRC emacs-lisp :eval no :tangle no
 (general-add-hook 'window-setup-hook 'post-load-stuff t)
@@ -489,44 +395,6 @@ Mel documentation lookup
 
 #+begin_src emacs-lisp
 (diminish 'subword-mode)
-#+end_src
-
-
-** Google this
-
-Seems like a [[https://github.com/Malabarba/emacs-google-this][decent package]] for googling things from emacs.
-
-#+begin_src emacs-lisp
-(use-package google-this
-  :hook (after-init . google-this-mode))
-#+end_src
-
-
-** Stop asking to eval code blocks
-:PROPERTIES:
-:CREATED_TIME: [2020-01-11 23:37:28 -0500]
-:END:
-
-#+begin_src emacs-lisp
-(setq org-confirm-babel-evaluate nil)
-#+end_src
-
-
-** Do not check signatures
-
-Work around these errors when running =package-refresh-contents=
-
-#+begin_example
-Failed to verify signature archive-contents.sig:
-066DAFCB81E42C40 created at 2020-01-03T17:05:02-0500 using RSA
-Command output:
-gpg: Signature made 01/03/20 17:05:02 Eastern Standard Time
-gpg:                using RSA key C433554766D3DDC64221BFAA066DAFCB81E42C40
-gpg: Can't check signature: No public key
-#+end_example
-
-#+begin_src emacs-lisp
-(setq package-check-signature nil)
 #+end_src
 
 
