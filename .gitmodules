@@ -10,3 +10,6 @@
 	path = site-lisp/yasnippet-snippets
 	url = https://github.com/Jawabiscuit/yasnippet-snippets.git
         ignore = dirty
+[submodule "themes/monokai-emacs"]
+	path = themes/monokai-emacs
+	url = https://github.com/belak/emacs-monokai-pro-theme.git
