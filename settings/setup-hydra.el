@@ -593,7 +593,7 @@
   )
   ("Persp"
    (("RET" persp-mode :toggle t)
-    ("b" persp-mode-projectile-bridge-mode :toggle t)
+    ("B" persp-mode-projectile-bridge-mode :toggle t)
     ("n" persp-next "Next")
     ("p" persp-prev "Prev")
     ("s" persp-switch "Create/switch" :exit t)
