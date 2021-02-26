@@ -34,27 +34,9 @@
 
   ;; Python major mode
   (use-package python-mode
-    :hook
-    (((python-mode org-mode)
-      . (lambda ()
-          ;; Emacs to Maya
-          (require 'etom)
-        (setq etom-default-host "localhost")
-        (setq etom-default-port 2222))))
     :bind (("C--" . outline-hide-body)
-         ("C-=" . outline-show-all)
-         ("C-+" . outline-cycle)
-         ("C-c <C-return>" . etom-send-region)
-         ("C-c C-S-c" . etom-send-buffer)
-         ("C-c C-S-b" . etom-show-buffer)
-         :map org-mode
-         ("C-c <C-return>" . etom-send-region)
-         ("C-c C-S-c" . etom-send-buffer)
-         ("C-c C-S-b" . etom-show-buffer)
-         ;; Macros
-         ("<C-M-return>" . etom-src-block)
-         ("C-c C-v <C-return>" . etom-tangle-src-block)
-         ))
+           ("C-=" . outline-show-all)
+           ("C-+" . outline-cycle)))
 
   (use-package jedi-direx
     ;; elpy-occur-definitions
