@@ -29,7 +29,7 @@
            :map dashboard-mode-map
            ("H" . browse-homepage)
            ("R" . restore-session)
-           ("L" . persp-load-state-from-file)
+           ;; ("L" . persp-load-state-from-file)
            ("c" . open-custom-file)
            ("q" . quit-dashboard)
            ("h" . major-mode-hydra)
@@ -37,7 +37,7 @@
     :hook (dashboard-mode . (lambda ()
                               (setq-local frame-title-format "")
                               (jawa/turn-off-tabs)
-                              (persp-mode)
+                              ;; (persp-mode)
                               (recentf-mode)
                               (savehist-mode)))
     :init
@@ -52,7 +52,7 @@
      ("Navigator"
       (("b" browse-homepage "Browse Github" :exit t)
        ("s" restore-session "Recover session" :exit t)
-       ("l" persp-load-state-from-file "List sessions" :exit t)
+       ;; ("l" persp-load-state-from-file "List sessions" :exit t)
        ("c" open-custom-file "Settings" :exit t))
       "Section"
       ((">" dashboard-next-section "Next section")
@@ -186,16 +186,16 @@ Original ascii art: Franz P. de Vries" (format-time-string "%Y"))
     (defun restore-session ()
       "Restore last session."
       (interactive)
-      (when (bound-and-true-p persp-mode)
-        (message "Restoring session...")
-        (condition-case-unless-debug err
-            (persp-load-state-from-file)
-          (error
-           (message "Error: Unable to restore last session -- %s" err)))
-        (quit-window t)
-        (when (persp-get-buffer-or-null persp-special-last-buffer)
-          (persp-switch-to-buffer persp-special-last-buffer))
-        (message "Done")))
+      (persp-mode 1)
+      (message "Restoring session...")
+      (condition-case-unless-debug err
+          (persp-load-state-from-file)
+        (error
+         (message "Error: Unable to restore last session -- %s" err)))
+      (quit-window t)
+      (when (persp-get-buffer-or-null persp-special-last-buffer)
+        (persp-switch-to-buffer persp-special-last-buffer))
+      (message "Done"))
 
     (defun quit-dashboard ()
       "Quit dashboard window."

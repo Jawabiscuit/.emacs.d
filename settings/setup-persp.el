@@ -19,7 +19,7 @@
   :defines (recentf-exclude ivy-ignore-buffers ivy-sort-functions-alist)
   :commands (get-current-persp persp-contain-buffer-p)
   :hook (;; Has been known to interfere with dashbord
-         (after-init . persp-mode)
+         ;; (after-init . persp-mode)
          (window-setup . toggle-frame-maximized))
   :init
   (setq persp-keymap-prefix (kbd "C-x p")

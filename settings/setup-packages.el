@@ -211,6 +211,9 @@
 ;; Python
 (jawa/require 'setup-python)
 
+;; Emacs to Maya
+(jawa/require 'setup-etom)
+
 ;; Jupyter notebooks in Emacs
 (jawa/require 'setup-jupyter)
 
