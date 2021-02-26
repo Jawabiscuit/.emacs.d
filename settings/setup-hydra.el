@@ -259,13 +259,15 @@
       (ace-window 1)
       (add-hook 'ace-window-end-once-hook
                 'hydra-window/body))
-     "Ace switch")
+     "Ace switch"
+     :exit t)
     ("s" (lambda ()
       (interactive)
       (ace-swap-window)
       (add-hook 'ace-window-end-once-hook
                 'hydra-window/body))
-     "Ace swap")
+     "Ace swap"
+     :exit t)
     ("m" switch-window-then-maximize "Maximize")
     ("b" switch-window-then-split-below "Split below")
     ("r" switch-window-then-split-right "Split right")
