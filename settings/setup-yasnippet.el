@@ -31,7 +31,6 @@
 ;;; Code:
 
 (use-package yasnippet
-  :defer t
   :diminish yas-minor-mode
   ;; :bind (("<tab>" . nil) ;; Unbind Tab completion
   ;;        ("TAB" . nil)
